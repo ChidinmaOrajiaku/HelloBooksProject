@@ -16,11 +16,12 @@
     "dialect": "postgres"
   },
   "production": {
-   "username": "ziejdlqvukrsyq",
-    "password": "1baf310aead21910ac81e9a1a308361fb4a660301977a0d42d4a7e2ba1f910df",
-    "database": "ddi51rcnf25gs6",
-    "host": "ec2-107-20-188-239.compute-1.amazonaws.com",
-    "port": 5432,
-    "dialect": "postgres"
+  //  "username": "ziejdlqvukrsyq",
+  //   "password": "1baf310aead21910ac81e9a1a308361fb4a660301977a0d42d4a7e2ba1f910df",
+  //   "database": "ddi51rcnf25gs6",
+  //   "host": "ec2-107-20-188-239.compute-1.amazonaws.com",
+  //   "port": 5432,
+  //   "dialect": "postgres"
+    "DATABASE_URL": "postgres://ziejdlqvukrsyq:1baf310aead21910ac81e9a1a308361fb4a660301977a0d42d4a7e2ba1f910df@ec2-107-20-188-239.compute-1.amazonaws.com:5432/ddi51rcnf25gs6"
   }
 }
