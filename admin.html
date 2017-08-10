@@ -61,9 +61,8 @@
    </style>
 </head>
 <body>
-     
-  <!-- nav bar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -88,15 +87,13 @@
   </div>
 </nav>
 
-         <div class="container-fluid col-md-offset-4 col-md-4">
-           <img src="https://d1yn1kh78jj1rr.cloudfront.net/thumbnail/plus-orange-circle_zyEoUL8__thumb.jpg" class="img-thumbnail" style="border-radius: 50%; margin-top: 150px;">
-           <a><p class="admin" data-toggle="modal" data-target="#myModal1" style="margin-left: -80px;">Add New Book</p></a>
-           <img src="http://www.clker.com/cliparts/6/z/Y/C/2/s/orange-plus-sign-hi.png" class="img-thumbnail" style="border-radius: 50%">
-           <a><p class="admin" data-toggle="modal" data-target="#myModal2" style="margin-left: -80px;">Add quantity</p></a>
-           <img src="https://dreamfeel.files.wordpress.com/2010/01/pastas.png" class="img-thumbnail" style="border-radius: 50%">
-           <a><p class="admin" data-toggle="modal" data-target="#myModal3" style="margin-left: -80px;">Categorise</p></a>
-           <img src="http://www.iconsdb.com/icons/download/icon-sets/web-2-blue/delete-256.png" class="img-thumbnail" style="border-radius: 50%">
-           <a><p class="admin" data-toggle="modal" data-target="#myModal4" style="margin-left: -80px;">Delete</p></a>
+         <div class="container">
+           <img onmouseover="colorImg(this)" onmouseleave="normalImg(this)" src="https://d1yn1kh78jj1rr.cloudfront.net/thumbnail/plus-orange-circle_zyEoUL8__thumb.jpg" class="img-thumbnail" style="border-radius: 50%; margin-left: 100px; width: 400px; height: 358px; margin-top: 150px; ">
+           <img onmouseover="colorImg(this)" onmouseleave="normalImg(this)" src="http://www.clker.com/cliparts/6/z/Y/C/2/s/orange-plus-sign-hi.png" class="img-thumbnail" style="border-radius: 50%; margin-left: 100px; width:400px; height:358px; margin-top: 150px">
+           <a><p class="col-md-6 admin" data-toggle="modal" data-target="#myModal1" style="margin-left: 80px; font-size: 50px;">Add New Book</p></a> <a><p class="admin" data-toggle="modal" data-target="#myModal2" style="float: right; font-size: 50px; margin-top: -90px; margin-right: 230px;">Add quantity</p></a>
+           <img onmouseover="colorImg(this)" onmouseleave="normalImg(this)" src="https://dreamfeel.files.wordpress.com/2010/01/pastas.png" class="img-thumbnail" style="border-radius: 50%; margin-left: 100px; width:400px; height:358px; margin-top: 30px;">
+           <img onmouseover="colorImg(this)" onmouseleave="normalImg(this)" src="http://www.iconsdb.com/icons/download/icon-sets/web-2-blue/delete-256.png" style="border-radius: 50%; margin-left: 100px; width: 400px; height: 358px; margin-top: 30px;">
+           <a><p class="col-md-6 admin" data-toggle="modal" data-target="#myModal3" style=" font-size: 50px;">Categorise</p></a> <a><p class="col-md-7 admin" data-toggle="modal" data-target="#myModal4" style="float: right; font-size: 50px; margin-top: -85px;">Delete</p></a>
         </div>
 
         <div class="modal fade" id="myModal1" role="dialog" style="color: orange;">
