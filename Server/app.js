@@ -22,8 +22,8 @@ app.set('secret', 'ewrwg2453426262442hhddvjjjdg');
 routes(app);
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
-app.get('*', (req, res) => res.status(200).send({
-  message: 'HaHaHa!! Nothingness.',
-}));
+// app.get('*', (req, res) => res.status(200).send({
+//   message: 'HaHaHa!! Nothingness.',
+// }));
 
 export default app;
