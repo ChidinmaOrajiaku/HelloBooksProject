@@ -16,10 +16,11 @@
     "dialect": "postgres"
   },
   "production": {
-   "username": "ziejdlqvukrsyq",
-    "password": "1baf310aead21910ac81e9a1a308361fb4a660301977a0d42d4a7e2ba1f910df",
-    "database": "ddi51rcnf25gs6",
-    "host": "ec2-107-20-188-239.compute-1.amazonaws.com",
+   "username": "hlirhero",
+    "password": "kLfvDkDjwo9nJKSkYlYZblg2vSy157eb",
+    "database": "hlirhero",
+    "host": "stampy.db.elephantsql.com",
+    "use_env_variable": "DATABASE_URL",
     "port": 5432,
     "dialect": "postgres"
   }

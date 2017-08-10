@@ -1,5 +1,5 @@
 
-const booksMigration = {
+module.exports = {
   up: (queryInterface, Sequelize) => 
     queryInterface.createTable('Books', {
       id: {
@@ -40,4 +40,3 @@ const booksMigration = {
     }),
   down: (queryInterface /* , Sequelize */) => queryInterface.dropTable('Books'),
 };
-export default booksMigration;

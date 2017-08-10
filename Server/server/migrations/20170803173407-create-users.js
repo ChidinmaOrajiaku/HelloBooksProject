@@ -1,5 +1,5 @@
 
-const usersMigration = {
+module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Users', {
       id: {
@@ -34,4 +34,3 @@ const usersMigration = {
   down: (queryInterface /* , Sequelize */) => queryInterface.dropTable('Users'),
 };
 
-export default usersMigration;
