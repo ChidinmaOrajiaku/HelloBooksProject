@@ -32,24 +32,26 @@ describe('Users', () => {
         done();
       });
   });
-  // it('should let users sign in /signin POST', (done) => {
-  //   chai.request(app)
-  //     .post('/api/v1/users/signin')
-  //     .send(Users)
-  //     .end((err, res) => {
-  //       console.log(res);
-  //       res.should.have.status(200);
-  //       res.should.be.json;
-  //       res.body.should.be.a('object');
-  //       res.body.should.not.be.empty;
-  //       res.body.should.have.property('userName');
-  //       res.body.should.have.property('email');
-  //       res.body.should.have.property('password');
-  //       res.body.userName.should.equal('Moyo');
-  //       // res.body.password.should.equal('moyo');
-  //       done();
-  //     });
-  // });
+  it('should let users sign in /signin POST', (done) => {
+    Users = {
+      userName: 'Moyo',
+    };
+    chai.request(app)
+      .post('/api/v1/users/signin')
+      .send(Users)
+      .end((err, res) => {
+        console.log(res);
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.should.have.property('message').equal('Successfully logged in');
+        res.body.should.have.property('userName').equal('Deedee');
+        res.body.should.have.property('password');
+        res.body.userName.should.equal('Moyo');
+        // res.body.password.should.equal('moyo');
+        done();
+      });
+  });
 });
 
 
