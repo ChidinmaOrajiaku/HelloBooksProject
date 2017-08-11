@@ -1,3 +1,6 @@
+## HelloBooks PROJECT
+HelloBooks is an app that manages library processes (tracking, stocking and renting). Users can borrow books and read them within the app.
+
 ## FEATURES
 . ES6 - Using [Babel](https://www.npmjs.com/package/babel)
 
