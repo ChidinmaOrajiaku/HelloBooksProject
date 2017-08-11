@@ -1,7 +1,7 @@
 ## FEATURES
 . ES6 - Using [[Babel](https://www.npmjs.com/package/babel)]
 
-. User registration API - Using [[JWT](https://www.npmjs.com/package/jsonwebtoken)] and [[bcrypt[(https://www.npmjs.com/package/bcrypt)]
+. User registration API - Using [[JWT](https://www.npmjs.com/package/jsonwebtoken)] and [[bcrypt](https://www.npmjs.com/package/bcrypt)]
 
 . Style guide - [[Eslint with airbnb style guide](https://www.npmjs.com/package/eslint-config-airbnb)]
 
