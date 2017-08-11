@@ -1,14 +1,14 @@
 ## FEATURES
-. ES6 - Using Babel(https://www.npmjs.com/package/babel)
+. ES6 - Using [[Babel](https://www.npmjs.com/package/babel)]
 
-. User registration API - Using JWT(https://www.npmjs.com/package/jsonwebtoken) and bcrypt(https://www.npmjs.com/package/bcrypt)
+. User registration API - Using [[JWT](https://www.npmjs.com/package/jsonwebtoken)] and [[bcrypt[(https://www.npmjs.com/package/bcrypt)]
 
-. Style guide - Eslint with airbnb style guide(https://www.npmjs.com/package/eslint-config-airbnb)
+. Style guide - [[Eslint with airbnb style guide](https://www.npmjs.com/package/eslint-config-airbnb)]
 
 ## INSTALLATIONS
-. Node.js-Express(https://docs.npmjs.com/getting-started/installing-node)
+. [[Node.js-Express](https://docs.npmjs.com/getting-started/installing-node)]
     npm-install --save express
-. PostgreSQL(https://www.postgresql.org/download/)
+. [[PostgreSQL](https://www.postgresql.org/download/)]
 ## or simply 
 . git clone this repository
 . Run "npm-install" to install dependencies
