@@ -1,8 +1,8 @@
 language : node_js
 node_js:
-  - "8"
-services:
-  -postgresql
+  - node
+before_script:
+  -npm install -g codeclimate-test-reporter
 script:
   -npm test
 after_success:
