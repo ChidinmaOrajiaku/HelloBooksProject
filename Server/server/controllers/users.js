@@ -46,7 +46,6 @@ const usersController = {
         res.status(401).send({ error: 'Password Incorrect' });
       })
       .catch((error) => {
-        console.log(error);
         res.status(404).send(error);
       });
   }

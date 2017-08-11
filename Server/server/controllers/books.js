@@ -18,13 +18,12 @@ const booksController = {
       .findAll({})
       .then((books) => {
         if (books.length === 0) {
-          res.status(200).send('No books in the library');
+          res.status(404).send('No books in the library');
         }
         res.status(200).send(books);
       })
       .catch((error) => {
-        console.log(error);
-        res.status(404).send(error);
+        res.status(400).send(error);
       });
   },
   update(req, res) {
@@ -69,7 +68,7 @@ const booksController = {
           .catch(error => res.status(404).send(error));
       })
       .catch((error) => {
-        res.status(404).send(error);
+        res.status(400).send(error);
       });
   },
   listNotReturnedBooks(req, res) {
@@ -83,12 +82,11 @@ const booksController = {
       })
       .then((books) => {
         if (books.length === 0) {
-          res.status(200).send('No books in the library');
+          res.status(404).send('No books in the library');
         }
         res.status(200).send(books);
       })
       .catch((error) => {
-        console.log(error);
         res.status(404).send(error);
       });
   },
