@@ -15,7 +15,15 @@ export default (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    membership: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     hooks: {
       beforeCreate: (Users) => {

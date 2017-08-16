@@ -17,9 +17,9 @@ export default function jwtMiddleware(app) {
           error: 'Token could not be authenticated'
         });
       }
-
-      req.auth = decoded;
+      res.auth = decoded;
       next();
     });
   };
 }
+
