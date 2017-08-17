@@ -41,17 +41,29 @@ const booksController = {
           author: req.body.author,
           category: req.body.category,
         })
-          .then(() => res.status(200).send({ message: 'Books Updated!' })) 
+          .then(() => res.status(200).send({ message: 'Books Updated!' }))
           .catch(error => res.status(400).send(error));
       })
       .catch((error) => {
         res.status(404).send(error);
       });
   },
+  deleteBook(req, res) {
+    return db.Books.findById(req.params.booksId)
+      .then((books) => {
+        if (!books) {
+          return res.status(200).send({ message: 'Book not found' });
+        }
+        books.destroy()
+          .then(() => res.status(204).send({ message: 'Book Deleted' }))
+          .catch(error => res.status(400).send(error));
+      })
+      .catch(error => res.status(400).send(error));
+  },
   borrow(req, res) {
     const cur = new Date();
     const after24Days = cur.setDate(cur.getDate() + 24); // get 24 days after borrowed date 
-    return db.Books.findById(req.params.booksId).then((books) => {
+    return db.Books.findById(req.body.booksId).then((books) => {
       if (books) {
         return books;
       }

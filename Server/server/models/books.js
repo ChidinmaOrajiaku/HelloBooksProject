@@ -25,6 +25,10 @@ export default (sequelize, DataTypes) => {
           foreignKey: 'booksId',
           as: 'rentedbooks',
         });
+        // Books.belongsTo(models.BooksCategory, {
+        //   foreignKey: 'bookscategoryId',
+        //   onDelete: 'CASCADE',
+        // });
       },
     },
   });

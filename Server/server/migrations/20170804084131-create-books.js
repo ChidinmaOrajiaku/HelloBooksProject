@@ -1,6 +1,6 @@
 
 module.exports = {
-  up: (queryInterface, Sequelize) => 
+  up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Books', {
       id: {
         allowNull: false,
@@ -37,6 +37,15 @@ module.exports = {
           as: 'usersId',
         },
       },
+      // bookscategoryId: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: 'CASCADE',
+      //   references: {
+      //     model: 'BooksCategory',
+      //     key: 'id',
+      //     as: 'bookscategoryId',
+      //   },
+      // },
     }),
   down: (queryInterface /* , Sequelize */) => queryInterface.dropTable('Books'),
 };
