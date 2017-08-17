@@ -16,7 +16,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set('secret', 'ewrwg2453426262442hhddvjjjdg');
+app.set('secret', 'corajiaku96');
 
 // Require our routes into the application.
 routes(app);
