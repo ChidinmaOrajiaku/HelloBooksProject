@@ -17,6 +17,7 @@ const usersController = {
         password: req.body.password,
         role: req.body.role,
         membership: req.body.membership,
+        usersId: req.query.id,
       })
       .then(user => res.status(201).send(user))
       .catch(error => res.status(400).send(error));
@@ -36,19 +37,19 @@ const usersController = {
         }
         else if (req.body.role === 'admin' && bcrypt.compareSync(req.body.password, user.password)) {
           // create Token
-          const adminToken = jwt.sign({ user }, app.get('secret'), {
-            expiresIn: 60 * 60 * 72 // token expires after 24 hours
+          const adminToken = jwt.sign({ role: 'admin' }, app.get('secret'), {
+            expiresIn: 60 * 60 * 72 // token expires after 72 hours
           });
           return res.status(200).send({
             message: 'Welcome admin',
             userName: user.userName,
             role: user.role,
-            userToken: adminToken
+            token: adminToken
           });
         }
-        else if (bcrypt.compareSync(req.body.password, user.password)) {
+        else if (req.body.role === 'user' && bcrypt.compareSync(req.body.password, user.password)) {
           // create Token
-          const token = jwt.sign({ user }, app.get('secret'), {
+          const token = jwt.sign({ role: 'user' }, app.get('secret'), {
             expiresIn: 60 * 60 * 24 // token expires after 24 hours
           });
           return res.status(200).send({

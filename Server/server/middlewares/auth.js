@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
+import app from '../../app';
 
-export default function jwtMiddleware(app) {
-  return (req, res, next) => {
+const authenticate = {
+  verifyUser: (req, res, next) => {
     // Let's request token
     const token = req.body.token || req.query.token || req.headers['x-token'];
 
@@ -12,14 +13,23 @@ export default function jwtMiddleware(app) {
 
     // Token verification
     jwt.verify(token, app.get('secret'), (err, decoded) => {
+      console.log(app);
       if (err) {
         return res.status(403).send({
           error: 'Token could not be authenticated'
         });
       }
-      res.auth = decoded;
+      req.decoded = decoded;
       next();
     });
-  };
-}
+  },
+  verifyAdmin: (req, res, next) => {
+    if (req.decoded && req.decoded.role === 'admin') {
+      return next();
+    }
+    return res.status(401).send({ message: 'Solely for the admin' });
+  }
+};
+
+export default authenticate;
 
