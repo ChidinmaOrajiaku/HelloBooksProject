@@ -63,21 +63,40 @@ const booksController = {
   borrow(req, res) {
     const cur = new Date();
     const after24Days = cur.setDate(cur.getDate() + 24); // get 24 days after borrowed date 
-    return db.Books.findById(req.body.booksId).then((books) => {
-      if (books) {
-        return books;
-      }
-    })
-    // create rented books history
-      .then(() => {
-        db.RentedBooks.create({
+    return db.Books
+      .findOne({
+        where: {
+          id: req.params.booksId,
           title: req.body.title,
-          usersId: req.params.usersId,
-          booksId: req.body.booksId,
-          toReturnDate: after24Days,
-        })
-          .then(RentedBooks => res.status(200).send(RentedBooks))
-          .catch(error => res.status(404).send(error));
+        }
+      })
+      .then((books) => {
+        if (!books) {
+          return res.status(404).send('Book Not Found');
+        }
+        return db.RentedBooks
+          .findOne({
+            where: {
+              returned: false,
+              title: req.body.title,
+              usersId: req.params.usersId,
+              booksId: req.body.booksId,
+            }
+          })
+          .then((rentedBooks) => {
+            if (rentedBooks) {
+              return res.status(404).send('Book has been borrowed but not returned');
+            }
+            // create rented books history
+            db.RentedBooks.create({
+              title: req.body.title,
+              usersId: req.params.usersId,
+              booksId: req.body.booksId,
+              toReturnDate: after24Days,
+            })
+              .then(RentedBooks => res.status(200).send(RentedBooks))
+              .catch(error => res.status(404).send(error));
+          });
       })
       .catch((error) => {
         res.status(400).send(error);
@@ -86,7 +105,7 @@ const booksController = {
   listNotReturnedBooks(req, res) {
     // list books borrowed but not returned
     return db.RentedBooks
-      .findOne({
+      .findAll({
         where: {
           returned: false,
           usersId: req.params.usersId
@@ -105,17 +124,26 @@ const booksController = {
   returnBooks(req, res) {
     // return borrowed books
     return db.RentedBooks
-      .update({
-        returned: true,
-        returnDate: Date.now(),
-        usersId: req.params.usersId
-      },
-      {
-        where: {
-          booksId: req.params.booksId
-        }
+      .findOne({
+        usersId: req.params.usersId,
+        booksId: req.params.booksId,
+        returned: false,
       })
-      .then(() => res.status(200).send({ message: 'Successfully Returned' }))
+      .then((rentedBooks) => {
+        if (!rentedBooks) {
+          return res.status(404).send('Book Not Found');
+        }
+        // else if (rentedBooks.returned === true) {
+        //   return res.status(404).send('Book has already been returned');
+        // }
+        rentedBooks.update({
+          returned: true,
+          returnDate: Date.now(),
+          usersId: req.params.usersId
+        })
+          .then(() => res.status(200).send({ message: 'Successfully Returned' }))
+          .catch(error => res.status(404).send(error));
+      })
       .catch((error) => {
         res.status(404).send(error);
       });
