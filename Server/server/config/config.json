@@ -9,11 +9,11 @@
   },
   "test": {
     "username": "postgres",
-    "password": "corajiaku96",
-    "database": "HelloBooks-test",
+    "password": "",
+    "database": "travis",
     "host": "127.0.0.1",
-    "port": 5432,
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "logging": false
   },
   "production": {
    "username": "hlirhero",

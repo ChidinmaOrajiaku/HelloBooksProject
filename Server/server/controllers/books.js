@@ -66,7 +66,7 @@ const booksController = {
     return db.Books
       .findOne({
         where: {
-          id: req.params.booksId,
+          id: req.body.booksId,
           title: req.body.title,
         }
       })
@@ -125,17 +125,15 @@ const booksController = {
     // return borrowed books
     return db.RentedBooks
       .findOne({
-        usersId: req.params.usersId,
-        booksId: req.params.booksId,
-        returned: false,
+        where: {
+          returned: false,
+          booksId: req.body.booksId
+        }
       })
       .then((rentedBooks) => {
         if (!rentedBooks) {
-          return res.status(404).send('Book Not Found');
+          return res.status(404).send({ message: ' Cannot return' });
         }
-        // else if (rentedBooks.returned === true) {
-        //   return res.status(404).send('Book has already been returned');
-        // }
         rentedBooks.update({
           returned: true,
           returnDate: Date.now(),
