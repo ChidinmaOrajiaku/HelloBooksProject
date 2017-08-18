@@ -7,7 +7,7 @@
     "start": "babel-node ./Server/bin/www",
     "test": "mocha",
     "test:db": "sequelize db:migrate",
-    "coverage": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text --reporter=lcovonly mocha --compilers js:babel-register test/*.js",
+    "coverage": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text --reporter=lcovonly mocha --compilers js:babel-register test/*.js"
   },
   "keywords": [],
   "author": "",
