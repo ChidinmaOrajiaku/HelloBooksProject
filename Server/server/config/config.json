@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "corajiaku96",
+    "database": "HelloBooks-dev",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "",
+    "database": "travis",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "production": {
+   "username": "hlirhero",
+    "password": "kLfvDkDjwo9nJKSkYlYZblg2vSy157eb",
+    "database": "hlirhero",
+    "host": "stampy.db.elephantsql.com",
+    "use_env_variable": "DATABASE_URL",
+    "port": 5432,
+    "dialect": "postgres"
+  }
+}
