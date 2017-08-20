@@ -6,10 +6,19 @@ import bodyParser from 'body-parser';
 
 import path from 'path';
 
+import webpack from 'webpack';
+
+import webpackMiddleware from 'webpack-dev-middleware';
+
+import webpackConfig from '../webpack.config';
+
 import routes from './server/routes';
 
 // Set up the express app
 const app = express();
+
+// webpack configuration
+app.use(webpackMiddleware(webpack(webpackConfig)));
 
 // Log requests to the console.
 app.use(logger('dev'));
