@@ -23,6 +23,8 @@ app.use(webpackMiddleware(webpack(webpackConfig)));
 // Log requests to the console.
 app.use(logger('dev'));
 
+app.use('/static', express.static(path.join(__dirname, 'public')));
+
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +35,7 @@ app.set('secret', 'corajiaku96');
 routes(app);
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
