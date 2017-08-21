@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon --exec babel-node Server/bin/www",
+    "build": "nodemon --exec babel-node Server/bin/www",
     "test": "mocha --compilers js:babel-core/register"
   },
   "keywords": [],
@@ -30,6 +30,7 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "sequelize": "^4.4.2",
+    "webpack-hot-middleware": "^2.18.2",
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.7.1"
@@ -47,6 +48,7 @@
     "eslint-plugin-react": "^7.2.1",
     "mocha": "^3.5.0",
     "nodemon": "^1.11.0",
+    "react-hot-loader": "^1.3.1",
     "supertest": "^3.0.0"
   }
 }

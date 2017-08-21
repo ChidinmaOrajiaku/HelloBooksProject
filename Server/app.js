@@ -10,6 +10,8 @@ import webpack from 'webpack';
 
 import webpackMiddleware from 'webpack-dev-middleware';
 
+import webpackHotMiddleware from 'webpack-hot-middleware';
+
 import webpackConfig from '../webpack.config';
 
 import routes from './server/routes';
@@ -17,13 +19,19 @@ import routes from './server/routes';
 // Set up the express app
 const app = express();
 
+app.use('/static', express.static(path.join(__dirname, 'public')));
 // webpack configuration
-app.use(webpackMiddleware(webpack(webpackConfig)));
+const compiler = webpack(webpackConfig);
 
+app.use(webpackMiddleware(compiler, {
+  hot: true,
+  publcPath: webpackConfig.output.publicPath,
+  noInfo: true
+}));
+
+app.use(webpackHotMiddleware(compiler));
 // Log requests to the console.
 app.use(logger('dev'));
-
-app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
