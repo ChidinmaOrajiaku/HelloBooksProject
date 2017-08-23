@@ -1,9 +1,8 @@
 import React from 'react';
-import styles from './app.css';
 
 export default () => {
   return (
-    <footer className="page-footer styles teal">
+    <footer className="page-footer teal">
           <div className="container">
             <div className="row">
               <div className="col l6 s12">

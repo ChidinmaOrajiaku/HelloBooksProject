@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.brand-logo{
+  font-family: Lobster;
+}
+ .main {
+    padding-top: 40px;
+    flex: 1 0 auto;
+    height: 98vh;
+    background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    .books{
+      text-align: center;
+      color: white;
+      font-family: Anton;
+      margin-top: 70px;
+    }
+    .author{
+      text-align: center;
+      font-style: italic;
+      color: #C2FF00;
+      font-family: Lobster;
+    }
+    .container{
+     vertical-align: middle;
+    }
+  }
+
+  #modal1{
+    width: 30%;
+    height: 90%;
+  }
+
+  #modal2{
+    width: 30%;
+    height: 55%;
+  }
+ 
+

@@ -24,8 +24,8 @@ export default {
         loaders: ['react-hot-loader', 'babel-loader']
       },
       {
-        test: /\.css$/,
-        loader: 'style-loader'
+        test: /\.scss$/,
+        loader: ['style-loader', 'css-loader', 'sass-loader']
       }, {
         test: /\.css$/,
         loader: 'css-loader',
@@ -37,6 +37,6 @@ export default {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.css']
+    extensions: ['*', '.js', '.scss']
   }
 };
