@@ -24,11 +24,11 @@ export default {
         loaders: ['react-hot-loader', 'babel-loader']
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         loader: 'style-loader'
       }, {
-        test: /\.scss$/,
-        loader: 'scss-loader',
+        test: /\.css$/,
+        loader: 'css-loader',
         query: {
           modules: true,
           localIdentName: '[name]__[local]___[hash:base64:5]'
