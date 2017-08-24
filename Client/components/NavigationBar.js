@@ -2,7 +2,6 @@ import React from 'react';
 
 
 export default () => {
-        $(".button-collapse").sideNav();
   return (
       <div className="container-fluid">
          <nav className="teal">

@@ -41,4 +41,25 @@ body {
     height: 55%;
   }
  
+  .page{
+    padding-top: 300px;
+    float: right;
+  }
+
+  .card{
+    .card-image{
+      img{
+        height: 300px;
+      }
+    }
+   .card-action{
+     a{
+       &hover {
+         color: #C2FF00;
+       }
+     }
+   }
+  }
+    
+
 

@@ -25,30 +25,30 @@ export default () => {
                           <form className="col s12">
                             <div className="row">
                              <div className="input-field col s6">
-                                <input id="first_name" type="text" class="validate"/>
-                                  <label for="first_name">First Name</label>
+                                <input id="first_name" type="text" className="validate"/>
+                                  <label htmlFor="first_name">First Name</label>
                              </div>
                              <div className="input-field col s6">
-                                <input id="last_name" type="text" class="validate"/>
-                                 <label for="last_name">Last Name</label>
+                                <input id="last_name" type="text" className="validate"/>
+                                 <label htmlFor="last_name">Last Name</label>
                              </div>
                            </div>
                            <div className="row">
                               <div className="input-field col s12">
-                                <input id="user_name" type="text" class="validate"/>
-                                  <label for="user_name">User Name</label>
+                                <input id="user_name" type="text" className="validate"/>
+                                  <label htmlFor="user_name">User Name</label>
                              </div>
                            </div>
                            <div className="row">
                               <div className="input-field col s12">
-                                <input id="password" type="password" class="validate"/>
-                                 <label for="password">Password</label>
+                                <input id="password" type="password" className="validate"/>
+                                 <label htmlFor="password">Password</label>
                              </div>
                            </div>
                            <div className="row">
                              <div className="input-field col s12">
-                               <input id="email" type="email" class="validate"/>
-                                <label for="email">Email</label>
+                               <input id="email" type="email" className="validate"/>
+                                <label htmlFor="email">Email</label>
                              </div>
                            </div>
                          </form>
@@ -66,20 +66,20 @@ export default () => {
                        <form className="col s12">
                          <div className="row">
                           <div className="input-field col s12">
-                             <input id="first_name" type="text" class="validate"/>
-                               <label for="user_name">User Name</label>
+                             <input id="first_name" type="text" className="validate"/>
+                               <label htmlFor="user_name">User Name</label>
                           </div>
                          </div>  
                         <div className="row">
                            <div className="input-field col s12">
-                             <input id="password" type="password" class="validate"/>
-                              <label for="password">Password</label>
+                             <input id="password" type="password" className="validate"/>
+                              <label htmlFor="password">Password</label>
                           </div>
                         </div>
                         <div className="row">
                           <div className="input-field col s12">
-                            <input id="email" type="email" class="validate"/>
-                             <label for="email">Email</label>
+                            <input id="email" type="email" className="validate"/>
+                             <label htmlFor="email">Email</label>
                           </div>
                         </div>
                       </form>
