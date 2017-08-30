@@ -2,7 +2,17 @@ import bcrypt from 'bcrypt';
 
 export default (sequelize, DataTypes) => {
   const Users = sequelize.define('Users', {
-    userName: {
+    firstname: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+    },
+    lastname: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+    },
+    username: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,

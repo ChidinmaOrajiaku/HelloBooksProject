@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { userSignupRequest } from '../actions/signupAction';
 
 class Greetings extends React.Component {
   constructor (props) {
@@ -22,7 +25,7 @@ class Greetings extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log(this.state)
+    this.props.userSignupRequest(this.state)
   }
   componentDidMount() {
     var options = [
@@ -37,6 +40,7 @@ class Greetings extends React.Component {
     } 
 
   render() {
+    const {userSignUpRequest}=this.props
   return (
     <div className="main">
        <div className=" container row ">
@@ -117,4 +121,7 @@ class Greetings extends React.Component {
  };
 }
 
-export default Greetings;
+Greetings.propTypes = {
+  userSignupRequest: PropTypes.func.isRequired
+}
+export default connect(null, { userSignupRequest }) (Greetings);
