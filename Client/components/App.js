@@ -8,7 +8,7 @@ class App extends React.Component {
         return (
             <div className="container-fluid">
                <NavigationBar />
-               <Greetings />
+               {this.props.children}
                <Footer />
             </div>
         );

@@ -1,3 +1,9 @@
+$primaryColor: #8FA05B;
+$primaryColor2: teal;
+$fontFamily: Pacifico;
+$fontFamily2: Lobster;
+
+
 body {
   display: flex;
   min-height: 100vh;
@@ -10,8 +16,8 @@ body {
  .main {
     padding-top: 40px;
     flex: 1 0 auto;
-    height: 98vh;
     background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
+    background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     .books{
@@ -23,42 +29,109 @@ body {
     .author{
       text-align: center;
       font-style: italic;
-      color: #C2FF00;
+      color: $primaryColor;
       font-family: Lobster;
+    }
+    .card{
+      height: 600px;
+      .card-tabs{
+        margin-top: 30px;
+        .tabs {
+          .indicator {
+          background-color: $primaryColor2;
+        }
+        .tab{
+          color: teal;
+          font-size: 100px;
+        }
+       }
+      }
+      .waves-effect{
+        float: right;
+      }
     }
     .container{
      vertical-align: middle;
     }
-  }
 
-  #modal1{
-    width: 30%;
-    height: 90%;
-  }
-
-  #modal2{
-    width: 30%;
-    height: 55%;
+    .carousel{
+      height: 400px!important;
+    }
+    #modal1{
+      width: 30%;
+      height: 90%;
+    }
+  
+    #modal2{
+      width: 30%;
+      height: 45%;
+    }
   }
  
-  .page{
-    padding-top: 300px;
-    float: right;
-  }
-
-  .card{
-    .card-image{
-      img{
-        height: 300px;
+  .library{
+    .libraryHeading{
+      text-align: center;
+      font-family: $fontFamily2;
+      color: $primaryColor2;
+      font-size: 100px;
+    }
+    .card{
+      .card-image{
+        img{
+          height: 300px;
+        }
       }
     }
-   .card-action{
-     a{
-       &hover {
-         color: #C2FF00;
-       }
-     }
-   }
+    .table-of-contents{
+      position: fixed;
+      right: 80px;
+      top: 100px;
+      font-size: 20px;
+    }
+    .page{
+      float: right;
+    }
+  }
+
+  .profile {
+    .card-panel{
+      margin-top: 50px;
+    }
+      img{
+        height: 500px;
+        width: 500px;
+      }
+  }
+
+  .bordered{
+      margin-top: 50px;
+      thead{
+        border-bottom: 5px solid $primaryColor2;
+        font-size: 80px;
+        font-family: Lobster; 
+      }
+      tr{
+        border-bottom: 3px groove $primaryColor !important;
+        font-family: Pacifico;
+        font-size: 20px;
+        td{
+          p{
+            font-weight: bold;
+            margin-left: 10px;
+          }
+          img{
+           height: 100px;
+           width: 100px;
+          }
+        }
+      }
+  }
+
+  .signUp{
+    .card{
+      background-color: white;
+      margin-top: 50px;
+    }
   }
     
 
