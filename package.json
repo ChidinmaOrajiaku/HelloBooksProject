@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "nodemon --exec babel-node Server/bin/www",
+    "start": "babel-node Server/bin/www",
     "test": "mocha --compilers js:babel-core/register"
   },
   "keywords": [],
@@ -25,6 +26,8 @@
     "daemonite-material": "^4.0.0-alpha.6",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.2",
+    "lodash": "^4.17.4",
+    "lodash.map": "^4.6.0",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
     "pg": "^7.0.2",

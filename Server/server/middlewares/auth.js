@@ -13,7 +13,6 @@ const authenticate = {
 
     // Token verification
     jwt.verify(token, app.get('secret'), (err, decoded) => {
-      console.log(app);
       if (err) {
         return res.status(403).send({
           error: 'Token could not be authenticated'
@@ -24,7 +23,7 @@ const authenticate = {
     });
   },
   verifyAdmin: (req, res, next) => {
-    if (req.decoded && req.decoded.role === 'admin') {
+    if (req.decoded && req.decoded.username === 'admin96') {
       return next();
     }
     return res.status(401).send({ message: 'Solely for the admin' });

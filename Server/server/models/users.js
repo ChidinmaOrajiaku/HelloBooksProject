@@ -4,33 +4,33 @@ export default (sequelize, DataTypes) => {
   const Users = sequelize.define('Users', {
     firstname: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
     },
     lastname: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
     },
     username: {
       type: DataTypes.STRING,
-      unique: true,
+      unique: {
+        args: true,
+        msg: 'Username already exists'
+      },
       allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
+      unique: {
+        args: true,
+        msg: 'Email already exists'
+      },
+      isEmail: {
+        args: true,
+        msg: 'Invalid Email'
+      },
       allowNull: false,
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    role: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    membership: {
       type: DataTypes.STRING,
       allowNull: false,
     },

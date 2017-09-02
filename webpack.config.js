@@ -3,7 +3,7 @@ import webpack from 'webpack';
 
 export default {
   entry: [
-    'webpack-hot-middleware/Client',
+    'webpack-hot-middleware/Client?reload=true',
     path.join(__dirname, '/Client/index.js'),
   ],
   output: {
