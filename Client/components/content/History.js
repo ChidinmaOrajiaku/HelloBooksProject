@@ -1,4 +1,5 @@
 import React from 'react';
+import BodyNavigationBar from './BodyNavigationBar';
 
 class History extends React.Component {
   render() {
@@ -9,6 +10,8 @@ class History extends React.Component {
     });
   });
   return (
+    <div className="history">
+    <div className="nav"> <BodyNavigationBar /> </div>
     <table className="bordered highlight centered container">
     <thead>
       <tr>
@@ -101,6 +104,7 @@ class History extends React.Component {
 
     </tbody>
   </table>
+  </div>
   );
 };
 }

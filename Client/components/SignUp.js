@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import NavigationBar from './NavigationBar';
+import Footer from './Footer';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
 import { userSignupRequest } from '../actions/signupAction';
@@ -44,6 +46,7 @@ class SignUp extends React.Component {
     const { errors, success } = this.state
   return (
     <div className="signUp">
+      <div className="nav"> <NavigationBar /> </div>
       <div className="row container">
         <div className="quotes">
              <h1 className="books">“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”</h1>
@@ -92,6 +95,7 @@ class SignUp extends React.Component {
  </div>
  </div>
  </div>
+ <div className="footer"> <Footer /> </div>
  </div>
   );
 }

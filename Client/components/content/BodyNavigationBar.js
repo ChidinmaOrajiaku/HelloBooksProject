@@ -1,7 +1,8 @@
 import React from 'react';
 
 
-export default () => {
+class BodyNavigationBar extends React.Component {
+  render(){
   $(document).ready(function(){
     $(".button-collapse").sideNav();
   })
@@ -28,4 +29,7 @@ export default () => {
                
       </div>
    );
+}
 };
+
+export default (BodyNavigationBar);
