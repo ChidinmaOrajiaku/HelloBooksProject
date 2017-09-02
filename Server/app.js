@@ -47,7 +47,4 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-// app.post('/', (req, res) => {
-//    const{ errors } = catchErrors
-// });
 export default app;

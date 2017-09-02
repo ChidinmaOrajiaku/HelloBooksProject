@@ -2,23 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
+import SignUp from './SignUp';
 import { connect } from 'react-redux';
-import { userSignupRequest } from '../actions/signupAction';
+import { userSigninRequest } from '../actions/signinAction';
 
-class SignUp extends React.Component {
+class SignIn extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      firstname : '',
-      lastname : '',
       username: '',
       password: '',
       email: '',
+      active: 'First',
       errors: false,
       success: false
     }
+
     this.handleChange = this.handleChange.bind(this);
-    this.onSignupSubmit = this.onSignupSubmit.bind(this);
+    this.onSigninSubmit = this.onSigninSubmit.bind(this);
   }
 
 
@@ -26,43 +27,35 @@ class SignUp extends React.Component {
     this.setState({[event.target.id]: event.target.value})
   }
 
-  onSignupSubmit(event) {
+
+  onSigninSubmit(event) {
     event.preventDefault();
-    this.props.userSignupRequest(this.state).then(
+    this.props.userSigninRequest(this.state).then(
       (success) => { 
         Materialize.toast(success.data.message, 2000, 'teal rounded')
-        this.setState( {success: success.data.message }) },
+          this.setState({success: success.data.message }) },
       (errors) =>{
-        Materialize.toast(errors.response.data, 2000, 'red accent-3 rounded')
-     this.setState({ errors: errors.response.data  })
+        Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
+     this.setState({ errors: errors.response.data.message })
       }
     )
   }
 
   render() {
-    const { userSignupRequest } = this.props
+    const active = this.state.active
+    const { userSigninRequest } = this.props
     const { errors, success } = this.state
   return (
-    <div className="signUp">
+      <div className="signIn">
       <div className="row container">
-        <div className="quotes">
+          <div className="quotes">
              <h1 className="books">“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”</h1>
               <h2 className="author"> ~Jane Austen, Northanger Abbey</h2>
-           </div> 
+           </div>
   <div className="col m6 offset-m3">
     <div className="card">
     <div className="card-content black-text">
-    <form onSubmit={this.onSignupSubmit} id="form">
-    <div className="row">
-     <div className="input-field col s6">
-        <input value={this.state.firstname} onChange={this.handleChange} id="firstname" required="required" type="text"  className="validate"/>
-          <label htmlFor="firstname">First Name</label>
-     </div>
-     <div className="input-field col s6">
-        <input value={this.state.lastname} onChange={this.handleChange} id="lastname" required="required" type="text" className="validate"/>
-         <label htmlFor="lastname">Last Name</label>
-     </div>
-   </div>
+    <form onSubmit={this.onSigninSubmit} id="form">
    <div className="row">
       <div className="input-field col s12">
         <input value={this.state.username} onChange={this.handleChange} id="username" required="required" type="text" className="validate"/>
@@ -81,13 +74,13 @@ class SignUp extends React.Component {
         <label htmlFor="email">Email</label>
      </div>
    </div>
-   <button className="btn waves-effect waves-light" type="submit" name="action">Sign Up
+   <button className="btn waves-effect waves-light" type="submit" name="action">Sign In
 <i className="material-icons right">send</i>
 </button>
  </form>
  </div>
  <div className="account">
-    <p> I already have an account? <a href="/login"> Login </a> </p> 
+    <p> Not a member? <a href="/register"> Sign Up </a> </p> 
 </div>
  </div>
  </div>
@@ -97,8 +90,8 @@ class SignUp extends React.Component {
 }
 };
 
-SignUp.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired
+SignIn.propTypes = {
+  userSigninRequest: PropTypes.func.isRequired
 }
 
-export default connect(null, { userSignupRequest}) (SignUp);
+export default connect(null, { userSigninRequest}) (SignIn);

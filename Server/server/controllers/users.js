@@ -43,6 +43,7 @@ const usersController = {
       .findOne({
         where: {
           username: req.body.username, // find user by username
+          email: req.body.email
         }
       })
       .then((user) => {
@@ -75,10 +76,9 @@ const usersController = {
             userToken: token
           });
         }
-        res.status(401).send({ error: 'Password Incorrect' });
+        res.status(401).send({ message: 'Password Incorrect' });
       })
       .catch((error) => {
-        console.log(error);
         res.status(404).send(error);
       });
   }
