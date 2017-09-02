@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "nodemon --exec babel-node ./Server/bin/www",
-    "start": "babel-node Server/bin/www",
+    "build": "nodemon --exec babel-node Server/bin/www",
+    "start": "babel-node ./Server/bin/www",
     "test": "mocha --compilers js:babel-core/register"
   },
   "keywords": [],
