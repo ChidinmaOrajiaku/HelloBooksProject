@@ -43,7 +43,7 @@ app.set('secret', 'corajiaku96');
 routes(app);
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
