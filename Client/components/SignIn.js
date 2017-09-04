@@ -32,9 +32,9 @@ class SignIn extends React.Component {
   onSigninSubmit(event) {
     event.preventDefault();
     this.props.userSigninRequest(this.state).then(
-      (success) => { 
-        Materialize.toast(success.data.message, 2000, 'teal rounded')
-          this.setState({success: success.data.message }) },
+      () => { 
+        this.context.router.history.push('/library')
+      },
       (errors) =>{
         Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
      this.setState({ errors: errors.response.data.message })
@@ -95,6 +95,10 @@ class SignIn extends React.Component {
 
 SignIn.propTypes = {
   userSigninRequest: PropTypes.func.isRequired
+}
+
+SignIn.contextTypes = {
+  router: PropTypes.object.isRequired
 }
 
 export default connect(null, { userSigninRequest}) (SignIn);
