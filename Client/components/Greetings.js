@@ -15,7 +15,6 @@ class Greetings extends React.Component {
   render() {
   return (
     <div className="main">
-     <div className="nav"> <NavigationBar /> </div>
        <div className=" container row ">
            <div className="quotes">
              <h1 className="books">“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”</h1>

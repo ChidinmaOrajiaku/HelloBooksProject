@@ -48,7 +48,6 @@ class SignIn extends React.Component {
     const { errors, success } = this.state
   return (
       <div className="signIn">
-        <div className="nav"> <NavigationBar /> </div>
       <div className="row container">
           <div className="quotes">
              <h1 className="books">“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”</h1>

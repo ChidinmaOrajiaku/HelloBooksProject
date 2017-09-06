@@ -5,7 +5,7 @@ import {BrowserRouter, Route, IndexRoute, Switch} from 'react-router-dom';
 import thunk from 'redux-thunk';
 import jwt from 'jsonwebtoken'
 import { createStore, applyMiddleware, compose } from 'redux';
-import { setCurrentUser } from './actions/signinAction'
+import { setCurrentUser } from './actions/signinAction';
 import App from './components/App';
 import Greetings from './components/Greetings';
 import SignUp from './components/SignUp';

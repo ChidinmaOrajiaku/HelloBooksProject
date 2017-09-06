@@ -9,7 +9,6 @@ class Library extends React.Component {
     });
   return (
       <div className= "library">
-          <div className="nav"> <BodyNavigationBar /> </div>
     <div className="row">
         <div className="col s12 m9 l10">
             {/* fictional */}
