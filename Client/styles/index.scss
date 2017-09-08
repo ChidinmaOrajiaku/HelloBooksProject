@@ -179,6 +179,62 @@ body {
       margin-left: 10px;
     }
   }
+
+  .admin{
+    h3{
+      margin-top: -30px;
+      font-family: $fontFamily2;
+      font-size: 30px;
+      margin-left: 30px;
+      color: $primaryColor
+    }
+    h1{
+      font-family: $fontFamily;
+      margin-left: 10px;
+      color: $primaryColor2
+    }
+    img{
+      height: 200px;
+      width: 100px;
+    }
+    span{
+      font-size: 20px;
+      margin-left: 50px;
+    }
+    .category{
+      margin-left: 30px!important
+    }
+    hr { 
+      height: 30px; 
+      border-style: solid; 
+      border-color: $primaryColor2; 
+      border-width: 5px 0 0 0; 
+      border-radius: 20px; 
+    } 
+    hr:before { 
+      display: block; 
+      content: ""; 
+      height: 30px; 
+      margin-top: -31px; 
+      border-style: solid; 
+      border-color: $primaryColor; 
+      border-width: 0 0 5px 0; 
+      border-radius: 20px; 
+    }
+    thead{
+      background-color: grey;
+      border-radius: 50px;
+    }
+    .card{
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    .modal{
+      width: 400px!important;
+      height: 500px!important;
+      overflow: none;
+    }
+  }
     
 
 

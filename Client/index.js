@@ -13,6 +13,7 @@ import SignIn from './components/SignIn';
 import Library from './components/content/Library';
 import Profile from './components/content/Profile';
 import History from './components/content/History';
+import Admin from './components/content/Admin';
 import setAuthToken from './utils/setAuthToken';
 import rootReducer from './rootReducer'
 import './styles/index'
@@ -41,6 +42,7 @@ ReactDOM.render(
           <Route exact path="/library" component={Library}/>
            <Route exact path="/profile" component={Profile}/>
            <Route exact path="/history" component={History}/>
+           <Route exact path="/admin" component={Admin}/>
         </App>
     </Switch>
     </BrowserRouter>
