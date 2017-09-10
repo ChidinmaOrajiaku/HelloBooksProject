@@ -22,6 +22,10 @@ export default (sequelize, DataTypes) => {
           foreignKey: 'usersId',
           onDelete: 'CASCADE',
         });
+        RentedBooks.belongsTo(models.BooksCategory, {
+          foreignKey: 'categoryId',
+          onDelete: 'CASCADE',
+        });
       }
     }
   });

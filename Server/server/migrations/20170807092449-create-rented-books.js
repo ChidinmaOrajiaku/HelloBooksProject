@@ -46,6 +46,15 @@ module.exports = {
           as: 'booksId',
         },
       },
+      categoryId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Categories',
+          key: 'id',
+          as: 'categoryId',
+        },
+      },
     }),
   down: (queryInterface /* , Sequelize */) =>
     queryInterface.dropTable('RentedBooks'),

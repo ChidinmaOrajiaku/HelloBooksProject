@@ -12,6 +12,14 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    review: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     classMethods: {
@@ -25,10 +33,10 @@ export default (sequelize, DataTypes) => {
           foreignKey: 'booksId',
           as: 'rentedbooks',
         });
-        // Books.belongsTo(models.BooksCategory, {
-        //   foreignKey: 'bookscategoryId',
-        //   onDelete: 'CASCADE',
-        // });
+        Books.belongsTo(models.BooksCategory, {
+          foreignKey: 'categoryId',
+          onDelete: 'CASCADE',
+        });
       },
     },
   });

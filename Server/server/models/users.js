@@ -54,6 +54,10 @@ export default (sequelize, DataTypes) => {
           foreignKey: 'usersId',
           as: 'rentedbooks',
         });
+        Users.hasMany(models.Category, {
+          foreignKey: 'usersId',
+          as: 'category',
+        });
       },
     },
   });

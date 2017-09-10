@@ -43,7 +43,6 @@ class SignIn extends React.Component {
   }
 
   render() {
-    const active = this.state.active
     const { userSigninRequest } = this.props
     const { errors, success } = this.state
   return (

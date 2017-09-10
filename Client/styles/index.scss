@@ -225,14 +225,31 @@ body {
       background-color: grey;
       border-radius: 50px;
     }
-    .card{
-      margin-left: 20px;
-      margin-right: 20px;
-    }
     .modal{
       width: 400px!important;
-      height: 500px!important;
-      overflow: none;
+      height: 600px!important;
+      overflow-x: hidden;
+    }
+    .tableau{
+      .card{
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+      button{
+        float: right;
+      }
+      table{
+        th{
+          text-align: center;
+        }
+        td{
+          text-align: center;
+        }
+        button{
+          float: left;
+          left: 25%
+        }
+      }
     }
   }
     

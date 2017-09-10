@@ -8,6 +8,9 @@ const booksController = {
         title: req.body.title,
         author: req.body.author,
         category: req.body.category,
+        image: req.body.image,
+        review: req.body.review,
+        usersId: req.query.usersId
       })
       .then(books => res.status(201).send(books))
       .catch(error => res.status(400).send(error));

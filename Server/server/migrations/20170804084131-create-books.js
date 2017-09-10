@@ -20,6 +20,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      image: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      review: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -37,15 +45,15 @@ module.exports = {
           as: 'usersId',
         },
       },
-      // bookscategoryId: {
-      //   type: Sequelize.INTEGER,
-      //   onDelete: 'CASCADE',
-      //   references: {
-      //     model: 'BooksCategory',
-      //     key: 'id',
-      //     as: 'bookscategoryId',
-      //   },
-      // },
+      categoryId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Categories',
+          key: 'id',
+          as: 'categoryId',
+        },
+      },
     }),
   down: (queryInterface /* , Sequelize */) => queryInterface.dropTable('Books'),
 };
