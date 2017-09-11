@@ -24,18 +24,18 @@ class Library extends React.Component {
           this.setState({ data: res.data})
           console.log(this.state.data);
         });
+        
        };
        
-       componentDidMount() {
-        $('.scrollspy').scrollSpy()
-        $('.tooltipped').tooltip({delay: 50});
-      } 
+      
 
     render() {
 
-    // $(document).ready(function(){
-      
-    // });
+    $(document).ready(function(){
+      $('.tooltipped').tooltip({delay: 50});
+      $('.scrollspy').scrollSpy()
+    });
+    
     const { data } = this.state
   return (
       <div className= "library">
@@ -45,19 +45,22 @@ class Library extends React.Component {
           <div id="fiction" className="section scrollspy">
           <h1 className = "libraryHeading"> Fiction </h1>
              <div className="row">
+             {this.state.data.map (books =>
                <div className="col s3 ">
                   <div className="card hoverable">
                      <div className="card-image">
-                         <img src={this.state.data.map (books => books.image)} />
+                         <img src= {books.image} />
                          <a href="#" className="btn tooltipped btn-floating halfway-fab waves-effect waves-light teal" data-position="bottom" data-delay="50" data-tooltip="Hi! Click to borrow"><i className="material-icons">add</i></a>
                      </div>
                       <div className="card-content">
-                         <p>{this.state.data.map (books => books.review)}</p>
+                         <p>{books.review}</p>
                       </div>
                   </div>
              </div>   
-         </div>
-      </div>
+          )
+          }
+          </div>
+          </div>
     </div>
     <div className="col hide-on-small-only m3 l2">
       <ul className="section table-of-contents">

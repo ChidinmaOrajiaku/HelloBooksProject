@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { adminAddRequest } from '../../actions/booksAction';
+import { adminDeleteRequest } from '../../actions/booksAction';
 
 class Admin extends React.Component {
   constructor (props) {
@@ -15,18 +16,20 @@ class Admin extends React.Component {
       category: '',
       image: '',
       review: '',
-      data: []
+      data: [],
+      errors: false,
+      success: false
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.onAddSubmit = this.onAddSubmit.bind(this);
+    this.onDeleteSubmit = this.onDeleteSubmit.bind(this);
   }
 
    componentWillMount() {
     axios.get('/api/v1/users/books').then((res) => {
       localStorage.getItem('jwtToken');
       this.setState({ data: res.data})
-      console.log(this.state.data);
     });
    };
    
@@ -38,9 +41,28 @@ class Admin extends React.Component {
   onAddSubmit(event) {
     event.preventDefault();
     this.props.adminAddRequest(this.state).then(
-      () => {},
+      (success) => { 
+        console.log(success.response)
+        // Materialize.toast(success.data.message, 2000, 'teal rounded')
+        this.setState( {success: success.response }) 
+      },
+      (errors) =>{
+        Materialize.toast(errors.response.data, 2000, 'red accent-3 rounded')
+     this.setState({ errors: errors.response.data  })
+      }
     )
+    this.componentDidUpdate;
   }
+  
+  onDeleteSubmit(event) {
+    event.preventDefault();
+    this.props.adminDeleteRequest(event)
+
+    // .then(
+    
+    // )
+  }
+
 
   componentDidMount() {
     $('.modal').modal({
@@ -59,6 +81,7 @@ class Admin extends React.Component {
     // });
     const { data } = this.state
     const { adminAddRequest } = this.props
+    const { errors, success } = this.state
   return (
       <div className="admin">
          <h1> Welcome Admin </h1> <br/> <h3> What would you like to do? </h3> 
@@ -129,7 +152,7 @@ class Admin extends React.Component {
             <hr/>
             <div className=" tableau col s12 m6">
               <div className="card">
-              <table className="bordered">
+              <table className="bordered highlight">
                 <thead>
                    <tr>
                       <th>Title</th>
@@ -145,14 +168,14 @@ class Admin extends React.Component {
                       {
                         this.state.data.map (
                           books => 
-                          <tr>
+                          <tr  key={ books.id } id={books.id}>
                           <td> {books.title} </td>
                           <td> {books.author} </td>
                           <td> {books.category} </td>
                           <td> {books.created} </td>
                           <td> {books.updated} </td>
                           <td> <button className="btn waves-effect waves-light" type="submit" name="action">Modify</button> </td>
-                          <td> <button className="btn waves-effect waves-light" type="submit" name="action">Delete</button> </td>
+                          <td> <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.onDeleteSubmit}>Delete</button> </td>
                           </tr>
                         )
                       }
@@ -167,11 +190,12 @@ class Admin extends React.Component {
 };
 
 Admin.propTypes = {
-  adminAddRequest: PropTypes.func.isRequired
+  adminAddRequest: PropTypes.func.isRequired,
+  adminDeleteRequest: PropTypes.func.isRequired
 }
 
 // SignIn.contextTypes = {
 //   router: PropTypes.object.isRequired
 // }
 
-export default connect(null, { adminAddRequest } ) (Admin);
+export default connect(null, { adminAddRequest, adminDeleteRequest } ) (Admin);

@@ -12,7 +12,7 @@ const booksController = {
         review: req.body.review,
         usersId: req.query.usersId
       })
-      .then(books => res.status(201).send(books))
+      .then(() => res.status(201).send({ message: 'Succesfully added' }))
       .catch(error => res.status(400).send(error));
   },
   list(req, res) {
@@ -21,7 +21,7 @@ const booksController = {
       .findAll({})
       .then((books) => {
         if (books.length === 0) {
-          res.status(404).send('No books in the library');
+          res.status(404).send({ message: 'No books in the library' });
         }
         res.status(200).send(books);
       })
