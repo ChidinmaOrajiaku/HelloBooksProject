@@ -16,6 +16,7 @@ export default (app) => {
   app.get('/api/v1/users/books', authenticate.verifyUser, booksController.list);
   app.put('/api/v1/books/:booksId', authenticate.verifyUser, authenticate.verifyAdmin, booksController.update);
   app.delete('/api/v1/books/:booksId', authenticate.verifyUser, authenticate.verifyAdmin, booksController.deleteBook);
+  app.get('/api/v1/users/:usersId/history', authenticate.verifyUser, booksController.listAllBooksBorrowed);
   app.post('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.borrow);
   app.get('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.listNotReturnedBooks);
   app.put('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.returnBooks);

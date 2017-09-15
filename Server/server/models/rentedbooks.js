@@ -3,12 +3,20 @@ export default (sequelize, DataTypes) => {
   const RentedBooks = sequelize.define('RentedBooks', {
     booksId: DataTypes.INTEGER,
     title: DataTypes.STRING,
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    author: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     returned: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    toReturnDate: DataTypes.DATE,
-    returnDate: DataTypes.DATE,
+    toReturnDate: DataTypes.DATEONLY,
+    returnDate: DataTypes.DATEONLY,
     usersId: DataTypes.INTEGER
   }, {
     classMethods: {

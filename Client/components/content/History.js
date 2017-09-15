@@ -1,7 +1,29 @@
 import React from 'react';
-import BodyNavigationBar from './BodyNavigationBar';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { createStore } from 'redux';
+import { store } from '../../index';
+import { getRequest } from '../../actions/booksAction';
 
 class History extends React.Component {
+ 
+  constructor (props) {
+    super(props);
+    this.state = {
+      data: [],
+    }
+  }
+
+  componentWillMount() {
+      const user = store.getState()
+      const userId = user.auth.user.id
+      axios.get('/api/v1/users/' + userId + '/history').then((res) => {
+        localStorage.getItem('jwtToken');
+        this.setState({ data: res.data})
+      });
+   };
+   
   render() {
   $(document).ready(function(){
     $('ul.tabs').tabs({
@@ -22,89 +44,23 @@ class History extends React.Component {
     </thead>
 
     <tbody>
+    {
+       this.state.data.map (
+        history => 
       <tr>
-        <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-        <td>False</td>
-        <td>3-Oct-2017</td>
-        <td>Yet to return</td>
+        <td><div className = "row valign-wrapper"><img src={history.image}/> <p>{history.title} <br/> {history.author}</p></div></td>
+        <td>{`${history.returned}`}</td>
+        <td>{history.toReturnDate}</td>
+        <td>{history.returnDate}</td>
       </tr>
-      <tr>
-       <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-        <td>False</td>
-        <td>3-Oct-2017</td>
-        <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-      <tr>
-      <td><div className = "row valign-wrapper"><img src="https://s-media-cache-ak0.pinimg.com/736x/46/d7/1d/46d71d4253a45e0d3c348b9376a7fc3c--sidney-sheldon-novels-book-hangover.jpg"/> <p>Other Side of Midnight by <br/> Sidney Sheldon</p></div></td>
-       <td>False</td>
-       <td>3-Oct-2017</td>
-       <td>Yet to return</td>
-      </tr>
-
+       )
+    }
     </tbody>
   </table>
   </div>
   );
 };
 }
-export default History;
+
+
+export default connect(null,) (History);

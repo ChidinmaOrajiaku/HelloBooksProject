@@ -22,13 +22,10 @@ class Library extends React.Component {
         axios.get('/api/v1/users/books').then((res) => {
           localStorage.getItem('jwtToken');
           this.setState({ data: res.data})
-          console.log(this.state.data);
         });
         
        };
        
-      
-
     render() {
 
     $(document).ready(function(){
@@ -46,10 +43,10 @@ class Library extends React.Component {
           <h1 className = "libraryHeading"> Fiction </h1>
              <div className="row">
              {this.state.data.map (books =>
-               <div className="col s3 ">
+               <div className="col s3 " key={books.id}>
                   <div className="card hoverable">
                      <div className="card-image">
-                         <img src= {books.image} />
+                         <img src= {books.image}/>
                          <a href="#" className="btn tooltipped btn-floating halfway-fab waves-effect waves-light teal" data-position="bottom" data-delay="50" data-tooltip="Hi! Click to borrow"><i className="material-icons">add</i></a>
                      </div>
                       <div className="card-content">

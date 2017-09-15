@@ -71,6 +71,8 @@ const booksController = {
         where: {
           id: req.body.booksId,
           title: req.body.title,
+          author: req.body.author,
+          image: req.body.image,
         }
       })
       .then((books) => {
@@ -93,13 +95,35 @@ const booksController = {
             // create rented books history
             db.RentedBooks.create({
               title: req.body.title,
+              author: req.body.author,
+              image: req.body.image,
               usersId: req.params.usersId,
               booksId: req.body.booksId,
               toReturnDate: after24Days,
             })
               .then(RentedBooks => res.status(200).send(RentedBooks))
-              .catch(error => res.status(404).send(error));
+              .catch((error) => {
+                res.status(404).send(error);
+              });
           });
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  listAllBooksBorrowed(req, res) {
+    // find all books
+    return db.RentedBooks
+      .findAll({
+        where: {
+          usersId: req.params.usersId
+        }
+      })
+      .then((RentedBooks) => {
+        if (RentedBooks.length === 0) {
+          res.status(404).send({ message: 'No books in the library' });
+        }
+        res.status(200).send(RentedBooks);
       })
       .catch((error) => {
         res.status(400).send(error);

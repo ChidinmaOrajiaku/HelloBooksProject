@@ -11,14 +11,22 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      image: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      author: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       returned: {
         type: Sequelize.BOOLEAN
       },
       toReturnDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       returnDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       createdAt: {
         allowNull: false,

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { adminAddRequest } from '../../actions/booksAction';
 import { adminDeleteRequest } from '../../actions/booksAction';
+import * as bookActions from '../../actions/booksAction';
 
 class Admin extends React.Component {
   constructor (props) {
@@ -16,6 +17,7 @@ class Admin extends React.Component {
       category: '',
       image: '',
       review: '',
+      key: '',
       data: [],
       errors: false,
       success: false
@@ -41,27 +43,25 @@ class Admin extends React.Component {
   onAddSubmit(event) {
     event.preventDefault();
     this.props.adminAddRequest(this.state).then(
-      (success) => { 
-        console.log(success.response)
-        // Materialize.toast(success.data.message, 2000, 'teal rounded')
-        this.setState( {success: success.response }) 
-      },
-      (errors) =>{
-        Materialize.toast(errors.response.data, 2000, 'red accent-3 rounded')
-     this.setState({ errors: errors.response.data  })
-      }
+    //   (success) => { 
+    //     console.log(success.response)
+    //     // Materialize.toast(success.data.message, 2000, 'teal rounded')
+    //     this.setState( {success: success.response }) 
+    //   },
+    //   (errors) =>{
+    //     Materialize.toast(errors.response.data, 2000, 'red accent-3 rounded')
+    //  this.setState({ errors: errors.response.data  })
+    //   }
     )
-    this.componentDidUpdate;
+    // this.componentDidUpdate;
   }
   
   onDeleteSubmit(event) {
     event.preventDefault();
-    this.props.adminDeleteRequest(event)
-
-    // .then(
-    
-    // )
+    this.props.deleteBooks(this.props.params.id);
+      console.log(this.props.params.id)
   }
+
 
 
   componentDidMount() {
@@ -76,11 +76,9 @@ class Admin extends React.Component {
   } 
 
   render() {
-    // $(document).ready(function(){
-     
-    // });
     const { data } = this.state
     const { adminAddRequest } = this.props
+    const { adminDeleteRequest } = this.props
     const { errors, success } = this.state
   return (
       <div className="admin">
@@ -168,14 +166,14 @@ class Admin extends React.Component {
                       {
                         this.state.data.map (
                           books => 
-                          <tr  key={ books.id } id={books.id}>
+                          <tr key = { books.id }>
                           <td> {books.title} </td>
                           <td> {books.author} </td>
                           <td> {books.category} </td>
                           <td> {books.created} </td>
                           <td> {books.updated} </td>
                           <td> <button className="btn waves-effect waves-light" type="submit" name="action">Modify</button> </td>
-                          <td> <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.onDeleteSubmit}>Delete</button> </td>
+                          <td> <button className="btn waves-effect waves-light" type="submit" name="action" key={ this.state.data.findIndex(numbers => numbers.id === books.id) } onClick={this.onDeleteSubmit}>Delete</button> </td>
                           </tr>
                         )
                       }
@@ -194,8 +192,20 @@ Admin.propTypes = {
   adminDeleteRequest: PropTypes.func.isRequired
 }
 
-// SignIn.contextTypes = {
-//   router: PropTypes.object.isRequired
-// }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    books: state.books
+  };
+  console.log(state.books)
+};
+// Map dispatch to props
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // This dispatch will trigger 
+    // the Ajax request we setup
+    // in our actions
+    deleteBooks: bookId => dispatch(bookActions.deleteBooks(bookId))
+  };
+};
 
-export default connect(null, { adminAddRequest, adminDeleteRequest } ) (Admin);
+export default connect((mapStateToProps, mapDispatchToProps), { adminAddRequest, adminDeleteRequest } ) (Admin);

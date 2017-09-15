@@ -15,10 +15,11 @@ import Profile from './components/content/Profile';
 import History from './components/content/History';
 import Admin from './components/content/Admin';
 import setAuthToken from './utils/setAuthToken';
-import rootReducer from './rootReducer'
+import rootReducer from './rootReducer';
+import * as bookActions from './actions/booksAction';
 import './styles/index'
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   compose(
   applyMiddleware(thunk),
@@ -30,6 +31,10 @@ if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken)
   store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
 }
+
+store.dispatch(bookActions.getRequest());
+
+const books = store.getState()
 
 ReactDOM.render(
   <Provider store={store}>
