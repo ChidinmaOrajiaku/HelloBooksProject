@@ -1,4 +1,4 @@
-import { GET_BOOKS, ADD_BOOKS, DELETE_BOOKS } from '../actions/types';
+import { GET_BOOKS, BORROW_BOOKS, ADD_BOOKS, DELETE_BOOKS } from '../actions/types';
 
 const initialState = {
   books: {}
@@ -9,7 +9,7 @@ export const booksState = (state = initialState, action = {}) => {
     case ADD_BOOKS:
       return [
         ...state,
-        Object.assign({}, action.book)
+        Object.assign({}, action.books)
       ];
     case GET_BOOKS:
       return {
@@ -21,10 +21,16 @@ export const booksState = (state = initialState, action = {}) => {
 
 export const booksIdState = (state = initialState, action = {}) => {
   switch (action.type) {
+    case BORROW_BOOKS:
+      return [
+        ...state,
+        Object.assign({}, action.books)
+      ];
     case DELETE_BOOKS:
-      return {
-        books: action.books
-      };
+      return [
+        ...state,
+        Object.assign({}, action.books)
+      ];
     default: return state;
   }
 };

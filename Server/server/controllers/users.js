@@ -81,7 +81,30 @@ const usersController = {
       .catch((error) => {
         res.status(404).send(error);
       });
-  }
+  },
+
+  updatePassword(req, res) {
+    // update books
+    return Users
+      .findById(req.params.usersId)
+      .then((user) => {
+        if (!user) {
+          return res.status(404).send({
+            message: 'User Not Found',
+          });
+        }
+        user.update({
+          password: req.body.password,
+        })
+          .then(() => res.status(200).send(user))
+          .catch((error) => {
+            res.status(404).send(error);
+          });
+      })
+      .catch((error) => {
+        res.status(404).send(error);
+      });
+  },
 };
 
 export default usersController;

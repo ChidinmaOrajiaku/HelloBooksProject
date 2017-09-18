@@ -41,10 +41,10 @@ const booksController = {
         }
         books.update({
           title: req.body.title,
-          author: req.body.author,
           category: req.body.category,
+          author: req.body.author
         })
-          .then(() => res.status(200).send({ message: 'Books Updated!' }))
+          .then(() => res.status(200).send(books))
           .catch(error => res.status(400).send(error));
       })
       .catch((error) => {

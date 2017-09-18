@@ -1,11 +1,17 @@
 import React from 'react';
 import map from 'lodash/map';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { store } from '../../index';
+import { borrowRequest } from '../../actions/booksAction';
 
 class Library extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
+          user: (store.getState()).auth.user.id,
+          books: (store.getState()).books.books,
           title: '',
           author: '',
           category: '',
@@ -14,16 +20,22 @@ class Library extends React.Component {
           data: []
         }
     
-        // this.handleChange = this.handleChange.bind(this);
-        // this.onAddSubmit = this.onAddSubmit.bind(this);
+        this.onBorrowBooks = this.onBorrowBooks.bind(this);
       }
 
+        onBorrowBooks(event) {
+          this.props.borrowRequest(this.state.user)
+        }
+      
       componentWillMount() {
+        console.log(this.state.books)
+        // this.state.books.map((book) => {
+        //   book.id
+        // })
         axios.get('/api/v1/users/books').then((res) => {
           localStorage.getItem('jwtToken');
           this.setState({ data: res.data})
         });
-        
        };
        
     render() {
@@ -34,6 +46,7 @@ class Library extends React.Component {
     });
     
     const { data } = this.state
+    const { borrowRequest } = this.props
   return (
       <div className= "library">
     <div className="row">
@@ -42,17 +55,18 @@ class Library extends React.Component {
           <div id="fiction" className="section scrollspy">
           <h1 className = "libraryHeading"> Fiction </h1>
              <div className="row">
-             {this.state.data.map (books =>
-               <div className="col s3 " key={books.id}>
+             {this.state.data.map ((books, index) =>
+               <div className="col s3 " key={index}>
                   <div className="card hoverable">
                      <div className="card-image">
                          <img src= {books.image}/>
-                         <a href="#" className="btn tooltipped btn-floating halfway-fab waves-effect waves-light teal" data-position="bottom" data-delay="50" data-tooltip="Hi! Click to borrow"><i className="material-icons">add</i></a>
+                         <button className="btn tooltipped btn-floating halfway-fab waves-effect waves-light teal" data-position="bottom" data-delay="50" data-tooltip="Hi! Click to borrow" onClick= { this.onBorrowBooks }><i className="material-icons">add</i></button>
                      </div>
                       <div className="card-content">
                          <p>{books.review}</p>
                       </div>
                   </div>
+                  <button> </button>
              </div>   
           )
           }
@@ -84,4 +98,11 @@ class Library extends React.Component {
    );
 };
 }
-export default Library;
+
+
+Library.propTypes = {
+  borrowRequest: PropTypes.func.isRequired
+}
+
+
+export default connect(null, {borrowRequest}) (Library);

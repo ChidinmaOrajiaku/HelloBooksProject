@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { adminAddRequest } from '../../actions/booksAction';
+import { adminAddRequest, getRequest } from '../../actions/booksAction';
 import { adminDeleteRequest } from '../../actions/booksAction';
 import * as bookActions from '../../actions/booksAction';
 
@@ -58,7 +58,7 @@ class Admin extends React.Component {
   
   onDeleteSubmit(event) {
     event.preventDefault();
-    this.props.deleteBooks(this.props.params.id);
+    this.props.adminDeleteRequest(this.props.params.id);
       console.log(this.props.params.id)
   }
 
@@ -165,8 +165,8 @@ class Admin extends React.Component {
                   <tbody>
                       {
                         this.state.data.map (
-                          books => 
-                          <tr key = { books.id }>
+                          (books, id) => 
+                          <tr key = { id }>
                           <td> {books.title} </td>
                           <td> {books.author} </td>
                           <td> {books.category} </td>
@@ -192,20 +192,4 @@ Admin.propTypes = {
   adminDeleteRequest: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    books: state.books
-  };
-  console.log(state.books)
-};
-// Map dispatch to props
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // This dispatch will trigger 
-    // the Ajax request we setup
-    // in our actions
-    deleteBooks: bookId => dispatch(bookActions.deleteBooks(bookId))
-  };
-};
-
-export default connect((mapStateToProps, mapDispatchToProps), { adminAddRequest, adminDeleteRequest } ) (Admin);
+export default connect(null, { adminAddRequest, adminDeleteRequest, getRequest } ) (Admin);

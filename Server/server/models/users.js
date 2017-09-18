@@ -39,6 +39,10 @@ export default (sequelize, DataTypes) => {
       beforeCreate: (Users) => {
         const salt = bcrypt.genSaltSync(9);
         Users.password = bcrypt.hashSync(Users.password, salt);
+      },
+      beforeUpdate: (Users) => {
+        const salt = bcrypt.genSaltSync(9);
+        Users.password = bcrypt.hashSync(Users.password, salt);
       }
     }
   },

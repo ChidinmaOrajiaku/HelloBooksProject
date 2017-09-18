@@ -33,6 +33,9 @@ if (localStorage.jwtToken) {
 }
 
 store.dispatch(bookActions.getRequest());
+// store.dispatch(bookActions.adminAddRequest());
+// store.dispatch(bookActions.adminDeleteRequest());
+// store.dispatch(bookActions.borrowRequest());
 
 const books = store.getState()
 
