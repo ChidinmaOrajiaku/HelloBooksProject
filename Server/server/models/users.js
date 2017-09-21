@@ -62,6 +62,10 @@ export default (sequelize, DataTypes) => {
           foreignKey: 'usersId',
           as: 'category',
         });
+        Users.hasMany(models.Profile, {
+          foreignKey: 'usersId',
+          as: 'profile',
+        });
       },
     },
   });

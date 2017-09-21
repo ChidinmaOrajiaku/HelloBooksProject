@@ -1,5 +1,7 @@
 import usersController from '../controllers/users';
 
+import profileController from '../controllers/profile';
+
 import booksController from '../controllers/books';
 
 import authenticate from '../middlewares/auth';
@@ -21,5 +23,7 @@ export default (app) => {
   app.post('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.borrow);
   app.get('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.listNotReturnedBooks);
   app.put('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.returnBooks);
+
+  app.post('/api/v1/users/:usersId/profile', authenticate.verifyUser, profileController.createProfile);
 };
 
