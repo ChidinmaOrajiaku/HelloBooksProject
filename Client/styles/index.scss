@@ -69,14 +69,34 @@ body {
   }
 
   .profile {
-    .card-panel{
-      margin-top: 50px;
-    }
-      img{
+     .card{
         height: 500px;
-        width: 500px;
+        width: 300px;
+        background-color:#003030;
+        .name{
+          font-size: 30px;
+          padding-top: 20px;
+          text-align: center;
+          font-family: $fontFamily2;
+          color: white;
+        }
+        .card-content{
+          color: white;
+        }
+        .btn{
+          width: 100%;
+        }
       }
-  }
+      .equal{
+        margin-top: 30%;
+        font-size: 100px;
+      }
+      .modal{
+        width: 400px!important;
+        height: 600px!important;
+        overflow-x: hidden;
+      }
+   }
    .history{
   .bordered{
       margin-top: 50px;

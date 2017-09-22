@@ -15,10 +15,10 @@ const profileController = {
       })
       .then(profile => res.status(201).send(profile))
       .catch((error) => {
-        const errorMessage = error.errors.map((value) => {
-          return value.message;
-        });
-        res.status(400).send(errorMessage);
+        // const errorMessage = error.errors.map((value) => {
+        //   return value.message;
+        // });
+        res.status(400).send(error);
       });
   },
 };

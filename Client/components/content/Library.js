@@ -4,7 +4,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { store } from '../../index';
-import { borrowRequest } from '../../actions/booksAction';
+import { borrowRequest, getRequest } from '../../actions/booksAction';
 
 class Library extends React.Component {
     constructor (props) {
@@ -28,7 +28,7 @@ class Library extends React.Component {
         }
       
       componentWillMount() {
-        console.log(this.state.books)
+        // console.log(this.state.books)
         // this.state.books.map((book) => {
         //   book.id
         // })
@@ -36,7 +36,7 @@ class Library extends React.Component {
           localStorage.getItem('jwtToken');
           this.setState({ data: res.data})
         });
-       };
+      }
        
     render() {
 
@@ -101,8 +101,9 @@ class Library extends React.Component {
 
 
 Library.propTypes = {
-  borrowRequest: PropTypes.func.isRequired
+  borrowRequest: PropTypes.func.isRequired,
+  getRequest: PropTypes.func.isRequired
 }
 
 
-export default connect(null, {borrowRequest}) (Library);
+export default connect(null, {borrowRequest, getRequest}) (Library);

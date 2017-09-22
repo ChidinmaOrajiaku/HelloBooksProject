@@ -15,7 +15,6 @@ class History extends React.Component {
     }
   }
   componentWillMount() {
-    console.log(store)
       const user = store.getState()
       const userId = user.auth.user.id
       axios.get('/api/v1/users/' + userId + '/history').then((res) => {

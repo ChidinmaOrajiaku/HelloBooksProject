@@ -40,7 +40,7 @@ export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/bo
   dispatch(deleteBooks(res.data));
 });
 
-export const getRequest = bookData => dispatch => axios.get('/api/v1/users/books', bookData).then((res) => {
+export const getRequest = () => dispatch => axios.get('/api/v1/users/books').then((res) => {
   localStorage.getItem('jwtToken');
   dispatch(getBooks(res.data));
 });
