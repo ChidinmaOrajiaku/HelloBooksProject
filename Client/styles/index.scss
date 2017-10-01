@@ -96,6 +96,23 @@ body {
         height: 600px!important;
         overflow-x: hidden;
       }
+      .profileData{
+        font-family: $fontFamily2;
+        font-size: 30px;
+        margin-top: 8%
+      }
+      .data{
+        font-family: $fontFamily;
+        font-size: 20px;
+      }
+      .getUnreadBooks{
+        .btn{
+          width: 40px!important
+        }
+        img{
+          height: 500px;
+        }
+      }
    }
    .history{
   .bordered{
@@ -273,6 +290,9 @@ body {
           left: 25%
         }
       }
+    }
+    #modal2{
+      height: 400px!important
     }
   }
     

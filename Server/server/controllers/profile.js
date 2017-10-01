@@ -21,6 +21,25 @@ const profileController = {
         res.status(400).send(error);
       });
   },
+  getProfile(req, res) {
+    return Profile
+      .findAll({
+        where: {
+          usersId: req.params.usersId
+        }
+      })
+      .then((user) => {
+        if (!user) {
+          return res.status(404).send({
+            message: 'User Not Found',
+          });
+        }
+        res.status(200).send(user);
+      })
+      .catch((error) => {
+        res.status(404).send(error);
+      });
+  },
 };
 
 export default profileController;

@@ -3,7 +3,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { store } from '../../index';
-import { postProfileRequest } from '../../actions/profileAction';
+import { postProfileRequest, updatePasswordRequest } from '../../actions/profileAction';
+import { putBookRequest } from '../../actions/booksAction';
 
 class Profile extends React.Component {
   constructor (props) {
@@ -16,10 +17,16 @@ class Profile extends React.Component {
       interest: '',
       password: '',
       gender: '',
-      data: []
+      data: [],
+      profile: [],
+      books: [],
+      success: false,
+      errors: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.onProfileSubmit = this.onProfileSubmit.bind(this);
+    this.onPasswordSubmit = this.onPasswordSubmit.bind(this);
+    this.onReturnBooks = this.onReturnBooks.bind(this);
   }
 
   handleChange(event) {
@@ -27,10 +34,10 @@ class Profile extends React.Component {
   }
 
   onProfileSubmit(event) {
-     const user = store.getState()
-      const userId = user.auth.user.id
+    //  const user = store.getState()
+    //   const userId = user.auth.user.id
     event.preventDefault();
-    this.props.postProfileRequest(this.state).then(
+    this.props.postProfileRequest(this.state.userId, this.state).then(
       (errors) =>{
         Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
      this.setState({ errors: errors.response.data.message })
@@ -38,20 +45,28 @@ class Profile extends React.Component {
     )
   }
 
-  // onProfileSubmit(event) {
-  //   event.preventDefault();
-  //   this.props.postProfileRequest(this.state.userId, this.state).then(
-  //     (errors) =>{
-  //       Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
-  //    this.setState({ errors: errors.response.data.message })
-  //     }
-  //   )
-  // }
+  onPasswordSubmit(event) {
+    event.preventDefault();
+    this.props.updatePasswordRequest(this.state.userId, this.state)
+  }
+
+  onReturnBooks(event) {
+    event.preventDefault();
+    this.props.putBookRequest(this.state.userId, event.target.value)
+  }
 
   componentWillMount() {
     axios.get('/api/v1/users/' + this.state.userId).then((res) => {
       localStorage.getItem('jwtToken');
       this.setState({ data: res.data})
+    });
+    axios.get('/api/v1/users/' + this.state.userId + '/profile').then((res) => {
+      localStorage.getItem('jwtToken');
+      this.setState({profile: res.data})
+    });
+    axios.get('/api/v1/users/' + this.state.userId + '/books').then((res) => {
+      localStorage.getItem('jwtToken');
+      this.setState({books: res.data})
     });
   }
   
@@ -67,16 +82,23 @@ class Profile extends React.Component {
   } 
 
   render() {
-    const { postProfileRequest } = this.props
+    
+    $(document).ready(function(){
+      $('.tooltipped').tooltip({delay: 50});
+      $('.scrollspy').scrollSpy()
+    });
+
+    const { postProfileRequest, updatePasswordRequest, putBookRequest } = this.props
     const user = this.state.data
   return (
     <div className="profile">
-    <div className="row">
+      {this.state.profile.map ((profile, index) =>
+    <div className="row"  key={index}>
       <div className="col s4 ">
         <div className="card">
           <h1 className="name"> Welcome Chidinma</h1>
             <div className="card-image">
-              <img src="https://cdn-images-1.medium.com/fit/c/200/200/1*P8ve1Obc8tLIyWgwlx1E8A.jpeg"/>
+              <img src={profile.image}/>
             </div>
             <div className="card-content">
             <p> Name: {user.firstname + ' ' + user.lastname} </p>
@@ -87,10 +109,36 @@ class Profile extends React.Component {
           <a className="waves-effect waves-light btn modal-trigger" href="#modal2">Change Password</a>
         </div>
         </div>
-        <div className="col s6 ">
+        <div className="col s3 ">
            <p className="equal"> => </p>
         </div>
+        <div className="col s5">
+           <p className="profileData"> Description </p>
+           <p className="data"> {profile.description}</p>
+           <p className="profileData"> Interest </p>
+           <p className="data"> {profile.interest}</p>
+           <p className="profileData"> Status </p>
+           <p className="data"> {profile.status}</p>
+           <p className="profileData"> Gender </p>
+           <p className="data"> {profile.gender}</p>
         </div>
+        </div>
+          )
+          }
+          <div className="row getUnreadBooks">
+            <hr/>
+          {this.state.books.map ((books, index) =>
+               <div className="col s3 " key={index}>
+                  <div className="card hoverable">
+                     <div className="card-image">
+                         <img id="image" value={ books.image } onChange={ this.handleChange } src= { books.image }/>
+                         <button value= { books.booksId } className="btn tooltipped btn-floating halfway-fab waves-effect waves-light teal" data-position="bottom" data-delay="50" data-tooltip="Hi! Click to return" onClick= { this.onReturnBooks } type="submit" name="action" ><i className="material-icons">add</i></button>
+                     </div>
+                  </div>
+             </div>   
+          )
+          }
+          </div>
         <div id="modal1" className="modal">
         <div className="modal-content">
         <div className="row">
@@ -155,7 +203,9 @@ class Profile extends React.Component {
 };
 
 Profile.propTypes = {
-  postProfileRequest: PropTypes.func.isRequired
+  postProfileRequest: PropTypes.func.isRequired,
+  updatePasswordRequest: PropTypes.func.isRequired,
+  putBookRequest: PropTypes.func.isRequired
 }
 
-export default connect(null, { postProfileRequest }) (Profile);
+export default connect(null, { postProfileRequest, updatePasswordRequest, putBookRequest }) (Profile);

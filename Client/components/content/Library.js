@@ -11,27 +11,27 @@ class Library extends React.Component {
         super(props);
         this.state = {
           user: (store.getState()).auth.user.id,
-          books: (store.getState()).books.books,
           title: '',
           author: '',
           category: '',
           image: '',
           review: '',
+          booksId: '',
           data: []
         }
-    
         this.onBorrowBooks = this.onBorrowBooks.bind(this);
+        this.handleChange = this.handleChange.bind(this);
       }
 
-        onBorrowBooks(event) {
-          this.props.borrowRequest(this.state.user)
-        }
+      handleChange(event) {
+        this.setState({[event.target.id]: event.target.value})
+      }
+       
+      onBorrowBooks(event) {
+        this.props.borrowRequest(this.state.user,this.state)
+      }
       
       componentWillMount() {
-        // console.log(this.state.books)
-        // this.state.books.map((book) => {
-        //   book.id
-        // })
         axios.get('/api/v1/users/books').then((res) => {
           localStorage.getItem('jwtToken');
           this.setState({ data: res.data})
@@ -49,7 +49,7 @@ class Library extends React.Component {
     const { borrowRequest } = this.props
   return (
       <div className= "library">
-    <div className="row">
+       <div className="row">
         <div className="col s12 m9 l10">
             {/* fictional */}
           <div id="fiction" className="section scrollspy">
@@ -59,14 +59,13 @@ class Library extends React.Component {
                <div className="col s3 " key={index}>
                   <div className="card hoverable">
                      <div className="card-image">
-                         <img src= {books.image}/>
-                         <button className="btn tooltipped btn-floating halfway-fab waves-effect waves-light teal" data-position="bottom" data-delay="50" data-tooltip="Hi! Click to borrow" onClick= { this.onBorrowBooks }><i className="material-icons">add</i></button>
+                         <img id="image" value={ books.image } onChange={ this.handleChange } src= { books.image }/>
+                         <button value= { books.id } onChange={this.handleChange} className="btn tooltipped btn-floating halfway-fab waves-effect waves-light teal" data-position="bottom" data-delay="50" data-tooltip="Hi! Click to borrow" onClick= { this.onBorrowBooks } type="submit" name="action" ><i className="material-icons">add</i></button>
                      </div>
                       <div className="card-content">
                          <p>{books.review}</p>
                       </div>
                   </div>
-                  <button> </button>
              </div>   
           )
           }

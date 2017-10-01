@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BOOKS, BORROW_BOOKS, ADD_BOOKS, DELETE_BOOKS } from './types';
+import { GET_BOOKS, BORROW_BOOKS, ADD_BOOKS, DELETE_BOOKS, MODIFY_BOOKS, PUT_BOOKS } from './types';
 
 
 export function getBooks(books) {
@@ -30,6 +30,20 @@ export function deleteBooks(book) {
   };
 }
 
+export function modifyBooks(book) {
+  return {
+    type: MODIFY_BOOKS,
+    book
+  };
+}
+
+export function putBooks(book) {
+  return {
+    type: PUT_BOOKS,
+    book
+  };
+}
+
 export const adminAddRequest = bookData => dispatch => axios.post('/api/v1/users/books', bookData).then((res) => {
   localStorage.getItem('jwtToken');
   dispatch(createBooks(res.data));
@@ -40,6 +54,11 @@ export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/bo
   dispatch(deleteBooks(res.data));
 });
 
+export const adminPutRequest = bookId => dispatch => axios.put(`/api/v1/books/${bookId}`).then((res) => {
+  localStorage.getItem('jwtToken');
+  dispatch(modifyBooks(res.data));
+});
+
 export const getRequest = () => dispatch => axios.get('/api/v1/users/books').then((res) => {
   localStorage.getItem('jwtToken');
   dispatch(getBooks(res.data));
@@ -48,5 +67,10 @@ export const getRequest = () => dispatch => axios.get('/api/v1/users/books').the
 export const borrowRequest = (userId, bookData) => dispatch => axios.post(`/api/v1/users/${userId}/books`, bookData).then((res) => {
   localStorage.getItem('jwtToken');
   dispatch(borrowBooks(res.data));
+});
+
+export const putBookRequest = (userId, bookData) => dispatch => axios.put(`/api/v1/users/${userId}/books`, bookData).then((res) => {
+  localStorage.getItem('jwtToken');
+  dispatch(putBooks(res.data));
 });
 

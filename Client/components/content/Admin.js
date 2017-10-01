@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { adminAddRequest, getRequest } from '../../actions/booksAction';
+import { adminAddRequest,adminPutRequest, getRequest } from '../../actions/booksAction';
 import { adminDeleteRequest } from '../../actions/booksAction';
 import * as bookActions from '../../actions/booksAction';
 
@@ -55,11 +55,10 @@ class Admin extends React.Component {
     )
     // this.componentDidUpdate;
   }
-  
+
   onDeleteSubmit(event) {
     event.preventDefault();
-    this.props.adminDeleteRequest(this.props.params.id);
-      console.log(this.props.params.id)
+    this.props.adminDeleteRequest(event.target.value)
   }
 
 
@@ -172,13 +171,14 @@ class Admin extends React.Component {
                           <td> {books.category} </td>
                           <td> {books.created} </td>
                           <td> {books.updated} </td>
-                          <td> <button className="btn waves-effect waves-light" type="submit" name="action">Modify</button> </td>
-                          <td> <button className="btn waves-effect waves-light" type="submit" name="action" key={ this.state.data.findIndex(numbers => numbers.id === books.id) } onClick={this.onDeleteSubmit}>Delete</button> </td>
+                          <td> <a className="waves-effect waves-light btn modal-trigger" href="#modal2">Modify</a> </td>
+                          <td> <button className="btn waves-effect waves-light" type="submit" name="action" value={ books.id } onClick={this.onDeleteSubmit}>Delete</button> </td>
                           </tr>
                         )
                       }
                   </tbody>
                 </table>
+
               </div>
             </div>
           </div>
@@ -189,7 +189,8 @@ class Admin extends React.Component {
 
 Admin.propTypes = {
   adminAddRequest: PropTypes.func.isRequired,
-  adminDeleteRequest: PropTypes.func.isRequired
+  adminDeleteRequest: PropTypes.func.isRequired,
+  adminPutRequest: PropTypes.func.isRequired
 }
 
-export default connect(null, { adminAddRequest, adminDeleteRequest, getRequest } ) (Admin);
+export default connect(null, { adminAddRequest, adminDeleteRequest, adminPutRequest, getRequest } ) (Admin);

@@ -70,9 +70,6 @@ const booksController = {
       .findOne({
         where: {
           id: req.body.booksId,
-          title: req.body.title,
-          author: req.body.author,
-          image: req.body.image,
         }
       })
       .then((books) => {
@@ -82,7 +79,7 @@ const booksController = {
         return db.RentedBooks
           .findOne({
             where: {
-              returned: false,
+              returned: true,
               title: req.body.title,
               usersId: req.params.usersId,
               booksId: req.body.booksId,

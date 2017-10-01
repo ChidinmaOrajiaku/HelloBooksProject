@@ -1,4 +1,4 @@
-import { GET_BOOKS, BORROW_BOOKS, ADD_BOOKS, DELETE_BOOKS } from '../actions/types';
+import { GET_BOOKS, BORROW_BOOKS, ADD_BOOKS, DELETE_BOOKS, MODIFY_BOOKS, PUT_BOOKS } from '../actions/types';
 
 const initialState = {
   books: {}
@@ -27,6 +27,16 @@ export const booksIdState = (state = initialState, action = {}) => {
         Object.assign({}, action.books)
       ];
     case DELETE_BOOKS:
+      return [
+        ...state,
+        Object.assign({}, action.books)
+      ];
+    case MODIFY_BOOKS:
+      return [
+        ...state,
+        Object.assign({}, action.books)
+      ];
+    case PUT_BOOKS:
       return [
         ...state,
         Object.assign({}, action.books)

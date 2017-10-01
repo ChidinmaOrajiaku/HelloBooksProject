@@ -96,7 +96,7 @@ const usersController = {
         user.update({
           password: req.body.password,
         })
-          .then(() => res.status(200).send(user))
+          .then(() => res.status(200).send({ message: 'Succesfully Updated' }))
           .catch((error) => {
             res.status(404).send(error);
           });
