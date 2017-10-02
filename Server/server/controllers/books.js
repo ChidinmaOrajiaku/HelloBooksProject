@@ -165,6 +165,7 @@ const booksController = {
         })
           .then(() => res.status(200).send({ message: 'Successfully Returned' }))
           .catch(error => res.status(404).send(error));
+        console.log(req.body);
       })
       .catch((error) => {
         res.status(404).send(error);

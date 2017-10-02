@@ -88,8 +88,26 @@ body {
         }
       }
       .equal{
-        margin-top: 30%;
+        margin-top: 50%;
         font-size: 100px;
+        color: $primaryColor2
+      }
+      hr { 
+        height: 30px; 
+        border-style: solid; 
+        border-color: #003030; 
+        border-width: 5px 0 0 0; 
+        border-radius: 20px; 
+      } 
+      hr:before { 
+        display: block; 
+        content: ""; 
+        height: 30px; 
+        margin-top: -31px; 
+        border-style: solid; 
+        border-color: $primaryColor2; 
+        border-width: 0 0 5px 0; 
+        border-radius: 20px; 
       }
       .modal{
         width: 400px!important;
@@ -99,11 +117,28 @@ body {
       .profileData{
         font-family: $fontFamily2;
         font-size: 30px;
-        margin-top: 8%
+        margin-top: 8%;
+        color: #003030;
       }
       .data{
         font-family: $fontFamily;
         font-size: 20px;
+        background-color: $primaryColor2;
+        color: white;
+      }
+      .return{
+        font-family: $fontFamily2;
+        font-size: 60px;
+        color: $primaryColor2;
+        text-align: center;
+      }
+      .getPopularBooks{
+        .btn{
+          width: 40px!important
+        }
+        img{
+          height: 500px;
+        }
       }
       .getUnreadBooks{
         .btn{

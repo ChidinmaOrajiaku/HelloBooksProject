@@ -20,6 +20,7 @@ class Profile extends React.Component {
       data: [],
       profile: [],
       books: [],
+      popular: [],
       success: false,
       errors: false
     }
@@ -68,6 +69,10 @@ class Profile extends React.Component {
       localStorage.getItem('jwtToken');
       this.setState({books: res.data})
     });
+    axios.get('/api/v1/users/books').then((res) => {
+      localStorage.getItem('jwtToken');
+      this.setState({ popular: res.data})
+    });
   }
   
   componentDidMount() {
@@ -96,7 +101,7 @@ class Profile extends React.Component {
     <div className="row"  key={index}>
       <div className="col s4 ">
         <div className="card">
-          <h1 className="name"> Welcome Chidinma</h1>
+          <h1 className="name"> Welcome {user.firstname}</h1>
             <div className="card-image">
               <img src={profile.image}/>
             </div>
@@ -105,11 +110,11 @@ class Profile extends React.Component {
             <p> Username: { user.username }</p>
             <p> Email: { user.email} </p>
           </div>
-          <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Edit Profile</a>
+          <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Create Profile</a>
           <a className="waves-effect waves-light btn modal-trigger" href="#modal2">Change Password</a>
         </div>
         </div>
-        <div className="col s3 ">
+        <div className="col s2 ">
            <p className="equal"> => </p>
         </div>
         <div className="col s5">
@@ -125,8 +130,23 @@ class Profile extends React.Component {
         </div>
           )
           }
+          <div className="row getPopularBooks">
+            <hr/>
+            <h1 className="return"> Popular Books </h1>
+          {this.state.popular.map ((books, index) =>
+               <div className="col s3 " key={index}>
+                  <div className="card hoverable">
+                     <div className="card-image">
+                         <img id="image" value={ books.image } onChange={ this.handleChange } src= { books.image }/>
+                     </div>
+                  </div>
+             </div>   
+          )
+          }
+          </div>
           <div className="row getUnreadBooks">
             <hr/>
+            <h1 className="return"> Unreturned Books </h1>
           {this.state.books.map ((books, index) =>
                <div className="col s3 " key={index}>
                   <div className="card hoverable">

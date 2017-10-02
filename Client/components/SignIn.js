@@ -33,7 +33,7 @@ class SignIn extends React.Component {
     event.preventDefault();
     this.props.userSigninRequest(this.state).then(
       () => { 
-        this.context.router.history.push('/library')
+        this.context.router.history.push('/profile')
       },
       (errors) =>{
         Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
