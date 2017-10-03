@@ -1,4 +1,4 @@
-import { GET_USER, SET_PROFILE, UPDATE_PASSWORD, GET_PROFILE } from '../actions/types';
+import { GET_USER, SET_PROFILE, UPDATE_PASSWORD, GET_PROFILE, UPDATE_PROFILE } from '../actions/types';
 
 const initialState = {
   user: {},
@@ -24,6 +24,11 @@ export const userState = (state = initialState, action = {}) => {
       return [
         ...state,
         Object.assign({}, action.user)
+      ];
+    case UPDATE_PROFILE:
+      return [
+        ...state,
+        Object.assign({}, action.profile)
       ];
     default: return state;
   }

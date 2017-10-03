@@ -28,7 +28,13 @@ class Library extends React.Component {
       }
        
       onBorrowBooks(event) {
-        this.props.borrowRequest(this.state.user,this.state)
+        this.props.borrowRequest(this.state.user,this.state).then(
+          () => {Materialize.toast(this.state.profileResponse, 2000, 'teal rounded')},
+          (errors) =>{
+            Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
+         this.setState({ errors: errors.response.data.message  })
+          }
+        )
       }
       
       componentWillMount() {

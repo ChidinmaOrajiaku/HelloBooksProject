@@ -40,6 +40,31 @@ const profileController = {
         res.status(404).send(error);
       });
   },
+  updateProfile(req, res) {
+    // update profile
+    return Profile
+      .findById(req.params.usersId)
+      .then((user) => {
+        if (!user) {
+          return res.status(404).send({
+            message: 'User Not Found',
+          });
+        }
+        user.update({
+          status: req.body.status,
+          description: req.body.description,
+          interest: req.body.interest,
+          gender: req.body.gender,
+        })
+          .then(() => res.status(200).send({ message: 'Succesfully Updated' }))
+          .catch((error) => {
+            res.status(404).send(error);
+          });
+      })
+      .catch((error) => {
+        res.status(404).send(error);
+      });
+  },
 };
 
 export default profileController;

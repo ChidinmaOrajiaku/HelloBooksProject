@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { store } from '../../index';
-import { postProfileRequest, updatePasswordRequest } from '../../actions/profileAction';
+import { postProfileRequest, updatePasswordRequest, updateProfileRequest } from '../../actions/profileAction';
 import { putBookRequest } from '../../actions/booksAction';
 
 class Profile extends React.Component {
@@ -11,6 +11,8 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       userId: (store.getState()).auth.user.id,
+      // sort out
+      profileResponse: (store.getState()).userState[0],
       image: '',
       description: '',
       status: '',
@@ -28,6 +30,7 @@ class Profile extends React.Component {
     this.onProfileSubmit = this.onProfileSubmit.bind(this);
     this.onPasswordSubmit = this.onPasswordSubmit.bind(this);
     this.onReturnBooks = this.onReturnBooks.bind(this);
+    this.onProfileUpdate = this.onProfileUpdate.bind(this);
   }
 
   handleChange(event) {
@@ -35,25 +38,54 @@ class Profile extends React.Component {
   }
 
   onProfileSubmit(event) {
-    //  const user = store.getState()
-    //   const userId = user.auth.user.id
     event.preventDefault();
     this.props.postProfileRequest(this.state.userId, this.state).then(
+      () => {Materialize.toast(this.state.profileResponse, 2000, 'teal rounded')},
       (errors) =>{
         Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
-     this.setState({ errors: errors.response.data.message })
+     this.setState({ errors: errors.response.data.message  })
       }
     )
   }
 
   onPasswordSubmit(event) {
     event.preventDefault();
-    this.props.updatePasswordRequest(this.state.userId, this.state)
+    this.props.updatePasswordRequest(this.state.userId, this.state).then(
+      () => { 
+        Materialize.toast(this.state.profileResponse, 2000, 'teal rounded')
+      },
+      (errors) =>{
+        Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
+     this.setState({ errors: errors.response.data.message  })
+      }
+    )
+    console.log((store.getState()).userState[0])
+  }
+
+  onProfileUpdate(event) {
+    event.preventDefault();
+    this.props.updateProfileRequest(this.state.userId, this.state).then(
+      () => { 
+        Materialize.toast(this.state.profileResponse, 2000, 'teal rounded')
+      },
+      (errors) =>{
+        Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
+     this.setState({ errors: errors.response.data.message  })
+      }
+    )
   }
 
   onReturnBooks(event) {
     event.preventDefault();
-    this.props.putBookRequest(this.state.userId, event.target.value)
+    this.props.putBookRequest(this.state.userId, event.target.value).then(
+      () => { 
+        Materialize.toast(this.state.profileResponse, 2000, 'teal rounded')
+      },
+      (errors) =>{
+        Materialize.toast(errors.response.data.message, 2000, 'red accent-3 rounded')
+     this.setState({ errors: errors.response.data.message  })
+      }
+    )
   }
 
   componentWillMount() {
@@ -95,6 +127,7 @@ class Profile extends React.Component {
 
     const { postProfileRequest, updatePasswordRequest, putBookRequest } = this.props
     const user = this.state.data
+    const { errors, success } = this.state
   return (
     <div className="profile">
       {this.state.profile.map ((profile, index) =>
@@ -126,6 +159,7 @@ class Profile extends React.Component {
            <p className="data"> {profile.status}</p>
            <p className="profileData"> Gender </p>
            <p className="data"> {profile.gender}</p>
+           <a className="waves-effect waves-light btn modal-trigger button3" href="#modal3">Edit Profile</a>
         </div>
         </div>
           )
@@ -217,6 +251,41 @@ class Profile extends React.Component {
          </div>
        </div>
      </div>
+     <div id="modal3" className="modal">
+        <div className="modal-content">
+        <div className="row">
+        <div className="col s12">
+        <form onSubmit={this.onProfileUpdate} id="form">
+        <div className="row">
+           <div className="input-field col s12">
+             <textarea value={this.state.description} onChange={this.handleChange} id="description" type="text" className="materialize-textarea"></textarea>
+              <label htmlFor="description">Description</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="input-field col s12">
+            <input value={this.state.status} onChange={this.handleChange} id="status" type="text" className="validate"/>
+             <label htmlFor="email">Status</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="input-field col s12">
+            <input value={this.state.interest} onChange={this.handleChange} id="interest"  type="text" className="validate"/>
+             <label htmlFor="email">Interest</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="input-field col s12">
+            <input value={this.state.gender} onChange={this.handleChange} id="gender" type="text" className="validate"/>
+             <label htmlFor="gender">Gender</label>
+          </div>
+        </div>
+        <button className="btn waves-effect waves-light" type="submit" name="action">Edit<i className="material-icons right">send</i></button>
+      </form>
+        </div>
+      </div>
+      </div>
+      </div>
       </div>
   );
 }
@@ -225,7 +294,8 @@ class Profile extends React.Component {
 Profile.propTypes = {
   postProfileRequest: PropTypes.func.isRequired,
   updatePasswordRequest: PropTypes.func.isRequired,
-  putBookRequest: PropTypes.func.isRequired
+  putBookRequest: PropTypes.func.isRequired,
+  updateProfileRequest: PropTypes.func.isRequired
 }
 
-export default connect(null, { postProfileRequest, updatePasswordRequest, putBookRequest }) (Profile);
+export default connect(null, { postProfileRequest, updatePasswordRequest, putBookRequest, updateProfileRequest }) (Profile);

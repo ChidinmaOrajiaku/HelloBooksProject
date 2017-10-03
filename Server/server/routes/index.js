@@ -25,6 +25,7 @@ export default (app) => {
   app.put('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.returnBooks);
 
   app.post('/api/v1/users/:usersId/profile', authenticate.verifyUser, profileController.createProfile);
+  app.put('/api/v1/users/:usersId/profile', authenticate.verifyUser, profileController.updateProfile);
   app.get('/api/v1/users/:usersId', authenticate.verifyUser, usersController.getUser);
   app.get('/api/v1/users/:usersId/profile', authenticate.verifyUser, profileController.getProfile);
 };
