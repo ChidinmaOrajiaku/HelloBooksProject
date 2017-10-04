@@ -16,6 +16,7 @@ import History from './components/content/History';
 import Admin from './components/content/Admin';
 import setAuthToken from './utils/setAuthToken';
 import rootReducer from './rootReducer';
+import requireAuth from './utils/requireAuth';
 import * as bookActions from './actions/booksAction';
 import './styles/index'
 
@@ -47,10 +48,10 @@ ReactDOM.render(
           <Route exact path="/" component={Greetings}/>
           <Route exact path="/login" component={SignIn}/>
           <Route exact path="/register" component={SignUp}/>
-          <Route exact path="/library" component={Library}/>
-           <Route exact path="/profile" component={Profile}/>
-           <Route exact path="/history" component={History}/>
-           <Route exact path="/admin" component={Admin}/>
+          <Route exact path="/library" component={requireAuth(Library)}/>
+           <Route exact path="/profile" component={requireAuth(Profile)}/>
+           <Route exact path="/history" component={requireAuth(History)}/>
+           <Route exact path="/admin" component={requireAuth(Admin)}/>
         </App>
     </Switch>
     </BrowserRouter>

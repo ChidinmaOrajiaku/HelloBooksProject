@@ -24,7 +24,8 @@ const authenticate = {
   },
   verifyAdmin: (req, res, next) => {
     if (req.decoded && req.decoded.username === 'admin96') {
-      return next();
+      return; 
+      next();
     }
     return res.status(401).send({ message: 'Solely for the admin' });
   }

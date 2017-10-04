@@ -1,7 +1,6 @@
 {
-  "name": "Server",
+  "name": "server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "nodemon --exec babel-node Server/bin/www",
@@ -41,7 +40,8 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
-    "sequelize": "^4.4.2",
+    "sequelize": "^4.13.5",
+    "sequelize-cli": "^3.0.0",
     "style-loader": "^0.18.2",
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "^1.12.0",
@@ -64,5 +64,14 @@
     "mocha": "^3.5.0",
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChidinmaOrajiaku/HelloBooksProject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChidinmaOrajiaku/HelloBooksProject/issues"
+  },
+  "homepage": "https://github.com/ChidinmaOrajiaku/HelloBooksProject#readme",
+  "description": ""
 }

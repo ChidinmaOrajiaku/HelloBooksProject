@@ -11,6 +11,7 @@ export default {
     filename: 'bundle.js',
     publicPath: '/'
   },
+  devtool: 'cheap-eval-source-map',
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),

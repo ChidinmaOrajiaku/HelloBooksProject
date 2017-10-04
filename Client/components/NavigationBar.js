@@ -13,9 +13,6 @@ class NavigationBar extends React.Component {
       this.props.history.push("/")
   }
 
-  componentDidMount() {
-     
-   }
   render() {
        
     $( document ).ready(function () {
@@ -25,15 +22,24 @@ class NavigationBar extends React.Component {
     const { logout } = this.props
     const { isAuthenticated } = this.props.auth
 
-    const userLinks = (
-        <div>
-         <li><a href="/library">Library</a></li>
-         <li><a href="/history">History</a></li>
-         <li><a href="/profile">Profile</a></li>
-         <li><a href="/admin">Admin</a></li>
-         <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
-       </div>
+    const adminLinks = (
+       <div>
+        <li><a href="/library">Library</a></li>
+        <li><a href="/history">History</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/admin">Admin</a></li>
+        <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
+     </div>
     )
+
+    const userLinks = (
+          <div>
+           <li><a href="/library">Library</a></li>
+           <li><a href="/history">History</a></li>
+           <li><a href="/profile">Profile</a></li>
+           <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
+         </div>
+      )
 
     const guestLinks = (
       <div>
@@ -41,6 +47,7 @@ class NavigationBar extends React.Component {
         <li><a href="/login">Login</a></li>
       </div>
     )
+
   return (
       <div className="container-fluid navbar-fixed">
          <nav className="teal">
@@ -48,10 +55,10 @@ class NavigationBar extends React.Component {
                  <a href="#" className="brand-logo">HelloBooks</a>
                  <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
                  <ul className="right hide-on-med-and-down">
-                 { isAuthenticated ? userLinks : guestLinks }
+                 { localStorage.username == 'admin96' || isAuthenticated ? adminLinks : userLinks }
                  </ul>
                  <ul className="side-nav" id="mobile-demo">
-                    { isAuthenticated ? userLinks : guestLinks }
+                    { localStorage.username == 'admin96' || isAuthenticated ? adminLinks : userLinks }
                  </ul>
          </div>
        </nav>
