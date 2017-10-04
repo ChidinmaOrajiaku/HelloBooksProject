@@ -298,4 +298,10 @@ Profile.propTypes = {
   updateProfileRequest: PropTypes.func.isRequired
 }
 
-export default connect(null, { postProfileRequest, updatePasswordRequest, putBookRequest, updateProfileRequest }) (Profile);
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+}
+}
+
+export default connect(mapStateToProps, { postProfileRequest, updatePasswordRequest, putBookRequest, updateProfileRequest }) (Profile);

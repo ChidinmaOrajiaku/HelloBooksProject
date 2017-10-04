@@ -55,10 +55,10 @@ class NavigationBar extends React.Component {
                  <a href="#" className="brand-logo">HelloBooks</a>
                  <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
                  <ul className="right hide-on-med-and-down">
-                 { localStorage.username == 'admin96' || isAuthenticated ? adminLinks : userLinks }
+                 { localStorage.username == 'admin96' && isAuthenticated ? adminLinks : userLinks }
                  </ul>
                  <ul className="side-nav" id="mobile-demo">
-                    { localStorage.username == 'admin96' || isAuthenticated ? adminLinks : userLinks }
+                    { localStorage.username == 'admin96' && isAuthenticated ? adminLinks : userLinks }
                  </ul>
          </div>
        </nav>
