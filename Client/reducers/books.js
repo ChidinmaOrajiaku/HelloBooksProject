@@ -1,7 +1,8 @@
-import { GET_BOOKS, BORROW_BOOKS, ADD_BOOKS, DELETE_BOOKS, MODIFY_BOOKS, PUT_BOOKS } from '../actions/types';
+import { GET_BOOKS, BORROW_BOOKS, ADD_BOOKS, DELETE_BOOKS, MODIFY_BOOKS, PUT_BOOKS, GET_BOOKS_COUNT, GET_RENTED_BOOKS_COUNT } from '../actions/types';
 
 const initialState = {
-  books: {}
+  books: {},
+  rentedBooks: {},
 };
 
 export const booksState = (state = initialState, action = {}) => {
@@ -11,6 +12,14 @@ export const booksState = (state = initialState, action = {}) => {
         ...state,
         Object.assign({}, action.books)
       ];
+    case GET_BOOKS_COUNT:
+      return {
+        books: action.Books
+      };
+    case GET_RENTED_BOOKS_COUNT:
+      return {
+        rentedBooks: action.rentedBooks
+      };
     case GET_BOOKS:
       return {
         books: action.books

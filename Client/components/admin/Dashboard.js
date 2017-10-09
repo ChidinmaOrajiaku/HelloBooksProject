@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
+import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import * as bookActions from '../../actions/booksAction';
+import { adminCountBooksRequest, adminCountRentedBooksRequest } from '../../actions/booksAction';
+import { adminCountUserRequest } from '../../actions/profileAction';
 
 /**
  * @class Dashboard
@@ -18,8 +20,42 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
+      booksData: 0,
+      rentedBooksData: 0,
+      usersCountData: 0,
     };
   }
+
+  /**
+   * 
+   * 
+   * @memberof Dashboard
+   */
+  componentDidMount() {
+    this.props.adminCountBooksRequest().then(
+      this.setState({
+        booksData:localStorage.getItem('countBooks')
+      })
+    );
+    this.props.adminCountRentedBooksRequest().then(
+      this.setState({
+        rentedBooksData:localStorage.getItem('countBooks')
+      })
+    );
+    this.props.adminCountUserRequest().then(
+      this.setState({
+        usersCountData:localStorage.getItem('countUsers')
+      })
+    );
+  }
+
+  /**
+   * 
+   * 
+   * @param {any} nextProps 
+   * @memberof Dashboard
+   */
 
   /**
    * @constructor
@@ -31,21 +67,32 @@ class Dashboard extends React.Component {
         <div className=""> <NavigationBar /> </div>
         <div className="row initial">
           <div className="col s6 m6">
-            <div className="card blue-grey darken-1">
-              <div className="card-content white-text text-center">
-                <span className="card-title text-center">Amount of Books in Library</span>
-                <p>12</p>
+            <div className="card">
+              <div className="card-content text-center teal-text">
+                <span className="card-title text-center">Total Books</span>
+                <p>{this.state.booksData}</p>
               </div>
               <div className="card-action">
                 <a href="/library">View</a>
               </div>
             </div>
           </div>
+          <div className="col s6 m6 black-text">
+            <div className="card">
+              <div className="card-content text-center teal-text">
+                <span className="card-title text-center">Total Borrowed Books</span>
+                <p>{this.state.rentedBooksData}</p>
+              </div>
+              <div className="card-action">
+                <a className="cardAction" href="/library">View</a>
+              </div>
+            </div>
+          </div>
           <div className="col s6 m6">
-            <div className="card blue-grey darken-1">
-              <div className="card-content white-text text-center">
-                <span className="card-title text-center">Amount of Books in Library</span>
-                <p>12</p>
+            <div className="card">
+              <div className="card-content teal-text text-center">
+                <span className="card-title text-center">Total Users</span>
+                <p>{ this.state.usersCountData }</p>
               </div>
               <div className="card-action">
                 <a href="/library">View</a>
@@ -54,24 +101,20 @@ class Dashboard extends React.Component {
           </div>
         </div>
         <div className="row second">
-          <div className="col s6 m6">
-            <div className="card blue-grey darken-1">
-              <div className="card-content white-text text-center">
-                <span className="card-title text-center">Amount of Books in Library</span>
-                <p>12</p>
-              </div>
-              <div className="card-action">
-                <a href="/library">View</a>
-              </div>
-            </div>
-          </div>
+
         </div>
+        <div> <Footer/></div>
       </div>
     );
   }
 }
 
-Dashboard.propTypes = {
-};
+const mapStateToProps = state => (
+  {
+    booksData: state.books.books,
+    rentedBooksData: state.books.rentedBooks,
+    usersCountData: state.userState.adminCountUsers
+  }
+);
 
-export default connect(null, { })(Dashboard);
+export default connect(mapStateToProps, { adminCountBooksRequest, adminCountRentedBooksRequest, adminCountUserRequest })(Dashboard);

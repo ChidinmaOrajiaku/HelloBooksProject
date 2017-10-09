@@ -68,10 +68,10 @@ class NavigationBar extends React.Component {
       <div className="container-fluid">
         <ul id="slide-out" className="side-nav fixed">
           <li><div className="user-view">
+            <a href="#" className="brand-logo">HelloBooks</a>
             <div className="background">
-              <img src="images/office.jpg"/>
             </div>
-            <a href="#!user"><img className="circle" src="images/yuna.jpg"/></a>
+            <a href="#!user"><img className="circle" src="https://cdn-images-1.medium.com/fit/c/200/200/1*P8ve1Obc8tLIyWgwlx1E8A.jpeg"/></a>
             <a href="#!name"><span className="white-text name">John Doe</span></a>
             <a href="#!email"><span className="white-text email">jdandturk@gmail.com</span></a>
           </div></li>

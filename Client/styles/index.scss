@@ -12,6 +12,8 @@ body {
 
 .brand-logo{
   font-family: Lobster;
+  color: white;
+  font-size: 30px;
 }
  .main {
     padding-top: 40px;
@@ -338,17 +340,32 @@ body {
   .adminDashboard{
     .initial{
       margin-top: 5%;
-      margin-left: 5%;
+      margin-left: 30%;
     }
-    .second{
-      margin-left: 25%;
+    .card{
+      height: 200px;
+      .card-action{
+        background-color: teal;
+      }
     }
   }
 
   #sidenav-overlay {
     background-color: rgba(0,0,0,0.0);
   }
+  
 
+  .page-footer{
+    text-align: center;
+    color: white;
+    height: 50px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    z-index: 4;
+  }
   .background {
     background-color: teal
   }

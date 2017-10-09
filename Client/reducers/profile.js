@@ -1,7 +1,8 @@
-import { GET_USER, SET_PROFILE, UPDATE_PASSWORD, GET_PROFILE, UPDATE_PROFILE } from '../actions/types';
+import { GET_USER, SET_PROFILE, UPDATE_PASSWORD, GET_PROFILE, UPDATE_PROFILE, COUNT_USERS } from '../actions/types';
 
 const initialState = {
   user: {},
+  adminCountUsers: {},
   profile: {},
 };
 
@@ -19,6 +20,10 @@ export const userState = (state = initialState, action = {}) => {
     case GET_PROFILE:
       return {
         user: action.profile
+      };
+    case COUNT_USERS:
+      return {
+        adminCountUsers: action.adminCountUsers
       };
     case UPDATE_PASSWORD:
       return [
