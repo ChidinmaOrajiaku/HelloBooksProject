@@ -62,4 +62,4 @@ class History extends React.Component {
 }
 
 
-export default connect(null,) (History);
+export default connect(History);

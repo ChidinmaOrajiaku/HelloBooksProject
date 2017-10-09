@@ -171,5 +171,25 @@ const booksController = {
         res.status(404).send(error);
       });
   },
+  adminCountAllBooks(req, res) {
+    return db.Books
+      .findAndCountAll({})
+      .then((books) => {
+        res.status(200).send(books);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  adminCountAllRentedBooks(req, res) {
+    return db.RentedBooks
+      .findAndCountAll({})
+      .then((rentedbooks) => {
+        res.status(200).send(rentedbooks);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  }
 };
 export default booksController;

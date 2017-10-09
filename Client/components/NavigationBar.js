@@ -1,56 +1,89 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../actions/signinAction'
+import { logout } from '../actions/signinAction';
 
-
+/**
+ * 
+ * 
+ * @class NavigationBar
+ * @extends {React.Component}
+ */
 class NavigationBar extends React.Component {
-
+/**
+ *  
+ * @returns
+ * @param {any} event 
+ * @memberof NavigationBar
+ */
   logout(event) {
-      event.preventDefault();
-      this.props.logout()
-      this.props.history.push("/")
+    event.preventDefault();
+    this.props.logout();
+    this.props.history.push('/');
+  }
+  /**
+   * 
+   * 
+   * @memberof NavigationBar
+   */
+  componentDidMount() {
+    $('.button-collapse').sideNav();
   }
 
+  /**
+  * @returns 
+  * @memberof NavigationBar
+  */
   render() {
-       
-    $( document ).ready(function () {
-      $(".button-collapse").sideNav();
-    })
-
-    const { logout } = this.props
-    const { isAuthenticated } = this.props.auth
+    const { logout } = this.props;
+    const { isAuthenticated } = this.props.auth;
 
     const adminLinks = (
-       <div>
-        <li><a href="/library">Library</a></li>
+      <div>
+        <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/history">History</a></li>
         <li><a href="/profile">Profile</a></li>
         <li><a href="/admin">Admin</a></li>
         <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
-     </div>
-    )
+      </div>
+    );
 
     const userLinks = (
-          <div>
-           <li><a href="/library">Library</a></li>
-           <li><a href="/history">History</a></li>
-           <li><a href="/profile">Profile</a></li>
-           <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
-         </div>
-      )
+      <div>
+        <li><a href="/library">Library</a></li>
+        <li><a href="/history">History</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
+      </div>
+    );
 
     const guestLinks = (
       <div>
         <li><a href="/register">Sign Up</a></li>
         <li><a href="/login">Login</a></li>
       </div>
-    )
+    );
 
-  return (
+    return (
       <div className="container-fluid navbar-fixed">
-         <nav className="teal">
+        <ul id="slide-out" className="side-nav">
+          <li><div className="user-view">
+            <div className="background">
+              <img src="images/office.jpg"/>
+            </div>
+            <a href="#!user"><img className="circle" src="images/yuna.jpg"/></a>
+            <a href="#!name"><span className="white-text name">John Doe</span></a>
+            <a href="#!email"><span className="white-text email">jdandturk@gmail.com</span></a>
+          </div></li>
+          <li><a href="#!"><i className="material-icons">cloud</i>First Link With Icon</a></li>
+          <li><a href="#!">Second Link</a></li>
+          <li><div className="divider"></div></li>
+          <li><a className="subheader">Subheader</a></li>
+          <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+        {/* <nav className="teal">
               <div className="nav-wrapper">
                  <a href="#" className="brand-logo">HelloBooks</a>
                  <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
@@ -61,22 +94,28 @@ class NavigationBar extends React.Component {
                     { localStorage.username == 'admin96' && isAuthenticated ? adminLinks : userLinks }
                  </ul>
          </div>
-       </nav>
+       </nav> */}
       </div>
-   );
+    );
+  }
 }
-};
+
 
 NavigationBar.propTypes = {
   auth: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
-}
+};
 
-
+/**
+ * 
+ * 
+ * @param {any} state 
+ * @returns 
+ */
 function mapStateToProps(state) {
   return {
     auth: state.auth
-  }
+  };
 }
 
-export default connect(mapStateToProps, {logout}) (withRouter(NavigationBar));
+export default connect(mapStateToProps, { logout })(withRouter(NavigationBar));

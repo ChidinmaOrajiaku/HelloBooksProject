@@ -2,15 +2,6 @@
 export default (sequelize, DataTypes) => {
   const RentedBooks = sequelize.define('RentedBooks', {
     booksId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    author: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     returned: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
