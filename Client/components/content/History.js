@@ -32,6 +32,7 @@ class History extends React.Component {
   });
   return (
     <div className="history">
+      <div className=""> <NavigationBar /> </div>
     <table className="bordered highlight centered container">
     <thead>
       <tr>

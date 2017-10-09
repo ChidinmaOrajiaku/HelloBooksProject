@@ -20,8 +20,8 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    .nav{
-      margin-top:-40px;
+    .bodyNavigation{
+      margin-top: -40px;
     }
     .books{
       text-align: center;
@@ -186,7 +186,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    .nav{
+    .bodyNavigation{
       margin-top:-40px;
     }
     .books{
@@ -226,7 +226,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    .nav{
+    .bodyNavigation{
       margin-top:-40px;
     }
     .books{
@@ -346,8 +346,13 @@ body {
   }
 
   #sidenav-overlay {
-    background-color: rgba(0,0,0,0.0)
+    background-color: rgba(0,0,0,0.0);
   }
+
+  .background {
+    background-color: teal
+  }
+
     
 
 

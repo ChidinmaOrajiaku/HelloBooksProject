@@ -28,9 +28,8 @@ class NavigationBar extends React.Component {
    * @memberof NavigationBar
    */
   componentDidMount() {
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav('show');
   }
-
   /**
   * @returns 
   * @memberof NavigationBar
@@ -66,8 +65,8 @@ class NavigationBar extends React.Component {
     );
 
     return (
-      <div className="container-fluid navbar-fixed">
-        <ul id="slide-out" className="side-nav">
+      <div className="container-fluid">
+        <ul id="slide-out" className="side-nav fixed">
           <li><div className="user-view">
             <div className="background">
               <img src="images/office.jpg"/>
@@ -76,11 +75,7 @@ class NavigationBar extends React.Component {
             <a href="#!name"><span className="white-text name">John Doe</span></a>
             <a href="#!email"><span className="white-text email">jdandturk@gmail.com</span></a>
           </div></li>
-          <li><a href="#!"><i className="material-icons">cloud</i>First Link With Icon</a></li>
-          <li><a href="#!">Second Link</a></li>
-          <li><div className="divider"></div></li>
-          <li><a className="subheader">Subheader</a></li>
-          <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
+          { localStorage.username === 'admin96' && isAuthenticated ? adminLinks : userLinks }
         </ul>
         <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
         {/* <nav className="teal">

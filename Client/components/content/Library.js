@@ -55,6 +55,7 @@ class Library extends React.Component {
     const { borrowRequest } = this.props
   return (
       <div className= "library">
+        <div className=""> <NavigationBar /> </div>
        <div className="row">
         <div className="col s12 m9 l10">
             {/* fictional */}
