@@ -8,6 +8,7 @@ import Library from './components/content/Library';
 import Profile from './components/content/Profile';
 import History from './components/content/History';
 import Dashboard from './components/admin/Dashboard';
+import AddBooks from './components/admin/AddBooks';
 
 export default(
   <BrowserRouter>
@@ -20,6 +21,7 @@ export default(
         <Route exact path="/profile" component={Profile}/>
         <Route exact path="/history" component={History}/>
         <Route exact path="/dashboard" component={Dashboard}/>
+        <Route exact path="/addbooks" component={AddBooks}/>
       </App>
     </Switch>
   </BrowserRouter>

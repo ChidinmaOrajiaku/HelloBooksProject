@@ -40,11 +40,11 @@ class NavigationBar extends React.Component {
 
     const adminLinks = (
       <div>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/history">History</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/admin">Admin</a></li>
-        <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
+        <li><a href="/dashboard"><i className="material-icons">account_circle</i>Dashboard</a></li>
+        <li><a href="/addbooks"><i className="material-icons">file_upload</i>Upload Book</a></li>
+        <li><a href="/profile"><i className="material-icons">book</i>Books</a></li>
+        <li><a href="/admin"><i className="material-icons">photo_library</i>Profile</a></li>
+        <li><a onClick={this.logout.bind(this)}><i className="material-icons">fast_rewind</i>Log Out</a></li>
       </div>
     );
 

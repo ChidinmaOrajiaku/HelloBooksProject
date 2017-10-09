@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import map from 'lodash/map';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { adminCountBooksRequest, adminCountRentedBooksRequest } from '../../actions/booksAction';
 import { adminCountUserRequest } from '../../actions/profileAction';
@@ -29,7 +26,7 @@ class Dashboard extends React.Component {
 
   /**
    * 
-   * 
+   * @constructor
    * @memberof Dashboard
    */
   componentDidMount() {
@@ -73,7 +70,7 @@ class Dashboard extends React.Component {
                 <p>{this.state.booksData}</p>
               </div>
               <div className="card-action">
-                <a href="/library">View</a>
+                <a href="/library" className="cardAction">View</a>
               </div>
             </div>
           </div>
@@ -95,7 +92,7 @@ class Dashboard extends React.Component {
                 <p>{ this.state.usersCountData }</p>
               </div>
               <div className="card-action">
-                <a href="/library">View</a>
+                <a className="cardAction" href="/history">View</a>
               </div>
             </div>
           </div>

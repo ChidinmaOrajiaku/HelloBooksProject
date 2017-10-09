@@ -347,8 +347,37 @@ body {
       .card-action{
         background-color: teal;
       }
+      .card-title{
+        font-family: $fontFamily;
+        text-align: center;
+      }
+      p{
+        text-align: center;
+        font-family: $fontFamily2;
+        font-size: 20px;
+      }
+      .cardAction{
+        cursor: pointer;
+      }
     }
   }
+  
+.adminAddBooks{
+  .card{
+    height: 600px;
+  }
+  button{
+    float: right;
+    margin-right: 15px;
+  }
+  .file{
+    width: 5px;
+    margin-left: 10px;
+  }
+  span{
+    margin-left: -10px;
+  }
+}
 
   #sidenav-overlay {
     background-color: rgba(0,0,0,0.0);
