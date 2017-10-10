@@ -9,19 +9,19 @@ import { GET_BOOKS,
   SAVE_IMAGE_REQUEST,
 } from './types';
 
-/**
- * 
- * 
- * @export
- * @param {any} books 
- * @returns 
- */
-export function getBooks(books) {
-  return {
-    type: GET_BOOKS,
-    books
-  };
-}
+// /**
+//  * 
+//  * 
+//  * @export
+//  * @param {any} books 
+//  * @returns 
+//  */
+// export function getBooks(books) {
+//   return {
+//     type: GET_BOOKS,
+//     books
+//   };
+// }
 
 /**
  * 
@@ -173,10 +173,10 @@ export const adminCountRentedBooksRequest = () => dispatch => axios.get('/api/v1
   dispatch(adminRentedCount(res.data.count));
 });
 
-export const getRequest = () => dispatch => axios.get('/api/v1/users/books').then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getBooks(res.data));
-});
+// export const getRequest = () => dispatch => axios.get('/api/v1/users/books').then((res) => {
+//   localStorage.getItem('jwtToken');
+//   dispatch(getBooks(res.data));
+// });
 
 export const borrowRequest = (userId, bookData) => dispatch => axios.post(`/api/v1/users/${userId}/books`, bookData).then((res) => {
   localStorage.getItem('jwtToken');

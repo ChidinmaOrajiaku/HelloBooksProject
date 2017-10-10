@@ -7,7 +7,7 @@ import { saveImageCloudinary } from '../../actions/booksAction';
 import { adminAddRequest } from '../../actions/createBooks';
 
 /**
- * @class Dashboard
+ * @class AddBooks
  */
 class AddBooks extends React.Component {
   /**

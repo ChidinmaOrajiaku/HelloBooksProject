@@ -42,7 +42,7 @@ class NavigationBar extends React.Component {
       <div>
         <li><a href="/dashboard"><i className="material-icons">account_circle</i>Dashboard</a></li>
         <li><a href="/addbooks"><i className="material-icons">file_upload</i>Upload Book</a></li>
-        <li><a href="/profile"><i className="material-icons">book</i>Books</a></li>
+        <li><a href="/books"><i className="material-icons">book</i>Books</a></li>
         <li><a href="/admin"><i className="material-icons">photo_library</i>Profile</a></li>
         <li><a onClick={this.logout.bind(this)}><i className="material-icons">fast_rewind</i>Log Out</a></li>
       </div>
@@ -54,13 +54,6 @@ class NavigationBar extends React.Component {
         <li><a href="/history">History</a></li>
         <li><a href="/profile">Profile</a></li>
         <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
-      </div>
-    );
-
-    const guestLinks = (
-      <div>
-        <li><a href="/register">Sign Up</a></li>
-        <li><a href="/login">Login</a></li>
       </div>
     );
 
@@ -78,18 +71,6 @@ class NavigationBar extends React.Component {
           { localStorage.username === 'admin96' && isAuthenticated ? adminLinks : userLinks }
         </ul>
         <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
-        {/* <nav className="teal">
-              <div className="nav-wrapper">
-                 <a href="#" className="brand-logo">HelloBooks</a>
-                 <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
-                 <ul className="right hide-on-med-and-down">
-                 { localStorage.username == 'admin96' && isAuthenticated ? adminLinks : userLinks }
-                 </ul>
-                 <ul className="side-nav" id="mobile-demo">
-                    { localStorage.username == 'admin96' && isAuthenticated ? adminLinks : userLinks }
-                 </ul>
-         </div>
-       </nav> */}
       </div>
     );
   }

@@ -1,12 +1,12 @@
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
-export const GET_BOOKS = 'GET_BOOKS';
+// export const GET_BOOKS = 'GET_BOOKS';
 
 export const BORROW_BOOKS = 'BORROW_BOOKS';
 
-export const DELETE_BOOKS = 'DELETE_BOOKS';
+// export const DELETE_BOOKS = 'DELETE_BOOKS';
 
-export const MODIFY_BOOKS = 'MODIFY_BOOKS';
+// export const MODIFY_BOOKS = 'MODIFY_BOOKS';
 
 export const PUT_BOOKS = 'PUT_BOOKS';
 
@@ -59,3 +59,11 @@ export const MODIFY_BOOKS_SUCCESSFUL = 'MODIFY_BOOKS_SUCCESSFUL';
 export const MODIFY_BOOKS_FAILED = 'MODIFY_BOOKS_FAILED';
 
 export const MODIFY_BOOKS_REQUEST = 'MODIFY_BOOKS_REQUEST';
+
+// User get all books
+
+export const GET_BOOKS_SUCCESSFUL = 'GET_BOOKS_SUCCESSFUL';
+
+export const GET_BOOKS_FAILED = 'GET_BOOKS_FAILED';
+
+export const GET_BOOKS_REQUEST = 'GET_BOOKS_REQUEST';
