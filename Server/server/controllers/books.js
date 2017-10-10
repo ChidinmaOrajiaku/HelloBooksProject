@@ -69,11 +69,7 @@ const booksController = {
     const cur = new Date();
     const after24Days = cur.setDate(cur.getDate() + 24); // get 24 days after borrowed date 
     return db.Books
-      .findOne({
-        where: {
-          id: req.body.booksId,
-        }
-      })
+      .findById(req.body.booksId)
       .then((books) => {
         if (!books) {
           return res.status(404).send('Book Not Found');
@@ -81,8 +77,7 @@ const booksController = {
         return db.RentedBooks
           .findOne({
             where: {
-              returned: true,
-              title: req.body.title,
+              returned: false,
               usersId: req.params.usersId,
               booksId: req.body.booksId,
             }
@@ -93,9 +88,6 @@ const booksController = {
             }
             // create rented books history
             db.RentedBooks.create({
-              title: req.body.title,
-              author: req.body.author,
-              image: req.body.image,
               usersId: req.params.usersId,
               booksId: req.body.booksId,
               toReturnDate: after24Days,
@@ -116,7 +108,10 @@ const booksController = {
       .findAll({
         where: {
           usersId: req.params.usersId
-        }
+        },
+        include: [{
+          model: db.Books
+        }]
       })
       .then((RentedBooks) => {
         if (RentedBooks.length === 0) {

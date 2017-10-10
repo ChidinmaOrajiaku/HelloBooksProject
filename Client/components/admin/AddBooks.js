@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
-import { saveImageCloudinary, adminAddRequest } from '../../actions/booksAction';
+import { saveImageCloudinary } from '../../actions/booksAction';
+import { adminAddRequest } from '../../actions/createBooks';
 
 /**
  * @class Dashboard
@@ -36,13 +37,16 @@ class AddBooks extends React.Component {
    * @memberof AddBooks
    */
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.imageInputUrl);
     if (nextProps.imageInputUrl && this.state.pointer) {
       this.setState({
         image: nextProps.imageInputUrl,
         pointer: false }),
       setTimeout(() => {
-        this.props.adminAddRequest(this.state);
+        this.props.adminAddRequest(this.state).then(
+          () => {
+            Materialize.toast(this.props.createBooksResponse, 2000, 'teal rounded')
+          }
+        );
       }, 1000);
     }
   }
@@ -149,6 +153,7 @@ class AddBooks extends React.Component {
 
 const mapStateToProps = state => (
   {
+    createBooksResponse: state.createBooks[0].response.message,
     imageInputUrl: state.uploadImage[0].response
   }
 );

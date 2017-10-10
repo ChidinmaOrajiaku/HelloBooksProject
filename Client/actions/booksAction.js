@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_BOOKS,
-  BORROW_BOOKS, ADD_BOOKS,
+  BORROW_BOOKS,
   DELETE_BOOKS, MODIFY_BOOKS,
   PUT_BOOKS, GET_BOOKS_COUNT,
   GET_RENTED_BOOKS_COUNT,
@@ -61,20 +61,6 @@ export function adminRentedCount(rentedBooks) {
 export function borrowBooks(book) {
   return {
     type: BORROW_BOOKS,
-    book
-  };
-}
-
-/**
- * 
- * 
- * @export
- * @param {any} book 
- * @returns 
- */
-export function createBooks(book) {
-  return {
-    type: ADD_BOOKS,
     book
   };
 }
@@ -162,12 +148,6 @@ export function saveImageError(error) {
     error
   };
 }
-
-export const adminAddRequest = bookData => dispatch => axios.post('/api/v1/users/books', bookData).then((res) => {
-  localStorage.getItem('jwtToken');
-  console.log(res.data);
-  dispatch(createBooks(res.data));
-});
 
 export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/books/${bookId}`).then((res) => {
   localStorage.getItem('jwtToken');
