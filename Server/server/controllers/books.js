@@ -13,7 +13,9 @@ const booksController = {
         usersId: req.query.usersId
       })
       .then(() => res.status(201).send({ message: 'Succesfully added' }))
-      .catch(error => res.status(400).send(error));
+      .catch((error) => {
+        res.status(400).send(error);
+      });
   },
   list(req, res) {
     // find all books

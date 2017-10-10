@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
-import { adminAddRequest } from '../../actions/booksAction';
+import { saveImageCloudinary, adminAddRequest } from '../../actions/booksAction';
 
 /**
  * @class Dashboard
@@ -19,13 +19,34 @@ class AddBooks extends React.Component {
       title: '',
       author: '',
       category: '',
+      tempImage: '',
       image: '',
       review: '',
+      pointer: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.onAddSubmit = this.onAddSubmit.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
   }
+
+  /**
+   * 
+   * 
+   * @param {any} nextProps 
+   * @memberof AddBooks
+   */
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.imageInputUrl);
+    if (nextProps.imageInputUrl && this.state.pointer) {
+      this.setState({
+        image: nextProps.imageInputUrl,
+        pointer: false }),
+      setTimeout(() => {
+        this.props.adminAddRequest(this.state);
+      }, 1000);
+    }
+  }
+
   /**
  * 
  * @constructor
@@ -43,7 +64,8 @@ class AddBooks extends React.Component {
  */
   onAddSubmit(event) {
     event.preventDefault();
-    this.props.adminAddRequest(this.state);
+    this.props.saveImageCloudinary(this.state.tempImage);
+    this.setState({ pointer: true });
   }
   /**
  * 
@@ -60,7 +82,7 @@ class AddBooks extends React.Component {
         const newUpload = new Image();
         newUpload.src = imageInputReader.result;
         newUpload.onload = () => {
-          this.setState({ image: imageInput.name });
+          this.setState({ tempImage: imageInput });
         };
       };
     }
@@ -125,4 +147,10 @@ class AddBooks extends React.Component {
   }
 }
 
-export default connect(null, { adminAddRequest })(AddBooks);
+const mapStateToProps = state => (
+  {
+    imageInputUrl: state.uploadImage[0].response
+  }
+);
+
+export default connect(mapStateToProps, { adminAddRequest, saveImageCloudinary })(AddBooks);

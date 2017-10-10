@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { GET_BOOKS, BORROW_BOOKS, ADD_BOOKS, DELETE_BOOKS, MODIFY_BOOKS, PUT_BOOKS, GET_BOOKS_COUNT, GET_RENTED_BOOKS_COUNT } from './types';
+import { GET_BOOKS,
+  BORROW_BOOKS, ADD_BOOKS,
+  DELETE_BOOKS, MODIFY_BOOKS,
+  PUT_BOOKS, GET_BOOKS_COUNT,
+  GET_RENTED_BOOKS_COUNT,
+  SAVE_IMAGE_FAILED,
+  SAVE_IMAGE_SUCCESSFUL,
+  SAVE_IMAGE_REQUEST,
+} from './types';
 
 /**
  * 
@@ -113,8 +121,51 @@ export function putBooks(book) {
   };
 }
 
+/**
+ * 
+ * 
+ * @export
+ * @param {any} image 
+ * @returns
+ */
+export function saveImageResponse(response) {
+  return {
+    type: SAVE_IMAGE_SUCCESSFUL,
+    response
+  };
+}
+
+/**
+ * 
+ * 
+ * @export
+ * @param {any} image 
+ * @returns 
+ */
+export function saveImageRequest(data) {
+  return {
+    type: SAVE_IMAGE_REQUEST,
+    data
+  };
+}
+
+/**
+ * 
+ * 
+ * @export
+ * @param {any} image 
+ * @returns 
+ */
+export function saveImageError(error) {
+  return {
+    type: SAVE_IMAGE_FAILED,
+    error
+  };
+}
+
 export const adminAddRequest = bookData => dispatch => axios.post('/api/v1/users/books', bookData).then((res) => {
   localStorage.getItem('jwtToken');
+  console.log(res.data);
   dispatch(createBooks(res.data));
 });
 
@@ -156,4 +207,38 @@ export const putBookRequest = (userId, bookData) => dispatch => axios.put(`/api/
   localStorage.getItem('jwtToken');
   dispatch(putBooks(res.data));
 });
+
+/**
+ * 
+ * 
+ * @export
+ * @param {any} image 
+ */
+export function saveImageCloudinary(image) {
+  const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/andela-chidinma/upload';
+  const cloudinaryPreset = 'fvskverm';
+
+  const data = new FormData();
+  data.append('file', image);
+  data.append('upload_preset', cloudinaryPreset);
+  return (dispatch) => {
+    dispatch(saveImageRequest(image));
+    return fetch(cloudinaryUrl, {
+      method: 'POST',
+      body: data,
+    })
+      .then((res) => {
+        if (res.status >= 400) {
+          throw res.statusText;
+        } else if (res.status === 200) {
+          return res.json();
+        }
+      })
+      .then((response) => {
+        dispatch(saveImageResponse(response.secure_url));
+      }).catch((error) => {
+        dispatch(saveImageError(error));
+      });
+  };
+}
 
