@@ -1,30 +1,30 @@
-import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED, CREATE_BOOKS_REQUEST } from '../actions/types';
+import { DELETE_BOOKS_SUCCESSFUL, DELETE_BOOKS_FAILED, DELETE_BOOKS_REQUEST } from '../actions/types';
 
 const initialState = [{
-  createData: {},
+  deleteData: {},
   response: '',
   error: '',
 }];
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case CREATE_BOOKS_REQUEST:
+    case DELETE_BOOKS_REQUEST:
       return [{
-        createData: action.data,
+        deleteData: action.data,
         response: '',
         error: '',
       }, ...state];
 
-    case CREATE_BOOKS_SUCCESSFUL:
+    case DELETE_BOOKS_SUCCESSFUL:
       return [{
-        createData: {},
+        deleteData: {},
         response: action.response,
         error: '',
       }, ...state];
 
-    case CREATE_BOOKS_FAILED:
+    case DELETE_BOOKS_FAILED:
       return [{
-        createData: {},
+        deleteData: {},
         response: '',
         error: action.error,
       }, ...state];

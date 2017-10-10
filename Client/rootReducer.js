@@ -5,6 +5,8 @@ import { booksState, booksIdState } from './reducers/books';
 import { userState } from './reducers/profile';
 import uploadImage from './reducers/uploadImage';
 import createBooks from './reducers/createBooks';
+import deleteBooks from './reducers/deleteBooks';
+import modifyBooks from './reducers/modifyBooks';
 
 export default combineReducers({
   auth,
@@ -12,6 +14,8 @@ export default combineReducers({
   booksId: booksIdState,
   userState,
   uploadImage,
-  createBooks
+  createBooks,
+  deleteBooks,
+  modifyBooks
 });
 

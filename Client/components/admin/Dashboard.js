@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
     );
     this.props.adminCountRentedBooksRequest().then(
       this.setState({
-        rentedBooksData:localStorage.getItem('countBooks')
+        rentedBooksData:localStorage.getItem('countRentedBooks')
       })
     );
     this.props.adminCountUserRequest().then(

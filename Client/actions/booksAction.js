@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GET_BOOKS,
   BORROW_BOOKS,
-  DELETE_BOOKS, MODIFY_BOOKS,
+  // DELETE_BOOKS, MODIFY_BOOKS,
   PUT_BOOKS, GET_BOOKS_COUNT,
   GET_RENTED_BOOKS_COUNT,
   SAVE_IMAGE_FAILED,
@@ -79,19 +79,19 @@ export function deleteBooks(book) {
   };
 }
 
-/**
- * 
- * 
- * @export
- * @param {any} book 
- * @returns 
- */
-export function modifyBooks(book) {
-  return {
-    type: MODIFY_BOOKS,
-    book
-  };
-}
+// /**
+//  * 
+//  * 
+//  * @export
+//  * @param {any} book 
+//  * @returns 
+//  */
+// export function modifyBooks(book) {
+//   return {
+//     type: MODIFY_BOOKS,
+//     book
+//   };
+// }
 
 /**
  * 
@@ -149,15 +149,15 @@ export function saveImageError(error) {
   };
 }
 
-export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/books/${bookId}`).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(deleteBooks(res.data));
-});
+// export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/books/${bookId}`).then((res) => {
+//   localStorage.getItem('jwtToken');
+//   dispatch(deleteBooks(res.data));
+// });
 
-export const adminPutRequest = bookId => dispatch => axios.put(`/api/v1/books/${bookId}`).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(modifyBooks(res.data));
-});
+// export const adminPutRequest = bookId => dispatch => axios.put(`/api/v1/books/${bookId}`).then((res) => {
+//   localStorage.getItem('jwtToken');
+//   dispatch(modifyBooks(res.data));
+// });
 
 export const adminCountBooksRequest = () => dispatch => axios.get('/api/v1/books').then((res) => {
   localStorage.getItem('jwtToken');
