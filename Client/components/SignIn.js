@@ -46,7 +46,7 @@ class SignIn extends React.Component {
 
   /**
  * 
- * 
+ * @returns {event} sign up event
  * @param {any} event 
  * @memberof SignIn
  */
@@ -65,7 +65,7 @@ class SignIn extends React.Component {
   /**
  * 
  * 
- * @returns 
+ * @returns {ReactElement} Markup
  * @memberof SignIn
  */
   render() {

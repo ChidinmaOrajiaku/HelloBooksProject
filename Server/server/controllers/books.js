@@ -142,6 +142,20 @@ const booksController = {
         res.status(404).send(error);
       });
   },
+  adminListNotReturnedBooks(req, res) {
+    // admin list books borrowed but not returned
+    return db.RentedBooks
+      .findAll({})
+      .then((books) => {
+        if (books.length === 0) {
+          res.status(404).send('No books in the library');
+        }
+        res.status(200).send(books);
+      })
+      .catch((error) => {
+        res.status(404).send(error);
+      });
+  },
   returnBooks(req, res) {
     // return borrowed books
     return db.RentedBooks

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/signinAction';
 
@@ -13,7 +13,7 @@ import { logout } from '../actions/signinAction';
 class NavigationBar extends React.Component {
 /**
  *  
- * @returns
+ * @returns {any} event
  * @param {any} event 
  * @memberof NavigationBar
  */
@@ -24,14 +24,14 @@ class NavigationBar extends React.Component {
   }
   /**
    * 
-   * 
+   * @returns {any} sideNav
    * @memberof NavigationBar
    */
   componentDidMount() {
     $('.button-collapse').sideNav('show');
   }
   /**
-  * @returns 
+  * @returns {ReactElement} markup
   * @memberof NavigationBar
   */
   render() {
@@ -40,19 +40,19 @@ class NavigationBar extends React.Component {
 
     const adminLinks = (
       <div>
-        <li><a href="/dashboard"><i className="material-icons">account_circle</i>Dashboard</a></li>
-        <li><a href="/addbooks"><i className="material-icons">file_upload</i>Upload Book</a></li>
-        <li><a href="/books"><i className="material-icons">book</i>Books</a></li>
-        <li><a href="/admin"><i className="material-icons">photo_library</i>Profile</a></li>
+        <li><Link to="/dashboard"><i className="material-icons">account_circle</i>Dashboard</Link></li>
+        <li><Link to="/addbooks"><i className="material-icons">file_upload</i>Upload Book</Link></li>
+        <li><Link to="/books"><i className="material-icons">book</i>Books</Link></li>
+        <li><Link to="/admin"><i className="material-icons">photo_library</i>Profile</Link></li>
         <li><a onClick={this.logout.bind(this)}><i className="material-icons">fast_rewind</i>Log Out</a></li>
       </div>
     );
 
     const userLinks = (
       <div>
-        <li><a href="/library">Library</a></li>
-        <li><a href="/history">History</a></li>
-        <li><a href="/profile">Profile</a></li>
+        <li><Link to="/library">Library</Link></li>
+        <li><Link to="/history">History</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
         <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
       </div>
     );
@@ -61,7 +61,7 @@ class NavigationBar extends React.Component {
       <div className="container-fluid">
         <ul id="slide-out" className="side-nav fixed">
           <li><div className="user-view">
-            <a href="#" className="brand-logo">HelloBooks</a>
+            <a to="#" className="brand-logo">HelloBooks</a>
             <div className="background">
             </div>
             <a href="#!user"><img className="circle" src="https://cdn-images-1.medium.com/fit/c/200/200/1*P8ve1Obc8tLIyWgwlx1E8A.jpeg"/></a>
@@ -70,7 +70,7 @@ class NavigationBar extends React.Component {
           </div></li>
           { localStorage.username === 'admin96' && isAuthenticated ? adminLinks : userLinks }
         </ul>
-        <a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+        <a to="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
       </div>
     );
   }
@@ -86,11 +86,12 @@ NavigationBar.propTypes = {
  * 
  * 
  * @param {any} state 
- * @returns 
+ * @returns {state} map state to props
  */
 function mapStateToProps(state) {
   return {
     auth: state.auth
+    
   };
 }
 

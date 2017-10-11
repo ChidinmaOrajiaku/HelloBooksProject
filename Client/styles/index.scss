@@ -1,5 +1,6 @@
 $primaryColor: #8FA05B;
 $primaryColor2: teal;
+$primaryColor3: #003030;
 $fontFamily: Pacifico;
 $fontFamily2: Lobster;
 
@@ -376,6 +377,30 @@ body {
   }
   span{
     margin-left: -10px;
+  }
+  table{
+    background-color: teal;
+  }
+}
+
+.books{
+  img{
+    height: 40px;
+    width: 30px;
+  }
+  .card{
+    background-color: teal
+  }
+  table{
+    th{
+      border: 1px solid silver
+    }
+    td{
+      border: 1px solid silver
+    }
+    thead{
+      background-color: white
+    }
   }
 }
 
