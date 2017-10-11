@@ -20,25 +20,21 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  },
-  {
-    classMethods: {
-      associate: (models) => {
-        // associations can be defined here
-        Books.belongsTo(models.Users, {
-          foreignKey: 'usersId',
-          onDelete: 'CASCADE',
-        });
-        Books.hasMany(models.RentedBooks, {
-          foreignKey: 'booksId',
-          as: 'rentedbooks',
-        });
-        Books.belongsTo(models.BooksCategory, {
-          foreignKey: 'categoryId',
-          onDelete: 'CASCADE',
-        });
-      },
-    },
   });
+  Books.associate = (models) => {
+    // associations can be defined here
+    Books.belongsTo(models.Users, {
+      foreignKey: 'usersId',
+      onDelete: 'CASCADE',
+    });
+    Books.hasMany(models.RentedBooks, {
+      foreignKey: 'booksId',
+      as: 'rentedbooks',
+    });
+    Books.belongsTo(models.Category, {
+      foreignKey: 'categoryId',
+      onDelete: 'CASCADE',
+    });
+  };
   return Books;
 };

@@ -31,6 +31,20 @@ const booksController = {
         res.status(400).send(error);
       });
   },
+  listABook(req, res) {
+    // find one books
+    return db.Books
+      .findById(req.params.id)
+      .then((books) => {
+        if (!books) {
+          res.status(404).send({ message: 'Book Not Found' });
+        }
+        res.status(200).send(books);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
   update(req, res) {
     // update books
     return db.Books
@@ -110,8 +124,12 @@ const booksController = {
           usersId: req.params.usersId
         },
         include: [{
-          model: db.Books
-        }]
+          model: db.Books,
+        },
+        {
+          model: db.Category
+        }
+        ],
       })
       .then((RentedBooks) => {
         if (RentedBooks.length === 0) {
@@ -130,7 +148,14 @@ const booksController = {
         where: {
           returned: false,
           usersId: req.params.usersId
+        },
+        include: [{
+          model: db.Books,
+        },
+        {
+          model: db.Category
         }
+        ],
       })
       .then((books) => {
         if (books.length === 0) {
@@ -145,7 +170,15 @@ const booksController = {
   adminListNotReturnedBooks(req, res) {
     // admin list books borrowed but not returned
     return db.RentedBooks
-      .findAll({})
+      .findAll({
+        include: [{
+          model: db.Books,
+        },
+        {
+          model: db.Category
+        }
+        ],
+      })
       .then((books) => {
         if (books.length === 0) {
           res.status(404).send('No books in the library');
@@ -176,7 +209,6 @@ const booksController = {
         })
           .then(() => res.status(200).send({ message: 'Successfully Returned' }))
           .catch(error => res.status(404).send(error));
-        console.log(req.body);
       })
       .catch((error) => {
         res.status(404).send(error);
@@ -195,6 +227,20 @@ const booksController = {
   adminCountAllRentedBooks(req, res) {
     return db.RentedBooks
       .findAndCountAll({})
+      .then((rentedbooks) => {
+        res.status(200).send(rentedbooks);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  adminCountAllNotReturnedBooks(req, res) {
+    return db.RentedBooks
+      .findAndCountAll({
+        where: {
+          returned: true
+        }
+      })
       .then((rentedbooks) => {
         res.status(200).send(rentedbooks);
       })

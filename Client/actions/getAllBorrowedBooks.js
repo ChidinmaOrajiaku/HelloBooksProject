@@ -44,7 +44,7 @@ export function getBorrowedBooksError(error) {
   };
 }
 
-export const getRequest = () => dispatch => axios.get('/api/v1/users/books').then((res) => {
+export const admingetBorrowedRequest = () => dispatch => axios.get('/api/v1/users/books/unreturned').then((res) => {
   localStorage.getItem('jwtToken');
   dispatch(getBorrowedBooksResponse(res.data));
 }).catch((error) => {

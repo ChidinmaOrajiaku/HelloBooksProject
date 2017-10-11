@@ -18,16 +18,13 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     usersId: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: (models) => {
-        // associations can be defined here
-        Profile.belongsTo(models.Users, {
-          foreignKey: 'usersId',
-          onDelete: 'CASCADE',
-        });
-      }
-    }
   });
+  Profile.associate = (models) => {
+    // associations can be defined here
+    Profile.belongsTo(models.Users, {
+      foreignKey: 'usersId',
+      onDelete: 'CASCADE',
+    });
+  };
   return Profile;
 };

@@ -6,6 +6,8 @@ import NavigationBar from '../NavigationBar';
 import { getRequest } from '../../actions/getAllBooks';
 import { adminModifyRequest } from '../../actions/modifyBooks';
 import { adminDeleteRequest } from '../../actions/deleteBooks';
+import { admingetBorrowedRequest } from '../../actions/getAllBorrowedBooks';
+
 
 /**
  * @class Books
@@ -18,7 +20,8 @@ class Books extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      getAllBooks: '',
+      getAllBooks: [],
+      getAllBorrowedBooks: [],
       bookStatus: '',
       loading: true,
       pointer: false,
@@ -42,7 +45,8 @@ class Books extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       loading: false,
-      getAllBooks: nextProps.getAllBooksData
+      getAllBooks: nextProps.getAllBooksData,
+      getAllBorrowedBooks: nextProps.getAllBorrowedBooksData
     });
   }
   /**
@@ -52,6 +56,8 @@ class Books extends React.Component {
    */
   componentDidMount() {
     this.props.getRequest();
+    this.props.admingetBorrowedRequest();
+    $('.tooltipped').tooltip({ delay: 50 });
     $('select').material_select();
     $('select').change(event => this.handleChange(event));
   }
@@ -74,12 +80,34 @@ class Books extends React.Component {
           </tr>
         </thead>
         <tbody>
-          { this.state.getAllBooks.map((book, i) =>
-            <tr key={i}>
-              <td> <img src = {book.image }/> </td>
-              <td>{ book.title }</td>
-              <td>{ book.author }</td>
-              <td>{ book.category }</td>
+          { Object.keys(this.state.getAllBooks).map(key =>
+            <tr key={key}>
+              <td> <img src = {this.state.getAllBooks[key].image }/> </td>
+              <td>{ this.state.getAllBooks[key].title }</td>
+              <td>{ this.state.getAllBooks[key].author }</td>
+              <td>{ this.state.getAllBooks[key].category }</td>
+              <td><i className="material-icons">zoom_in</i><i className="material-icons">create</i><i className="material-icons">delete</i></td>
+            </tr>
+          )}
+        </tbody>
+      </table>;
+    const borrowedBooks = this.state.loading ? <div><p>Loading...</p></div> :
+      <table className="bordered centered responsive-table">
+        <thead>
+          <tr className="teal-text">
+            <th> Image </th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          { Object.keys(this.state.getAllBorrowedBooks).map(key =>
+            <tr key={key}>
+              <td> <img src = {this.state.getAllBorrowedBooks[key].Book.image }/> </td>
+              <td>{ this.state.getAllBorrowedBooks[key].Book.title }</td>
+              <td>{ this.state.getAllBorrowedBooks[key].Book.author }</td>
+              <td>{ this.state.getAllBorrowedBooks[key].Book.category }</td>
             </tr>
           )}
         </tbody>
@@ -89,17 +117,17 @@ class Books extends React.Component {
         <div className=""> <NavigationBar /> </div>
         <div className="row col m8 offset-m3">
           <div className="input-field col s4">
-            <select className="teal-text" id= "bookStatus"value="1" onChange={this.handleChange}>
+            {<select className="teal-text" id= "bookStatus"value="1" onChange={this.handleChange}>
               <option value="" defaultValue>Choose your option</option>
               <option value="2">All Books</option>
               <option value="3">Pending Returns</option>
-            </select>
+            </select>}
             <label className="teal-text">Select View</label>
           </div>
           <div className="col s12 ">
             <div className="card">
               <div className="card-content white-text">
-                {books}
+                {this.state.bookStatus === '3' ? borrowedBooks : books }
               </div>
             </div>
           </div>
@@ -112,9 +140,10 @@ class Books extends React.Component {
 
 const mapStateToProps = state => (
   {
-    getAllBooksData: state.getAllBooks[0].response
+    getAllBooksData: state.getAllBooks[0].response,
+    getAllBorrowedBooksData: state.getAllBorrowedBooks[0].response
   }
 );
 
 export default connect(mapStateToProps,
-  { adminModifyRequest, adminDeleteRequest, getRequest })(Books);
+  { adminModifyRequest, adminDeleteRequest, admingetBorrowedRequest, getRequest })(Books);

@@ -45,29 +45,25 @@ export default (sequelize, DataTypes) => {
         Users.password = bcrypt.hashSync(Users.password, salt);
       }
     }
-  },
-  {
-    classMethods: {
-      associate: (models) => {
-        // associations can be defined here
-        Users.hasMany(models.Books, {
-          foreignKey: 'usersId',
-          as: 'books',
-        });
-        Users.hasMany(models.RentedBooks, {
-          foreignKey: 'usersId',
-          as: 'rentedbooks',
-        });
-        Users.hasMany(models.Category, {
-          foreignKey: 'usersId',
-          as: 'category',
-        });
-        Users.hasMany(models.Profile, {
-          foreignKey: 'usersId',
-          as: 'profile',
-        });
-      },
-    },
   });
+  Users.associate = (models) => {
+    // associations can be defined here
+    Users.hasMany(models.Books, {
+      foreignKey: 'usersId',
+      as: 'books',
+    });
+    Users.hasMany(models.RentedBooks, {
+      foreignKey: 'usersId',
+      as: 'rentedbooks',
+    });
+    Users.hasMany(models.Category, {
+      foreignKey: 'usersId',
+      as: 'category',
+    });
+    Users.hasMany(models.Profile, {
+      foreignKey: 'usersId',
+      as: 'profile',
+    });
+  };
   return Users;
 };
