@@ -7,6 +7,7 @@ import { getRequest } from '../../actions/getAllBooks';
 import { adminModifyRequest } from '../../actions/modifyBooks';
 import { adminDeleteRequest } from '../../actions/deleteBooks';
 import { admingetBorrowedRequest } from '../../actions/getAllBorrowedBooks';
+import { getBookRequest } from '../../actions/getABook';
 
 
 /**
@@ -20,12 +21,20 @@ class Books extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      bookId: '',
+      bookIndex: '',
+      deleteBook: '',
+      filterData: [],
+      getABook: [],
       getAllBooks: [],
       getAllBorrowedBooks: [],
       bookStatus: '',
       loading: true,
       pointer: false,
     };
+    this.onViewRequest = this.onViewRequest.bind(this);
+    this.onDeleteRequest = this.onDeleteRequest.bind(this);
+    this.handleDeleteChange = this.handleDeleteChange.bind(this);
   }
   /**
  * 
@@ -37,6 +46,42 @@ class Books extends React.Component {
     this.setState({ [event.target.id]: event.target.value });
   }
   /**
+ * 
+ * @returns {event} handles change
+ * @param {any} event 
+ * @memberof Books
+ */
+  handleDeleteChange(event) {
+    this.setState({ bookId: event.target.value, bookIndex: event.target.dataset.index });
+  }
+  /**
+ * 
+ * @returns {event} view a book request
+ * @param {any} event 
+ * @memberof Books
+ */
+  onViewRequest(event) {
+    event.preventDefault();
+    this.props.getBookRequest(event.target.value);
+  }
+  /**
+ * 
+ * @returns {event} delete a book request
+ * @param {any} event 
+ * @memberof Books
+ */
+  onDeleteRequest(event) {
+    event.preventDefault();
+    this.props.adminDeleteRequest(this.state.bookId).then(() => {
+      this.state.filterData.splice(this.state.bookIndex, 1);
+      this.setState({
+        getAllBooks: this.state.filterData
+      });
+      Materialize.toast('Successfully deleted', 2000, 'teal rounded');
+    }
+    );
+  }
+  /**
    * 
    * @returns {nextProps} next props
    * @param {any} nextProps 
@@ -46,7 +91,11 @@ class Books extends React.Component {
     this.setState({
       loading: false,
       getAllBooks: nextProps.getAllBooksData,
-      getAllBorrowedBooks: nextProps.getAllBorrowedBooksData
+      filterData: nextProps.getAllBooksData,
+      getAllBorrowedBooks: nextProps.getAllBorrowedBooksData,
+      getABook: nextProps.getABookData,
+      deleteBook: nextProps.deleteBookData,
+      modifyBook: nextProps.modifyBookData
     });
   }
   /**
@@ -57,9 +106,16 @@ class Books extends React.Component {
   componentDidMount() {
     this.props.getRequest();
     this.props.admingetBorrowedRequest();
-    $('.tooltipped').tooltip({ delay: 50 });
     $('select').material_select();
     $('select').change(event => this.handleChange(event));
+    $('.modal').modal({
+      dismissible: true,
+      opacity: 0.5,
+      inDuration: 300,
+      outDuration: 200,
+      startingTop: '2%',
+      endingTop: '20%',
+    });
   }
   /**
      * 
@@ -86,7 +142,7 @@ class Books extends React.Component {
               <td>{ this.state.getAllBooks[key].title }</td>
               <td>{ this.state.getAllBooks[key].author }</td>
               <td>{ this.state.getAllBooks[key].category }</td>
-              <td><i className="material-icons">zoom_in</i><i className="material-icons">create</i><i className="material-icons">delete</i></td>
+              <td><button value={this.state.getAllBooks[key].id} onClick={this.onViewRequest} className="material-icons">zoom_in</button><button value={this.state.getAllBooks[key].id} onClick={this.onViewRequest} className="material-icons">create</button><a href="#modal1" className="modal-trigger"><button value={this.state.getAllBooks[key].id} onClick={this.handleDeleteChange} data-index= {key} className="material-icons">delete</button></a></td>
             </tr>
           )}
         </tbody>
@@ -132,6 +188,15 @@ class Books extends React.Component {
             </div>
           </div>
         </div>
+        <div id="modal1" className="modal">
+          <div className="modal-content">
+            <p className="white-text modalDelete">Are you you want to delete this book?</p>
+          </div>
+          <div className="modal-footer">
+            <button onClick={this.onDeleteRequest} className="deleteButton"> Delete </button>
+            <a className="modal-action modal-close"><button className="cancelButton">Cancel</button></a>
+          </div>
+        </div>
         <div> <Footer/></div>
       </div>
     );
@@ -141,9 +206,12 @@ class Books extends React.Component {
 const mapStateToProps = state => (
   {
     getAllBooksData: state.getAllBooks[0].response,
-    getAllBorrowedBooksData: state.getAllBorrowedBooks[0].response
+    getAllBorrowedBooksData: state.getAllBorrowedBooks[0].response,
+    getABookData: state.getABook[0].response,
+    modifyBookData: state.modifyBooks[0].response,
+    deleteBookData: state.deleteBooks[0].response
   }
 );
 
 export default connect(mapStateToProps,
-  { adminModifyRequest, adminDeleteRequest, admingetBorrowedRequest, getRequest })(Books);
+  { adminModifyRequest, adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest })(Books);

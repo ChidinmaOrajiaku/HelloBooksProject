@@ -9,6 +9,7 @@ import deleteBooks from './reducers/deleteBooks';
 import modifyBooks from './reducers/modifyBooks';
 import getAllBooks from './reducers/getAllBooks';
 import getAllBorrowedBooks from './reducers/getAllBorrowedBooks';
+import getABook from './reducers/getABook';
 
 export default combineReducers({
   auth,
@@ -20,6 +21,7 @@ export default combineReducers({
   deleteBooks,
   modifyBooks,
   getAllBooks,
-  getAllBorrowedBooks
+  getAllBorrowedBooks,
+  getABook
 });
 
