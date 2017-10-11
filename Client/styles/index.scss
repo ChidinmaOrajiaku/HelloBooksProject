@@ -388,8 +388,17 @@ body {
     height: 40px;
     width: 30px;
   }
-  .card{
-    background-color: teal
+  h4{
+    text-align: center;
+    font-family: $fontFamily;
+    font-size: 40px;
+  }
+  .status{
+    margin-top: 5%;
+    margin-bottom: 3%;
+  }
+  .sort{
+    font-style: bold;
   }
   table{
     th{
@@ -399,7 +408,7 @@ body {
       border: 1px solid silver
     }
     thead{
-      background-color: white
+      background-color: teal
     }
     .material-icons{
       cursor: pointer;
@@ -410,7 +419,7 @@ body {
     }
   }
   button{
-    background-color: teal
+    background-color: white
   }
   .modal{
     width: 300px;
@@ -420,6 +429,7 @@ body {
       font-size: 20px;
     }
     .deleteButton{
+      background-color: teal;
       float: left;
       margin-top: 3%;
       margin-left: 3%;

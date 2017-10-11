@@ -58,7 +58,9 @@ const booksController = {
         books.update({
           title: req.body.title,
           category: req.body.category,
-          author: req.body.author
+          author: req.body.author,
+          image: req.body.image,
+          review: req.body.review
         })
           .then(() => res.status(200).send(books))
           .catch(error => res.status(400).send(error));

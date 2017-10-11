@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
 import { saveImageCloudinary } from '../../actions/booksAction';
-import { adminAddRequest } from '../../actions/createBooks';
+import { adminModifyRequest } from '../../actions/createBooks';
 
 /**
  * @class AddBooks
@@ -25,35 +25,11 @@ class AddBooks extends React.Component {
       review: '',
       pointer: false,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.onAddSubmit = this.onAddSubmit.bind(this);
-    this.handleImageChange = this.handleImageChange.bind(this);
-  }
-
-  /**
-   * 
-   * @returns {nextProps} nextprops
-   * @param {any} nextProps 
-   * @memberof AddBooks
-   */
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.imageInputUrl && this.state.pointer) {
-      this.setState({
-        image: nextProps.imageInputUrl,
-        pointer: false }),
-      setTimeout(() => {
-        this.props.adminAddRequest(this.state).then(
-          () => {
-            Materialize.toast(this.props.createBooksResponse, 2000, 'teal rounded')
-          }
-        );
-      }, 1000);
-    }
   }
 
   /**
  * 
- * @constructor
+ * @returns {event} event
  * @param {any} event 
  * @memberof AddBooks
  */
@@ -61,42 +37,9 @@ class AddBooks extends React.Component {
     this.setState({ [event.target.id]: event.target.value });
   }
   /**
- * 
- * @constructor
- * @param {any} event 
- * @memberof AddBooks
- */
-  onAddSubmit(event) {
-    event.preventDefault();
-    this.props.saveImageCloudinary(this.state.tempImage);
-    this.setState({ pointer: true });
-  }
-  /**
- * 
- * @constructor
- * @param {any} event 
- * @memberof AddBooks
- */
-  handleImageChange(event) {
-    event.preventDefault();
-    const imageInput = event.target.files[0];
-    const imageInputReader = new FileReader();
-    if (imageInput) {
-      imageInputReader.onload = () => {
-        const newUpload = new Image();
-        newUpload.src = imageInputReader.result;
-        newUpload.onload = () => {
-          this.setState({ tempImage: imageInput });
-        };
-      };
-    }
-    imageInputReader.readAsDataURL(imageInput);
-  }
-
-  /**
      * 
      * 
-     * @constructor 
+     * @returns {ReactElement} Markup 
      * @memberof AddBooks
      */
   render() {
@@ -105,7 +48,7 @@ class AddBooks extends React.Component {
         <div className=""> <NavigationBar /> </div>
         <div className="col m4 offset-m5">
           <div className="card">
-            <form onSubmit={this.onAddSubmit} id="form">
+            <form onSubmit="" id="form">
               <div className="row">
                 <div className="input-field col s12">
                   <input value={this.state.title} onChange={this.handleChange} id="title" type="text" className="validate"/>
@@ -153,9 +96,9 @@ class AddBooks extends React.Component {
 
 const mapStateToProps = state => (
   {
-    createBooksResponse: state.createBooks[0].response.message,
+    modifyBookData: state.modifyBooks[0].response,
     imageInputUrl: state.uploadImage[0].response
   }
 );
 
-export default connect(mapStateToProps, { adminAddRequest, saveImageCloudinary })(AddBooks);
+export default connect(mapStateToProps, { adminModifyRequest, saveImageCloudinary })(AddBooks);

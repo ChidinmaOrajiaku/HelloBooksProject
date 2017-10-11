@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
 import { getRequest } from '../../actions/getAllBooks';
@@ -127,7 +128,7 @@ class Books extends React.Component {
     const books = this.state.loading ? <div><p>Loading...</p></div> :
       <table className="bordered centered responsive-table">
         <thead>
-          <tr className="teal-text">
+          <tr className="white-text">
             <th> Image </th>
             <th>Title</th>
             <th>Author</th>
@@ -142,7 +143,11 @@ class Books extends React.Component {
               <td>{ this.state.getAllBooks[key].title }</td>
               <td>{ this.state.getAllBooks[key].author }</td>
               <td>{ this.state.getAllBooks[key].category }</td>
-              <td><button value={this.state.getAllBooks[key].id} onClick={this.onViewRequest} className="material-icons">zoom_in</button><button value={this.state.getAllBooks[key].id} onClick={this.onViewRequest} className="material-icons">create</button><a href="#modal1" className="modal-trigger"><button value={this.state.getAllBooks[key].id} onClick={this.handleDeleteChange} data-index= {key} className="material-icons">delete</button></a></td>
+              <td>
+                <button value={this.state.getAllBooks[key].id} onClick={this.onViewRequest} className="material-icons">zoom_in</button>
+                <Link to="/editbook"><button value={this.state.getAllBooks[key].id} className="material-icons">create</button></Link>
+                <a href="#modal1" className="modal-trigger"><button value={this.state.getAllBooks[key].id} onClick={this.handleDeleteChange} data-index= {key} className="material-icons">delete</button></a>
+              </td>
             </tr>
           )}
         </tbody>
@@ -150,7 +155,7 @@ class Books extends React.Component {
     const borrowedBooks = this.state.loading ? <div><p>Loading...</p></div> :
       <table className="bordered centered responsive-table">
         <thead>
-          <tr className="teal-text">
+          <tr className="white-text">
             <th> Image </th>
             <th>Title</th>
             <th>Author</th>
@@ -169,20 +174,21 @@ class Books extends React.Component {
         </tbody>
       </table>;
     return (
-      <div className="books row ontainer">
-        <div className=""> <NavigationBar /> </div>
+      <div className="books row container-fluid">
+        <div> <NavigationBar /> </div>
+        <h4 className="col m8 offset-m3"> ADMIN BOOK LIST </h4>
         <div className="row col m8 offset-m3">
-          <div className="input-field col s4">
-            {<select className="teal-text" id= "bookStatus"value="1" onChange={this.handleChange}>
+          <div className="input-field col s4 status">
+            <select className="teal-text" id= "bookStatus"value="1" onChange={this.handleChange}>
               <option value="" defaultValue>Choose your option</option>
               <option value="2">All Books</option>
               <option value="3">Pending Returns</option>
-            </select>}
-            <label className="teal-text">Select View</label>
+            </select>
+            <label className="black-text sort">Sort table</label>
           </div>
           <div className="col s12 ">
-            <div className="card">
-              <div className="card-content white-text">
+            <div className="">
+              <div className="card-content teal-text">
                 {this.state.bookStatus === '3' ? borrowedBooks : books }
               </div>
             </div>
@@ -208,10 +214,9 @@ const mapStateToProps = state => (
     getAllBooksData: state.getAllBooks[0].response,
     getAllBorrowedBooksData: state.getAllBorrowedBooks[0].response,
     getABookData: state.getABook[0].response,
-    modifyBookData: state.modifyBooks[0].response,
     deleteBookData: state.deleteBooks[0].response
   }
 );
 
 export default connect(mapStateToProps,
-  { adminModifyRequest, adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest })(Books);
+  { adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest })(Books);
