@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/signinAction';
+import { getUserDataRequest } from '../actions/getUser';
 
 /**
  * 
@@ -11,7 +12,20 @@ import { logout } from '../actions/signinAction';
  * @extends {React.Component}
  */
 class NavigationBar extends React.Component {
-/**
+  /**
+     * @constructor
+     * @param {object} props 
+     */
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      firstname: '',
+      lastname: '',
+      email: '',
+    };
+  }
+  /**
  *  
  * @returns {any} event
  * @param {any} event 
@@ -24,10 +38,26 @@ class NavigationBar extends React.Component {
   }
   /**
    * 
+   * @returns {nextProps} next props
+   * @param {any} nextProps 
+   * @memberof Books
+   */
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.getUserData) {
+      this.setState({
+        firstname: nextProps.getUserData.firstname,
+        lastname: nextProps.getUserData.lastname,
+        email: nextProps.getUserData.email
+      });
+    }
+  }
+  /**
+   * 
    * @returns {any} sideNav
    * @memberof NavigationBar
    */
   componentDidMount() {
+    this.props.getUserDataRequest(this.props.usersId);
     $('.button-collapse').sideNav('show');
   }
   /**
@@ -56,7 +86,6 @@ class NavigationBar extends React.Component {
         <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
       </div>
     );
-
     return (
       <div className="container-fluid">
         <ul id="slide-out" className="side-nav fixed">
@@ -65,8 +94,8 @@ class NavigationBar extends React.Component {
             <div className="background">
             </div>
             <a href="#!user"><img className="circle" src="https://cdn-images-1.medium.com/fit/c/200/200/1*P8ve1Obc8tLIyWgwlx1E8A.jpeg"/></a>
-            <a href="#!name"><span className="white-text name">John Doe</span></a>
-            <a href="#!email"><span className="white-text email">jdandturk@gmail.com</span></a>
+            <a href="#!name"><span className="white-text name">{`${this.state.firstname} ${this.state.lastname}`}</span></a>
+            <a href="#!email"><span className="white-text email">{this.state.email}</span></a>
           </div></li>
           { localStorage.username === 'admin96' && isAuthenticated ? adminLinks : userLinks }
         </ul>
@@ -90,9 +119,10 @@ NavigationBar.propTypes = {
  */
 function mapStateToProps(state) {
   return {
-    auth: state.auth
-    
+    auth: state.auth,
+    usersId: state.auth.user.id,
+    getUserData: state.getUser[0].response,
   };
 }
 
-export default connect(mapStateToProps, { logout })(withRouter(NavigationBar));
+export default connect(mapStateToProps, { logout, getUserDataRequest })(withRouter(NavigationBar));

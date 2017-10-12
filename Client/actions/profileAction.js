@@ -45,10 +45,10 @@ export function adminCountUsers(adminCountUsers) {
 }
 
 
-export const getUserRequest = userData => dispatch => axios.get('/api/v1/users/:usersId', userData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getUser(res.data));
-});
+// export const getUserRequest = userData => dispatch => axios.get('/api/v1/users/:usersId', userData).then((res) => {
+//   localStorage.getItem('jwtToken');
+//   dispatch(getUser(res.data));
+// });
 
 export const getProfileRequest = usersId => dispatch => axios.get(`/api/v1/users/${usersId}/profile`).then((res) => {
   localStorage.getItem('jwtToken');
