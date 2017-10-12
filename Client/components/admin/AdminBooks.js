@@ -217,6 +217,15 @@ class Books extends React.Component {
             <a className="modal-action modal-close"><button className="cancelButton">Cancel</button></a>
           </div>
         </div>
+        <div id="modal2" className="modal">
+          <div className="modal-content">
+            <p className="white-text modalDelete">Are you you want to delete this book?</p>
+          </div>
+          <div className="modal-footer">
+            <button onClick={this.onDeleteRequest} className="deleteButton"> Delete </button>
+            <a className="modal-action modal-close"><button className="cancelButton">Cancel</button></a>
+          </div>
+        </div>
         <div> <Footer/></div>
       </div>
     );

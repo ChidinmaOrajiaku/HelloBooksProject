@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
 import { saveImageCloudinary } from '../../actions/booksAction';
-import { adminModifyRequest } from '../../actions/createBooks';
+import { adminModifyRequest } from '../../actions/modifyBooks';
 import { getBookRequest } from '../../actions/getABook';
 import { getAllCategoryRequest } from '../../actions/getCategory';
 
@@ -34,6 +34,7 @@ class EditBook extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
+    this.onEditCloudinaryRequest = this.onEditCloudinaryRequest.bind(this);
     this.onEditRequest = this.onEditRequest.bind(this);
   }
 
@@ -75,7 +76,7 @@ class EditBook extends React.Component {
  * @memberof EditBook
  */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.getABookData) {
+    if (nextProps.getABookData && this.state.loading) {
       this.setState({
         loading: false,
         bookData: nextProps.getABookData,
@@ -86,12 +87,12 @@ class EditBook extends React.Component {
         review: nextProps.getABookData.review
       });
     }
-    if (nextProps.imageInputUrl && this.state.pointer) {
+    if (nextProps.imageInputUrl && this.state.pointer && this.state.tempImage !== '') {
       this.setState({
         image: nextProps.imageInputUrl,
         pointer: false }),
       setTimeout(() => {
-        this.props.adminModifyRequest(this.state).then(
+        this.props.adminModifyRequest(this.state.currentBookId, this.state).then(
           () => {
             Materialize.toast('Successfully Updated', 2000, 'teal rounded');
           }
@@ -112,10 +113,25 @@ class EditBook extends React.Component {
  * @param {any} event 
  * @memberof EditBook
  */
-  onEditRequest(event) {
+  onEditCloudinaryRequest(event) {
     event.preventDefault();
     this.props.saveImageCloudinary(this.state.tempImage);
     this.setState({ pointer: true });
+  }
+
+  /**
+ * 
+ * @returns {SyntheticEvent} event
+ * @param {any} event 
+ * @memberof EditBook
+ */
+  onEditRequest(event) {
+    event.preventDefault();
+    this.props.adminModifyRequest(this.state.currentBookId, this.state).then(
+      () => {
+        Materialize.toast('Successfully Updated', 2000, 'teal rounded');
+      }
+    );
   }
 
   /**
@@ -154,7 +170,7 @@ class EditBook extends React.Component {
         <div className=""> <NavigationBar /> </div>
         <div className="col m4 offset-m5">
           <div className="card">
-            <form onSubmit={this.onEditRequest} id="form">
+            <form onSubmit={this.state.tempImage === '' ? this.onEditRequest : this.onEditCloudinaryRequest} id="form">
               <div className="row">
                 <div className="input-field col s12">
                   <input value={this.state.title} onChange={this.handleChange} id="title" type="text" className="validate"/>
