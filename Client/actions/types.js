@@ -83,3 +83,15 @@ export const GET_A_BOOK_SUCCESSFUL = 'GET_A_BOOK_SUCCESSFUL';
 export const GET_A_BOOK_FAILED = 'GET_A_BOOK_FAILED';
 
 export const GET_A_BOOK_REQUEST = 'GET_A_BOOK_REQUEST';
+
+// Admin get book Id
+
+export const EDIT_BOOK_ID = 'EDIT_BOOK_ID';
+
+// Admin get category
+
+export const GET_CATEGORY_SUCCESSFUL = 'GET_CATEGORY_SUCCESSFUL';
+
+export const GET_CATEGORY_FAILED = 'GET_CATEGORY_FAILED';
+
+export const GET_CATEGORY_REQUEST = 'GET_CATEGORY_REQUEST';

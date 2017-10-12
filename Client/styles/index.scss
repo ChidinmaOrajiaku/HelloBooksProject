@@ -366,6 +366,12 @@ body {
 .adminAddBooks{
   .card{
     height: 600px;
+    margin-top: 5%;
+  }
+  h4{
+    text-align: center;
+    font-family: $fontFamily;
+    font-size: 40px;
   }
   button{
     float: right;

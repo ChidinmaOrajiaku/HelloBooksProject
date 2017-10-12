@@ -5,6 +5,7 @@ import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
 import { saveImageCloudinary } from '../../actions/booksAction';
 import { adminAddRequest } from '../../actions/createBooks';
+import { getAllCategoryRequest } from '../../actions/getCategory';
 
 /**
  * @class AddBooks
@@ -20,10 +21,12 @@ class AddBooks extends React.Component {
       title: '',
       author: '',
       category: '',
+      categoryData: [],
       tempImage: '',
       image: '',
       review: '',
       pointer: false,
+      loader: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.onAddSubmit = this.onAddSubmit.bind(this);
@@ -44,11 +47,27 @@ class AddBooks extends React.Component {
       setTimeout(() => {
         this.props.adminAddRequest(this.state).then(
           () => {
-            Materialize.toast(this.props.createBooksResponse, 2000, 'teal rounded')
+            Materialize.toast(this.props.createBooksResponse, 2000, 'teal rounded');
           }
         );
       }, 1000);
     }
+    this.setState({
+      loader: false,
+      categoryData: nextProps.getCategoryData
+    });
+  }
+
+  /**
+   * 
+   * @returns {data} get Category
+   * @memberof AddBooks
+   */
+  componentDidMount() {
+    this.props.getAllCategoryRequest().then(() => {
+      $('select').material_select();
+      $('select').change(event => this.handleChange(event));
+    });
   }
 
   /**
@@ -73,7 +92,7 @@ class AddBooks extends React.Component {
   }
   /**
  * 
- * @constructor
+ * @returns {event} handle Image change
  * @param {any} event 
  * @memberof AddBooks
  */
@@ -96,13 +115,25 @@ class AddBooks extends React.Component {
   /**
      * 
      * 
-     * @constructor 
+     * @returns {ReactElement} MarkUp
      * @memberof AddBooks
      */
   render() {
+    const category = this.state.loading ? <div> Loading... </div> :
+      <div className="row">
+        <div className="input-field col s12 status">
+          <select className="teal-text" id= "category" value="1" onChange={this.handleChange}>
+            <option value="..."> Select One </option>
+            { Object.keys(this.state.categoryData).map(key => (<option key = {key} value={this.state.categoryData[key].category }>{this.state.categoryData[key].category } </option>)
+            )}
+          </select>
+          <label className="black-text sort">Category</label>
+        </div>
+      </div>;
     return (
       <div className="adminAddBooks row ontainer">
         <div className=""> <NavigationBar /> </div>
+        <h4 className="col m8 offset-m3"> ADMIN UPLOAD BOOKS </h4>
         <div className="col m4 offset-m5">
           <div className="card">
             <form onSubmit={this.onAddSubmit} id="form">
@@ -118,12 +149,7 @@ class AddBooks extends React.Component {
                   <label htmlFor="author">Author</label>
                 </div>
               </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input value={this.state.category} onChange={this.handleChange} id="category" type="text" className="validate"/>
-                  <label htmlFor="category">Category</label>
-                </div>
-              </div>
+              {category}
               <div className="row">
                 <div className="file-field input-field col s12">
                   <div className="btn file">
@@ -154,8 +180,9 @@ class AddBooks extends React.Component {
 const mapStateToProps = state => (
   {
     createBooksResponse: state.createBooks[0].response.message,
-    imageInputUrl: state.uploadImage[0].response
+    imageInputUrl: state.uploadImage[0].response,
+    getCategoryData: state.getCategory[0].response
   }
 );
 
-export default connect(mapStateToProps, { adminAddRequest, saveImageCloudinary })(AddBooks);
+export default connect(mapStateToProps, { adminAddRequest, saveImageCloudinary, getAllCategoryRequest })(AddBooks);

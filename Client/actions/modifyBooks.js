@@ -6,8 +6,8 @@ import { MODIFY_BOOKS_SUCCESSFUL, MODIFY_BOOKS_FAILED, MODIFY_BOOKS_REQUEST } fr
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {any} data
+   * @returns {data} data
    */
 export function modifyBooksRequest(data) {
   return {
@@ -20,8 +20,8 @@ export function modifyBooksRequest(data) {
  * 
  * 
  * @export
- * @param {any} image 
- * @returns
+ * @param {any} response
+ * @returns {response}  response
  */
 export function modifyBooksResponse(response) {
   return {
@@ -34,8 +34,8 @@ export function modifyBooksResponse(response) {
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {any} error
+   * @returns {error} error
    */
 export function modifyBooksError(error) {
   return {

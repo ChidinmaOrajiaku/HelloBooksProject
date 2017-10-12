@@ -249,6 +249,38 @@ const booksController = {
       .catch((error) => {
         res.status(400).send(error);
       });
-  }
+  },
+  adminCreateCategory(req, res) {
+    return db.Category
+      .create({
+        category: req.body.category
+      })
+      .then((category) => {
+        res.status(201).send(category);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  adminCountCategory(req, res) {
+    return db.Category
+      .findAndCountAll({})
+      .then((category) => {
+        res.status(200).send(category);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  adminGetCategory(req, res) {
+    return db.Category
+      .findAll({})
+      .then((category) => {
+        res.status(200).send(category);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
 };
 export default booksController;

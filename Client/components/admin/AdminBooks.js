@@ -9,6 +9,7 @@ import { adminModifyRequest } from '../../actions/modifyBooks';
 import { adminDeleteRequest } from '../../actions/deleteBooks';
 import { admingetBorrowedRequest } from '../../actions/getAllBorrowedBooks';
 import { getBookRequest } from '../../actions/getABook';
+import { editBookIdRequest } from '../../actions/editBooks';
 
 
 /**
@@ -35,6 +36,7 @@ class Books extends React.Component {
     };
     this.onViewRequest = this.onViewRequest.bind(this);
     this.onDeleteRequest = this.onDeleteRequest.bind(this);
+    this.handleEditChange = this.handleEditChange.bind(this);
     this.handleDeleteChange = this.handleDeleteChange.bind(this);
   }
   /**
@@ -48,12 +50,24 @@ class Books extends React.Component {
   }
   /**
  * 
- * @returns {event} handles change
+ * @returns {event} handles delete change
  * @param {any} event 
  * @memberof Books
  */
   handleDeleteChange(event) {
     this.setState({ bookId: event.target.value, bookIndex: event.target.dataset.index });
+  }
+
+  /**
+ * 
+ * @returns {event} handles edit change
+ * @param {any} event 
+ * @memberof Books
+ */
+  handleEditChange(event) {
+    event.persist();
+    this.props.editBookIdRequest(event.target.value);
+    localStorage.setItem('currentBookId', event.target.value);
   }
   /**
  * 
@@ -145,8 +159,8 @@ class Books extends React.Component {
               <td>{ this.state.getAllBooks[key].category }</td>
               <td>
                 <button value={this.state.getAllBooks[key].id} onClick={this.onViewRequest} className="material-icons">zoom_in</button>
-                <Link to="/editbook"><button value={this.state.getAllBooks[key].id} className="material-icons">create</button></Link>
-                <a href="#modal1" className="modal-trigger"><button value={this.state.getAllBooks[key].id} onClick={this.handleDeleteChange} data-index= {key} className="material-icons">delete</button></a>
+                <Link to="/editbook"><button value={this.state.getAllBooks[key].id} onClick={this.handleEditChange} data-index= {key} className="material-icons">create</button></Link>
+                <a href="#modal1" className="modal-trigger"><button value={this.state.getAllBooks[key].id} onClick={this.onEditIdRequest} data-index= {key} className="material-icons">delete</button></a>
               </td>
             </tr>
           )}
@@ -219,4 +233,4 @@ const mapStateToProps = state => (
 );
 
 export default connect(mapStateToProps,
-  { adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest })(Books);
+  { adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest, editBookIdRequest })(Books);
