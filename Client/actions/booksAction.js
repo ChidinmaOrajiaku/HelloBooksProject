@@ -122,10 +122,10 @@ export const adminCountRentedBooksRequest = () => dispatch => axios.get('/api/v1
   dispatch(adminRentedCount(res.data.count));
 });
 
-export const borrowRequest = (userId, bookData) => dispatch => axios.post(`/api/v1/users/${userId}/books`, bookData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(borrowBooks(res.data));
-});
+// export const borrowRequest = (userId, bookData) => dispatch => axios.post(`/api/v1/users/${userId}/books`, bookData).then((res) => {
+//   localStorage.getItem('jwtToken');
+//   dispatch(borrowBooks(res.data));
+// });
 
 export const putBookRequest = (userId, bookData) => dispatch => axios.put(`/api/v1/users/${userId}/books`, bookData).then((res) => {
   localStorage.getItem('jwtToken');
@@ -134,7 +134,7 @@ export const putBookRequest = (userId, bookData) => dispatch => axios.put(`/api/
 
 /**
  * 
- * 
+ * @returns {image} image
  * @export
  * @param {any} image 
  */

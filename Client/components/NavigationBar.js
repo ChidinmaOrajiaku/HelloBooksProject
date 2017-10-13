@@ -73,17 +73,18 @@ class NavigationBar extends React.Component {
         <li><Link to="/dashboard"><i className="material-icons">account_circle</i>Dashboard</Link></li>
         <li><Link to="/addbooks"><i className="material-icons">file_upload</i>Upload Book</Link></li>
         <li><Link to="/books"><i className="material-icons">book</i>Books</Link></li>
-        <li><Link to="/profile"><i className="material-icons">photo_library</i>Profile</Link></li>
+        <li><Link to="/profile"><i className="material-icons">person</i>Profile</Link></li>
         <li><a onClick={this.logout.bind(this)}><i className="material-icons">fast_rewind</i>Log Out</a></li>
       </div>
     );
 
     const userLinks = (
       <div>
-        <li><Link to="/library">Library</Link></li>
-        <li><Link to="/history">History</Link></li>
-        <li><Link to="/profile">Profile</Link></li>
-        <li><a onClick={this.logout.bind(this)}>Log Out</a></li>
+        <li><Link to="/dashboard"><i className="material-icons">account_circle</i>Dashboard</Link></li>
+        <li><Link to="/library"><i className="material-icons">book</i>Library</Link></li>
+        <li><Link to="/history"><i className="material-icons">photo_library</i>History</Link></li>
+        <li><Link to="/profile"><i className="material-icons">person</i>Profile</Link></li>
+        <li><a onClick={this.logout.bind(this)}><i className="material-icons">fast_rewind</i>Log Out</a></li>
       </div>
     );
     return (

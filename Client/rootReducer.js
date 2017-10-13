@@ -14,6 +14,7 @@ import editBookId from './reducers/editBooks';
 import getCategory from './reducers/getCategory';
 import getUser from './reducers/getUser';
 import updatePassword from './reducers/updatePassword';
+import borrowBooks from './reducers/borrowBooks';
 
 export default combineReducers({
   auth,
@@ -30,6 +31,7 @@ export default combineReducers({
   editBookId,
   getCategory,
   getUser,
-  updatePassword
+  updatePassword,
+  borrowBooks
 });
 
