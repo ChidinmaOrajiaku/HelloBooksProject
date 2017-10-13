@@ -40,7 +40,7 @@ class NavigationBar extends React.Component {
    * 
    * @returns {nextProps} next props
    * @param {any} nextProps 
-   * @memberof Books
+   * @memberof NavigationBar
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.getUserData) {
@@ -73,7 +73,7 @@ class NavigationBar extends React.Component {
         <li><Link to="/dashboard"><i className="material-icons">account_circle</i>Dashboard</Link></li>
         <li><Link to="/addbooks"><i className="material-icons">file_upload</i>Upload Book</Link></li>
         <li><Link to="/books"><i className="material-icons">book</i>Books</Link></li>
-        <li><Link to="/admin"><i className="material-icons">photo_library</i>Profile</Link></li>
+        <li><Link to="/profile"><i className="material-icons">photo_library</i>Profile</Link></li>
         <li><a onClick={this.logout.bind(this)}><i className="material-icons">fast_rewind</i>Log Out</a></li>
       </div>
     );
