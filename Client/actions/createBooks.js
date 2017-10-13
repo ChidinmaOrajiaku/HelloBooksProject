@@ -24,7 +24,7 @@ export function createBooksResponse(response) {
    */
 export function createBooksRequest(data) {
   return {
-    type: CREATE_BOOKS_FAILED,
+    type: CREATE_BOOKS_REQUEST,
     data
   };
 }
@@ -38,7 +38,7 @@ export function createBooksRequest(data) {
    */
 export function createBooksError(error) {
   return {
-    type: CREATE_BOOKS_REQUEST,
+    type: CREATE_BOOKS_FAILED,
     error
   };
 }

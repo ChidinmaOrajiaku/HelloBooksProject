@@ -6,8 +6,8 @@ import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED, GET_BOOKS_REQUEST } from './typ
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {data} data 
+   * @returns {data} data
    */
 export function getBooksRequest(data) {
   return {
@@ -20,8 +20,8 @@ export function getBooksRequest(data) {
  * 
  * 
  * @export
- * @param {any} image 
- * @returns
+ * @param {response} response
+ * @returns {response} response
  */
 export function getBooksResponse(response) {
   return {
@@ -34,8 +34,8 @@ export function getBooksResponse(response) {
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {any} error 
+   * @returns {error} error
    */
 export function getBooksError(error) {
   return {

@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
 import { getUserDataRequest } from '../../actions/getUser';
+import { updatePassword } from '../../actions/updatePassword';
 
 /**
- * @class AddBooks
+ * @class Profile
  */
 class Profile extends React.Component {
   /**
@@ -21,7 +22,39 @@ class Profile extends React.Component {
       lastname: '',
       username: '',
       email: '',
+      password: '',
+      message: this.props.passwordUpdate,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+  }
+
+  /**
+ * 
+ * @returns {event} SyntheticEvent
+ * @param {any} event 
+ * @memberof AddBooks
+ */
+  handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
+  }
+
+  /**
+   * 
+   * @returns {event} event
+   * @param {any} event
+   * @memberof Profile
+   */
+  handlePassword(event) {
+    event.preventDefault();
+    this.props.updatePassword(this.props.usersId, this.state).then(
+      () => {
+        Materialize.toast('Loading', 1000, 'red rounded');
+        setTimeout(() => {
+          Materialize.toast(this.props.passwordUpdate, 2000, 'teal rounded');
+        }, 1000);
+      }
+    );
   }
 
   /**
@@ -85,22 +118,20 @@ class Profile extends React.Component {
             </div>
           </div>
         </div>
-        <form onSubmit={this.onAddSubmit} id="form">
-          <div id="modal1" className="modal">
-            <div className="modal-content">
-              <div className="row">
-                <div className="input-field col s12">
-                  <input value={this.state.password} onChange={this.handleChange} id="password" required="required" type="password" className="validate"/>
-                  <label htmlFor="password">Password</label>
-                </div>
+        <div id="modal1" className="modal">
+          <div className="modal-content">
+            <div className="row">
+              <div className="input-field col s12">
+                <input value={this.state.password} onChange={this.handleChange} id="password" required="required" type="password" className="validate"/>
+                <label htmlFor="password">New Password</label>
               </div>
             </div>
-            <div className="modal-footer">
-              <a href="#!" className="modal-action modal-close waves-effect waves-green btn">Change</a>
-              <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-            </div>
           </div>
-        </form>
+          <div className="modal-footer">
+            <button onClick={this.handlePassword} className="passwordButton"> Change </button>
+            <a className="modal-action modal-close"><button className="passwordCButton">Cancel</button></a>
+          </div>
+        </div>
         <div> <Footer/></div>
       </div>
     );
@@ -111,7 +142,8 @@ const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getUserData: state.getUser[0].response,
+    passwordUpdate: state.updatePassword[0].response.message || state.updatePassword[0].error
   }
 );
 
-export default connect(mapStateToProps, { getUserDataRequest })(Profile);
+export default connect(mapStateToProps, { getUserDataRequest, updatePassword })(Profile);

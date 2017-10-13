@@ -87,7 +87,8 @@ body {
         font-family: $fontFamily
         }
       .btn{
-        width: 40%;
+        width: 30%;
+        margin-right: 5000px; 
         }
       hr { 
         height: 30px; 
@@ -102,6 +103,19 @@ body {
         width: 400px!important;
         height: 200px!important;
         overflow-x: hidden;
+        .passwordButton{
+          background-color: teal;
+          float: left;
+          margin-left: 3%;
+          color: white;
+          border-radius: 10px;
+        }
+        .passwordCButton{
+          margin-right: 3%;
+          background-color: red;
+          color: white;
+          border-radius: 10px;
+        }
       }
    }
    .history{
@@ -210,81 +224,81 @@ body {
     }
   }
 
-  .admin{
-    h3{
-      margin-top: -30px;
-      font-family: $fontFamily2;
-      font-size: 30px;
-      margin-left: 30px;
-      color: $primaryColor
-    }
-    h1{
-      font-family: $fontFamily;
-      margin-left: 10px;
-      color: $primaryColor2
-    }
-    img{
-      height: 200px;
-      width: 100px;
-    }
-    span{
-      font-size: 20px;
-      margin-left: 50px;
-    }
-    .category{
-      margin-left: 30px!important
-    }
-    hr { 
-      height: 30px; 
-      border-style: solid; 
-      border-color: $primaryColor2; 
-      border-width: 5px 0 0 0; 
-      border-radius: 20px; 
-    } 
-    hr:before { 
-      display: block; 
-      content: ""; 
-      height: 30px; 
-      margin-top: -31px; 
-      border-style: solid; 
-      border-color: $primaryColor; 
-      border-width: 0 0 5px 0; 
-      border-radius: 20px; 
-    }
-    thead{
-      background-color: grey;
-      border-radius: 50px;
-    }
-    .modal{
-      width: 400px!important;
-      height: 600px!important;
-      overflow-x: hidden;
-    }
-    .tableau{
-      .card{
-        margin-left: 5%;
-        margin-right: 5%;
-      }
-      button{
-        float: right;
-      }
-      table{
-        th{
-          text-align: center;
-        }
-        td{
-          text-align: center;
-        }
-        button{
-          float: left;
-          left: 25%
-        }
-      }
-    }
-    #modal2{
-      height: 400px!important
-    }
-  }
+  // .admin{
+  //   h3{
+  //     margin-top: -30px;
+  //     font-family: $fontFamily2;
+  //     font-size: 30px;
+  //     margin-left: 30px;
+  //     color: $primaryColor
+  //   }
+  //   h1{
+  //     font-family: $fontFamily;
+  //     margin-left: 10px;
+  //     color: $primaryColor2
+  //   }
+  //   img{
+  //     height: 200px;
+  //     width: 100px;
+  //   }
+  //   span{
+  //     font-size: 20px;
+  //     margin-left: 50px;
+  //   }
+  //   .category{
+  //     margin-left: 30px!important
+  //   }
+  //   hr { 
+  //     height: 30px; 
+  //     border-style: solid; 
+  //     border-color: $primaryColor2; 
+  //     border-width: 5px 0 0 0; 
+  //     border-radius: 20px; 
+  //   } 
+  //   hr:before { 
+  //     display: block; 
+  //     content: ""; 
+  //     height: 30px; 
+  //     margin-top: -31px; 
+  //     border-style: solid; 
+  //     border-color: $primaryColor; 
+  //     border-width: 0 0 5px 0; 
+  //     border-radius: 20px; 
+  //   }
+  //   thead{
+  //     background-color: grey;
+  //     border-radius: 50px;
+  //   }
+  //   .modal{
+  //     width: 400px!important;
+  //     height: 600px!important;
+  //     overflow-x: hidden;
+  //   }
+  //   .tableau{
+  //     .card{
+  //       margin-left: 5%;
+  //       margin-right: 5%;
+  //     }
+  //     button{
+  //       float: right;
+  //     }
+  //     table{
+  //       th{
+  //         text-align: center;
+  //       }
+  //       td{
+  //         text-align: center;
+  //       }
+  //       button{
+  //         float: left;
+  //         left: 25%
+  //       }
+  //     }
+  //   }
+  //   #modal2{
+  //     height: 400px!important
+  //   }
+  // }
 
   .adminDashboard{
     .initial{
@@ -334,9 +348,6 @@ body {
   }
   span{
     margin-left: -10px;
-  }
-  table{
-    background-color: teal;
   }
 }
 

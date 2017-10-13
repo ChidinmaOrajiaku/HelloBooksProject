@@ -65,10 +65,10 @@ export const updatePasswordRequest = (usersId, userData) => dispatch => axios.pu
   dispatch(updatePassword(res.data));
 });
 
-export const updateProfileRequest = (usersId, userData) => dispatch => axios.put(`/api/v1/users/${usersId}/profile`, userData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(updateProfile(res.data));
-});
+// export const updateProfileRequest = (usersId, userData) => dispatch => axios.put(`/api/v1/users/${usersId}/profile`, userData).then((res) => {
+//   localStorage.getItem('jwtToken');
+//   dispatch(updateProfile(res.data));
+// });
 
 export const adminCountUserRequest = () => dispatch => axios.get('/api/v1/users/').then((res) => {
   localStorage.getItem('jwtToken');
