@@ -11,7 +11,7 @@ import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED, GET_BOOKS_REQUEST } from './typ
    */
 export function getBooksRequest(data) {
   return {
-    type: GET_BOOKS_FAILED,
+    type: GET_BOOKS_REQUEST,
     data
   };
 }
@@ -39,7 +39,7 @@ export function getBooksResponse(response) {
    */
 export function getBooksError(error) {
   return {
-    type: GET_BOOKS_REQUEST,
+    type: GET_BOOKS_FAILED,
     error
   };
 }

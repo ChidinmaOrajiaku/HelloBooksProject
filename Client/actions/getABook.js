@@ -11,7 +11,7 @@ import { GET_A_BOOK_SUCCESSFUL, GET_A_BOOK_FAILED, GET_A_BOOK_REQUEST } from './
    */
 export function getABookRequest(data) {
   return {
-    type: GET_A_BOOK_FAILED,
+    type: GET_A_BOOK_REQUEST,
     data
   };
 }
@@ -39,7 +39,7 @@ export function getABookResponse(response) {
    */
 export function getABookError(error) {
   return {
-    type: GET_A_BOOK_REQUEST,
+    type: GET_A_BOOK_FAILED,
     error
   };
 }
