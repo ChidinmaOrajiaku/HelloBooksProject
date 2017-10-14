@@ -44,7 +44,7 @@ export function returnError(error) {
   };
 }
 
-export const returnBook = usersId => dispatch => axios.put(`/api/v1/users/${usersId}/books`).then((res) => {
+export const returnBook = (usersId, booksId) => dispatch => axios.put(`/api/v1/users/${usersId}/books`, booksId).then((res) => {
   localStorage.getItem('jwtToken');
   dispatch(returnResponse(res.data));
 }).catch((error) => {

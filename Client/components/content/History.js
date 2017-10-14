@@ -28,6 +28,7 @@ class History extends React.Component {
       bookStatus: '',
       loading: true,
       booksId: '',
+      filterYetData: []
     };
     this.handleReturn = this.handleReturn.bind(this);
   }
@@ -53,12 +54,15 @@ class History extends React.Component {
       booksId: localStorage.getItem('booksId')
     }),
     setTimeout(() => {
-      this.props.returnBook(this.props.usersId, this.state.booksId).then(() => {
-        console.log(this.state.booksId)
-        // Materialize.toast('Succesfully Returned', 2000, 'teal rounded');
+      this.props.returnBook(this.props.usersId, this.state).then(() => {
+        this.state.filterYetData.splice(this.state.bookIndex, 1);
+        this.setState({
+          yetToReturn: this.state.filterYetData
+        });
+        Materialize.toast('Succesfully Returned', 2000, 'teal rounded');
       }
       ).catch(() => {
-        Materialize.toast('I dunno', 2000, 'red rounded');
+        Materialize.toast('I dunno', 500, 'red rounded');
       });
     });
   }
@@ -85,9 +89,11 @@ class History extends React.Component {
     this.setState({
       loading: false,
       userBorrowed: nextProps.userBorrowedData,
-      yetToReturn: nextProps.yetToReturnData
+      yetToReturn: nextProps.yetToReturnData,
+      filterYetData: nextProps.yetToReturnData,
     });
   }
+
   /**
      * 
      * 
@@ -140,7 +146,7 @@ class History extends React.Component {
               <td>{ this.state.yetToReturn[key].Book.title }</td>
               <td>{ this.state.yetToReturn[key].Book.author }</td>
               <td>{ this.state.yetToReturn[key].Book.category }</td>
-              <td><button value={this.state.yetToReturn[key].id} onClick={this.handleReturn} className="waves-effect waves-light btn">Return</button></td>
+              <td><button value={this.state.yetToReturn[key].booksId} onClick={this.handleReturn} data-index= {key} className="waves-effect waves-light btn">Return</button></td>
             </tr>
           )}
         </tbody>
