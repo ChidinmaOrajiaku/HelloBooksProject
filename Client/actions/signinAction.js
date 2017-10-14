@@ -12,7 +12,7 @@ export function setCurrentUser(user) {
 
 export function logout() {
   return (dispatch) => {
-    localStorage.removeItem('jwtToken');
+    localStorage.clear();
     setAuthToken(false);
     dispatch(setCurrentUser({}));
   };

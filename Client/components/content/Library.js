@@ -21,13 +21,15 @@ class Library extends React.Component {
     this.state = {
       getAllBooks: [],
       loading: true,
+      booksId: ''
     };
+    this.handleBorrow = this.handleBorrow.bind(this);
   }
   /**
    * 
    * @returns {nextProps} next props
    * @param {any} nextProps 
-   * @memberof Books
+   * @memberof Library
    */
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -41,21 +43,24 @@ class Library extends React.Component {
    * @param {any} event 
    * @memberof Books
    */
-  handlePassword(event) {
+  handleBorrow(event) {
     event.preventDefault();
-    this.props.borrowRequest(this.props.usersId, this.state).then(
-      () => {
-        Materialize.toast('Loading', 1000, 'red rounded');
-        setTimeout(() => {
+    localStorage.setItem('bookId', event.target.value);
+    this.setState({
+      booksId: localStorage.getItem('bookId')
+    }),
+    setTimeout(() => {
+      this.props.borrowRequest(this.props.usersId, this.state).then(
+        () => {
           Materialize.toast(this.props.getBorrowedBookData, 2000, 'teal rounded');
-        }, 1000);
-      }
-    );
+        }
+      );
+    });
   }
   /**
    * 
    * @returns {props} actions
-   * @memberof Books
+   * @memberof Library
    */
   componentDidMount() {
     this.props.getRequest();
@@ -72,8 +77,8 @@ class Library extends React.Component {
     const books = this.state.loading ? <div><p>Loading...</p></div> :
       <div className=" lib row">
         { Object.keys(this.state.getAllBooks).map(key =>
-          <div className="col s12 m4 push-m2">
-            <div className="card" key={key}>
+          <div className="col s12 m4 push-m2" key={key}>
+            <div className="card">
               <div className="card-image waves-effect waves-block waves-light">
                 <img className="activator" src={this.state.getAllBooks[key].image }/>
               </div>
@@ -86,7 +91,7 @@ class Library extends React.Component {
                 <p> <b className="teal-text text-darken-3">Author</b>: { this.state.getAllBooks[key].author }</p>
                 <p> <b className="teal-text text-darken-3">Category</b>: { this.state.getAllBooks[key].category }</p>
                 <p> <b className="teal-text text-darken-3">Review</b>: { this.state.getAllBooks[key].review }</p>
-                <a className="waves-effect waves-light btn borrowButton"> Borrow </a>
+                <button className="waves-effect waves-light btn borrowButton" value={ this.state.getAllBooks[key].id } onClick={this.handleBorrow}>Borrow </button>
               </div>
             </div>
           </div>
