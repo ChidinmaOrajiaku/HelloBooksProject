@@ -50,11 +50,12 @@ class Library extends React.Component {
       booksId: localStorage.getItem('bookId')
     }),
     setTimeout(() => {
-      this.props.borrowRequest(this.props.usersId, this.state).then(
-        () => {
-          Materialize.toast(this.props.getBorrowedBookData, 2000, 'teal rounded');
+      this.props.borrowRequest(this.props.usersId, this.state).then(() => {
+          Materialize.toast('Succesfully borrowed', 2000, 'teal rounded');
         }
-      );
+      ).catch(()=>{
+        Materialize.toast('Book has been borrowed but not returned', 2000, 'red rounded');
+      })
     });
   }
   /**
@@ -66,12 +67,13 @@ class Library extends React.Component {
     this.props.getRequest();
     $('select').material_select();
     $('select').change(event => this.handleChange(event));
+    $('.tooltipped').tooltip();
   }
   /**
      * 
      * 
-     * @constructor 
-     * @memberof Books
+     * @returns {ReactElement} MarkUp
+     * @memberof Library
      */
   render() {
     const books = this.state.loading ? <div><p>Loading...</p></div> :
@@ -83,7 +85,7 @@ class Library extends React.Component {
                 <img className="activator" src={this.state.getAllBooks[key].image }/>
               </div>
               <div className="card-content">
-                <span className="card-title activator teal-text text-darken-3">{ this.state.getAllBooks[key].title }<i className="material-icons right">more_vert</i></span>
+                <span className="card-title activator teal-text text-darken-3">{ this.state.getAllBooks[key].title }<i className="material-icons right tooltipped" data-position="bottom" data-delay="50" data-tooltip="More..">more_vert</i></span>
               </div>
               <div className="card-reveal">
                 <span className="card-title grey-text text-darken-4">Book Details<i className="material-icons right">close</i></span>
@@ -112,8 +114,6 @@ const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getAllBooksData: state.getAllBooks[0].response,
-    getAllBorrowedBooksData: state.getAllBorrowedBooks[0].response,
-    getBorrowedBookData: state.borrowBooks[0].response || state.borrowBooks[0].error
   }
 );
 

@@ -36,6 +36,7 @@ class Books extends React.Component {
     };
     this.onViewRequest = this.onViewRequest.bind(this);
     this.onDeleteRequest = this.onDeleteRequest.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleEditChange = this.handleEditChange.bind(this);
     this.handleDeleteChange = this.handleDeleteChange.bind(this);
   }

@@ -88,7 +88,7 @@ const booksController = {
       .findById(req.body.booksId)
       .then((books) => {
         if (!books) {
-          return res.status(404).send('Book Not Found');
+          return res.status(404).send({ message: 'Book Not Found' });
         }
         return db.RentedBooks
           .findOne({
@@ -100,7 +100,7 @@ const booksController = {
           })
           .then((rentedBooks) => {
             if (rentedBooks) {
-              return res.status(404).send('Book has been borrowed but not returned');
+              return res.status(404).send({ message: 'Book has been borrowed but not returned' });
             }
             // create rented books history
             db.RentedBooks.create({

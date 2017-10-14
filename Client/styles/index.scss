@@ -130,29 +130,37 @@ body {
       }
    }
    .history{
-  .bordered{
-      margin-top: 50px;
+    table{
+      th{
+        border: 1px solid silver
+      }
+      td{
+        border: 1px solid silver
+      }
       thead{
-        border-bottom: 5px solid $primaryColor2;
-        font-size: 80px;
-        font-family: Lobster; 
+        background-color: teal
       }
-      tr{
-        border-bottom: 3px groove $primaryColor !important;
-        font-family: Pacifico;
-        font-size: 20px;
-        td{
-          p{
-            font-weight: bold;
-            margin-left: 10px;
-          }
-          img{
-           height: 100px;
-           width: 100px;
-          }
-        }
+      .material-icons{
+        cursor: pointer;
       }
-  }
+      i{
+        padding-left: 20px;
+        padding-right: 10px;
+      }
+      img{
+        height: 40px;
+        width: 30px;
+      }
+    }
+    button{
+      background-color: teal;
+      color: white;
+      font-size: 10px;
+      border-radius: 10px;
+    }
+    h4{
+      text-align: center
+    }
 }
 
   .signUp{

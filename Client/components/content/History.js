@@ -2,65 +2,182 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createStore } from 'redux';
-import { store } from '../../index';
-import { getRequest } from '../../actions/booksAction';
+import NavigationBar from '../NavigationBar';
+import { userBorrowed } from '../../actions/userBorrowedBooks';
+import { yetToReturn } from '../../actions/yetToReturn';
+import { returnBook } from '../../actions/return';
 
+
+/**
+ * 
+ * 
+ * @class History
+ * @extends {React.Component}
+ */
 class History extends React.Component {
- 
-  constructor (props) {
+  /**
+  * Creates an instance of History.
+  * @param {any} props 
+  * @memberof History
+  */
+  constructor(props) {
     super(props);
     this.state = {
-      data: [],
-    }
+      userBorrowed: [],
+      yetToReturn: [],
+      bookStatus: '',
+      loading: true,
+      booksId: '',
+    };
+    this.handleReturn = this.handleReturn.bind(this);
   }
-  componentWillMount() {
-      const user = store.getState()
-      const userId = user.auth.user.id
-      axios.get('/api/v1/users/' + userId + '/history').then((res) => {
-        localStorage.getItem('jwtToken');
-        this.setState({ data: res.data})
+  /**
+ * 
+ * @returns {event} handles change
+ * @param {any} event 
+ * @memberof History
+ */
+  handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
+  }
+  /**
+ * 
+ * @returns {event} handles return
+ * @param {any} event 
+ * @memberof History
+ */
+  handleReturn(event) {
+    event.preventDefault();
+    localStorage.setItem('booksId', event.target.value);
+    this.setState({
+      booksId: localStorage.getItem('booksId')
+    }),
+    setTimeout(() => {
+      this.props.returnBook(this.props.usersId, this.state.booksId).then(() => {
+        console.log(this.state.booksId)
+        // Materialize.toast('Succesfully Returned', 2000, 'teal rounded');
+      }
+      ).catch(() => {
+        Materialize.toast('I dunno', 2000, 'red rounded');
       });
-   };
-   
-  render() {
-  $(document).ready(function(){
-    $('ul.tabs').tabs({
-      swipeable : true,
-      responsiveThreshold : 1920
     });
-  });
-  return (
-    <div className="history">
-      <div className=""> <NavigationBar /> </div>
-    <table className="bordered highlight centered container">
-    <thead>
-      <tr>
-          <th>Title</th>
-          <th>Returned</th>
-          <th>To Return Date</th>
-          <th>Returned Date</th>
-      </tr>
-    </thead>
+  }
+  /**
+ * 
+ * @returns {data} data
+ * @param {any} event 
+ * @memberof History
+ */
+  componentDidMount() {
+    this.props.userBorrowed(this.props.usersId);
+    this.props.yetToReturn(this.props.usersId);
+    $('select').material_select();
+    $('select').change(event => this.handleChange(event));
+  }
 
-    <tbody>
-    {
-       this.state.data.map (
-        history => 
-      <tr>
-        <td><div className = "row valign-wrapper"><img src={history.image}/> <p>{history.title} <br/> {history.author}</p></div></td>
-        <td>{`${history.returned}`}</td>
-        <td>{history.toReturnDate}</td>
-        <td>{history.returnDate}</td>
-      </tr>
-       )
-    }
-    </tbody>
-  </table>
-  </div>
-  );
-};
+  /**
+   * 
+   * @returns {nextProps} next props
+   * @param {any} nextProps 
+   * @memberof Library
+   */
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      loading: false,
+      userBorrowed: nextProps.userBorrowedData,
+      yetToReturn: nextProps.yetToReturnData
+    });
+  }
+  /**
+     * 
+     * 
+     * @returns {ReactElement} Markup 
+     * @memberof History
+     */
+  render() {
+    const borrowedBooks = this.state.loading ? <div><p>Loading...</p></div> :
+      <table className="bordered centered responsive-table">
+        <thead>
+          <tr className="white-text">
+            <th> Image </th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th> Returned </th>
+            <th> Return Date </th>
+            <th> Date Returned </th>
+          </tr>
+        </thead>
+        <tbody>
+          { Object.keys(this.state.userBorrowed).map(key =>
+            <tr key={key}>
+              <td> <img src = {this.state.userBorrowed[key].Book.image }/> </td>
+              <td>{ this.state.userBorrowed[key].Book.title }</td>
+              <td>{ this.state.userBorrowed[key].Book.author }</td>
+              <td>{ this.state.userBorrowed[key].Book.category }</td>
+              <td>{ this.state.userBorrowed[key].returned === false ? 'Not Returned' : 'Returned' }</td>
+              <td>{ this.state.userBorrowed[key].toReturnDate === null ? 'N/A' : this.state.userBorrowed[key].toReturnDate }</td>
+              <td>{ this.state.userBorrowed[key].returnDate === null ? 'N/A' : this.state.userBorrowed[key].returnDate }</td>
+            </tr>
+          )}
+        </tbody>
+      </table>;
+    const yetToReturnBooks = this.state.loading ? <div><p>Loading...</p></div> :
+      <table className="bordered centered responsive-table">
+        <thead>
+          <tr className="white-text">
+            <th> Image </th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th> Return </th>
+          </tr>
+        </thead>
+        <tbody>
+          { Object.keys(this.state.yetToReturn).map(key =>
+            <tr key={key}>
+              <td> <img src = {this.state.yetToReturn[key].Book.image }/> </td>
+              <td>{ this.state.yetToReturn[key].Book.title }</td>
+              <td>{ this.state.yetToReturn[key].Book.author }</td>
+              <td>{ this.state.yetToReturn[key].Book.category }</td>
+              <td><button value={this.state.yetToReturn[key].id} onClick={this.handleReturn} className="waves-effect waves-light btn">Return</button></td>
+            </tr>
+          )}
+        </tbody>
+      </table>;
+    return (
+      <div className="history row container-fluid">
+        <div className=""> <NavigationBar /> </div>
+        <h4 className="col m8 offset-m3"> USER BOOK HISTORY </h4>
+        <div className="row col m8 offset-m3">
+          <div className="input-field col s4 status">
+            <select className="teal-text" id= "bookStatus"value="1" onChange={this.handleChange}>
+              <option value="" defaultValue>Choose your option</option>
+              <option value="2">Borrowed Books</option>
+              <option value="3">Pending Returns</option>
+            </select>
+            <label className="black-text sort">Sort table</label>
+          </div>
+          <div className="col s12 ">
+            <div className="">
+              <div className="card-content teal-text">
+                {this.state.bookStatus === '3' ? yetToReturnBooks : borrowedBooks }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
+const mapStateToProps = state => (
+  {
+    usersId: state.auth.user.id,
+    userBorrowedData: state.userBorrowedBooks[0].response,
+    yetToReturnData: state.yetToReturn[0].response,
+    // returnBookData: state.returnBook[0].response.message || state.returnBook[0].error
+  }
+);
 
-export default connect(History);
+export default connect(mapStateToProps, { yetToReturn, userBorrowed, returnBook })(History);
