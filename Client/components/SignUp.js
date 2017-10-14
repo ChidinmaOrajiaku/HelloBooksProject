@@ -5,6 +5,7 @@ import BodyNavigationBar from './BodyNavigationBar';
 import Footer from './Footer';
 import map from 'lodash/map';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { userSignupRequest } from '../actions/signupAction';
 
 /**
@@ -118,7 +119,7 @@ class SignUp extends React.Component {
                 </form>
               </div>
               <div className="account">
-                <p> I already have an account? <a href="/login"> Login </a> </p>
+                <p> I already have an account? <Link to="/login"> Login </Link> </p>
               </div>
             </div>
           </div>

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {
-  BORROW_BOOKS,
-  PUT_BOOKS, GET_BOOKS_COUNT,
+  GET_BOOKS_COUNT,
   GET_RENTED_BOOKS_COUNT,
   SAVE_IMAGE_FAILED,
   SAVE_IMAGE_SUCCESSFUL,
@@ -34,35 +33,6 @@ export function adminRentedCount(rentedBooks) {
   return {
     type: GET_RENTED_BOOKS_COUNT,
     rentedBooks
-  };
-}
-
-/**
- * 
- * 
- * @export
- * @param {any} book 
- * @returns 
- */
-export function borrowBooks(book) {
-  return {
-    type: BORROW_BOOKS,
-    book
-  };
-}
-
-
-/**
- * 
- * 
- * @export
- * @param {any} book 
- * @returns 
- */
-export function putBooks(book) {
-  return {
-    type: PUT_BOOKS,
-    book
   };
 }
 
@@ -120,16 +90,6 @@ export const adminCountRentedBooksRequest = () => dispatch => axios.get('/api/v1
   const countRentedBooks = res.data.count;
   localStorage.setItem('countRentedBooks', countRentedBooks);
   dispatch(adminRentedCount(res.data.count));
-});
-
-// export const borrowRequest = (userId, bookData) => dispatch => axios.post(`/api/v1/users/${userId}/books`, bookData).then((res) => {
-//   localStorage.getItem('jwtToken');
-//   dispatch(borrowBooks(res.data));
-// });
-
-export const putBookRequest = (userId, bookData) => dispatch => axios.put(`/api/v1/users/${userId}/books`, bookData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(putBooks(res.data));
 });
 
 /**

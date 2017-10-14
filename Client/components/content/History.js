@@ -51,7 +51,8 @@ class History extends React.Component {
     event.preventDefault();
     localStorage.setItem('booksId', event.target.value);
     this.setState({
-      booksId: localStorage.getItem('booksId')
+      booksId: localStorage.getItem('booksId'),
+      bookIndex: event.target.dataset.index
     }),
     setTimeout(() => {
       this.props.returnBook(this.props.usersId, this.state).then(() => {

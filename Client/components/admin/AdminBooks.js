@@ -93,6 +93,7 @@ class Books extends React.Component {
       this.setState({
         getAllBooks: this.state.filterData
       });
+      this.props.history.push('/books');
       Materialize.toast('Successfully deleted', 2000, 'teal rounded');
     }
     );
@@ -161,7 +162,7 @@ class Books extends React.Component {
               <td>
                 <button value={this.state.getAllBooks[key].id} onClick={this.onViewRequest} className="material-icons">zoom_in</button>
                 <Link to="/editbook"><button value={this.state.getAllBooks[key].id} onClick={this.handleEditChange} data-index= {key} className="material-icons">create</button></Link>
-                <a href="#modal1" className="modal-trigger"><button value={this.state.getAllBooks[key].id} onClick={this.onEditIdRequest} data-index= {key} className="material-icons">delete</button></a>
+                <a href="#modal1" className="modal-trigger"><button value={this.state.getAllBooks[key].id} onClick={this.handleDeleteChange} data-index= {key} className="material-icons">delete</button></a>
               </td>
             </tr>
           )}
