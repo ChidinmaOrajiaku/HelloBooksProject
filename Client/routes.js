@@ -1,6 +1,6 @@
 import React from 'react';
 import App from './components/App';
-import {BrowserRouter, Route, IndexRoute, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, IndexRoute, Switch, Redirect} from 'react-router-dom';
 import Greetings from './components/Greetings';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
@@ -26,6 +26,7 @@ export default(
         <Route exact path="/addbooks" component={AddBooks}/>
         <Route exact path="/books" component={AdminBooks}/>
         <Route exact path="/editBook" component={EditBook}/>
+        <Redirect push to="/"/>
       </App>
     </Switch>
   </BrowserRouter>

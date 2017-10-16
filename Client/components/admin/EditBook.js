@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
 import { saveImageCloudinary } from '../../actions/booksAction';
@@ -87,13 +88,14 @@ class EditBook extends React.Component {
         review: nextProps.getABookData.review
       });
     }
-    if (nextProps.imageInputUrl && this.state.pointer && this.state.tempImage !== '') {
+    if (nextProps.imageInputUrl && this.state.pointer) {
       this.setState({
         image: nextProps.imageInputUrl,
         pointer: false }),
       setTimeout(() => {
         this.props.adminModifyRequest(this.state.currentBookId, this.state).then(
           () => {
+            this.props.history.push('/books');
             Materialize.toast('Successfully Updated', 2000, 'teal rounded');
           }
         );
@@ -129,6 +131,7 @@ class EditBook extends React.Component {
     event.preventDefault();
     this.props.adminModifyRequest(this.state.currentBookId, this.state).then(
       () => {
+        this.props.history.push('/books');
         Materialize.toast('Successfully Updated', 2000, 'teal rounded');
       }
     );
@@ -210,6 +213,10 @@ class EditBook extends React.Component {
     );
   }
 }
+
+EditBook.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => (
   {

@@ -11,7 +11,7 @@ import { GET_CATEGORY_SUCCESSFUL, GET_CATEGORY_FAILED, GET_CATEGORY_REQUEST } fr
    */
 export function getCategoryRequest(data) {
   return {
-    type: GET_CATEGORY_FAILED,
+    type: GET_CATEGORY_REQUEST,
     data
   };
 }
@@ -39,7 +39,7 @@ export function getCategoryResponse(response) {
    */
 export function getCategoryError(error) {
   return {
-    type: GET_CATEGORY_REQUEST,
+    type: GET_CATEGORY_FAILED,
     error
   };
 }

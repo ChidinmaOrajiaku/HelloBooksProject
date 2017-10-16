@@ -2,7 +2,7 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
 // export const GET_BOOKS = 'GET_BOOKS';
 
-export const BORROW_BOOKS = 'BORROW_BOOKS';
+// export const BORROW_BOOKS = 'BORROW_BOOKS';
 
 // export const DELETE_BOOKS = 'DELETE_BOOKS';
 
@@ -10,15 +10,15 @@ export const BORROW_BOOKS = 'BORROW_BOOKS';
 
 export const PUT_BOOKS = 'PUT_BOOKS';
 
-export const GET_USER = 'GET_USER';
+// export const GET_USER = 'GET_USER';
 
-export const SET_PROFILE = 'SET_PROFILE';
+// export const SET_PROFILE = 'SET_PROFILE';
 
-export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
+// export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 
-export const GET_PROFILE = 'GET_PROFILE';
+// export const GET_PROFILE = 'GET_PROFILE';
 
-export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+// export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 
 // Done actions
 
@@ -95,3 +95,52 @@ export const GET_CATEGORY_SUCCESSFUL = 'GET_CATEGORY_SUCCESSFUL';
 export const GET_CATEGORY_FAILED = 'GET_CATEGORY_FAILED';
 
 export const GET_CATEGORY_REQUEST = 'GET_CATEGORY_REQUEST';
+
+// Get user
+
+export const GET_USER_SUCCESSFUL = 'GET_USER_SUCCESSFUL';
+
+export const GET_USER_FAILED = 'GET_USER_FAILED';
+
+export const GET_USER_REQUEST = 'GET_USER_REQUEST';
+
+// Update Password
+
+export const UPDATE_PASSWORD_SUCCESSFUL = 'UPDATE_PASSWORD_SUCCESSFUL';
+
+export const UPDATE_PASSWORD_FAILED = 'UPDATE_PASSWORD_FAILED';
+
+export const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST';
+
+// Update Password
+
+export const BORROW_BOOKS_SUCCESSFUL = 'BORROW_BOOKS_SUCCESSFUL';
+
+export const BORROW_BOOKS_FAILED = 'BORROW_BOOKS_FAILED';
+
+export const BORROW_BOOKS_REQUEST = 'BORROW_BOOKS_REQUEST';
+
+// List User Borrowed Books
+
+export const USER_BORROWED_SUCCESSFUL = 'USER_BORROWED_SUCCESSFUL';
+
+export const USER_BORROWED_FAILED = 'USER_BORROWED_FAILED';
+
+export const USER_BORROWED_REQUEST = 'USER_BORROWED_REQUEST';
+
+// List User Unreturned Books
+
+export const YET_TO_RETURN_SUCCESSFUL = 'YET_TO_RETURN_SUCCESSFUL';
+
+export const YET_TO_RETURN_FAILED = 'YET_TO_RETURN_FAILED';
+
+export const YET_TO_RETURN_REQUEST = 'YET_TO_RETURN_REQUEST';
+
+// List User Unreturned Books
+
+export const RETURN_SUCCESSFUL = 'RETURN_SUCCESSFUL';
+
+export const RETURN_FAILED = 'RETURN_FAILED';
+
+export const RETURN_REQUEST = 'RETURN_REQUEST';
+

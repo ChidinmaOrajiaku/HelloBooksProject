@@ -1,32 +1,32 @@
-import { SAVE_IMAGE_SUCCESSFUL, SAVE_IMAGE_FAILED, SAVE_IMAGE_REQUEST } from '../actions/types';
+import { UPDATE_PASSWORD_SUCCESSFUL, UPDATE_PASSWORD_FAILED, UPDATE_PASSWORD_REQUEST } from '../actions/types';
 
 const initialState = [{
-  imageData: {},
+  passwordData: {},
   response: '',
   error: '',
 }];
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case SAVE_IMAGE_REQUEST:
+    case UPDATE_PASSWORD_REQUEST:
       return [{
-        imageData: action.data,
+        passwordData: action.data,
         response: '',
         error: '',
       }, ...state];
 
-    case SAVE_IMAGE_SUCCESSFUL:
+    case UPDATE_PASSWORD_SUCCESSFUL:
       return [{
-        imageData: {},
+        passwordData: {},
         response: action.response,
         error: '',
       }, ...state];
 
-    case SAVE_IMAGE_FAILED:
+    case UPDATE_PASSWORD_FAILED:
       return [{
-        imageData: {},
+        passwordData: {},
         response: '',
-        error: action.error.message,
+        error: action.error.response.data.errors[0].message,
       }, ...state];
 
     default: return state;

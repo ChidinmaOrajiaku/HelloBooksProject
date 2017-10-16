@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import Footer from './Footer';
-import BodyNavigationBar from './BodyNavigationBar';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import BodyNavigationBar from './BodyNavigationBar';
 import { userSigninRequest } from '../actions/signinAction';
 
 /**
@@ -107,7 +108,7 @@ class SignIn extends React.Component {
                 </form>
               </div>
               <div className="account">
-                <p> Not a member? <a href="/register"> Sign Up </a> </p>
+                <p> Not a member? <Link to="/register"> Sign Up </Link> </p>
               </div>
             </div>
           </div>

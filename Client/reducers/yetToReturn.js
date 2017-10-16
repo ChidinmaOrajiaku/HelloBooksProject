@@ -1,32 +1,32 @@
-import { SAVE_IMAGE_SUCCESSFUL, SAVE_IMAGE_FAILED, SAVE_IMAGE_REQUEST } from '../actions/types';
+import { YET_TO_RETURN_SUCCESSFUL, YET_TO_RETURN_FAILED, YET_TO_RETURN_REQUEST } from '../actions/types';
 
 const initialState = [{
-  imageData: {},
+  yetToReturnData: {},
   response: '',
   error: '',
 }];
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case SAVE_IMAGE_REQUEST:
+    case YET_TO_RETURN_REQUEST:
       return [{
-        imageData: action.data,
+        yetToReturnData: action.data,
         response: '',
         error: '',
       }, ...state];
 
-    case SAVE_IMAGE_SUCCESSFUL:
+    case YET_TO_RETURN_SUCCESSFUL:
       return [{
-        imageData: {},
+        yetToReturnData: {},
         response: action.response,
         error: '',
       }, ...state];
 
-    case SAVE_IMAGE_FAILED:
+    case YET_TO_RETURN_FAILED:
       return [{
-        imageData: {},
+        yetToReturnData: {},
         response: '',
-        error: action.error.message,
+        error: action.error.response.data.errors[0].message,
       }, ...state];
 
     default: return state;
