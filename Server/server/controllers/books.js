@@ -8,9 +8,14 @@ const booksController = {
         title: req.body.title,
         author: req.body.author,
         category: req.body.category,
+        image: req.body.image,
+        review: req.body.review,
+        usersId: req.query.usersId
       })
-      .then(books => res.status(201).send(books))
-      .catch(error => res.status(400).send(error));
+      .then(() => res.status(201).send({ message: 'Succesfully added' }))
+      .catch((error) => {
+        res.status(400).send(error);
+      });
   },
   list(req, res) {
     // find all books
@@ -18,7 +23,21 @@ const booksController = {
       .findAll({})
       .then((books) => {
         if (books.length === 0) {
-          res.status(404).send('No books in the library');
+          res.status(404).send({ message: 'No books in the library' });
+        }
+        res.status(200).send(books);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  listABook(req, res) {
+    // find one books
+    return db.Books
+      .findById(req.params.id)
+      .then((books) => {
+        if (!books) {
+          res.status(404).send({ message: 'Book Not Found' });
         }
         res.status(200).send(books);
       })
@@ -38,10 +57,12 @@ const booksController = {
         }
         books.update({
           title: req.body.title,
-          author: req.body.author,
           category: req.body.category,
+          author: req.body.author,
+          image: req.body.image,
+          review: req.body.review
         })
-          .then(() => res.status(200).send({ message: 'Books Updated!' }))
+          .then(() => res.status(200).send(books))
           .catch(error => res.status(400).send(error));
       })
       .catch((error) => {
@@ -64,39 +85,59 @@ const booksController = {
     const cur = new Date();
     const after24Days = cur.setDate(cur.getDate() + 24); // get 24 days after borrowed date 
     return db.Books
-      .findOne({
-        where: {
-          id: req.body.booksId,
-          title: req.body.title,
-        }
-      })
+      .findById(req.body.booksId)
       .then((books) => {
         if (!books) {
-          return res.status(404).send('Book Not Found');
+          return res.status(404).send({ message: 'Book Not Found' });
         }
         return db.RentedBooks
           .findOne({
             where: {
               returned: false,
-              title: req.body.title,
               usersId: req.params.usersId,
               booksId: req.body.booksId,
             }
           })
           .then((rentedBooks) => {
             if (rentedBooks) {
-              return res.status(404).send('Book has been borrowed but not returned');
+              return res.status(404).send({ message: 'Book has been borrowed but not returned' });
             }
             // create rented books history
             db.RentedBooks.create({
-              title: req.body.title,
               usersId: req.params.usersId,
               booksId: req.body.booksId,
               toReturnDate: after24Days,
             })
               .then(RentedBooks => res.status(200).send(RentedBooks))
-              .catch(error => res.status(404).send(error));
+              .catch((error) => {
+                res.status(404).send(error);
+              });
           });
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  listAllBooksBorrowed(req, res) {
+    // find all books
+    return db.RentedBooks
+      .findAll({
+        where: {
+          usersId: req.params.usersId
+        },
+        include: [{
+          model: db.Books,
+        },
+        {
+          model: db.Category
+        }
+        ],
+      })
+      .then((RentedBooks) => {
+        if (RentedBooks.length === 0) {
+          res.status(404).send({ message: 'No books in the library' });
+        }
+        res.status(200).send(RentedBooks);
       })
       .catch((error) => {
         res.status(400).send(error);
@@ -109,7 +150,36 @@ const booksController = {
         where: {
           returned: false,
           usersId: req.params.usersId
+        },
+        include: [{
+          model: db.Books,
+        },
+        {
+          model: db.Category
         }
+        ],
+      })
+      .then((books) => {
+        if (books.length === 0) {
+          res.status(404).send('No books in the library');
+        }
+        res.status(200).send(books);
+      })
+      .catch((error) => {
+        res.status(404).send(error);
+      });
+  },
+  adminListNotReturnedBooks(req, res) {
+    // admin list books borrowed but not returned
+    return db.RentedBooks
+      .findAll({
+        include: [{
+          model: db.Books,
+        },
+        {
+          model: db.Category
+        }
+        ],
       })
       .then((books) => {
         if (books.length === 0) {
@@ -144,6 +214,72 @@ const booksController = {
       })
       .catch((error) => {
         res.status(404).send(error);
+      });
+  },
+  adminCountAllBooks(req, res) {
+    return db.Books
+      .findAndCountAll({})
+      .then((books) => {
+        res.status(200).send(books);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  adminCountAllRentedBooks(req, res) {
+    return db.RentedBooks
+      .findAndCountAll({})
+      .then((rentedbooks) => {
+        res.status(200).send(rentedbooks);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  adminCountAllNotReturnedBooks(req, res) {
+    return db.RentedBooks
+      .findAndCountAll({
+        where: {
+          returned: true
+        }
+      })
+      .then((rentedbooks) => {
+        res.status(200).send(rentedbooks);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  adminCreateCategory(req, res) {
+    return db.Category
+      .create({
+        category: req.body.category
+      })
+      .then((category) => {
+        res.status(201).send(category);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  adminCountCategory(req, res) {
+    return db.Category
+      .findAndCountAll({})
+      .then((category) => {
+        res.status(200).send(category);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
+      });
+  },
+  adminGetCategory(req, res) {
+    return db.Category
+      .findAll({})
+      .then((category) => {
+        res.status(200).send(category);
+      })
+      .catch((error) => {
+        res.status(400).send(error);
       });
   },
 };

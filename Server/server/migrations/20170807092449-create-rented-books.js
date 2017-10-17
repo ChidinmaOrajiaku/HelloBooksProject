@@ -8,17 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
-        type: Sequelize.STRING
-      },
       returned: {
         type: Sequelize.BOOLEAN
       },
       toReturnDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       returnDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       createdAt: {
         allowNull: false,
@@ -44,6 +41,15 @@ module.exports = {
           model: 'Books',
           key: 'id',
           as: 'booksId',
+        },
+      },
+      categoryId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Categories',
+          key: 'id',
+          as: 'categoryId',
         },
       },
     }),

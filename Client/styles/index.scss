@@ -1,0 +1,382 @@
+$primaryColor: #8FA05B;
+$primaryColor2: teal;
+$primaryColor3: #003030;
+$fontFamily: Pacifico;
+$fontFamily2: Lobster;
+
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.brand-logo{
+  font-family: Lobster;
+  color: white;
+  font-size: 30px;
+}
+ .main {
+    padding-top: 40px;
+    flex: 1 0 auto;
+    background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .bodyNavigation{
+      margin-top: -40px;
+    }
+    .books{
+      text-align: center;
+      color: white;
+      font-family: Anton;
+      margin-top: 70px;
+    }
+    .author{
+      text-align: center;
+      font-style: italic;
+      color: $primaryColor;
+      font-family: Lobster;
+    }
+    .btn{
+      margin-bottom: 50%;
+    }
+  }
+ 
+  .library{
+    .card{
+      height: 350px;
+      width: 200px;
+      img{
+        height: 200px;
+        width: 200px;
+      }
+    }
+    h4{
+      text-align: center;
+    }
+    .lib{
+      margin-top: 11%;
+    }
+    .btn-floating{
+      margin-top: -100%;
+    }
+    .card-title{
+      font-weight: bold;
+      font-family: $fontFamily
+    }
+    p{
+      font-family: $fontFamily;
+      font-size: 17px;
+    }
+    b{
+      font-size: 19px;
+    }
+    .borrowButton{
+      background-color: teal;
+      color: white;
+      border-radius: 10px;
+    }
+    button{
+      background-color: transparent;
+    }
+  }
+
+  .profile {
+    .profileB{
+      border: 5px dashed teal;
+      margin-top: 20px;
+      }
+      .profileImg{
+        border-radius: 50%;
+        margin-left: 40px;
+        margin-top: 20px
+        }
+      .profileDetails{
+        font-size: 20px;
+        margin-top: -3px;
+        font-family: $fontFamily
+        }
+      .btn{
+        width: 30%;
+        margin-right: 5000px; 
+        }
+      hr { 
+        height: 30px; 
+        border-style: dashed; 
+        border-color: teal; 
+        border-width: 5px 0 0 0; 
+        border-radius: 20px;
+        margin-left: -15px;
+        margin-right: -15px;
+      } 
+      .modal{
+        width: 400px!important;
+        height: 200px!important;
+        overflow-x: hidden;
+        .passwordButton{
+          background-color: teal;
+          float: left;
+          margin-left: 3%;
+          color: white;
+          border-radius: 10px;
+        }
+        .passwordCButton{
+          margin-right: 3%;
+          background-color: red;
+          color: white;
+          border-radius: 10px;
+        }
+      }
+   }
+   .history{
+    table{
+      th{
+        border: 1px solid silver
+      }
+      td{
+        border: 1px solid silver
+      }
+      thead{
+        background-color: teal
+      }
+      .material-icons{
+        cursor: pointer;
+      }
+      i{
+        padding-left: 20px;
+        padding-right: 10px;
+      }
+      img{
+        height: 40px;
+        width: 30px;
+      }
+    }
+    button{
+      background-color: teal;
+      color: white;
+      font-size: 10px;
+      border-radius: 10px;
+    }
+    h4{
+      text-align: center
+    }
+}
+
+  .signUp{
+    padding-top: 40px;
+    flex: 1 0 auto;
+    background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .bodyNavigation{
+      margin-top:-40px;
+    }
+    .books{
+      text-align: center;
+      color: white;
+      font-family: Anton;
+      margin-top: 70px;
+    }
+    .author{
+      text-align: center;
+      font-style: italic;
+      color: $primaryColor;
+      font-family: Lobster;
+    }
+    .card{
+      background-color: white;
+      margin-top: 50px;
+      height: 620px;
+      button{
+        float: right;
+      }
+      hr{
+        margin-top: 30px;
+        width: 50%;
+      }
+      }
+    .account{
+      margin-top: 50px;
+      margin-left: 10px;
+    }
+  }
+
+  .signIn{
+    padding-top: 40px;
+    flex: 1 0 auto;
+    background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .bodyNavigation{
+      margin-top:-40px;
+    }
+    .books{
+      text-align: center;
+      color: white;
+      font-family: Anton;
+      margin-top: 70px;
+    }
+    .author{
+      text-align: center;
+      font-style: italic;
+      color: $primaryColor;
+      font-family: Lobster;
+    }
+    .card{
+      background-color: white;
+      margin-top: 50px;
+      height: 500px;
+      button{
+        float: right;
+      }
+      hr{
+        margin-top: 30px;
+        width: 50%;
+      }
+      }
+    .account{
+      margin-top: 50px;
+      margin-left: 10px;
+    }
+  }
+
+  .adminDashboard{
+    .initial{
+      margin-top: 5%;
+      margin-left: 30%;
+    }
+    .card{
+      height: 200px;
+      .card-action{
+        background-color: teal;
+      }
+      .card-title{
+        font-family: $fontFamily;
+        text-align: center;
+      }
+      p{
+        text-align: center;
+        font-family: $fontFamily2;
+        font-size: 20px;
+      }
+      .cardAction{
+        cursor: pointer;
+      }
+    }
+  }
+  
+.adminAddBooks{
+  .card{
+    height: 600px;
+    margin-top: 5%;
+  }
+  .modal-trigger{
+    width: 10px;
+  }
+  h4{
+    text-align: center;
+    font-family: $fontFamily;
+    font-size: 40px;
+  }
+  button{
+    float: right;
+    margin-right: 15px;
+  }
+  .file{
+    width: 5px;
+    margin-left: 10px;
+  }
+  span{
+    margin-left: -10px;
+  }
+}
+
+.books{
+  img{
+    height: 40px;
+    width: 30px;
+  }
+  h4{
+    text-align: center;
+    font-family: $fontFamily;
+    font-size: 40px;
+  }
+  .status{
+    margin-top: 5%;
+    margin-bottom: 3%;
+  }
+  .sort{
+    font-style: bold;
+  }
+  table{
+    th{
+      border: 1px solid silver
+    }
+    td{
+      border: 1px solid silver
+    }
+    thead{
+      background-color: teal
+    }
+    .material-icons{
+      cursor: pointer;
+    }
+    i{
+      padding-left: 20px;
+      padding-right: 10px;
+    }
+  }
+  button{
+    background-color: white
+  }
+  .modal{
+    width: 300px;
+    background-color:$primaryColor2;
+    .modalDelete{
+      text-align: center;
+      font-size: 20px;
+    }
+    .deleteButton{
+      background-color: teal;
+      float: left;
+      margin-top: 3%;
+      margin-left: 3%;
+      color: white;
+      border-radius: 10px;
+    }
+    .cancelButton{
+      margin-top: 3%;
+      margin-right: 3%;
+      background-color: red;
+      color: white;
+      border-radius: 10px;
+    }
+  }
+}
+
+  #sidenav-overlay {
+    background-color: rgba(0,0,0,0.0);
+  }
+  
+
+  .page-footer{
+    text-align: center;
+    color: white;
+    height: 50px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    z-index: 4;
+  }
+  .background {
+    background-color: teal
+  }
+
+    
+
+
