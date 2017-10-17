@@ -47,6 +47,7 @@ class AddBooks extends React.Component {
       setTimeout(() => {
         this.props.adminAddRequest(this.state).then(
           () => {
+            this.props.history.push('/books');
             Materialize.toast(this.props.createBooksResponse, 2000, 'teal rounded');
           }
         );
