@@ -11,7 +11,7 @@ import { DELETE_BOOKS_SUCCESSFUL, DELETE_BOOKS_FAILED, DELETE_BOOKS_REQUEST } fr
    */
 export function deleteBooksRequest(data) {
   return {
-    type: DELETE_BOOKS_FAILED,
+    type: DELETE_BOOKS_REQUEST,
     data
   };
 }
@@ -39,7 +39,7 @@ export function deleteBooksResponse(response) {
    */
 export function deleteBooksError(error) {
   return {
-    type: DELETE_BOOKS_REQUEST,
+    type: DELETE_BOOKS_FAILED,
     error
   };
 }

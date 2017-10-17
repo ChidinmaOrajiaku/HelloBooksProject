@@ -11,7 +11,7 @@ import { MODIFY_BOOKS_SUCCESSFUL, MODIFY_BOOKS_FAILED, MODIFY_BOOKS_REQUEST } fr
    */
 export function modifyBooksRequest(data) {
   return {
-    type: MODIFY_BOOKS_FAILED,
+    type: MODIFY_BOOKS_REQUEST,
     data
   };
 }
@@ -39,7 +39,7 @@ export function modifyBooksResponse(response) {
    */
 export function modifyBooksError(error) {
   return {
-    type: MODIFY_BOOKS_REQUEST,
+    type: MODIFY_BOOKS_FAILED,
     error
   };
 }

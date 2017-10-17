@@ -11,7 +11,7 @@ import { GET_BORROWED_BOOKS_SUCCESSFUL, GET_BORROWED_BOOKS_FAILED, GET_BORROWED_
    */
 export function getBorrowedBooksRequest(data) {
   return {
-    type: GET_BORROWED_BOOKS_FAILED,
+    type: GET_BORROWED_BOOKS_REQUEST,
     data
   };
 }
@@ -39,7 +39,7 @@ export function getBorrowedBooksResponse(response) {
    */
 export function getBorrowedBooksError(error) {
   return {
-    type: GET_BORROWED_BOOKS_REQUEST,
+    type: GET_BORROWED_BOOKS_FAILED,
     error
   };
 }

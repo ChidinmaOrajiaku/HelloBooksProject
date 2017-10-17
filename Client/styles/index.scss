@@ -44,115 +44,88 @@ body {
   }
  
   .library{
-    .libraryHeading{
-      text-align: center;
-      font-family: $fontFamily2;
-      color: $primaryColor2;
-      font-size: 100px;
-    }
     .card{
-      .card-image{
-        img{
-          height: 300px;
-        }
-      }
-      .card-content{
-        height: 250px;
+      height: 350px;
+      width: 200px;
+      img{
+        height: 200px;
+        width: 200px;
       }
     }
-    .table-of-contents{
-      position: fixed;
-      right: 80px;
-      top: 100px;
-      font-size: 20px;
+    h4{
+      text-align: center;
     }
-    .page{
-      float: right;
+    .lib{
+      margin-top: 11%;
+    }
+    .btn-floating{
+      margin-top: -100%;
+    }
+    .card-title{
+      font-weight: bold;
+      font-family: $fontFamily
+    }
+    p{
+      font-family: $fontFamily;
+      font-size: 17px;
+    }
+    b{
+      font-size: 19px;
+    }
+    .borrowButton{
+      background-color: teal;
+      color: white;
+      border-radius: 10px;
+    }
+    button{
+      background-color: transparent;
     }
   }
 
   .profile {
-     .card{
-        height: 500px;
-        width: 300px;
-        background-color:#003030;
-        .name{
-          font-size: 30px;
-          padding-top: 20px;
-          text-align: center;
-          font-family: $fontFamily2;
-          color: white;
-        }
-        .card-content{
-          color: white;
-        }
-        .btn{
-          width: 100%;
-        }
+    .profileB{
+      border: 5px dashed teal;
+      margin-top: 20px;
       }
-      .equal{
-        margin-top: 50%;
-        font-size: 100px;
-        color: $primaryColor2
-      }
+      .profileImg{
+        border-radius: 50%;
+        margin-left: 40px;
+        margin-top: 20px
+        }
+      .profileDetails{
+        font-size: 20px;
+        margin-top: -3px;
+        font-family: $fontFamily
+        }
+      .btn{
+        width: 30%;
+        margin-right: 5000px; 
+        }
       hr { 
         height: 30px; 
-        border-style: solid; 
-        border-color: #003030; 
+        border-style: dashed; 
+        border-color: teal; 
         border-width: 5px 0 0 0; 
-        border-radius: 20px; 
+        border-radius: 20px;
+        margin-left: -15px;
+        margin-right: -15px;
       } 
-      hr:before { 
-        display: block; 
-        content: ""; 
-        height: 30px; 
-        margin-top: -31px; 
-        border-style: solid; 
-        border-color: $primaryColor2; 
-        border-width: 0 0 5px 0; 
-        border-radius: 20px; 
-      }
       .modal{
         width: 400px!important;
-        height: 600px!important;
+        height: 200px!important;
         overflow-x: hidden;
-      }
-      .profileData{
-        font-family: $fontFamily2;
-        font-size: 30px;
-        margin-top: 8%;
-        color: #003030;
-      }
-      .data{
-        font-family: $fontFamily;
-        font-size: 20px;
-        background-color: $primaryColor2;
-        color: white;
-      }
-      .button3{
-        float: right;
-        margin-top: 10%;
-      }
-      .return{
-        font-family: $fontFamily2;
-        font-size: 60px;
-        color: $primaryColor2;
-        text-align: center;
-      }
-      .getPopularBooks{
-        .btn{
-          width: 40px!important
+        .passwordButton{
+          background-color: teal;
+          float: left;
+          margin-left: 3%;
+          color: white;
+          border-radius: 10px;
         }
-        img{
-          height: 500px;
-        }
-      }
-      .getUnreadBooks{
-        .btn{
-          width: 40px!important
-        }
-        img{
-          height: 500px;
+        .passwordCButton{
+          margin-right: 3%;
+          background-color: red;
+          color: white;
+          border-radius: 10px;
         }
       }
    }
@@ -262,82 +235,6 @@ body {
     }
   }
 
-  .admin{
-    h3{
-      margin-top: -30px;
-      font-family: $fontFamily2;
-      font-size: 30px;
-      margin-left: 30px;
-      color: $primaryColor
-    }
-    h1{
-      font-family: $fontFamily;
-      margin-left: 10px;
-      color: $primaryColor2
-    }
-    img{
-      height: 200px;
-      width: 100px;
-    }
-    span{
-      font-size: 20px;
-      margin-left: 50px;
-    }
-    .category{
-      margin-left: 30px!important
-    }
-    hr { 
-      height: 30px; 
-      border-style: solid; 
-      border-color: $primaryColor2; 
-      border-width: 5px 0 0 0; 
-      border-radius: 20px; 
-    } 
-    hr:before { 
-      display: block; 
-      content: ""; 
-      height: 30px; 
-      margin-top: -31px; 
-      border-style: solid; 
-      border-color: $primaryColor; 
-      border-width: 0 0 5px 0; 
-      border-radius: 20px; 
-    }
-    thead{
-      background-color: grey;
-      border-radius: 50px;
-    }
-    .modal{
-      width: 400px!important;
-      height: 600px!important;
-      overflow-x: hidden;
-    }
-    .tableau{
-      .card{
-        margin-left: 5%;
-        margin-right: 5%;
-      }
-      button{
-        float: right;
-      }
-      table{
-        th{
-          text-align: center;
-        }
-        td{
-          text-align: center;
-        }
-        button{
-          float: left;
-          left: 25%
-        }
-      }
-    }
-    #modal2{
-      height: 400px!important
-    }
-  }
-
   .adminDashboard{
     .initial{
       margin-top: 5%;
@@ -386,9 +283,6 @@ body {
   }
   span{
     margin-left: -10px;
-  }
-  table{
-    background-color: teal;
   }
 }
 

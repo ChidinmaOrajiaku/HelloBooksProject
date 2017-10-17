@@ -1,32 +1,32 @@
-import { SAVE_IMAGE_SUCCESSFUL, SAVE_IMAGE_FAILED, SAVE_IMAGE_REQUEST } from '../actions/types';
+import { BORROW_BOOKS_SUCCESSFUL, BORROW_BOOKS_FAILED, BORROW_BOOKS_REQUEST } from '../actions/types';
 
 const initialState = [{
-  imageData: {},
+  borrowData: {},
   response: '',
   error: '',
 }];
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case SAVE_IMAGE_REQUEST:
+    case BORROW_BOOKS_REQUEST:
       return [{
-        imageData: action.data,
+        borrowData: action.data,
         response: '',
         error: '',
       }, ...state];
 
-    case SAVE_IMAGE_SUCCESSFUL:
+    case BORROW_BOOKS_SUCCESSFUL:
       return [{
-        imageData: {},
+        borrowData: {},
         response: action.response,
         error: '',
       }, ...state];
 
-    case SAVE_IMAGE_FAILED:
+    case BORROW_BOOKS_FAILED:
       return [{
-        imageData: {},
+        borrowData: {},
         response: '',
-        error: action.error.message,
+        error: action.error.response.data.errors[0].message,
       }, ...state];
 
     default: return state;

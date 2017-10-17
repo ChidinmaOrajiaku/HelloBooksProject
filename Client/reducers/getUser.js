@@ -1,32 +1,32 @@
-import { SAVE_IMAGE_SUCCESSFUL, SAVE_IMAGE_FAILED, SAVE_IMAGE_REQUEST } from '../actions/types';
+import { GET_USER_SUCCESSFUL, GET_USER_FAILED, GET_USER_REQUEST } from '../actions/types';
 
 const initialState = [{
-  imageData: {},
+  getUserData: {},
   response: '',
   error: '',
 }];
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case SAVE_IMAGE_REQUEST:
+    case GET_USER_REQUEST:
       return [{
-        imageData: action.data,
+        getUserData: action.data,
         response: '',
         error: '',
       }, ...state];
 
-    case SAVE_IMAGE_SUCCESSFUL:
+    case GET_USER_SUCCESSFUL:
       return [{
-        imageData: {},
+        getUserData: {},
         response: action.response,
         error: '',
       }, ...state];
 
-    case SAVE_IMAGE_FAILED:
+    case GET_USER_FAILED:
       return [{
-        imageData: {},
+        getUserData: {},
         response: '',
-        error: action.error.message,
+        error: action.error,
       }, ...state];
 
     default: return state;

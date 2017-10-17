@@ -45,10 +45,10 @@ export function adminCountUsers(adminCountUsers) {
 }
 
 
-export const getUserRequest = userData => dispatch => axios.get('/api/v1/users/:usersId', userData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getUser(res.data));
-});
+// export const getUserRequest = userData => dispatch => axios.get('/api/v1/users/:usersId', userData).then((res) => {
+//   localStorage.getItem('jwtToken');
+//   dispatch(getUser(res.data));
+// });
 
 export const getProfileRequest = usersId => dispatch => axios.get(`/api/v1/users/${usersId}/profile`).then((res) => {
   localStorage.getItem('jwtToken');
@@ -65,10 +65,10 @@ export const updatePasswordRequest = (usersId, userData) => dispatch => axios.pu
   dispatch(updatePassword(res.data));
 });
 
-export const updateProfileRequest = (usersId, userData) => dispatch => axios.put(`/api/v1/users/${usersId}/profile`, userData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(updateProfile(res.data));
-});
+// export const updateProfileRequest = (usersId, userData) => dispatch => axios.put(`/api/v1/users/${usersId}/profile`, userData).then((res) => {
+//   localStorage.getItem('jwtToken');
+//   dispatch(updateProfile(res.data));
+// });
 
 export const adminCountUserRequest = () => dispatch => axios.get('/api/v1/users/').then((res) => {
   localStorage.getItem('jwtToken');
