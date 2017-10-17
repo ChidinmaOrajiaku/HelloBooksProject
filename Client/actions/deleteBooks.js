@@ -6,8 +6,8 @@ import { DELETE_BOOKS_SUCCESSFUL, DELETE_BOOKS_FAILED, DELETE_BOOKS_REQUEST } fr
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {any} data
+   * @returns {data} data
    */
 export function deleteBooksRequest(data) {
   return {
@@ -20,8 +20,8 @@ export function deleteBooksRequest(data) {
  * 
  * 
  * @export
- * @param {any} image 
- * @returns
+ * @param {any} response 
+ * @returns {response} response
  */
 export function deleteBooksResponse(response) {
   return {
@@ -34,8 +34,8 @@ export function deleteBooksResponse(response) {
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {any} error 
+   * @returns {error} error
    */
 export function deleteBooksError(error) {
   return {

@@ -5,8 +5,8 @@ import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED, CREATE_BOOKS_REQUEST } fr
  * 
  * 
  * @export
- * @param {any} image 
- * @returns
+ * @param {any} response 
+ * @returns {response} response
  */
 export function createBooksResponse(response) {
   return {
@@ -19,8 +19,8 @@ export function createBooksResponse(response) {
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {any} data
+   * @returns {data} data
    */
 export function createBooksRequest(data) {
   return {
@@ -33,8 +33,8 @@ export function createBooksRequest(data) {
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {any} error 
+   * @returns {error} error
    */
 export function createBooksError(error) {
   return {
