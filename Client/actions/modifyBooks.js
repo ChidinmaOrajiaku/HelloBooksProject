@@ -44,9 +44,9 @@ export function modifyBooksError(error) {
   };
 }
 
-export const adminModifyRequest = (bookId, bookData) => dispatch => axios.put(`/api/v1/books/${bookId}`, bookData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(modifyBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(modifyBooksError(error));
-});
+export const adminModifyRequest = (bookId, bookData) => dispatch => axios.put(`/api/v1/books/${bookId}`, bookData)
+  .then((res) => {
+    dispatch(modifyBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(modifyBooksError(error));
+  });

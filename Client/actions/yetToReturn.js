@@ -44,9 +44,9 @@ export function yetToReturnError(error) {
   };
 }
 
-export const yetToReturn = usersId => dispatch => axios.get(`/api/v1/users/${usersId}/books`).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(yetToReturnResponse(res.data));
-}).catch((error) => {
-  dispatch(yetToReturnError(error));
-});
+export const yetToReturn = usersId => dispatch => axios.get(`/api/v1/users/${usersId}/books`)
+  .then((res) => {
+    dispatch(yetToReturnResponse(res.data));
+  }).catch((error) => {
+    dispatch(yetToReturnError(error));
+  });

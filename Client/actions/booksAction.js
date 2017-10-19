@@ -79,18 +79,17 @@ export function saveImageError(error) {
 }
 
 export const adminCountBooksRequest = () => dispatch => axios.get('/api/v1/books').then((res) => {
-  localStorage.getItem('jwtToken');
   const countBooks = res.data.count;
   localStorage.setItem('countBooks', countBooks);
   dispatch(adminCount(res.data.count));
 });
 
-export const adminCountRentedBooksRequest = () => dispatch => axios.get('/api/v1/users/history').then((res) => {
-  localStorage.getItem('jwtToken');
-  const countRentedBooks = res.data.count;
-  localStorage.setItem('countRentedBooks', countRentedBooks);
-  dispatch(adminRentedCount(res.data.count));
-});
+export const adminCountRentedBooksRequest = () => dispatch => axios.get('/api/v1/users/history')
+  .then((res) => {
+    const countRentedBooks = res.data.count;
+    localStorage.setItem('countRentedBooks', countRentedBooks);
+    dispatch(adminRentedCount(res.data.count));
+  });
 
 /**
  * 

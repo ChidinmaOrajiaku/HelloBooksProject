@@ -5,7 +5,9 @@
   "scripts": {
     "build": "nodemon --exec babel-node Server/bin/www",
     "start": "babel-node Server/bin/www",
-    "test": "mocha --compilers js:babel-core/register"
+    "test": "NODE_ENV=test npm run migrate:test && NODE_ENV=test npm run seed:test && NODE_ENV=test mocha --compilers js:babel-core/register test/test.js",
+    "seed:test": "sequelize db:migrate",
+    "migrate:test": "sequelize db:migrate:undo:all"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.2",
     "lodash": "^4.17.4",
