@@ -44,9 +44,9 @@ export function getBooksError(error) {
   };
 }
 
-export const getRequest = () => dispatch => axios.get('/api/v1/users/books').then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(getBooksError(error));
-});
+export const getRequest = () => dispatch => axios.get('/api/v1/users/books')
+  .then((res) => {
+    dispatch(getBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(getBooksError(error));
+  });

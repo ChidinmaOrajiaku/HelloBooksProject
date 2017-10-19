@@ -44,9 +44,9 @@ export function getCategoryError(error) {
   };
 }
 
-export const getAllCategoryRequest = () => dispatch => axios.get('/api/v1/books/category/all').then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getCategoryResponse(res.data));
-}).catch((error) => {
-  dispatch(getCategoryError(error));
-});
+export const getAllCategoryRequest = () => dispatch => axios.get('/api/v1/books/category/all')
+  .then((res) => {
+    dispatch(getCategoryResponse(res.data));
+  }).catch((error) => {
+    dispatch(getCategoryError(error));
+  });

@@ -43,9 +43,9 @@ export function createBooksError(error) {
   };
 }
 
-export const adminAddRequest = bookData => dispatch => axios.post('/api/v1/users/books', bookData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(createBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(createBooksError(error));
-});
+export const adminAddRequest = bookData => dispatch => axios.post('/api/v1/users/books', bookData)
+  .then((res) => {
+    dispatch(createBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(createBooksError(error));
+  });

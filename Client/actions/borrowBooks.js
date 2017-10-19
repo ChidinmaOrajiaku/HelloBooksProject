@@ -44,9 +44,9 @@ export function borrowBooksError(error) {
   };
 }
 
-export const borrowRequest = (userId, booksId) => dispatch => axios.post(`/api/v1/users/${userId}/books`, booksId).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(borrowBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(borrowBooksError(error));
-});
+export const borrowRequest = (userId, booksId) => dispatch => axios.post(`/api/v1/users/${userId}/books`, booksId)
+  .then((res) => {
+    dispatch(borrowBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(borrowBooksError(error));
+  });

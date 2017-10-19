@@ -17,7 +17,6 @@ const usersController = {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
-        usersId: req.query.id,
       })
       .then((user) => {
         if (user.username === 'admin96' && user.email === 'admin96@gmail.com') {

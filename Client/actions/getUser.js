@@ -44,9 +44,9 @@ export function getUserError(error) {
   };
 }
 
-export const getUserDataRequest = usersId => dispatch => axios.get(`/api/v1/users/${usersId}`).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getUserResponse(res.data));
-}).catch((error) => {
-  dispatch(getUserError(error));
-});
+export const getUserDataRequest = usersId => dispatch => axios.get(`/api/v1/users/${usersId}`)
+  .then((res) => {
+    dispatch(getUserResponse(res.data));
+  }).catch((error) => {
+    dispatch(getUserError(error));
+  });

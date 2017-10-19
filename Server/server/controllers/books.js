@@ -10,7 +10,6 @@ const booksController = {
         category: req.body.category,
         image: req.body.image,
         review: req.body.review,
-        usersId: req.query.usersId
       })
       .then(() => res.status(201).send({ message: 'Succesfully added' }))
       .catch((error) => {
@@ -23,7 +22,7 @@ const booksController = {
       .findAll({})
       .then((books) => {
         if (books.length === 0) {
-          res.status(404).send({ message: 'No books in the library' });
+          res.status(200).send({ message: 'No books in the library' });
         }
         res.status(200).send(books);
       })
@@ -108,7 +107,7 @@ const booksController = {
               booksId: req.body.booksId,
               toReturnDate: after24Days,
             })
-              .then(RentedBooks => res.status(200).send(RentedBooks))
+              .then(RentedBooks => res.status(201).send(RentedBooks))
               .catch((error) => {
                 res.status(404).send(error);
               });

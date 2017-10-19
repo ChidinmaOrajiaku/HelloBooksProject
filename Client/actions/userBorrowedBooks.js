@@ -44,9 +44,9 @@ export function userBorrowedError(error) {
   };
 }
 
-export const userBorrowed = usersId => dispatch => axios.get(`/api/v1/users/${usersId}/history`).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(userBorrowedResponse(res.data));
-}).catch((error) => {
-  dispatch(userBorrowedError(error));
-});
+export const userBorrowed = usersId => dispatch => axios.get(`/api/v1/users/${usersId}/history`)
+  .then((res) => {
+    dispatch(userBorrowedResponse(res.data));
+  }).catch((error) => {
+    dispatch(userBorrowedError(error));
+  });

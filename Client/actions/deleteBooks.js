@@ -44,9 +44,9 @@ export function deleteBooksError(error) {
   };
 }
 
-export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/books/${bookId}`).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(deleteBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(deleteBooksError(error));
-});
+export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/books/${bookId}`)
+  .then((res) => {
+    dispatch(deleteBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(deleteBooksError(error));
+  });
