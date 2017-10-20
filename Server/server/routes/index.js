@@ -31,7 +31,7 @@ export default (app) => {
   app.put('/api/v1/books/:booksId', authenticate.verifyUser, authenticate.verifyAdmin, booksController.update);
   app.delete('/api/v1/books/:booksId', authenticate.verifyUser, authenticate.verifyAdmin, booksController.deleteBook);
   app.get('/api/v1/books', authenticate.verifyUser, authenticate.verifyAdmin, booksController.adminCountAllBooks);
-  app.get('/api/v1/users/history', authenticate.verifyUser, authenticate.verifyAdmin, booksController.adminCountAllRentedBooks);
+  app.get('/api/v1/users/books/history', authenticate.verifyUser, authenticate.verifyAdmin, booksController.adminCountAllRentedBooks);
   app.get('/api/v1/users/books/unreturned/history', authenticate.verifyUser, authenticate.verifyAdmin, booksController.adminCountAllNotReturnedBooks);
   app.get('/api/v1/users/books/unreturned', authenticate.verifyUser, authenticate.verifyAdmin, booksController.adminListNotReturnedBooks);
   app.post('/api/v1/books/category', authenticate.verifyUser, authenticate.verifyAdmin, booksController.adminCreateCategory);

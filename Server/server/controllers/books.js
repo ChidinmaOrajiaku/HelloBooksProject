@@ -239,7 +239,7 @@ const booksController = {
     return db.RentedBooks
       .findAndCountAll({
         where: {
-          returned: true
+          returned: false
         }
       })
       .then((rentedbooks) => {
