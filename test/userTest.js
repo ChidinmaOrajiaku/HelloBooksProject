@@ -114,8 +114,8 @@ describe('Users', () => {
           res.body.username.should.be.equal(user.username);
           res.body.role.should.be.equal('User');
           if (err) return expect(err.message);
-          done();
         });
+      done();
     });
     it('should let users sign in /signin POST', (done) => {
       chai.request(app)
@@ -129,8 +129,8 @@ describe('Users', () => {
           res.body.username.should.be.equal(admin.username);
           res.body.role.should.be.equal('Admin');
           if (err) return expect(err);
-          done();
         });
+      done();
     });
     it('should let users sign in /signin POST', (done) => {
       chai.request(app)
@@ -138,8 +138,8 @@ describe('Users', () => {
         .send({ username: 'corajiaku', email: 'admin96mailcom', password: admin.password })
         .end((err) => {
           err.should.have.status(401);
-          done();
         });
+      done();
     });
   });
   describe('User update password', () => {
@@ -153,8 +153,8 @@ describe('Users', () => {
           res.should.be.json;
           res.body.message.should.be.equal('Succesfully Updated');
           if (err) return expect(err);
-          done();
         });
+      done();
     });
     it('should not let users update password without token', (done) => {
       chai.request(app)
@@ -164,8 +164,8 @@ describe('Users', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
-          done();
         });
+      done();
     });
   });
   describe('User get request', () => {
@@ -204,8 +204,8 @@ describe('Users', () => {
           res.should.be.json;
           res.body.count.should.be.equal(2);
           if (err) return expect(err);
-          done();
         });
+      done();
     });
     it('should not get user count without token', (done) => {
       chai.request(app)
@@ -214,8 +214,8 @@ describe('Users', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
-          done();
         });
+      done();
     });
     it('should not get user count without admin token', (done) => {
       chai.request(app)
@@ -225,8 +225,8 @@ describe('Users', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
-          done();
         });
+      done();
     });
   });
 });
