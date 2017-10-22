@@ -57,8 +57,8 @@ describe('Users', () => {
           res.body.message.should.be.equal('Account created! Proceed to login');
           res.body.role.should.be.equal('User');
           if (err) return expect(err.message);
-          done();
         });
+      done();
     });
     it('should let users sign up /signup POST', (done) => {
       chai.request(app)
@@ -70,8 +70,8 @@ describe('Users', () => {
           res.body.message.should.be.equal('Succesfully signed up Admin');
           res.body.role.should.be.equal('Admin');
           if (err) return expect(err.message);
-          done();
         });
+      done();
     });
     it('should let users sign up /signup POST', (done) => {
       chai.request(app)
@@ -180,8 +180,8 @@ describe('Users', () => {
           res.body.lastname.should.be.equal('Tosin');
           res.body.email.should.be.equal('admin96@gmail.com');
           if (err) return expect(err);
-          done();
         });
+      done();
     });
     it('should not let users get details without token', (done) => {
       chai.request(app)
@@ -190,8 +190,8 @@ describe('Users', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
-          done();
         });
+      done();
     });
   });
   describe('Admin get user count', () => {
