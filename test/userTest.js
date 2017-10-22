@@ -79,8 +79,8 @@ describe('Users', () => {
         .send(admin)
         .end((err) => {
           err.should.have.status(400);
-          done();
         });
+      done();
     });
     it('should not let users sign up /signup POST', (done) => {
       chai.request(app)
@@ -88,8 +88,8 @@ describe('Users', () => {
         .send({ firstname: admin.firstname, lastname: admin.lastname, username: 'corajiaku', email: 'admin96@gmail.com', password: bcrypt.hashSync('1996', bcrypt.genSaltSync(10)) })
         .end((err) => {
           err.should.have.status(400);
-          done();
         });
+      done();
     });
     it('should not let users sign up /signup POST', (done) => {
       chai.request(app)
@@ -97,8 +97,8 @@ describe('Users', () => {
         .send({ firstname: admin.firstname, username: 'corajiaku', email: 'admin96mailcom', password: bcrypt.hashSync('1996', bcrypt.genSaltSync(10)) })
         .end((err) => {
           err.should.have.status(400);
-          done();
         });
+      done();
     });
   });
   describe('User sign in', () => {
