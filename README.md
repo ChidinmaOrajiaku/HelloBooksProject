@@ -1,2 +1,2 @@
-https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject.svg?branch=master
+[![Build Status](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject.svg?branch=test)](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject)
 # HelloBooksProject
