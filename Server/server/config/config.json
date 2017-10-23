@@ -10,7 +10,7 @@
   "test": {
     "username": "postgres",
     "password": "corajiaku96",
-    "database": "travis",
+    "database": "HelloBooks-Test",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false

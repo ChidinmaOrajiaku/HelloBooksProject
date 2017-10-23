@@ -57,8 +57,8 @@ describe('Users', () => {
           res.body.message.should.be.equal('Account created! Proceed to login');
           res.body.role.should.be.equal('User');
           if (err) return expect(err.message);
+          done();
         });
-      done();
     });
     it('should let users sign up /signup POST', (done) => {
       chai.request(app)
@@ -70,8 +70,8 @@ describe('Users', () => {
           res.body.message.should.be.equal('Succesfully signed up Admin');
           res.body.role.should.be.equal('Admin');
           if (err) return expect(err.message);
+          done();
         });
-      done();
     });
     it('should let users sign up /signup POST', (done) => {
       chai.request(app)
@@ -79,8 +79,8 @@ describe('Users', () => {
         .send(admin)
         .end((err) => {
           err.should.have.status(400);
+          done();
         });
-      done();
     });
     it('should not let users sign up /signup POST', (done) => {
       chai.request(app)
@@ -88,8 +88,8 @@ describe('Users', () => {
         .send({ firstname: admin.firstname, lastname: admin.lastname, username: 'corajiaku', email: 'admin96@gmail.com', password: bcrypt.hashSync('1996', bcrypt.genSaltSync(10)) })
         .end((err) => {
           err.should.have.status(400);
+          done();
         });
-      done();
     });
     it('should not let users sign up /signup POST', (done) => {
       chai.request(app)
@@ -97,8 +97,8 @@ describe('Users', () => {
         .send({ firstname: admin.firstname, username: 'corajiaku', email: 'admin96mailcom', password: bcrypt.hashSync('1996', bcrypt.genSaltSync(10)) })
         .end((err) => {
           err.should.have.status(400);
+          done();
         });
-      done();
     });
   });
   describe('User sign in', () => {
@@ -114,14 +114,15 @@ describe('Users', () => {
           res.body.username.should.be.equal(user.username);
           res.body.role.should.be.equal('User');
           if (err) return expect(err.message);
+          done();
         });
-      done();
     });
     it('should let users sign in /signin POST', (done) => {
       chai.request(app)
         .post('/api/v1/users/signin')
         .send(admin)
         .end((err, res) => {
+          console.log(res.body.token);
           adminToken = res.body.token;
           res.should.have.status(200);
           res.should.be.json;
@@ -129,8 +130,8 @@ describe('Users', () => {
           res.body.username.should.be.equal(admin.username);
           res.body.role.should.be.equal('Admin');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should let users sign in /signin POST', (done) => {
       chai.request(app)
@@ -138,8 +139,8 @@ describe('Users', () => {
         .send({ username: 'corajiaku', email: 'admin96mailcom', password: admin.password })
         .end((err) => {
           err.should.have.status(401);
+          done();
         });
-      done();
     });
   });
   describe('User update password', () => {
@@ -153,8 +154,8 @@ describe('Users', () => {
           res.should.be.json;
           res.body.message.should.be.equal('Succesfully Updated');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not let users update password without token', (done) => {
       chai.request(app)
@@ -164,8 +165,8 @@ describe('Users', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
   });
   describe('User get request', () => {
@@ -180,8 +181,8 @@ describe('Users', () => {
           res.body.lastname.should.be.equal('Tosin');
           res.body.email.should.be.equal('admin96@gmail.com');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not let users get details without token', (done) => {
       chai.request(app)
@@ -190,8 +191,8 @@ describe('Users', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
   });
   describe('Admin get user count', () => {
@@ -204,8 +205,8 @@ describe('Users', () => {
           res.should.be.json;
           res.body.count.should.be.equal(2);
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not get user count without token', (done) => {
       chai.request(app)
@@ -214,8 +215,8 @@ describe('Users', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
     it('should not get user count without admin token', (done) => {
       chai.request(app)
@@ -225,8 +226,8 @@ describe('Users', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
   });
 });
@@ -244,8 +245,8 @@ describe('Books request', () => {
           res.should.be.json;
           res.body.message.should.be.equal('Succesfully added');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not let admin create books without token', (done) => {
       chai.request(app)
@@ -255,8 +256,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
     it('should not let admin create books without admin token', (done) => {
       chai.request(app)
@@ -267,8 +268,8 @@ describe('Books request', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
     it('should not let admin create books', (done) => {
       chai.request(app)
@@ -278,8 +279,8 @@ describe('Books request', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.should.be.json;
+          done();
         });
-      done();
     });
   });
   describe('Books get request', () => {
@@ -296,8 +297,8 @@ describe('Books request', () => {
           res.body[0].image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg');
           res.body[0].review.should.be.equal('Nice Book');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not let users get books without token', (done) => {
       chai.request(app)
@@ -306,8 +307,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
   });
   describe('Get 1 book request', () => {
@@ -324,8 +325,8 @@ describe('Books request', () => {
           res.body.image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg');
           res.body.review.should.be.equal('Nice Book');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not list a book without token', (done) => {
       chai.request(app)
@@ -334,8 +335,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
   });
   describe('Borrow books action', () => {
@@ -348,8 +349,8 @@ describe('Books request', () => {
           res.should.have.status(201);
           res.should.be.json;
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not borrow books without token', (done) => {
       chai.request(app)
@@ -358,8 +359,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
   });
   describe('Get history of borrowed books', () => {
@@ -376,8 +377,8 @@ describe('Books request', () => {
           res.body[0].Book.image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg');
           res.body[0].Book.review.should.be.equal('Nice Book');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not get history of borrowed books without token', (done) => {
       chai.request(app)
@@ -386,8 +387,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
   });
   describe('Get history of borrowed but not returned books', () => {
@@ -404,8 +405,8 @@ describe('Books request', () => {
           res.body[0].Book.image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg');
           res.body[0].Book.review.should.be.equal('Nice Book');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not get history of borrowed books but not returned without token', (done) => {
       chai.request(app)
@@ -414,8 +415,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
   });
   describe('Admin should update books', () => {
@@ -433,8 +434,8 @@ describe('Books request', () => {
           res.body.image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg');
           res.body.review.should.be.equal('Nice');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not update books without admin token', (done) => {
       chai.request(app)
@@ -445,8 +446,8 @@ describe('Books request', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
     it('should not update books without token', (done) => {
       chai.request(app)
@@ -456,8 +457,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
   });
   describe('Get book count', () => {
@@ -470,8 +471,8 @@ describe('Books request', () => {
           res.should.be.json;
           res.body.count.should.be.equal(1);
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not get book count without token', (done) => {
       chai.request(app)
@@ -480,8 +481,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
     it('should not get book count without admin token', (done) => {
       chai.request(app)
@@ -491,8 +492,8 @@ describe('Books request', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
   });
   describe('Get unreturned rented books count', () => {
@@ -505,8 +506,8 @@ describe('Books request', () => {
           res.should.be.json;
           res.body.count.should.be.equal(1);
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not get unreturned rented books count without token', (done) => {
       chai.request(app)
@@ -515,8 +516,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
     it('should not get unreturned rented books count without admin token', (done) => {
       chai.request(app)
@@ -526,8 +527,8 @@ describe('Books request', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
   });
   describe('Get unreturned rented books ', () => {
@@ -544,8 +545,8 @@ describe('Books request', () => {
           res.body[0].Book.image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg');
           res.body[0].Book.review.should.be.equal('Nice');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not get unreturned rented books without token', (done) => {
       chai.request(app)
@@ -554,8 +555,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
     it('should not get unreturned rented books without admin token', (done) => {
       chai.request(app)
@@ -565,8 +566,8 @@ describe('Books request', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
   });
   describe('Return rented books ', () => {
@@ -580,8 +581,8 @@ describe('Books request', () => {
           res.should.be.json;
           res.body.message.should.be.equal('Successfully Returned');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not return rented books without token', (done) => {
       chai.request(app)
@@ -590,8 +591,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
   });
   describe('Create category', () => {
@@ -605,8 +606,8 @@ describe('Books request', () => {
           res.should.be.json;
           res.body.category.should.be.equal('Motivational');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not create category without token', (done) => {
       chai.request(app)
@@ -615,8 +616,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
     it('should not create category without admin token', (done) => {
       chai.request(app)
@@ -626,8 +627,8 @@ describe('Books request', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
   });
   describe('Get category count', () => {
@@ -640,8 +641,8 @@ describe('Books request', () => {
           res.should.be.json;
           res.body.count.should.be.equal(1);
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not get category count without token', (done) => {
       chai.request(app)
@@ -650,8 +651,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
     it('should not get category count without admin token', (done) => {
       chai.request(app)
@@ -661,8 +662,8 @@ describe('Books request', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
   });
   describe('Get category', () => {
@@ -675,8 +676,8 @@ describe('Books request', () => {
           res.should.be.json;
           res.body[0].category.should.be.equal('Motivational');
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not get category without token', (done) => {
       chai.request(app)
@@ -685,8 +686,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
     it('should not get category without admin token', (done) => {
       chai.request(app)
@@ -696,8 +697,8 @@ describe('Books request', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
   });
   describe('Delete Book', () => {
@@ -708,8 +709,8 @@ describe('Books request', () => {
         .end((err, res) => {
           res.should.have.status(204);
           if (err) return expect(err);
+          done();
         });
-      done();
     });
     it('should not delete book without token', (done) => {
       chai.request(app)
@@ -718,8 +719,8 @@ describe('Books request', () => {
           res.should.have.status(403);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
+          done();
         });
-      done();
     });
     it('should not delete book without admin token', (done) => {
       chai.request(app)
@@ -729,8 +730,8 @@ describe('Books request', () => {
           res.should.have.status(401);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
+          done();
         });
-      done();
     });
   });
 });
