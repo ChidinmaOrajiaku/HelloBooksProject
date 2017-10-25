@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
-import { connect } from 'react-redux';
-import { adminCountBooksRequest, adminCountRentedBooksRequest } from '../../actions/booksAction';
-import { adminCountUserRequest } from '../../actions/profileAction';
+import { adminCountBooksRequest,
+  adminCountRentedBooksRequest } from '../../actions/booksAction';
+import { adminCountUserRequest } from '../../actions/adminCountUsers';
 
 /**
  * @class Dashboard
@@ -50,13 +51,8 @@ class Dashboard extends React.Component {
   /**
    * 
    * 
-   * @param {any} nextProps 
    * @memberof Dashboard
-   */
-
-  /**
-   * @constructor
-   * @param {object} render
+   * @returns {object} ReactMarkupElement
    */
   render() {
     return (
@@ -77,7 +73,8 @@ class Dashboard extends React.Component {
           <div className="col s6 m6 black-text">
             <div className="card">
               <div className="card-content text-center teal-text">
-                <span className="card-title text-center">Total Borrowed Books</span>
+                <span className="card-title text-center">Total Borrowed Books
+                </span>
                 <p>{this.state.rentedBooksData}</p>
               </div>
               <div className="card-action">
@@ -100,7 +97,7 @@ class Dashboard extends React.Component {
         <div className="row second">
 
         </div>
-        <div> <Footer/></div>
+        <div> <Footer /></div>
       </div>
     );
   }
@@ -114,4 +111,6 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps, { adminCountBooksRequest, adminCountRentedBooksRequest, adminCountUserRequest })(Dashboard);
+export default connect(mapStateToProps,
+  { adminCountBooksRequest, adminCountRentedBooksRequest, adminCountUserRequest
+  })(Dashboard);

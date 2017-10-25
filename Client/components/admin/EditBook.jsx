@@ -41,35 +41,18 @@ class EditBook extends React.Component {
 
   /**
  * 
- * @returns {event} event
+ * @returns {object} mounted components
  * @param {any} event 
  * @memberof EditBook
  */
-  handleChange(event) {
-    this.setState({ [event.target.id]: event.target.value });
+  componentDidMount() {
+    this.props.getBookRequest(this.state.currentBookId);
+    this.props.getAllCategoryRequest().then(() => {
+      $('select').material_select();
+      $('select').change(event => this.handleChange(event));
+    });
   }
 
-  /**
- * 
- * @returns {event} handle Image change
- * @param {any} event 
- * @memberof EditBook
- */
-  handleImageChange(event) {
-    event.preventDefault();
-    const imageInput = event.target.files[0];
-    const imageInputReader = new FileReader();
-    if (imageInput) {
-      imageInputReader.onload = () => {
-        const newUpload = new Image();
-        newUpload.src = imageInputReader.result;
-        newUpload.onload = () => {
-          this.setState({ tempImage: imageInput });
-        };
-      };
-    }
-    imageInputReader.readAsDataURL(imageInput);
-  }
   /**
  * 
  * @returns {nextProps} nextProps
@@ -109,6 +92,39 @@ class EditBook extends React.Component {
       });
     }
   }
+
+  /**
+ * 
+ * @returns {event} event
+ * @param {any} event 
+ * @memberof EditBook
+ */
+  handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
+  }
+
+  /**
+ * 
+ * @returns {event} handle Image change
+ * @param {any} event 
+ * @memberof EditBook
+ */
+  handleImageChange(event) {
+    event.preventDefault();
+    const imageInput = event.target.files[0];
+    const imageInputReader = new FileReader();
+    if (imageInput) {
+      imageInputReader.onload = () => {
+        const newUpload = new Image();
+        newUpload.src = imageInputReader.result;
+        newUpload.onload = () => {
+          this.setState({ tempImage: imageInput });
+        };
+      };
+    }
+    imageInputReader.readAsDataURL(imageInput);
+  }
+
   /**
  * 
  * @returns {SyntheticEvent} event
@@ -138,19 +154,6 @@ class EditBook extends React.Component {
   }
 
   /**
- * 
- * @returns {data} data
- * @param {any} event 
- * @memberof EditBook
- */
-  componentDidMount() {
-    this.props.getBookRequest(this.state.currentBookId);
-    this.props.getAllCategoryRequest().then(() => {
-      $('select').material_select();
-      $('select').change(event => this.handleChange(event));
-    });
-  }
-  /**
      * 
      * 
      * @returns {ReactElement} Markup 
@@ -160,29 +163,39 @@ class EditBook extends React.Component {
     const category = this.state.categoryLoader ? <div> Loading... </div> :
       <div className="row">
         <div className="input-field col s12 status">
-          <select className="teal-text" id= "category" value="1" onChange={this.handleChange}>
+          <select className="teal-text" id= "category" value="1"
+            onChange={this.handleChange}>
             <option value={this.state.category}> {this.state.category} </option>
-            { Object.keys(this.state.categoryData).map(key => (<option key = {key} value={this.state.categoryData[key].category}>{this.state.categoryData[key].category } </option>)
+            { Object.keys(this.state.categoryData).map(key =>
+              (<option key = {key} value={this.state.categoryData[key].category}
+              >
+                {this.state.categoryData[key].category }
+              </option>)
             )}
           </select>
           <label className="black-text sort">Category</label>
         </div>
       </div>;
     return (
-      <div className="adminAddBooks row ontainer">
+      <div className="adminAddBooks row">
         <div className=""> <NavigationBar /> </div>
         <div className="col m4 offset-m5">
           <div className="card">
-            <form onSubmit={this.state.tempImage === '' ? this.onEditRequest : this.onEditCloudinaryRequest} id="form">
+            <form
+              onSubmit={this.state.tempImage === '' ? this.onEditRequest :
+                this.onEditCloudinaryRequest}
+              id="form">
               <div className="row">
                 <div className="input-field col s12">
-                  <input value={this.state.title} onChange={this.handleChange} id="title" type="text" className="validate"/>
+                  <input value={this.state.title} onChange={this.handleChange}
+                    id="title" type="text" className="validate"/>
                   <label className="active" htmlFor="title">Title</label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input value={this.state.author} onChange={this.handleChange} id="author" type="text" className="validate"/>
+                  <input value={this.state.author} onChange={this.handleChange}
+                    id="author" type="text" className="validate"/>
                   <label className="active" htmlFor="author">Author</label>
                 </div>
               </div>
@@ -191,24 +204,32 @@ class EditBook extends React.Component {
                 <div className="file-field input-field col s12">
                   <div className="btn file">
                     <span><i className="material-icons">file_upload</i></span>
-                    <input type="file" onChange={this.handleImageChange} id="image"/>
+                    <input type="file" onChange={this.handleImageChange}
+                      id="image"/>
                   </div>
                   <div className="file-path-wrapper">
-                    <input value={this.state.image} className="file-path validate" type="text" placeholder="Upload Image"/>
+                    <input value={this.state.image}
+                      className="file-path validate" type="text"
+                      placeholder="Upload Image"/>
                   </div>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <textarea value={this.state.review} onChange={this.handleChange} id="review" className="materialize-textarea"></textarea>
+                  <textarea value={this.state.review}
+                    onChange={this.handleChange}
+                    id="review" className="materialize-textarea"></textarea>
                   <label className="active" htmlFor="review">Review</label>
                 </div>
               </div>
-              <button className="btn waves-effect waves-light" type="submit" name="action">Update<i className="material-icons right">send</i></button>
+              <button className="btn waves-effect waves-light" type="submit"
+                name="action">Update<i className="material-icons right">
+                send</i>
+              </button>
             </form>
           </div>
         </div>
-        <div> <Footer/></div>
+        <div> <Footer /></div>
       </div>
     );
   }
@@ -229,4 +250,5 @@ const mapStateToProps = state => (
 );
 
 export default connect(mapStateToProps,
-  { adminModifyRequest, getBookRequest, saveImageCloudinary, getAllCategoryRequest })(EditBook);
+  { adminModifyRequest, getBookRequest, saveImageCloudinary, getAllCategoryRequest
+  })(EditBook);

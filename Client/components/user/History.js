@@ -3,9 +3,9 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NavigationBar from '../NavigationBar';
-import { userBorrowed } from '../../actions/userBorrowedBooks';
+import { getUserBorrowed } from '../../actions/getUserBorrowedBooks';
 import { yetToReturn } from '../../actions/yetToReturn';
-import { returnBook } from '../../actions/return';
+import { returnBook } from '../../actions/returnBook';
 
 
 /**
@@ -74,7 +74,7 @@ class History extends React.Component {
  * @memberof History
  */
   componentDidMount() {
-    this.props.userBorrowed(this.props.usersId);
+    this.props.getUserBorrowed(this.props.usersId);
     this.props.yetToReturn(this.props.usersId);
     $('select').material_select();
     $('select').change(event => this.handleChange(event));
@@ -89,7 +89,7 @@ class History extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       loading: false,
-      userBorrowed: nextProps.userBorrowedData,
+      userBorrowed: nextProps.getUserBorrowedData,
       yetToReturn: nextProps.yetToReturnData,
       filterYetData: nextProps.yetToReturnData,
     });
@@ -181,10 +181,9 @@ class History extends React.Component {
 const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
-    userBorrowedData: state.userBorrowedBooks[0].response,
+    getUserBorrowedData: state.userBorrowedBooks[0].response,
     yetToReturnData: state.yetToReturn[0].response,
-    // returnBookData: state.returnBook[0].response.message || state.returnBook[0].error
   }
 );
 
-export default connect(mapStateToProps, { yetToReturn, userBorrowed, returnBook })(History);
+export default connect(mapStateToProps, { yetToReturn, getUserBorrowed, returnBook })(History);

@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import Dotenv from 'dotenv-webpack';
 
 export default {
   entry: [
@@ -15,18 +16,22 @@ export default {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new Dotenv({
+      path: './.env',
+      safe: false
+    })
   ],
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         include: path.join(__dirname, 'Client'),
         loaders: ['react-hot-loader', 'babel-loader']
       },
       {
         test: /\.scss$/,
-        loader: ['style-loader', 'css-loader', 'sass-loader']
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       }, {
         test: /\.css$/,
         loader: 'css-loader',
@@ -43,6 +48,6 @@ export default {
     dns: 'empty'
   },
   resolve: {
-    extensions: ['*', '.js', '.scss']
+    extensions: ['*', '.js', '.jsx', '.scss']
   }
 };

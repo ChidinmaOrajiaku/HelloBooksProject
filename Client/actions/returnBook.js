@@ -1,17 +1,17 @@
 import axios from 'axios';
-import { RETURN_SUCCESSFUL, RETURN_FAILED, RETURN_REQUEST } from './types';
+import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED, RETURN_BOOK_REQUEST } from './types';
 
 
 /**
    * 
    * 
    * @export
-   * @param {data} data 
-   * @returns {data} data
+   * @param {any} data 
+   * @returns {object} get return books requets data
    */
 export function returnRequest(data) {
   return {
-    type: RETURN_REQUEST,
+    type: RETURN_BOOK_REQUEST,
     data
   };
 }
@@ -20,12 +20,12 @@ export function returnRequest(data) {
  * 
  * 
  * @export
- * @param {response} response
- * @returns {response} response
+ * @param {any} response
+ * @returns {object} gets return-book response if successful
  */
 export function returnResponse(response) {
   return {
-    type: RETURN_SUCCESSFUL,
+    type: RETURN_BOOK_SUCCESSFUL,
     response
   };
 }
@@ -35,11 +35,11 @@ export function returnResponse(response) {
    * 
    * @export
    * @param {any} error 
-   * @returns {error} error
+   * @returns {object} gets return-book error if request fails
    */
 export function returnError(error) {
   return {
-    type: RETURN_FAILED,
+    type: RETURN_BOOK_FAILED,
     error
   };
 }

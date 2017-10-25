@@ -15,9 +15,9 @@ import getCategory from './reducers/getCategory';
 import getUser from './reducers/getUser';
 import updatePassword from './reducers/updatePassword';
 import borrowBooks from './reducers/borrowBooks';
-import userBorrowedBooks from './reducers/userBorrowedBooks';
+import userBorrowedBooks from './reducers/getUserBorrowedBooks';
 import yetToReturn from './reducers/yetToReturn';
-import returnBook from './reducers/return';
+import returnBook from './reducers/returnBook';
 
 export default combineReducers({
   auth,

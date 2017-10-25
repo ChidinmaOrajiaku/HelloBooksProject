@@ -1,23 +1,21 @@
 import express from 'express';
-
 import logger from 'morgan';
-
 import bodyParser from 'body-parser';
-
 import path from 'path';
-
+import dotenv from 'dotenv';
 import webpack from 'webpack';
-
 import webpackMiddleware from 'webpack-dev-middleware';
-
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import webpackConfig from '../webpack.config';
-
 import routes from './server/routes';
 
-// Set up the express app
+/**
+ * Set up the express app
+ */
 const app = express();
+
+dotenv.config();
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 // webpack configuration

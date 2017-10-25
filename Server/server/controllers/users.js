@@ -50,7 +50,7 @@ const usersController = {
           });
         } else if (req.body.username === 'admin96' && req.body.email === 'admin96@gmail.com' && bcrypt.compareSync(req.body.password, user.password)) {
           // create Token
-          const adminToken = jwt.sign({ username: 'admin96', id: user.id }, app.get('secret'), {
+          const adminToken = jwt.sign({ username: 'admin96', role: 'admin', id: user.id }, app.get('secret'), {
             expiresIn: 60 * 60 * 72 // token expires after 72 hours
           });
           return res.status(200).send({
@@ -61,7 +61,7 @@ const usersController = {
           });
         } else if (req.body.username === user.username && bcrypt.compareSync(req.body.password, user.password)) {
           // create Token
-          const userToken = jwt.sign({ username: user.username, id: user.id }, app.get('secret'), {
+          const userToken = jwt.sign({ username: user.username, role: 'user', id: user.id }, app.get('secret'), {
             expiresIn: 60 * 60 * 24 // token expires after 24 hours
           });
           return res.status(200).send({

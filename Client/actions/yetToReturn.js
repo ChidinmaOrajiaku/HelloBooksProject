@@ -6,8 +6,8 @@ import { YET_TO_RETURN_SUCCESSFUL, YET_TO_RETURN_FAILED, YET_TO_RETURN_REQUEST }
    * 
    * 
    * @export
-   * @param {data} data 
-   * @returns {data} data
+   * @param {any} data 
+   * @returns {object} gets request data of books that are yet to be returned
    */
 export function yetToReturnRequest(data) {
   return {
@@ -20,8 +20,8 @@ export function yetToReturnRequest(data) {
  * 
  * 
  * @export
- * @param {response} response
- * @returns {response} response
+ * @param {any} response
+ * @returns {object} gets response if action is successful
  */
 export function yetToReturnResponse(response) {
   return {
@@ -35,7 +35,7 @@ export function yetToReturnResponse(response) {
    * 
    * @export
    * @param {any} error 
-   * @returns {error} error
+   * @returns {error} gets error if action fails
    */
 export function yetToReturnError(error) {
   return {

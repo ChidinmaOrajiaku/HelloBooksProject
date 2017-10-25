@@ -33,11 +33,24 @@ class AddBooks extends React.Component {
     this.handleImageChange = this.handleImageChange.bind(this);
   }
 
+   /**
+   * 
+   * @returns {object} gets Category and mounts once component has mounted
+   * @memberof AddBooks
+   */
+  componentDidMount() {
+    this.props.getAllCategoryRequest().then(() => {
+      $('select').material_select();
+      $('select').change(event => this.handleChange(event));
+    });
+  }
+
+
   /**
    * 
-   * @returns {nextProps} nextprops
    * @param {any} nextProps 
    * @memberof AddBooks
+   * @returns {nextProps} assigns nextprops to state
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.imageInputUrl && this.state.pointer) {
@@ -48,7 +61,8 @@ class AddBooks extends React.Component {
         this.props.adminAddRequest(this.state).then(
           () => {
             this.props.history.push('/books');
-            Materialize.toast(this.props.createBooksResponse, 2000, 'teal rounded');
+            Materialize.toast(this.props.createBooksResponse,
+              2000, 'teal rounded');
           }
         );
       }, 1000);
@@ -60,31 +74,19 @@ class AddBooks extends React.Component {
   }
 
   /**
-   * 
-   * @returns {data} get Category
-   * @memberof AddBooks
-   */
-  componentDidMount() {
-    this.props.getAllCategoryRequest().then(() => {
-      $('select').material_select();
-      $('select').change(event => this.handleChange(event));
-    });
-  }
-
-  /**
  * 
- * @returns {event} SyntheticEvent
  * @param {any} event 
  * @memberof AddBooks
+ * @returns {object} SyntheticEvent
  */
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
   /**
  * 
- * @constructor
  * @param {any} event 
  * @memberof AddBooks
+ * @returns {object} SyntheticEvent
  */
   onAddSubmit(event) {
     event.preventDefault();
@@ -93,9 +95,9 @@ class AddBooks extends React.Component {
   }
   /**
  * 
- * @returns {event} handle Image change
  * @param {any} event 
  * @memberof AddBooks
+ * @returns {object} handle Image change and saves image file in state
  */
   handleImageChange(event) {
     event.preventDefault();
@@ -123,9 +125,17 @@ class AddBooks extends React.Component {
     const category = this.state.loading ? <div> Loading... </div> :
       <div className="row">
         <div className="input-field col s12 status">
-          <select className="teal-text" id= "category" value="1" onChange={this.handleChange}>
-            {<option className="default" value="..." disabled value> Select One </option>}
-            { Object.keys(this.state.categoryData).map(key => (<option key = {key} value={this.state.categoryData[key].category }>{this.state.categoryData[key].category } </option>)
+          <select className="teal-text" id= "category" value="1"
+            onChange={this.handleChange}>
+            {<option className="default" value="..." disabled value>
+              Select One
+            </option>}
+            { Object.keys(this.state.categoryData).map(key =>
+              (<option key = {key}
+                value={this.state.categoryData[key].category }
+              >
+                {this.state.categoryData[key].category }
+              </option>)
             )}
           </select>
           <label className="black-text sort">Category</label>
@@ -140,13 +150,19 @@ class AddBooks extends React.Component {
             <form onSubmit={this.onAddSubmit} id="form">
               <div className="row">
                 <div className="input-field col s12">
-                  <input value={this.state.title} onChange={this.handleChange} id="title" type="text" className="validate" required="required"/>
+                  <input value={this.state.title} onChange={this.handleChange}
+                    id="title" type="text" className="validate"
+                    required="required"
+                  />
                   <label htmlFor="title">Title</label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input value={this.state.author} onChange={this.handleChange} id="author" type="text" className="validate" required="required"/>
+                  <input value={this.state.author} onChange={this.handleChange}
+                    id="author" type="text" className="validate"
+                    required="required"
+                  />
                   <label htmlFor="author">Author</label>
                 </div>
               </div>
@@ -155,24 +171,33 @@ class AddBooks extends React.Component {
                 <div className="file-field input-field col s12">
                   <div className="btn file">
                     <span><i className="material-icons">file_upload</i></span>
-                    <input type="file" onChange={this.handleImageChange} id="image"/>
+                    <input type="file" onChange={this.handleImageChange}
+                      id="image"/>
                   </div>
                   <div className="file-path-wrapper">
-                    <input className="file-path validate" type="text" placeholder="Upload Image" required="required"/>
+                    <input className="file-path validate" type="text"
+                      placeholder="Upload Image" required="required"
+                    />
                   </div>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <textarea value={this.state.review} onChange={this.handleChange} id="review" className="materialize-textarea" required="required"></textarea>
+                  <textarea value={this.state.review}
+                    onChange={this.handleChange}
+                    id="review" className="materialize-textarea"
+                    required="required">
+                  </textarea>
                   <label htmlFor="review">Review</label>
                 </div>
               </div>
-              <button className="btn waves-effect waves-light" type="submit" name="action">Add<i className="material-icons right">send</i></button>
+              <button className="btn waves-effect waves-light" type="submit"
+                name="action">Add<i className="material-icons right">send</i>
+              </button>
             </form>
           </div>
         </div>
-        <div> <Footer/></div>
+        <div> <Footer /></div>
       </div>
     );
   }
@@ -186,4 +211,5 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps, { adminAddRequest, saveImageCloudinary, getAllCategoryRequest })(AddBooks);
+export default connect(mapStateToProps,
+  { adminAddRequest, saveImageCloudinary, getAllCategoryRequest })(AddBooks);
