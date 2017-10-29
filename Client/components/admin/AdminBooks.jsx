@@ -39,9 +39,10 @@ class AdminBooks extends React.Component {
     this.handleEditChange = this.handleEditChange.bind(this);
     this.handleDeleteChange = this.handleDeleteChange.bind(this);
   }
+
   /**
    * 
-   * @returns {props} actions
+   * @returns {object} response object
    * @memberof AdminBooks
    */
   componentDidMount() {
@@ -75,6 +76,7 @@ class AdminBooks extends React.Component {
       modifyBook: nextProps.modifyBookData
     });
   }
+
   /**
  * 
  * @returns {event} handles change
@@ -84,6 +86,7 @@ class AdminBooks extends React.Component {
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
+
   /**
  * 
  * @returns {event} handles delete change

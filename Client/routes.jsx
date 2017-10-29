@@ -1,12 +1,12 @@
 import React from 'react';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import App from './components/App';
-import {BrowserRouter, Route, IndexRoute, Switch, Redirect} from 'react-router-dom';
-import Greetings from './components/Greetings';
+import HomePage from './components/HomePage';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
-import Library from './components/content/Library';
-import Profile from './components/content/Profile';
-import History from './components/content/History';
+import Library from './components/user/Library';
+import Profile from './components/user/Profile';
+import History from './components/user/History';
 import Dashboard from './components/admin/Dashboard';
 import AddBooks from './components/admin/AddBooks';
 import AdminBooks from './components/admin/AdminBooks';
@@ -16,7 +16,7 @@ export default(
   <BrowserRouter>
     <Switch>
       <App>
-        <Route exact path="/" component={Greetings}/>
+        <Route exact path="/" component={HomePage}/>
         <Route exact path="/login" component={SignIn}/>
         <Route exact path="/register" component={SignUp}/>
         <Route exact path="/library" component={Library}/>

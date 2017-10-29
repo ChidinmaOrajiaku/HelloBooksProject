@@ -10,7 +10,10 @@ export default () => {
       <nav>
         <div className="nav-wrapper teal">
           <a to="#!" className="brand-logo">HelloBooks</a>
-          <a to="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
+          <a to="#" data-activates="mobile-demo"
+            className="button-collapse">
+            <i className="material-icons">menu</i>
+          </a>
           <ul className="right hide-on-med-and-down">
             <li><Link to="/register">Sign Up</Link></li>
             <li><Link to="/login">Sign In</Link></li>
@@ -21,7 +24,6 @@ export default () => {
           </ul>
         </div>
       </nav>
-
     </div>
   );
 };

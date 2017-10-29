@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
 
   /**
    * 
-   * @constructor
+   * @returns {object} mounted components
    * @memberof Dashboard
    */
   componentDidMount() {

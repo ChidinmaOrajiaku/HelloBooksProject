@@ -33,9 +33,9 @@ class AddBooks extends React.Component {
     this.handleImageChange = this.handleImageChange.bind(this);
   }
 
-   /**
-   * 
-   * @returns {object} gets Category and mounts once component has mounted
+  /**
+   * Gets Category and mounts once component has mounted
+   * @returns {object} response object
    * @memberof AddBooks
    */
   componentDidMount() {
@@ -44,7 +44,6 @@ class AddBooks extends React.Component {
       $('select').change(event => this.handleChange(event));
     });
   }
-
 
   /**
    * 
@@ -82,22 +81,24 @@ class AddBooks extends React.Component {
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
+
   /**
- * 
- * @param {any} event 
+ * Submits image to cloudinary and sets state of pointer to true
+ * @param {event} event 
  * @memberof AddBooks
- * @returns {object} SyntheticEvent
+ * @returns {object} response object
  */
   onAddSubmit(event) {
     event.preventDefault();
     this.props.saveImageCloudinary(this.state.tempImage);
     this.setState({ pointer: true });
   }
+
   /**
- * 
+ * Handles Image change and saves image file in state
  * @param {any} event 
  * @memberof AddBooks
- * @returns {object} handle Image change and saves image file in state
+ * @returns {object} response object
  */
   handleImageChange(event) {
     event.preventDefault();
@@ -117,8 +118,8 @@ class AddBooks extends React.Component {
 
   /**
      * 
-     * 
-     * @returns {ReactElement} MarkUp
+     * React element markup
+     * @returns {object} markUp
      * @memberof AddBooks
      */
   render() {

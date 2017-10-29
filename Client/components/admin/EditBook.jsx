@@ -42,7 +42,6 @@ class EditBook extends React.Component {
   /**
  * 
  * @returns {object} mounted components
- * @param {any} event 
  * @memberof EditBook
  */
   componentDidMount() {
