@@ -9,8 +9,15 @@ import { setCurrentUser } from './actions/signinAction';
 import setAuthToken from './utils/setAuthToken';
 import rootReducer from './rootReducer';
 import routes from './routes';
-import requireAuth from './utils/requireAuth';
 import './styles/index';
+import './styles/library';
+import './styles/profile';
+import './styles/adminaddbooks';
+import './styles/adminbooks';
+import './styles/dashboard';
+import './styles/history';
+import './styles/signin';
+import './styles/signup';
 
 export const store = createStore(
   rootReducer,
