@@ -122,7 +122,6 @@ describe('Users', () => {
         .post('/api/v1/users/signin')
         .send(admin)
         .end((err, res) => {
-          console.log(res.body.token);
           adminToken = res.body.token;
           res.should.have.status(200);
           res.should.be.json;

@@ -35,7 +35,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set('secret', 'corajiaku96');
+app.set('secret', process.env.TOKEN_SECRET);
 
 // Require our routes into the application.
 routes(app);
