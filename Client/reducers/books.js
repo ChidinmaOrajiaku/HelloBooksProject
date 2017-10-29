@@ -6,56 +6,20 @@ const initialState = {
   image: {},
 };
 
-export const booksState = (state = initialState, action = {}) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case ADD_BOOKS:
-      return [
-        ...state,
-        Object.assign({}, action.books)
-      ];
     case GET_BOOKS_COUNT:
-      return {
-        books: action.Books
-      };
-    case GET_RENTED_BOOKS_COUNT:
-      return {
-        rentedBooks: action.rentedBooks
-      };
-    case GET_BOOKS:
-      return {
+      return [{
         books: action.books
-      };
+      }, ...state];
+    case GET_RENTED_BOOKS_COUNT:
+      return [{
+        rentedBooks: action.rentedBooks
+      }, ...state];
     case SAVE_IMAGE:
-      return [
-        ...state,
-        Object.assign({}, action.image)
-      ];
-    default: return state;
-  }
-};
-
-export const booksIdState = (state = initialState, action = {}) => {
-  switch (action.type) {
-    case BORROW_BOOKS:
-      return [
-        ...state,
-        Object.assign({}, action.books)
-      ];
-    case DELETE_BOOKS:
-      return [
-        ...state,
-        Object.assign({}, action.books)
-      ];
-    case MODIFY_BOOKS:
-      return [
-        ...state,
-        Object.assign({}, action.books)
-      ];
-    case PUT_BOOKS:
-      return [
-        ...state,
-        Object.assign({}, action.books)
-      ];
+      return [{
+        image: action.image
+      }, ...state];
     default: return state;
   }
 };
