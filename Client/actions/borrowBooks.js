@@ -6,8 +6,8 @@ import { BORROW_BOOKS_SUCCESSFUL, BORROW_BOOKS_FAILED, BORROW_BOOKS_REQUEST } fr
    * 
    * 
    * @export
-   * @param {data} data 
-   * @returns {data} data
+   * @param {any} data 
+   * @returns {object} borrowed books request data
    */
 export function borrowBooksRequest(data) {
   return {
@@ -20,8 +20,8 @@ export function borrowBooksRequest(data) {
  * 
  * 
  * @export
- * @param {response} response
- * @returns {response} response
+ * @param {any} response
+ * @returns {object} borrowed books response
  */
 export function borrowBooksResponse(response) {
   return {
@@ -35,7 +35,7 @@ export function borrowBooksResponse(response) {
    * 
    * @export
    * @param {any} error 
-   * @returns {error} error
+   * @returns {object} borrowed books error
    */
 export function borrowBooksError(error) {
   return {

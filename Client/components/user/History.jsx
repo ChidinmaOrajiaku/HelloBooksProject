@@ -1,11 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import NavigationBar from '../NavigationBar';
-import { userBorrowed } from '../../actions/userBorrowedBooks';
+import { getUserBorrowed } from '../../actions/getUserBorrowedBooks';
 import { yetToReturn } from '../../actions/yetToReturn';
-import { returnBook } from '../../actions/return';
+import { returnBook } from '../../actions/returnBook';
 
 
 /**
@@ -32,19 +30,49 @@ class History extends React.Component {
     };
     this.handleReturn = this.handleReturn.bind(this);
   }
+
   /**
- * 
- * @returns {event} handles change
+ * Mounts action on component 
+ * @returns {object} response object
+ * @memberof History
+ */
+  componentDidMount() {
+    this.props.getUserBorrowed(this.props.usersId);
+    this.props.yetToReturn(this.props.usersId);
+    $('select').material_select();
+    $('select').change(event => this.handleChange(event));
+  }
+
+  /**
+   * Receive nextprops and sets state
+   * @param {any} nextProps
+   * @returns {nextProps} response object
+   * @memberof History
+   */
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      loading: false,
+      userBorrowed: nextProps.getUserBorrowedData,
+      yetToReturn: nextProps.yetToReturnData,
+      filterYetData: nextProps.yetToReturnData,
+    });
+  }
+
+  /**
+ * Handles change and sets the state to the targeted event value
+ * @returns {object} response object
  * @param {any} event 
  * @memberof History
  */
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
+
   /**
- * 
- * @returns {event} handles return
- * @param {any} event 
+ * Handles books return, sets the state of the book Id and book index, 
+ splices book returned from list and sets the state of yet-to-return-books  
+ * @returns {object} resonse object
+ * @param {event} event 
  * @memberof History
  */
   handleReturn(event) {
@@ -67,38 +95,11 @@ class History extends React.Component {
       });
     });
   }
-  /**
- * 
- * @returns {data} data
- * @param {any} event 
- * @memberof History
- */
-  componentDidMount() {
-    this.props.userBorrowed(this.props.usersId);
-    this.props.yetToReturn(this.props.usersId);
-    $('select').material_select();
-    $('select').change(event => this.handleChange(event));
-  }
-
-  /**
-   * 
-   * @returns {nextProps} next props
-   * @param {any} nextProps 
-   * @memberof Library
-   */
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      loading: false,
-      userBorrowed: nextProps.userBorrowedData,
-      yetToReturn: nextProps.yetToReturnData,
-      filterYetData: nextProps.yetToReturnData,
-    });
-  }
 
   /**
      * 
-     * 
-     * @returns {ReactElement} Markup 
+     * Renders component
+     * @returns {object} ReactElementMarkup 
      * @memberof History
      */
   render() {
@@ -122,9 +123,14 @@ class History extends React.Component {
               <td>{ this.state.userBorrowed[key].Book.title }</td>
               <td>{ this.state.userBorrowed[key].Book.author }</td>
               <td>{ this.state.userBorrowed[key].Book.category }</td>
-              <td>{ this.state.userBorrowed[key].returned === false ? 'Not Returned' : 'Returned' }</td>
-              <td>{ this.state.userBorrowed[key].toReturnDate === null ? 'N/A' : this.state.userBorrowed[key].toReturnDate }</td>
-              <td>{ this.state.userBorrowed[key].returnDate === null ? 'N/A' : this.state.userBorrowed[key].returnDate }</td>
+              <td>{ this.state.userBorrowed[key].returned === false ?
+                'Not Returned' : 'Returned' }</td>
+              <td>{ this.state.userBorrowed[key].toReturnDate === null ?
+                'N/A' : this.state.userBorrowed[key].toReturnDate }
+              </td>
+              <td>{ this.state.userBorrowed[key].returnDate === null ?
+                'N/A' : this.state.userBorrowed[key].returnDate }
+              </td>
             </tr>
           )}
         </tbody>
@@ -147,18 +153,23 @@ class History extends React.Component {
               <td>{ this.state.yetToReturn[key].Book.title }</td>
               <td>{ this.state.yetToReturn[key].Book.author }</td>
               <td>{ this.state.yetToReturn[key].Book.category }</td>
-              <td><button value={this.state.yetToReturn[key].booksId} onClick={this.handleReturn} data-index= {key} className="waves-effect waves-light btn">Return</button></td>
+              <td><button value={this.state.yetToReturn[key].booksId}
+                onClick={this.handleReturn} data-index= {key}
+                className="waves-effect waves-light btn">Return</button>
+              </td>
             </tr>
           )}
         </tbody>
       </table>;
+
     return (
       <div className="history row container-fluid">
         <div className=""> <NavigationBar /> </div>
         <h4 className="col m8 offset-m3"> USER BOOK HISTORY </h4>
         <div className="row col m8 offset-m3">
           <div className="input-field col s4 status">
-            <select className="teal-text" id= "bookStatus"value="1" onChange={this.handleChange}>
+            <select className="teal-text" id= "bookStatus"value="1"
+              onChange={this.handleChange}>
               <option value="" defaultValue>Choose your option</option>
               <option value="2">Borrowed Books</option>
               <option value="3">Pending Returns</option>
@@ -168,7 +179,8 @@ class History extends React.Component {
           <div className="col s12 ">
             <div className="">
               <div className="card-content teal-text">
-                {this.state.bookStatus === '3' ? yetToReturnBooks : borrowedBooks }
+                {this.state.bookStatus === '3' ?
+                  yetToReturnBooks : borrowedBooks }
               </div>
             </div>
           </div>
@@ -181,10 +193,10 @@ class History extends React.Component {
 const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
-    userBorrowedData: state.userBorrowedBooks[0].response,
+    getUserBorrowedData: state.userBorrowedBooks[0].response,
     yetToReturnData: state.yetToReturn[0].response,
-    // returnBookData: state.returnBook[0].response.message || state.returnBook[0].error
   }
 );
 
-export default connect(mapStateToProps, { yetToReturn, userBorrowed, returnBook })(History);
+export default connect(mapStateToProps, {
+  yetToReturn, getUserBorrowed, returnBook })(History);

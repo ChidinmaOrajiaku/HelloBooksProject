@@ -1,30 +1,30 @@
-import { USER_BORROWED_SUCCESSFUL, USER_BORROWED_FAILED, USER_BORROWED_REQUEST } from '../actions/types';
+import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED, RETURN_BOOK_REQUEST } from '../actions/types';
 
 const initialState = [{
-  userBorrowedData: {},
+  returnData: {},
   response: '',
   error: '',
 }];
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case USER_BORROWED_REQUEST:
+    case RETURN_BOOK_REQUEST:
       return [{
-        userBorrowedData: action.data,
+        returnData: action.data,
         response: '',
         error: '',
       }, ...state];
 
-    case USER_BORROWED_SUCCESSFUL:
+    case RETURN_BOOK_SUCCESSFUL:
       return [{
-        userBorrowedData: {},
+        returnData: {},
         response: action.response,
         error: '',
       }, ...state];
 
-    case USER_BORROWED_FAILED:
+    case RETURN_BOOK_FAILED:
       return [{
-        userBorrowedData: {},
+        returnData: {},
         response: '',
         error: action.error.response.data.errors[0].message,
       }, ...state];

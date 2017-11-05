@@ -37,7 +37,7 @@ class SignIn extends React.Component {
 
   /**
  * 
- * 
+ * @returns {object} response object
  * @param {any} event 
  * @memberof SignIn
  */
@@ -47,8 +47,8 @@ class SignIn extends React.Component {
 
   /**
  * 
- * @returns {event} sign up event
- * @param {any} event 
+ * @returns {object} response object
+ * @param {event} event 
  * @memberof SignIn
  */
   onSigninSubmit(event) {
@@ -65,19 +65,20 @@ class SignIn extends React.Component {
   }
   /**
  * 
- * 
- * @returns {ReactElement} Markup
+ * React Element Markup
+ * @returns {object} response object
  * @memberof SignIn
  */
   render() {
-    const { userSigninRequest } = this.props;
-    const { errors, success } = this.state;
     return (
       <div className="signIn">
         <div className="bodyNavigation"> <BodyNavigationBar /> </div>
         <div className="row container">
           <div className="quotes">
-            <h1 className="books">“The person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.”</h1>
+            <h1 className="books">
+              “The person, be it gentleman or lady,
+              who has not pleasure in a good novel, must be intolerably stupid.”
+            </h1>
             <h2 className="author"> ~Jane Austen, Northanger Abbey</h2>
           </div>
           <div className="col m6 offset-m3">
@@ -86,23 +87,24 @@ class SignIn extends React.Component {
                 <form onSubmit={this.onSigninSubmit} id="form">
                   <div className="row">
                     <div className="input-field col s12">
-                      <input value={this.state.username} onChange={this.handleChange} id="username" required="required" type="text" className="validate"/>
-                      <label htmlFor="username">User Name</label>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input value={this.state.password} onChange={this.handleChange} id="password" required="required" type="password" className="validate"/>
-                      <label htmlFor="password">Password</label>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="input-field col s12">
-                      <input value={this.state.email} onChange={this.handleChange} id="email" required="required" type="email" className="validate"/>
+                      <input value={this.state.email}
+                        onChange={this.handleChange} id="email"
+                        required="required" type="email" className="validate"
+                      />
                       <label htmlFor="email">Email</label>
                     </div>
                   </div>
-                  <button className="btn waves-effect waves-light" type="submit" name="action">Sign In
+                  <div className="row">
+                    <div className="input-field col s12">
+                      <input value={this.state.password}
+                        onChange={this.handleChange} id="password"
+                        required="required" type="password" className="validate"
+                      />
+                      <label htmlFor="password">Password</label>
+                    </div>
+                  </div>
+                  <button className="btn waves-effect waves-light" type="submit"
+                    name="action">Sign In
                     <i className="material-icons right">send</i>
                   </button>
                 </form>

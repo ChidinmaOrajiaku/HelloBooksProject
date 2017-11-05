@@ -1,6 +1,4 @@
 import React from 'react';
-import Footer from './Footer';
-import Greetings from './Greetings';
 
 /**
  * 
@@ -11,8 +9,8 @@ import Greetings from './Greetings';
 class App extends React.Component {
   /**
      * 
-     * 
-     * @returns 
+     * React Element Markup
+     * @returns {object} response object
      * @memberof App
      */
   render() {

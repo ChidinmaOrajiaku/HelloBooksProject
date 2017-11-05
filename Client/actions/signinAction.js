@@ -6,7 +6,7 @@ import { SET_CURRENT_USER } from './types';
 /**
  * @export
  * @param {any} user 
- * @returns {object} object
+ * @returns {object} sets current user in redux store
  */
 export function setCurrentUser(user) {
   return {
@@ -16,9 +16,9 @@ export function setCurrentUser(user) {
 }
 /**
  * 
- * 
  * @export
- * @returns {object} object
+ * @param {any} user 
+ * @returns {object} clears local storage and emptys user details from store
  */
 export function logout() {
   return (dispatch) => {
