@@ -6,8 +6,8 @@ import { GET_BORROWED_BOOKS_SUCCESSFUL, GET_BORROWED_BOOKS_FAILED, GET_BORROWED_
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {any} data 
+   * @returns {object} get borrowed books request data
    */
 export function getBorrowedBooksRequest(data) {
   return {
@@ -20,8 +20,8 @@ export function getBorrowedBooksRequest(data) {
  * 
  * 
  * @export
- * @param {any} image 
- * @returns
+ * @param {any} response 
+ * @returns {object} get borrowed books response when request is successful
  */
 export function getBorrowedBooksResponse(response) {
   return {
@@ -34,8 +34,8 @@ export function getBorrowedBooksResponse(response) {
    * 
    * 
    * @export
-   * @param {any} image 
-   * @returns 
+   * @param {any} error 
+   * @returns {object} get borrowed books response when request fails
    */
 export function getBorrowedBooksError(error) {
   return {
@@ -44,9 +44,9 @@ export function getBorrowedBooksError(error) {
   };
 }
 
-export const admingetBorrowedRequest = () => dispatch => axios.get('/api/v1/users/books/unreturned').then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getBorrowedBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(getBorrowedBooksError(error));
-});
+export const admingetBorrowedRequest = () => dispatch => axios.get('/api/v1/users/books/unreturned')
+  .then((res) => {
+    dispatch(getBorrowedBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(getBorrowedBooksError(error));
+  });

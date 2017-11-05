@@ -1,0 +1,64 @@
+@import "./custom.scss";
+
+.books{
+    img{
+      height: 40px;
+      width: 30px;
+    }
+    h4{
+      text-align: center;
+      font-family: $fontFamily;
+      font-size: 40px;
+    }
+    .status{
+      margin-top: 5%;
+      margin-bottom: 3%;
+    }
+    .sort{
+      font-style: bold;
+    }
+    table{
+      th{
+        border: 1px solid silver
+      }
+      td{
+        border: 1px solid silver
+      }
+      thead{
+        background-color: teal
+      }
+      .material-icons{
+        cursor: pointer;
+      }
+      i{
+        padding-left: 20px;
+        padding-right: 10px;
+      }
+    }
+    button{
+      background-color: white
+    }
+    .modal{
+      width: 300px;
+      background-color:$primaryColor2;
+      .modalDelete{
+        text-align: center;
+        font-size: 20px;
+      }
+      .deleteButton{
+        background-color: teal;
+        float: left;
+        margin-top: 3%;
+        margin-left: 3%;
+        color: white;
+        border-radius: 10px;
+      }
+      .cancelButton{
+        margin-top: 3%;
+        margin-right: 3%;
+        background-color: red;
+        color: white;
+        border-radius: 10px;
+      }
+    }
+  }

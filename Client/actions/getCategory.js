@@ -7,7 +7,7 @@ import { GET_CATEGORY_SUCCESSFUL, GET_CATEGORY_FAILED, GET_CATEGORY_REQUEST } fr
    * 
    * @export
    * @param {any} data 
-   * @returns {data} category
+   * @returns {object} gets category request data
    */
 export function getCategoryRequest(data) {
   return {
@@ -21,7 +21,7 @@ export function getCategoryRequest(data) {
    * 
    * @export
    * @param {any} response
-   * @returns {response} category
+   * @returns {object} get borrowed books response when request is successful
    */
 export function getCategoryResponse(response) {
   return {
@@ -35,7 +35,7 @@ export function getCategoryResponse(response) {
    * 
    * @export
    * @param {any} error 
-   * @returns {error} error
+   * @returns {object} get borrowed books response when request is fails
    */
 export function getCategoryError(error) {
   return {
@@ -44,9 +44,9 @@ export function getCategoryError(error) {
   };
 }
 
-export const getAllCategoryRequest = () => dispatch => axios.get('/api/v1/books/category/all').then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getCategoryResponse(res.data));
-}).catch((error) => {
-  dispatch(getCategoryError(error));
-});
+export const getAllCategoryRequest = () => dispatch => axios.get('/api/v1/books/category/all')
+  .then((res) => {
+    dispatch(getCategoryResponse(res.data));
+  }).catch((error) => {
+    dispatch(getCategoryError(error));
+  });

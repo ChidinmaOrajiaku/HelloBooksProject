@@ -17,7 +17,6 @@ const usersController = {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
-        usersId: req.query.id,
       })
       .then((user) => {
         if (user.username === 'admin96' && user.email === 'admin96@gmail.com') {
@@ -40,7 +39,6 @@ const usersController = {
     return Users
       .findOne({
         where: {
-          username: req.body.username, // find user by username
           email: req.body.email
         }
       })
@@ -49,9 +47,9 @@ const usersController = {
           return res.status(401).send({
             message: 'User Not Found',
           });
-        } else if (req.body.username === 'admin96' && req.body.email === 'admin96@gmail.com' && bcrypt.compareSync(req.body.password, user.password)) {
+        } else if (req.body.email === 'admin96@gmail.com' && bcrypt.compareSync(req.body.password, user.password)) {
           // create Token
-          const adminToken = jwt.sign({ username: 'admin96', id: user.id }, app.get('secret'), {
+          const adminToken = jwt.sign({ username: 'admin96', role: 'admin', id: user.id }, app.get('secret'), {
             expiresIn: 60 * 60 * 72 // token expires after 72 hours
           });
           return res.status(200).send({
@@ -60,9 +58,9 @@ const usersController = {
             role: 'Admin',
             token: adminToken
           });
-        } else if (req.body.username === user.username && bcrypt.compareSync(req.body.password, user.password)) {
+        } else if (bcrypt.compareSync(req.body.password, user.password)) {
           // create Token
-          const userToken = jwt.sign({ username: user.username, id: user.id }, app.get('secret'), {
+          const userToken = jwt.sign({ username: user.username, role: 'user', id: user.id }, app.get('secret'), {
             expiresIn: 60 * 60 * 24 // token expires after 24 hours
           });
           return res.status(200).send({

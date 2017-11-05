@@ -7,7 +7,7 @@ import { MODIFY_BOOKS_SUCCESSFUL, MODIFY_BOOKS_FAILED, MODIFY_BOOKS_REQUEST } fr
    * 
    * @export
    * @param {any} data
-   * @returns {data} data
+   * @returns {data} modify books request data
    */
 export function modifyBooksRequest(data) {
   return {
@@ -21,7 +21,7 @@ export function modifyBooksRequest(data) {
  * 
  * @export
  * @param {any} response
- * @returns {response}  response
+ * @returns {response} get response if request is successful
  */
 export function modifyBooksResponse(response) {
   return {
@@ -35,7 +35,7 @@ export function modifyBooksResponse(response) {
    * 
    * @export
    * @param {any} error
-   * @returns {error} error
+   * @returns {object} get error if request fails
    */
 export function modifyBooksError(error) {
   return {
@@ -44,9 +44,9 @@ export function modifyBooksError(error) {
   };
 }
 
-export const adminModifyRequest = (bookId, bookData) => dispatch => axios.put(`/api/v1/books/${bookId}`, bookData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(modifyBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(modifyBooksError(error));
-});
+export const adminModifyRequest = (bookId, bookData) => dispatch => axios.put(`/api/v1/books/${bookId}`, bookData)
+  .then((res) => {
+    dispatch(modifyBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(modifyBooksError(error));
+  });

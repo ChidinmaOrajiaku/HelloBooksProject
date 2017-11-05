@@ -1,0 +1,41 @@
+@import "./custom.scss";
+
+.signUp{
+    padding-top: 40px;
+    flex: 1 0 auto;
+    background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .bodyNavigation{
+      margin-top:-40px;
+    }
+    .books{
+      text-align: center;
+      color: white;
+      font-family: Anton;
+      margin-top: 70px;
+    }
+    .author{
+      text-align: center;
+      font-style: italic;
+      color: $primaryColor;
+      font-family: Lobster;
+    }
+    .card{
+      background-color: white;
+      margin-top: 50px;
+      height: 620px;
+      button{
+        float: right;
+      }
+      hr{
+        margin-top: 30px;
+        width: 50%;
+      }
+      }
+    .account{
+      margin-top: 50px;
+      margin-left: 10px;
+    }
+  }
