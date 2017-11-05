@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject.svg?branch=test)](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject)
-[![Coverage Status](https://coveralls.io/repos/github/ChidinmaOrajiaku/HelloBooksProject/badge.svg?branch=master)](https://coveralls.io/github/ChidinmaOrajiaku/HelloBooksProject?branch=test)
 HelloBooks PROJECT
 
 HelloBooks is an app that manages library processes (tracking, stocking and renting). Users can borrow books and read them within the app.
