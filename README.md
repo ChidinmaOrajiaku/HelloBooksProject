@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject.svg?branch=test)](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject)
 
-HelloBooks PROJECT
+### HelloBooks PROJECT
 
 HelloBooks is an app that manages library processes (tracking, stocking and renting). Users can borrow books and read them within the app.
 
-FEATURES
+### FEATURES
 
 . ES6 - Using Babel
 
@@ -12,7 +12,7 @@ FEATURES
 
 . Style guide - Eslint with airbnb style guide
 
-INSTALLATIONS
+### INSTALLATIONS
 
 . Node.js-Express npm-install --save express
 
@@ -22,7 +22,7 @@ or simply
 
 . git clone this repository . Run "npm-install" to install dependencies . Run "npm run start" to start the application server
 
-APIs
+### APIs
 
 The following apis are present in the application
 
@@ -54,11 +54,12 @@ An API route that allow user to return a book
 An API route that allow users to get all the books that the user has borrowed but has not returned
 
    . GET: /api/users/<userId>/books?returned=false
-CONTRIBUTING
+   
+### CONTRIBUTING
 
 To contribute, all files must adhere to the following standard: . ES6 . Airbnb style guide
 
-LICENSE
+### LICENSE
 
 MIT License
 
