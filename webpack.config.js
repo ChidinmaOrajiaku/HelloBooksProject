@@ -25,9 +25,18 @@ export default {
   module: {
     loaders: [
       {
+        test: /\.js?$/,
+        include: path.join(__dirname, 'Client'),
+        loaders: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react']
+        }
+      },
+      {
         test: /\.jsx?$/,
         include: path.join(__dirname, 'Client'),
-        loaders: ['react-hot-loader', 'babel-loader']
+        loaders: ['react-hot-loader', 'babel-loader'],
       },
       {
         test: /\.scss$/,
