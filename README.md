@@ -52,6 +52,7 @@ The following apis are present in the application
 To contribute, all files must adhere to the following standard:
 
  . ES6
+ 
  . Airbnb style guide
 
 ## LICENSE
