@@ -22,12 +22,14 @@ const usersController = {
         if (user.username === 'admin96' && user.email === 'admin96@gmail.com') {
           return res.status(201).send({
             message: 'Succesfully signed up Admin',
-            role: 'Admin'
+            username: user.username,
+            role: 'Admin',
           });
         }
         return res.status(201).send({
           message: 'Account created! Proceed to login',
-          role: 'User'
+          username: user.username,
+          role: 'User',
         });
       })
       .catch((error) => {

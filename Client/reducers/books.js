@@ -1,4 +1,4 @@
-import { GET_BOOKS, BORROW_BOOKS, ADD_BOOKS, DELETE_BOOKS, MODIFY_BOOKS, PUT_BOOKS, GET_BOOKS_COUNT, GET_RENTED_BOOKS_COUNT, SAVE_IMAGE } from '../actions/types';
+import { GET_BOOKS_COUNT, GET_RENTED_BOOKS_COUNT, SAVE_IMAGE } from '../actions/types';
 
 const initialState = {
   books: {},

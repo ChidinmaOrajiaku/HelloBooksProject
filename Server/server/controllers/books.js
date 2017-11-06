@@ -1,7 +1,13 @@
 import db from '../models';
 
 const booksController = {
-  // create books
+  /**
+   * 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns {object} req, res
+   */
   create(req, res) {
     return db.Books
       .create({
@@ -172,6 +178,9 @@ const booksController = {
     // admin list books borrowed but not returned
     return db.RentedBooks
       .findAll({
+        where: {
+          returned: false,
+        },
         include: [{
           model: db.Books,
         },

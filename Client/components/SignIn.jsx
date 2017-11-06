@@ -9,8 +9,6 @@ import BodyNavigationBar from './BodyNavigationBar';
 import { userSigninRequest } from '../actions/signinAction';
 
 /**
- * 
- * 
  * @class SignIn
  * @extends {React.Component}
  */
@@ -64,7 +62,6 @@ class SignIn extends React.Component {
     );
   }
   /**
- * 
  * React Element Markup
  * @returns {object} response object
  * @memberof SignIn
@@ -74,15 +71,8 @@ class SignIn extends React.Component {
       <div className="signIn">
         <div className="bodyNavigation"> <BodyNavigationBar /> </div>
         <div className="row container">
-          <div className="quotes">
-            <h1 className="books">
-              “The person, be it gentleman or lady,
-              who has not pleasure in a good novel, must be intolerably stupid.”
-            </h1>
-            <h2 className="author"> ~Jane Austen, Northanger Abbey</h2>
-          </div>
           <div className="col m6 offset-m3">
-            <div className="card">
+            <div className="card" data-aos="flip-up">
               <div className="card-content black-text">
                 <form onSubmit={this.onSigninSubmit} id="form">
                   <div className="row">

@@ -3,24 +3,13 @@
 .signIn{
     padding-top: 40px;
     flex: 1 0 auto;
-    background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
+    background-image: url('https://images.unsplash.com/photo-1486125305436-b7144b0734f0?auto=format&fit=crop&w=1650&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D');
+    min-height: 800px;
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     .bodyNavigation{
       margin-top:-40px;
-    }
-    .books{
-      text-align: center;
-      color: white;
-      font-family: Anton;
-      margin-top: 70px;
-    }
-    .author{
-      text-align: center;
-      font-style: italic;
-      color: $primaryColor;
-      font-family: Lobster;
     }
     .card{
       background-color: white;

@@ -9,6 +9,9 @@ export default (app) => {
     message: 'Welcome to the HelloBooks API!',
   }));
 
+  /**
+   * Users API
+   */
   app.post('/api/v1/users/signup', usersController.create);
   app.post('/api/v1/users/signin', usersController.login);
   app.put('/api/v1/users/:usersId', authenticate.verifyUser, usersController.updatePassword);
@@ -20,7 +23,9 @@ export default (app) => {
   app.get('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.listNotReturnedBooks);
   app.put('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.returnBooks);
 
-  // Admin Routes
+  /**
+   * Admin API
+   */
   app.get('/api/v1/users', authenticate.verifyUser, authenticate.verifyAdmin, usersController.adminCountAllUser);
   app.post('/api/v1/users/books', authenticate.verifyUser, authenticate.verifyAdmin, booksController.create);
   app.put('/api/v1/books/:booksId', authenticate.verifyUser, authenticate.verifyAdmin, booksController.update);
