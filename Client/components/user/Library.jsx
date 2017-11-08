@@ -66,9 +66,8 @@ class Library extends React.Component {
     setTimeout(() => {
       this.props.borrowRequest(this.props.usersId, this.state).then(() => {
         Materialize.toast('Succesfully borrowed', 2000, 'teal rounded');
-      }
-      ).catch(() => {
-        Materialize.toast('Book has been borrowed but not returned',
+      }).catch(() => {
+        Materialize.toast('Sorry! You cannot borrow this book',
           2000, 'red rounded');
       });
     });

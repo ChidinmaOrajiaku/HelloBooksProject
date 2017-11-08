@@ -91,7 +91,7 @@ class History extends React.Component {
         Materialize.toast('Succesfully Returned', 2000, 'teal rounded');
       }
       ).catch(() => {
-        Materialize.toast('I dunno', 500, 'red rounded');
+        Materialize.toast('Cannot return', 500, 'red rounded');
       });
     });
   }
