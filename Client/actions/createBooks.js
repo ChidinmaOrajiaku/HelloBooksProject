@@ -6,7 +6,7 @@ import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED, CREATE_BOOKS_REQUEST } fr
  * 
  * @export
  * @param {any} response 
- * @returns {response} response
+ * @returns {object} create books response
  */
 export function createBooksResponse(response) {
   return {
@@ -20,7 +20,7 @@ export function createBooksResponse(response) {
    * 
    * @export
    * @param {any} data
-   * @returns {data} data
+   * @returns {object} create books request data
    */
 export function createBooksRequest(data) {
   return {
@@ -34,7 +34,7 @@ export function createBooksRequest(data) {
    * 
    * @export
    * @param {any} error 
-   * @returns {error} error
+   * @returns {object} create book error
    */
 export function createBooksError(error) {
   return {
@@ -43,9 +43,9 @@ export function createBooksError(error) {
   };
 }
 
-export const adminAddRequest = bookData => dispatch => axios.post('/api/v1/users/books', bookData).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(createBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(createBooksError(error));
-});
+export const adminAddRequest = bookData => dispatch => axios.post('/api/v1/users/books', bookData)
+  .then((res) => {
+    dispatch(createBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(createBooksError(error));
+  });

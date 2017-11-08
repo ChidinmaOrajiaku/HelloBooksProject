@@ -1,0 +1,30 @@
+@import "./custom.scss";
+
+.signIn{
+    padding-top: 40px;
+    flex: 1 0 auto;
+    background-image: url('https://images.unsplash.com/photo-1486125305436-b7144b0734f0?auto=format&fit=crop&w=1650&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D');
+    min-height: 800px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .bodyNavigation{
+      margin-top:-40px;
+    }
+    .card{
+      background-color: white;
+      margin-top: 50px;
+      height: 400px;
+      button{
+        float: right;
+      }
+      hr{
+        margin-top: 30px;
+        width: 50%;
+      }
+      }
+    .account{
+      margin-top: 50px;
+      margin-left: 10px;
+    }
+  }

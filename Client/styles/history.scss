@@ -1,0 +1,46 @@
+@import "./custom.scss";
+
+.history{
+    table{
+      th{
+        border: 1px solid silver
+      }
+      td{
+        border: 1px solid silver
+      }
+      thead{
+        background-color: teal
+      }
+      .material-icons{
+        cursor: pointer;
+      }
+      i{
+        padding-left: 20px;
+        padding-right: 10px;
+      }
+      img{
+        height: 40px;
+        width: 30px;
+      }
+    }
+    button{
+      background-color: teal;
+      color: white;
+      font-size: 10px;
+      border-radius: 10px;
+    }
+    h4{
+      text-align: center
+    }
+    .page-footer{
+      text-align: center;
+      color: white;
+      height: 50px;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      overflow: hidden;
+      position: fixed;
+      z-index: 4;
+    }
+}

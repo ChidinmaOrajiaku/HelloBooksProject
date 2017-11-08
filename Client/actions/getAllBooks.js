@@ -6,8 +6,8 @@ import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED, GET_BOOKS_REQUEST } from './typ
    * 
    * 
    * @export
-   * @param {data} data 
-   * @returns {data} data
+   * @param {any} data 
+   * @returns {object} get books reequest data
    */
 export function getBooksRequest(data) {
   return {
@@ -20,8 +20,8 @@ export function getBooksRequest(data) {
  * 
  * 
  * @export
- * @param {response} response
- * @returns {response} response
+ * @param {any} response
+ * @returns {object} gets a response when request is successful
  */
 export function getBooksResponse(response) {
   return {
@@ -35,7 +35,7 @@ export function getBooksResponse(response) {
    * 
    * @export
    * @param {any} error 
-   * @returns {error} error
+   * @returns {object} gets an error when request fails
    */
 export function getBooksError(error) {
   return {
@@ -44,9 +44,9 @@ export function getBooksError(error) {
   };
 }
 
-export const getRequest = () => dispatch => axios.get('/api/v1/users/books').then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(getBooksError(error));
-});
+export const getRequest = () => dispatch => axios.get('/api/v1/users/books')
+  .then((res) => {
+    dispatch(getBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(getBooksError(error));
+  });

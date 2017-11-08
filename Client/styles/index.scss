@@ -1,9 +1,4 @@
-$primaryColor: #8FA05B;
-$primaryColor2: teal;
-$primaryColor3: #003030;
-$fontFamily: Pacifico;
-$fontFamily2: Lobster;
-
+@import "./custom.scss";
 
 body {
   display: flex;
@@ -19,343 +14,98 @@ body {
  .main {
     padding-top: 40px;
     flex: 1 0 auto;
-    background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
+    background-image: url('https://images.unsplash.com/photo-1486125305436-b7144b0734f0?auto=format&fit=crop&w=1650&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D');
     background-attachment: fixed;
-    background-size: cover;
     background-repeat: no-repeat;
     .bodyNavigation{
       margin-top: -40px;
     }
-    .books{
+    .first-section{
+      min-height: 400px;
       text-align: center;
-      color: white;
-      font-family: Anton;
-      margin-top: 70px;
+      .welcome{
+        color: white;
+        font-family: Cabin;
+        font-size: bold;
+        margin-top: 70px;
+        font-size: 70px;
+        padding-top: 30px;
+      }
     }
-    .author{
-      text-align: center;
-      font-style: italic;
-      color: $primaryColor;
-      font-family: Lobster;
-    }
-    .btn{
-      margin-bottom: 50%;
-    }
-  }
- 
-  .library{
-    .card{
-      height: 350px;
-      width: 200px;
+    .second-section{
+      background-color: white;
+      min-height: 600px;
+      .initial-span{
+        max-width: 300px;
+      }
       img{
-        height: 200px;
-        width: 200px;
-      }
-    }
-    h4{
-      text-align: center;
-    }
-    .lib{
-      margin-top: 11%;
-    }
-    .btn-floating{
-      margin-top: -100%;
-    }
-    .card-title{
-      font-weight: bold;
-      font-family: $fontFamily
-    }
-    p{
-      font-family: $fontFamily;
-      font-size: 17px;
-    }
-    b{
-      font-size: 19px;
-    }
-    .borrowButton{
-      background-color: teal;
-      color: white;
-      border-radius: 10px;
-    }
-    button{
-      background-color: transparent;
-    }
-  }
-
-  .profile {
-    .profileB{
-      border: 5px dashed teal;
-      margin-top: 20px;
-      }
-      .profileImg{
         border-radius: 50%;
-        margin-left: 40px;
-        margin-top: 20px
-        }
-      .profileDetails{
-        font-size: 20px;
-        margin-top: -3px;
-        font-family: $fontFamily
-        }
-      .btn{
-        width: 30%;
-        margin-right: 5000px; 
-        }
-      hr { 
-        height: 30px; 
-        border-style: dashed; 
-        border-color: teal; 
-        border-width: 5px 0 0 0; 
-        border-radius: 20px;
-        margin-left: -15px;
-        margin-right: -15px;
-      } 
-      .modal{
-        width: 400px!important;
-        height: 200px!important;
-        overflow-x: hidden;
-        .passwordButton{
-          background-color: teal;
-          float: left;
-          margin-left: 3%;
-          color: white;
-          border-radius: 10px;
-        }
-        .passwordCButton{
-          margin-right: 3%;
-          background-color: red;
-          color: white;
-          border-radius: 10px;
-        }
+        width: 200px;
+        height: 200px;
+        -webkit-transition: all 2s ease;
+        -moz-transition: all 2s ease;
+         -ms-transition: all 2s ease;
+             transition: all 2s ease;
       }
-   }
-   .history{
-    table{
-      th{
-        border: 1px solid silver
+      img:hover{
+        width: 300px;
+        height: 300px;
       }
-      td{
-        border: 1px solid silver
+      .read{
+        text-align: center;
+        font-size: 50px;
+        font-family: $fontFamily;
+        color: $primaryColor2;
+        font-size: bold;
       }
-      thead{
-        background-color: teal
+      h1{
+        font-size: 30px;
+        font-family: $fontFamily;
+        color: $primaryColor2;
+        text-align: center;
       }
-      .material-icons{
-        cursor: pointer;
+      span{
+        font-family: $fontFamily;
+        font-size: 17px;
       }
-      i{
-        padding-left: 20px;
-        padding-right: 10px;
+    }
+    .third-section{
+      min-height: 600px;
+      background-color: $primaryColor;
+      background-size: cover;
+      margin-top: -2%;
+      .row{
+        padding: 20px;
       }
       img{
-        height: 40px;
-        width: 30px;
+        max-height: 400px;
+        max-width: 400px;
+        padding-top: 30px;
       }
-    }
-    button{
-      background-color: teal;
-      color: white;
-      font-size: 10px;
-      border-radius: 10px;
-    }
-    h4{
-      text-align: center
-    }
-}
-
-  .signUp{
-    padding-top: 40px;
-    flex: 1 0 auto;
-    background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-    .bodyNavigation{
-      margin-top:-40px;
-    }
-    .books{
-      text-align: center;
-      color: white;
-      font-family: Anton;
-      margin-top: 70px;
-    }
-    .author{
-      text-align: center;
-      font-style: italic;
-      color: $primaryColor;
-      font-family: Lobster;
-    }
-    .card{
-      background-color: white;
-      margin-top: 50px;
-      height: 620px;
-      button{
-        float: right;
-      }
-      hr{
-        margin-top: 30px;
-        width: 50%;
-      }
-      }
-    .account{
-      margin-top: 50px;
-      margin-left: 10px;
-    }
-  }
-
-  .signIn{
-    padding-top: 40px;
-    flex: 1 0 auto;
-    background-image: url('http://www.hellobooks.co.za/wp-content/uploads/2016/03/Blog-Post-3.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-    .bodyNavigation{
-      margin-top:-40px;
-    }
-    .books{
-      text-align: center;
-      color: white;
-      font-family: Anton;
-      margin-top: 70px;
-    }
-    .author{
-      text-align: center;
-      font-style: italic;
-      color: $primaryColor;
-      font-family: Lobster;
-    }
-    .card{
-      background-color: white;
-      margin-top: 50px;
-      height: 500px;
-      button{
-        float: right;
-      }
-      hr{
-        margin-top: 30px;
-        width: 50%;
-      }
-      }
-    .account{
-      margin-top: 50px;
-      margin-left: 10px;
-    }
-  }
-
-  .adminDashboard{
-    .initial{
-      margin-top: 5%;
-      margin-left: 30%;
-    }
-    .card{
-      height: 200px;
-      .card-action{
-        background-color: teal;
-      }
-      .card-title{
+      span{
+        text-align: center;
+        font-size: 50px;
         font-family: $fontFamily;
-        text-align: center;
+        color: $primaryColor2
       }
-      p{
-        text-align: center;
-        font-family: $fontFamily2;
-        font-size: 20px;
-      }
-      .cardAction{
-        cursor: pointer;
-      }
+    }
+    .books{
+      text-align: center;
+      color: black;
+      font-family: Anton;
+      margin-top: 70px;
+      font-size: 30px;
+      padding-top: 30px;
+    }
+    .author{
+      text-align: center;
+      font-style: italic;
+      color: $primaryColor;
+      font-family: Lobster;
     }
   }
   
-.adminAddBooks{
-  .card{
-    height: 600px;
-    margin-top: 5%;
-  }
-  .modal-trigger{
-    width: 10px;
-  }
-  h4{
-    text-align: center;
-    font-family: $fontFamily;
-    font-size: 40px;
-  }
-  button{
-    float: right;
-    margin-right: 15px;
-  }
-  .file{
-    width: 5px;
-    margin-left: 10px;
-  }
-  span{
-    margin-left: -10px;
-  }
-}
 
-.books{
-  img{
-    height: 40px;
-    width: 30px;
-  }
-  h4{
-    text-align: center;
-    font-family: $fontFamily;
-    font-size: 40px;
-  }
-  .status{
-    margin-top: 5%;
-    margin-bottom: 3%;
-  }
-  .sort{
-    font-style: bold;
-  }
-  table{
-    th{
-      border: 1px solid silver
-    }
-    td{
-      border: 1px solid silver
-    }
-    thead{
-      background-color: teal
-    }
-    .material-icons{
-      cursor: pointer;
-    }
-    i{
-      padding-left: 20px;
-      padding-right: 10px;
-    }
-  }
-  button{
-    background-color: white
-  }
-  .modal{
-    width: 300px;
-    background-color:$primaryColor2;
-    .modalDelete{
-      text-align: center;
-      font-size: 20px;
-    }
-    .deleteButton{
-      background-color: teal;
-      float: left;
-      margin-top: 3%;
-      margin-left: 3%;
-      color: white;
-      border-radius: 10px;
-    }
-    .cancelButton{
-      margin-top: 3%;
-      margin-right: 3%;
-      background-color: red;
-      color: white;
-      border-radius: 10px;
-    }
-  }
-}
 
   #sidenav-overlay {
     background-color: rgba(0,0,0,0.0);
@@ -370,7 +120,8 @@ body {
     bottom: 0;
     width: 100%;
     overflow: hidden;
-    position: fixed;
+    position: relative;
+    margin-top: -40px;
     z-index: 4;
   }
   .background {

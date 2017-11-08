@@ -1,0 +1,60 @@
+@import "./custom.scss";
+
+.profile {
+    .profileB{
+      border: 5px dashed teal;
+      margin-top: 20px;
+      }
+      .profileImg{
+        border-radius: 50%;
+        margin-left: 40px;
+        margin-top: 20px
+        }
+      .profileDetails{
+        font-size: 20px;
+        margin-top: -3px;
+        font-family: $fontFamily
+        }
+      .btn{
+        width: 30%;
+        margin-right: 5000px; 
+        }
+      hr { 
+        height: 30px; 
+        border-style: dashed; 
+        border-color: teal; 
+        border-width: 5px 0 0 0; 
+        border-radius: 20px;
+        margin-left: -15px;
+        margin-right: -15px;
+      } 
+      .modal{
+        width: 400px!important;
+        height: 200px!important;
+        overflow-x: hidden;
+        .passwordButton{
+          background-color: teal;
+          float: left;
+          margin-left: 3%;
+          color: white;
+          border-radius: 10px;
+        }
+        .passwordCButton{
+          margin-right: 3%;
+          background-color: red;
+          color: white;
+          border-radius: 10px;
+        }
+      }
+      .page-footer{
+        text-align: center;
+        color: white;
+        height: 50px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        overflow: hidden;
+        position: fixed;
+        z-index: 4;
+      }
+   }

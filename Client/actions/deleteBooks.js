@@ -7,7 +7,7 @@ import { DELETE_BOOKS_SUCCESSFUL, DELETE_BOOKS_FAILED, DELETE_BOOKS_REQUEST } fr
    * 
    * @export
    * @param {any} data
-   * @returns {data} data
+   * @returns {object} delete books request data
    */
 export function deleteBooksRequest(data) {
   return {
@@ -21,7 +21,7 @@ export function deleteBooksRequest(data) {
  * 
  * @export
  * @param {any} response 
- * @returns {response} response
+ * @returns {object} delete books response
  */
 export function deleteBooksResponse(response) {
   return {
@@ -35,7 +35,7 @@ export function deleteBooksResponse(response) {
    * 
    * @export
    * @param {any} error 
-   * @returns {error} error
+   * @returns {object} delete books error
    */
 export function deleteBooksError(error) {
   return {
@@ -44,9 +44,9 @@ export function deleteBooksError(error) {
   };
 }
 
-export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/books/${bookId}`).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(deleteBooksResponse(res.data));
-}).catch((error) => {
-  dispatch(deleteBooksError(error));
-});
+export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/books/${bookId}`)
+  .then((res) => {
+    dispatch(deleteBooksResponse(res.data));
+  }).catch((error) => {
+    dispatch(deleteBooksError(error));
+  });

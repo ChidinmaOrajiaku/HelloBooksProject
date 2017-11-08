@@ -7,7 +7,7 @@ import { GET_USER_SUCCESSFUL, GET_USER_FAILED, GET_USER_REQUEST } from './types'
    * 
    * @export
    * @param {any} data 
-   * @returns {data} data
+   * @returns {object} get user request data
    */
 export function getUserRequest(data) {
   return {
@@ -21,7 +21,7 @@ export function getUserRequest(data) {
    * 
    * @export
    * @param {any} response
-   * @returns {response} response
+   * @returns {object}  get response if request is successful
    */
 export function getUserResponse(response) {
   return {
@@ -35,7 +35,7 @@ export function getUserResponse(response) {
    * 
    * @export
    * @param {any} error 
-   * @returns {error} error
+   * @returns {object} get error if request fails
    */
 export function getUserError(error) {
   return {
@@ -44,9 +44,9 @@ export function getUserError(error) {
   };
 }
 
-export const getUserDataRequest = usersId => dispatch => axios.get(`/api/v1/users/${usersId}`).then((res) => {
-  localStorage.getItem('jwtToken');
-  dispatch(getUserResponse(res.data));
-}).catch((error) => {
-  dispatch(getUserError(error));
-});
+export const getUserDataRequest = usersId => dispatch => axios.get(`/api/v1/users/${usersId}`)
+  .then((res) => {
+    dispatch(getUserResponse(res.data));
+  }).catch((error) => {
+    dispatch(getUserError(error));
+  });

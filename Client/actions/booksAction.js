@@ -13,7 +13,7 @@ import {
  * 
  * @export
  * @param {any} books 
- * @returns 
+ * @returns {object} books count
  */
 export function adminCount(books) {
   return {
@@ -26,8 +26,8 @@ export function adminCount(books) {
  * 
  * 
  * @export
- * @param {any} books 
- * @returns 
+ * @param {any} rentedBooks
+ * @returns {object} rented books 
  */
 export function adminRentedCount(rentedBooks) {
   return {
@@ -40,8 +40,8 @@ export function adminRentedCount(rentedBooks) {
  * 
  * 
  * @export
- * @param {any} image 
- * @returns
+ * @param {any} response
+ * @returns {object} image saved
  */
 export function saveImageResponse(response) {
   return {
@@ -54,8 +54,8 @@ export function saveImageResponse(response) {
  * 
  * 
  * @export
- * @param {any} image 
- * @returns 
+ * @param {any} data
+ * @returns {object} image data request
  */
 export function saveImageRequest(data) {
   return {
@@ -68,8 +68,8 @@ export function saveImageRequest(data) {
  * 
  * 
  * @export
- * @param {any} image 
- * @returns 
+ * @param {any} error 
+ * @returns {object} image failed
  */
 export function saveImageError(error) {
   return {
@@ -79,29 +79,27 @@ export function saveImageError(error) {
 }
 
 export const adminCountBooksRequest = () => dispatch => axios.get('/api/v1/books').then((res) => {
-  localStorage.getItem('jwtToken');
   const countBooks = res.data.count;
   localStorage.setItem('countBooks', countBooks);
   dispatch(adminCount(res.data.count));
 });
 
-export const adminCountRentedBooksRequest = () => dispatch => axios.get('/api/v1/users/history').then((res) => {
-  localStorage.getItem('jwtToken');
-  const countRentedBooks = res.data.count;
-  localStorage.setItem('countRentedBooks', countRentedBooks);
-  dispatch(adminRentedCount(res.data.count));
-});
+export const adminCountRentedBooksRequest = () => dispatch => axios.get('/api/v1/users/history')
+  .then((res) => {
+    const countRentedBooks = res.data.count;
+    localStorage.setItem('countRentedBooks', countRentedBooks);
+    dispatch(adminRentedCount(res.data.count));
+  });
 
 /**
  * 
- * @returns {image} image
  * @export
- * @param {any} image 
+ * @param {any} image
+ * @returns {object} secure url of image save in cloudinary
  */
 export function saveImageCloudinary(image) {
-  const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/andela-chidinma/upload';
-  const cloudinaryPreset = 'fvskverm';
-
+  const cloudinaryUrl = process.env.CLOUDINARY_URL;
+  const cloudinaryPreset = process.env.CLOUDINARY_PRESET;
   const data = new FormData();
   data.append('file', image);
   data.append('upload_preset', cloudinaryPreset);

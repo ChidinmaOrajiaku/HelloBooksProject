@@ -1,0 +1,51 @@
+@import "./custom.scss";
+
+.library{
+    .card{
+      height: 350px;
+      width: 200px;
+      img{
+        height: 200px;
+        width: 200px;
+      }
+    }
+    h4{
+      text-align: center;
+    }
+    .lib{
+      margin-top: 11%;
+    }
+    .btn-floating{
+      margin-top: -100%;
+    }
+    .card-title{
+      font-weight: bold;
+      font-family: $fontFamily
+    }
+    p{
+      font-family: $fontFamily;
+      font-size: 17px;
+    }
+    b{
+      font-size: 19px;
+    }
+    .borrowButton{
+      background-color: teal;
+      color: white;
+      border-radius: 10px;
+    }
+    button{
+      background-color: transparent;
+    }
+    .page-footer{
+      text-align: center;
+      color: white;
+      height: 50px;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      overflow: hidden;
+      position: fixed;
+      z-index: 4;
+    }
+  }

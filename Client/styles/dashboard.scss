@@ -1,0 +1,37 @@
+@import "./custom.scss";
+
+.adminDashboard{
+    .initial{
+      margin-top: 5%;
+      margin-left: 30%;
+    }
+    .card{
+      height: 200px;
+      .card-action{
+        background-color: teal;
+      }
+      .card-title{
+        font-family: $fontFamily;
+        text-align: center;
+      }
+      p{
+        text-align: center;
+        font-family: $fontFamily2;
+        font-size: 20px;
+      }
+      .cardAction{
+        cursor: pointer;
+      }
+    }
+    .page-footer{
+      text-align: center;
+      color: white;
+      height: 50px;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      overflow: hidden;
+      position: fixed;
+      z-index: 4;
+    }
+  }
