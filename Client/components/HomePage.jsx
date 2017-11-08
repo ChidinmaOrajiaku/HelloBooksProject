@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import BodyNavigationBar from './BodyNavigationBar';
 import Footer from './Footer';
+import img1 from '../img/smiley1.jpg';
+import img2 from '../img/smiley2.jpg';
+import img3 from '../img/smiley3.jpg';
+import img4 from '../img/sidney1.jpg';
+import img5 from '../img/sideny2.jpeg';
+import img6 from '../img/sidney3.jpg';
+import img7 from '../img/sidney4.jpg';
+import img8 from '../img/sidney5.jpg';
+import img9 from '../img/sidney6.jpg';
 
 export default () => (
   <div className="main">
@@ -25,7 +34,7 @@ export default () => (
           <div className="col s4" data-aos="zoom-in">
             <div>
               <h1>
-                <img src="https://i.pinimg.com/originals/9f/e5/4a/9fe54a03000b0b0d4b760b857054a5bf.jpg" data-aos="flip-left" />
+                <img src={img1} data-aos="flip-left" />
                 <br/>
             Read a book
               </h1>
@@ -37,7 +46,7 @@ export default () => (
           </div>
           <div className="col s4" data-aos="zoom-in">
             <h1>
-              <img src="https://sites.google.com/a/boardmanschools.org/boardman-middle-school-libraries/_/rsrc/1415286151537/home/library3.jpg?height=322&width=400" data-aos="flip-right" />
+              <img src={img2} data-aos="flip-right" />
               <br/>
             Borrow a book
             </h1>
@@ -49,7 +58,7 @@ export default () => (
           </div>
           <div className="col s4" data-aos="zoom-in">
             <h1>
-              <img src="https://i.pinimg.com/736x/99/98/01/999801522789fdf8f97442e15f065cd5--books-and-coffee-i-love-coffee.jpg" data-aos="flip-left"/>
+              <img src={img3} data-aos="flip-left"/>
               <br/>
             Suggest a book
             </h1>
@@ -65,22 +74,22 @@ export default () => (
         <div className="row container">
           <span className="col s12" data-aos="fade-up">Popular books</span>
           <div className="col s4" data-aos="fade-up">
-            <img src="http://booksandpeople.info/wp-content/uploads/2011/02/sidney_sheldon.jpeg?w=185"/>
+            <img src={img4}/>
           </div>
           <div className="col s4" data-aos="fade-up">
-            <img src="https://i.pinimg.com/originals/e0/3a/f8/e03af83d06e29f56c36f573f4bab30ee.jpg"/>
+            <img src={img5}/>
           </div>
           <div className="col s4" data-aos="fade-up">
-            <img src="https://i.pinimg.com/originals/94/28/c8/9428c887bf1bdebc8c04bfed5c7d45e2.jpg"/>
+            <img src={img6}/>
           </div>
           <div className="col s4" data-aos="fade-up">
-            <img src="https://images.gr-assets.com/books/1306787560l/1067.jpg"/>
+            <img src={img7}/>
           </div>
           <div className="col s4" data-aos="fade-up">
-            <img src="https://jrwilliamsdesign.files.wordpress.com/2014/12/front-cover-life-is-for-living.jpg"/>
+            <img src={img8}/>
           </div>
           <div className="col s4" data-aos="fade-up">
-            <img src="https://covers.oreillystatic.com/images/0636920035534/lrg.jpg"/>
+            <img src={img9}/>
           </div>
         </div>
       </div>
