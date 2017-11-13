@@ -1,12 +1,26 @@
-const path = require('path');
+import path from 'path';
+import webpack from 'webpack';
+import Dotenv from 'dotenv-webpack';
 
-module.exports = {
-  entry: path.join(__dirname, '/Client/index.js'),
+export default {
+  entry: [
+    path.join(__dirname, '/Client/index.js'),
+  ],
   output: {
     path: '/',
     filename: 'bundle.js',
     publicPath: '/'
   },
+  devtool: 'cheap-eval-source-map',
+  plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new Dotenv({
+      path: './.env',
+      safe: false
+    })
+  ],
   module: {
     loaders: [
       {
@@ -49,4 +63,3 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.scss', '.jpg', '.png', '.gif', '.jpeg']
   }
 };
-
