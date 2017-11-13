@@ -2,6 +2,11 @@ import path from 'path';
 import webpack from 'webpack';
 import Dotenv from 'dotenv-webpack';
 
+
+const GLOBALS = {
+  'process.env.NODE_ENV': JSON.stringify('production')
+};
+
 export default {
   entry: [
     path.join(__dirname, '/Client/index.js'),
@@ -16,6 +21,7 @@ export default {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin(GLOBALS),
     new Dotenv({
       path: './.env',
       safe: false
