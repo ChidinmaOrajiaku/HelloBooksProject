@@ -7,41 +7,44 @@ import models from '../models';
 import app from '../../app';
 
 const Users = models.Users;
+// const userValidator = (res) => {
+
+// };
 const usersController = {
   create(req, res) {
+    const {
+      firstname,
+      lastname,
+      username,
+      password,
+      email,
+    } = req.body;
     // create user
     return Users
       .create({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
+        firstname,
+        lastname,
+        username,
+        email,
+        password
       })
       .then((user) => {
-        if (user.username === 'admin96' && user.email === 'admin96@gmail.com') {
-          return res.status(201).send({
-            message: 'Succesfully signed up Admin',
-            username: user.username,
-            role: 'Admin',
-          });
-        }
-        return res.status(201).send({
+        res.status(201).send({
           message: 'Account created! Proceed to login',
           username: user.username,
-          role: 'User',
         });
       })
       .catch((error) => {
-        const errorMessage = error.errors.map((value) => value.message);
-        res.status(400).send(errorMessage);
+        const errorMessage = error.errors.map(value => value.message);
+        return res.status(400).send(errorMessage);
       });
   },
   login(req, res) {
+    const { email, password } = req.body;
     return Users
       .findOne({
         where: {
-          email: req.body.email
+          email
         }
       })
       .then((user) => {
@@ -49,9 +52,13 @@ const usersController = {
           return res.status(401).send({
             message: 'User Not Found',
           });
-        } else if (req.body.email === 'admin96@gmail.com' && bcrypt.compareSync(req.body.password, user.password)) {
+        } else if (email === process.env.ADMIN_EMAIL
+          && bcrypt.compareSync(password, user.password)) {
           // create Token
-          const adminToken = jwt.sign({ username: 'admin96', role: 'admin', id: user.id }, app.get('secret'), {
+          const adminToken = jwt.sign({
+            username: process.env.ADMIN_NAME,
+            role: 'admin',
+            id: user.id }, app.get('secret'), {
             expiresIn: 60 * 60 * 72 // token expires after 72 hours
           });
           return res.status(200).send({
@@ -60,9 +67,15 @@ const usersController = {
             role: 'Admin',
             token: adminToken
           });
-        } else if (bcrypt.compareSync(req.body.password, user.password)) {
+        } else if (bcrypt.compareSync(password, user.password)) {
           // create Token
-          const userToken = jwt.sign({ username: user.username, role: 'user', id: user.id }, app.get('secret'), {
+          const userToken = jwt.sign({
+            username: user.username,
+            role: 'user',
+            id: user.id
+          },
+          app.get('secret'),
+          {
             expiresIn: 60 * 60 * 24 // token expires after 24 hours
           });
           return res.status(200).send({
@@ -75,7 +88,10 @@ const usersController = {
         res.status(401).send({ message: 'Password Incorrect' });
       })
       .catch((error) => {
-        res.status(404).send(error);
+        res.status(500).send({
+          message: 'Sorry! An error occured and you cannot login',
+          error
+        });
       });
   },
 
