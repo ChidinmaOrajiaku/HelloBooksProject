@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production webpack -p --config webpack.prod.js && NODE_ENV=production npm run pre-start",
+    "start": "NODE_ENV=production npm run pre-start",
     "pre-start": "babel-node Server/bin/www",
     "start:dev": " NODE_ENV=development babel-node Server/bin/www",
     "start:serv": "nodemon --exec babel-node Server/bin/www",
