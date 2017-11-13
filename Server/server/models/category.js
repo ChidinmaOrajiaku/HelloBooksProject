@@ -6,16 +6,16 @@ export default (sequelize, DataTypes) => {
   Category.associate = (models) => {
     // associations can be defined here
     Category.belongsTo(models.Users, {
-      foreignKey: 'usersId',
+      foreignKey: 'userId',
       onDelete: 'CASCADE',
     });
     Category.hasMany(models.Books, {
       foreignKey: 'categoryId',
-      as: 'books',
+      as: 'book',
     });
     Category.hasMany(models.RentedBooks, {
       foreignKey: 'categoryId',
-      as: 'rentedbooks',
+      as: 'rentedbook',
     });
   };
   return Category;
