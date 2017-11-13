@@ -1,7 +1,13 @@
 import db from '../models';
 
 const booksController = {
-  // create books
+  /**
+   * 
+   * 
+   * @param {any} req 
+   * @param {any} res 
+   * @returns {object} req, res
+   */
   create(req, res) {
     return db.Books
       .create({
@@ -101,13 +107,24 @@ const booksController = {
             if (rentedBooks) {
               return res.status(404).send({ message: 'Book has been borrowed but not returned' });
             }
-            // create rented books history
-            db.RentedBooks.create({
-              usersId: req.params.usersId,
-              booksId: req.body.booksId,
-              toReturnDate: after24Days,
+            db.RentedBooks.findAndCountAll({
+              where: {
+                returned: false,
+                usersId: req.params.usersId,
+              }
             })
-              .then(RentedBooks => res.status(201).send(RentedBooks))
+              .then((countedBooks) => {
+                if (countedBooks.count >= 3) {
+                  return res.status(404).send({ message: 'Borrowing limit has been reached' });
+                }
+                // create rented books history
+                db.RentedBooks.create({
+                  usersId: req.params.usersId,
+                  booksId: req.body.booksId,
+                  toReturnDate: after24Days,
+                })
+                  .then(RentedBooks => res.status(201).send(RentedBooks));
+              })
               .catch((error) => {
                 res.status(404).send(error);
               });
@@ -172,6 +189,9 @@ const booksController = {
     // admin list books borrowed but not returned
     return db.RentedBooks
       .findAll({
+        where: {
+          returned: false,
+        },
         include: [{
           model: db.Books,
         },

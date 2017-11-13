@@ -1,7 +1,7 @@
 
 export default (sequelize, DataTypes) => {
   const RentedBooks = sequelize.define('RentedBooks', {
-    booksId: DataTypes.INTEGER,
+    bookId: DataTypes.INTEGER,
 
     returned: {
       type: DataTypes.BOOLEAN,
@@ -10,17 +10,17 @@ export default (sequelize, DataTypes) => {
 
     toReturnDate: DataTypes.DATEONLY,
     returnDate: DataTypes.DATEONLY,
-    usersId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER
 
   });
   RentedBooks.associate = (models) => {
     // associations can be defined here
     RentedBooks.belongsTo(models.Books, {
-      foreignKey: 'booksId',
+      foreignKey: 'bookId',
       onDelete: 'CASCADE',
     });
     RentedBooks.belongsTo(models.Users, {
-      foreignKey: 'usersId',
+      foreignKey: 'userId',
       onDelete: 'CASCADE',
     });
     RentedBooks.belongsTo(models.Category, {

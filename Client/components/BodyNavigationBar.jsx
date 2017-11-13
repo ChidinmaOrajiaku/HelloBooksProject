@@ -9,7 +9,7 @@ export default () => {
     <div className="container-fluid navbar-fixed">
       <nav>
         <div className="nav-wrapper teal">
-          <a to="#!" className="brand-logo">HelloBooks</a>
+          <Link to="/" className="brand-logo">HelloBooks</Link>
           <a to="#" data-activates="mobile-demo"
             className="button-collapse">
             <i className="material-icons">menu</i>

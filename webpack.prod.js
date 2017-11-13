@@ -1,21 +1,51 @@
 const path = require('path');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const common = require('./webpack.config.js');
 
-module.exports = merge(common, {
-  devtool: 'cheap-module-source-map',
-  plugins: [
-    new UglifyJSPlugin({
-      sourceMap: true
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
+module.exports = {
+  entry: path.join(__dirname, '/Client/index.js'),
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.js?$/,
+        include: path.join(__dirname, 'Client'),
+        loaders: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react']
+        }
+      },
+      {
+        test: /\.jsx?$/,
+        include: path.join(__dirname, 'Client'),
+        loaders: ['react-hot-loader', 'babel-loader'],
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
+      }, {
+        test: /\.css$/,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]'
+        }
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg)$/,
+        loader: 'file-loader?name=Client/img/[name].[ext]',
       }
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin()
-  ]
-});
+    ],
+  },
+  node: {
+    net: 'empty',
+    tls: 'empty',
+    dns: 'empty'
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx', '.scss', '.jpg', '.png', '.gif', '.jpeg']
+  }
+};
 

@@ -48,6 +48,10 @@ export default {
           modules: true,
           localIdentName: '[name]__[local]___[hash:base64:5]'
         }
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg)$/,
+        loader: 'file-loader?name=Client/img/[name].[ext]',
       }
     ],
   },
@@ -57,6 +61,6 @@ export default {
     dns: 'empty'
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.scss']
+    extensions: ['*', '.js', '.jsx', '.scss', '.jpg', '.png', '.gif', '.jpeg']
   }
 };

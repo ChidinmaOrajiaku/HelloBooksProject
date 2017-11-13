@@ -23,4 +23,15 @@
         cursor: pointer;
       }
     }
+    .page-footer{
+      text-align: center;
+      color: white;
+      height: 50px;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      overflow: hidden;
+      position: fixed;
+      z-index: 4;
+    }
   }
