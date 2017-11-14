@@ -4,7 +4,7 @@ import Dotenv from 'dotenv-webpack';
 
 export default {
   entry: [
-    'webpack-hot-middleware/Client?reload=true',
+    // 'webpack-hot-middleware/Client?reload=true',
     path.join(__dirname, '/Client/index.js'),
   ],
   output: {
