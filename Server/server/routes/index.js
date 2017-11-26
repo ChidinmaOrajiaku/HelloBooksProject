@@ -1,6 +1,6 @@
-import usersController from '../controllers/users';
+import usersController from '../controllers/user';
 
-import booksController from '../controllers/books';
+import booksController from '../controllers/book';
 
 import authenticate from '../middlewares/auth';
 
@@ -19,7 +19,7 @@ export default (app) => {
   app.get('/api/v1/books/:id', authenticate.verifyUser, booksController.listABook);
   app.get('/api/v1/users/:usersId', authenticate.verifyUser, usersController.getUser);
   app.get('/api/v1/users/:usersId/history', authenticate.verifyUser, booksController.listAllBooksBorrowed);
-  app.post('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.borrow);
+  app.post('/api/v1/users/:userId/books', authenticate.verifyUser, booksController.borrow);
   app.get('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.listNotReturnedBooks);
   app.put('/api/v1/users/:usersId/books', authenticate.verifyUser, booksController.returnBooks);
 

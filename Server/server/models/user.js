@@ -50,10 +50,6 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isAlphanumeric: {
-          args: true,
-          msg: 'Password with non-alphanumeric characters are not allowed'
-        },
         notEmpty: {
           args: true,
           msg: 'Password with empty strings are not allowed'
