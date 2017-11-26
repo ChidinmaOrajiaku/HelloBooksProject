@@ -3,18 +3,58 @@ export default (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: {
+          args: /^[a-zA-Z\s]+$/,
+          msg: 'Title must be in letters'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'Title with empty strings are not allowed'
+        },
+      }
     },
     author: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: {
+          args: /^[a-zA-Z\s]+$/,
+          msg: 'Authors must be in letters'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'Author with empty strings are not allowed'
+        },
+      }
     },
     category: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: {
+          args: /^[a-zA-Z\s]+$/,
+          msg: 'Category must be in letters'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'Category with empty strings are not allowed'
+        },
+      }
     },
     image: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isUrl: {
+          args: true,
+          msg: 'Image must be a url'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'Image with empty strings are not allowed'
+        },
+      }
     },
     review: {
       type: DataTypes.STRING,

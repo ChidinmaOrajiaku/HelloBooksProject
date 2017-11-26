@@ -23,6 +23,8 @@ class Profile extends React.Component {
       username: '',
       email: '',
       password: '',
+      verifyPassword: '',
+      errors: false,
       message: this.props.passwordUpdate,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -87,6 +89,9 @@ class Profile extends React.Component {
         setTimeout(() => {
           Materialize.toast(this.props.passwordUpdate, 2000, 'teal rounded');
         }, 1000);
+      },
+      (errors) => {
+        Materialize.toast('Password incorrect', 1000, 'red rounded');
       }
     );
   }
@@ -128,6 +133,12 @@ class Profile extends React.Component {
           <div className="modal-content">
             <div className="row">
               <div className="input-field col s12">
+                <input value={this.state.verifyPassword}
+                  onChange={this.handleChange} id="verifyPassword" required="required"
+                  type="password" className="validate"/>
+                <label htmlFor="verifyPassword">Old Password</label>
+              </div>
+              <div className="input-field col s12">
                 <input value={this.state.password}
                   onChange={this.handleChange} id="password" required="required"
                   type="password" className="validate"/>
@@ -153,7 +164,7 @@ const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getUserData: state.getUser[0].response,
-    passwordUpdate: state.updatePassword[0].response.message || state.updatePassword[0].error
+    passwordUpdate: state.updatePassword[0].response.message
   }
 );
 
