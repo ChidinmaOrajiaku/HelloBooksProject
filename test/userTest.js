@@ -34,11 +34,12 @@ const admin = {
 const book = {
   title: 'Admin',
   author: 'Tosin',
-  category: 'admin96',
+  category: 'admin',
   image: 'https://static.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg',
   review: 'Nice Book'
 };
 
+const verifyPassword = user.password;
 const password = bcrypt.hashSync('1995', bcrypt.genSaltSync(10));
 
 let token = '';
@@ -55,7 +56,7 @@ describe('Users', () => {
           res.should.have.status(201);
           res.should.be.json;
           res.body.message.should.be.equal('Account created! Proceed to login');
-          res.body.role.should.be.equal('User');
+          res.body.username.should.be.equal('Chidinnma');
           if (err) return expect(err.message);
           done();
         });
@@ -67,8 +68,8 @@ describe('Users', () => {
         .end((err, res) => {
           res.should.have.status(201);
           res.should.be.json;
-          res.body.message.should.be.equal('Succesfully signed up Admin');
-          res.body.role.should.be.equal('Admin');
+          res.body.message.should.be.equal('Account created! Proceed to login');
+          res.body.username.should.be.equal('Admin');
           if (err) return expect(err.message);
           done();
         });
@@ -112,7 +113,6 @@ describe('Users', () => {
           res.should.be.json;
           res.body.message.should.be.equal('Successfully logged in');
           res.body.username.should.be.equal(user.username);
-          res.body.role.should.be.equal('User');
           if (err) return expect(err.message);
           done();
         });
@@ -127,7 +127,6 @@ describe('Users', () => {
           res.should.be.json;
           res.body.message.should.be.equal('Welcome admin');
           res.body.username.should.be.equal(admin.username);
-          res.body.role.should.be.equal('Admin');
           if (err) return expect(err);
           done();
         });
@@ -146,7 +145,7 @@ describe('Users', () => {
     it('should let users update password /users/:usersId PUT', (done) => {
       chai.request(app)
         .put('/api/v1/users/1')
-        .send({ password })
+        .send({ password, verifyPassword })
         .set('x-token', token)
         .end((err, res) => {
           res.should.have.status(200);
@@ -159,9 +158,9 @@ describe('Users', () => {
     it('should not let users update password without token', (done) => {
       chai.request(app)
         .put('/api/v1/users/1')
-        .send({ password })
+        .send({ password, verifyPassword })
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -187,7 +186,7 @@ describe('Users', () => {
       chai.request(app)
         .get('/api/v1/users/2')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -211,7 +210,7 @@ describe('Users', () => {
       chai.request(app)
         .get('/api/v1/users')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -222,7 +221,7 @@ describe('Users', () => {
         .get('/api/v1/users')
         .set('x-token', token)
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();
@@ -252,7 +251,7 @@ describe('Books request', () => {
         .post('/api/v1/users/books')
         .send(book)
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -264,7 +263,7 @@ describe('Books request', () => {
         .set('x-token', token)
         .send(book)
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();
@@ -292,7 +291,7 @@ describe('Books request', () => {
           res.should.be.json;
           res.body[0].title.should.be.equal('Admin');
           res.body[0].author.should.be.equal('Tosin');
-          res.body[0].category.should.be.equal('admin96');
+          res.body[0].category.should.be.equal('admin');
           res.body[0].image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg');
           res.body[0].review.should.be.equal('Nice Book');
           if (err) return expect(err);
@@ -303,7 +302,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/users/books')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -320,7 +319,7 @@ describe('Books request', () => {
           res.should.be.json;
           res.body.title.should.be.equal('Admin');
           res.body.author.should.be.equal('Tosin');
-          res.body.category.should.be.equal('admin96');
+          res.body.category.should.be.equal('admin');
           res.body.image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg');
           res.body.review.should.be.equal('Nice Book');
           if (err) return expect(err);
@@ -331,7 +330,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/books/1')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -343,7 +342,7 @@ describe('Books request', () => {
       chai.request(app)
         .post('/api/v1/users/1/books')
         .set('x-token', token)
-        .send({ booksId: 1 })
+        .send({ bookId: 1 })
         .end((err, res) => {
           res.should.have.status(201);
           res.should.be.json;
@@ -355,7 +354,7 @@ describe('Books request', () => {
       chai.request(app)
         .post('/api/v1/users/1/books')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -372,7 +371,7 @@ describe('Books request', () => {
           res.should.be.json;
           res.body[0].Book.title.should.be.equal('Admin');
           res.body[0].Book.author.should.be.equal('Tosin');
-          res.body[0].Book.category.should.be.equal('admin96');
+          res.body[0].Book.category.should.be.equal('admin');
           res.body[0].Book.image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg');
           res.body[0].Book.review.should.be.equal('Nice Book');
           if (err) return expect(err);
@@ -383,7 +382,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/users/2/history')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -400,7 +399,7 @@ describe('Books request', () => {
           res.should.be.json;
           res.body[0].Book.title.should.be.equal('Admin');
           res.body[0].Book.author.should.be.equal('Tosin');
-          res.body[0].Book.category.should.be.equal('admin96');
+          res.body[0].Book.category.should.be.equal('admin');
           res.body[0].Book.image.should.be.equal('https://static.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg');
           res.body[0].Book.review.should.be.equal('Nice Book');
           if (err) return expect(err);
@@ -411,7 +410,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/users/1/books')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -442,7 +441,7 @@ describe('Books request', () => {
         .set('x-token', token)
         .send({ title: book.title, author: book.author, category: 'Fiction', image: 'https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg', review: 'Nice' })
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();
@@ -453,7 +452,7 @@ describe('Books request', () => {
         .put('/api/v1/books/1')
         .send({ title: book.title, author: book.author, category: 'Fiction', image: 'https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg', review: 'Nice' })
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -477,7 +476,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/books')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -488,7 +487,7 @@ describe('Books request', () => {
         .get('/api/v1/books')
         .set('x-token', token)
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();
@@ -512,7 +511,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/users/books/unreturned/history')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -523,7 +522,7 @@ describe('Books request', () => {
         .get('/api/v1/users/books/unreturned/history')
         .set('x-token', token)
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();
@@ -551,7 +550,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/users/books/unreturned')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -562,7 +561,7 @@ describe('Books request', () => {
         .get('/api/v1/users/books/unreturned')
         .set('x-token', token)
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();
@@ -574,7 +573,7 @@ describe('Books request', () => {
       chai.request(app)
         .put('/api/v1/users/1/books')
         .set('x-token', token)
-        .send({ booksId: 1 })
+        .send({ bookId: 1 })
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.json;
@@ -587,7 +586,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/users/1/books')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -612,7 +611,7 @@ describe('Books request', () => {
       chai.request(app)
         .post('/api/v1/books/category')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -623,7 +622,7 @@ describe('Books request', () => {
         .post('/api/v1/books/category')
         .set('x-token', token)
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();
@@ -647,7 +646,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/books/category/history')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -658,7 +657,7 @@ describe('Books request', () => {
         .get('/api/v1/books/category/history')
         .set('x-token', token)
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();
@@ -682,7 +681,7 @@ describe('Books request', () => {
       chai.request(app)
         .get('/api/v1/books/category/all')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -693,7 +692,7 @@ describe('Books request', () => {
         .get('/api/v1/books/category/all')
         .set('x-token', token)
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();
@@ -715,7 +714,7 @@ describe('Books request', () => {
       chai.request(app)
         .delete('/api/v1/books/1')
         .end((err, res) => {
-          res.should.have.status(403);
+          res.should.have.status(401);
           res.should.be.json;
           res.body.error.should.be.equal('Unauthorised user');
           done();
@@ -726,7 +725,7 @@ describe('Books request', () => {
         .delete('/api/v1/books/1')
         .set('x-token', token)
         .end((err, res) => {
-          res.should.have.status(401);
+          res.should.have.status(403);
           res.should.be.json;
           res.body.message.should.be.equal('Solely for the admin');
           done();

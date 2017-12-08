@@ -50,10 +50,6 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isAlphanumeric: {
-          args: true,
-          msg: 'Password with non-alphanumeric characters are not allowed'
-        },
         notEmpty: {
           args: true,
           msg: 'Password with empty strings are not allowed'
@@ -80,20 +76,16 @@ export default (sequelize, DataTypes) => {
   Users.associate = (models) => {
     // associations can be defined here
     Users.hasMany(models.Books, {
-      foreignKey: 'usersId',
-      as: 'books',
+      foreignKey: 'userId',
+      as: 'book',
     });
     Users.hasMany(models.RentedBooks, {
-      foreignKey: 'usersId',
-      as: 'rentedbooks',
+      foreignKey: 'userId',
+      as: 'rentedbook',
     });
     Users.hasMany(models.Category, {
-      foreignKey: 'usersId',
+      foreignKey: 'userId',
       as: 'category',
-    });
-    Users.hasMany(models.Profile, {
-      foreignKey: 'usersId',
-      as: 'profile',
     });
   };
   return Users;

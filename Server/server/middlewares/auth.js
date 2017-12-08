@@ -8,7 +8,9 @@ const authenticate = {
 
     // if token not found, what?
     if (!token) {
-      return res.status(403).send({ error: 'Unauthorised user' });
+      return res.status(401).send({
+        error: 'Unauthorised user'
+      });
     }
 
     // Token verification
@@ -22,11 +24,15 @@ const authenticate = {
       next();
     });
   },
+
+  // For admin routes
   verifyAdmin: (req, res, next) => {
-    if (req.decoded && req.decoded.username === 'admin96') {
+    if (req.decoded && req.decoded.username === process.env.ADMIN_NAME) {
       return next();
     }
-    return res.status(401).send({ message: 'Solely for the admin' });
+    return res.status(403).send({
+      message: 'Solely for the admin'
+    });
   }
 };
 

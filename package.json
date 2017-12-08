@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production webpack -p --config webpack.prod.js && NODE_ENV=production npm run pre-start",
+    "start": "NODE_ENV=production npm run pre-start ---config webpack.prod.js",
     "pre-start": "babel-node Server/bin/www",
     "start:dev": " NODE_ENV=development babel-node Server/bin/www",
-    "test": "NODE_ENV=test npm run migrate:test && NODE_ENV=test npm run seed:test && NODE_ENV=test nyc --reporter=text mocha -t 100000 --compilers js:babel-core/register test/* ",
+    "start:serv": "nodemon --exec babel-node Server/bin/www",
+    "test": "NODE_ENV=test npm run migrate:test && NODE_ENV=test npm run seed:test && NODE_ENV=test ./node_modules/.bin/nyc --reporter=lcov --reporter=text mocha -t 100000 --compilers js:babel-core/register test/* ",
+    "testClient": "NODE_ENV=test jest --u ./Client/client_test/",
     "seed:test": "sequelize db:migrate",
     "migrate:test": "sequelize db:migrate:undo:all",
-    "cover": " istanbul cover _mocha",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [],
   "author": "",
@@ -23,16 +24,25 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
+    "css-loader": "^0.28.5",
     "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.4",
+    "enzyme": "^3.2.0",
+    "enzyme-to-json": "^3.2.2",
     "express": "^4.15.3",
+    "file-loader": "^1.1.5",
+    "jest": "^21.2.1",
+    "jest-localstorage-mock": "^2.1.0",
+    "jquery": "^3.2.1",
     "jsonwebtoken": "^7.4.2",
     "lodash": "^4.17.4",
     "lodash.map": "^4.6.0",
     "morgan": "^1.8.2",
+    "node-sass": "^4.5.3",
     "nyc": "^11.2.1",
     "passport": "^0.3.2",
     "pg": "^7.0.2",
@@ -51,6 +61,7 @@
     "sequelize": "^4.13.5",
     "sequelize-cli": "^3.0.0",
     "style-loader": "^0.18.2",
+    "validator": "^9.1.1",
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-dev-server": "^2.7.1",
@@ -58,11 +69,12 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
-    "babel-preset-react": "^6.24.1",
     "chai": "^4.1.1",
     "chai-http": "^3.0.0",
+    "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^3.0.0",
-    "css-loader": "^0.28.5",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.3.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-airbnb-base": "^11.3.1",
@@ -71,13 +83,28 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.2.1",
-    "file-loader": "^1.1.5",
     "isparta": "^4.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.5.0",
     "mocha-lcov-reporter": "^1.3.0",
-    "node-sass": "^4.5.3",
+    "mockery": "^2.1.0",
     "nodemon": "^1.11.0"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "unmockedModulePathPatterns": [
+      "node_modules/react/",
+      "node_modules/enzyme/"
+    ],
+    "setupFiles": [
+      "jest-localstorage-mock",
+      "<rootDir>/Client/jest/test-env.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss|less)$": "<rootDir>/Client/jest/styleMock.js",
+      "\\.(png|jpg|jpeg|gif|ttf|eot|svg)$": "<rootDir>/Client/jest/fileMock.js"
+    }
   },
   "repository": {
     "type": "git",
