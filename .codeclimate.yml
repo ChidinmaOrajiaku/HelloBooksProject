@@ -1,0 +1,13 @@
+exclude_paths:
+- "client/img/"
+- "test/"
+- "client/client_test/"
+version: "2"
+file-lines:
+  enabled: false
+return-statements:
+  enabled: false
+similar-code:
+  enabled: false
+identical-code:
+  enabled: false
