@@ -7,7 +7,7 @@
     "pre-start": "babel-node Server/bin/www",
     "start:dev": " NODE_ENV=development babel-node Server/bin/www",
     "start:serv": "nodemon --exec babel-node Server/bin/www",
-    "test": "NODE_ENV=test npm run migrate:test && NODE_ENV=test npm run seed:test && NODE_ENV=test nyc --reporter=text mocha -t 100000 --compilers js:babel-core/register test/* ",
+    "test": "NODE_ENV=test npm run migrate:test && NODE_ENV=test npm run seed:test && NODE_ENV=test nyc --reporter=lcov --reporter=text mocha -t 100000 --compilers js:babel-core/register test/* ",
     "testClient": "NODE_ENV=test jest --u ./Client/client_test/",
     "seed:test": "sequelize db:migrate",
     "migrate:test": "sequelize db:migrate:undo:all",
