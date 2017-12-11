@@ -8,11 +8,11 @@
 HelloBooks is an app that manages library processes (tracking, stocking and renting). Users can borrow books and read them within the app.
 
 ## FEATURES
-. ES6 - Using [Babel](https://www.npmjs.com/package/babel)
-
-. User registration API - Using [JWT](https://www.npmjs.com/package/jsonwebtoken) and [bcrypt](https://www.npmjs.com/package/bcrypt)
-
-. Style guide - [Eslint with airbnb style guide](https://www.npmjs.com/package/eslint-config-airbnb)
+. Users can sign up/login
+. Users can update password
+. Users can rent books
+. Users can return books
+. Admin can add book, modify and delete book
 
 ## INSTALLATIONS
 . [Node.js-Express](https://docs.npmjs.com/getting-started/installing-node)
