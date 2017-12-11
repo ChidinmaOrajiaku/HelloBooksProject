@@ -49,14 +49,16 @@ The following apis are present in the application
 ## An API route that allow users to get all the books that the user has borrowed but has not returned
        . GET: /api/users/<userId>/books?returned=false
        
+To get more information on the apis, visit the [api documention](https://chidinmaorajiaku.github.io/slate)
+       
 ## CONTRIBUTING
-To contribute, all files must adhere to the following standard:
- . ES6
- . Airbnb style guide
+Your contribution will be well appreciated as long as you follow the covention in our [WIKI](https://github.com/ChidinmaOrajiaku/HelloBooksProject/wiki)!
+
+## HEROKU LINK
+You can visit the app on [HelloBooks](https://hello-books-bootcamp.herokuapp.com)
 
 ## LICENSE
-
-MIT License
+This project is licensed under the MIT License
 
 Copyright (c) [2017] [Chidinma Orajiaku]
 
