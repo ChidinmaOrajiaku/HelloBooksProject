@@ -25,7 +25,9 @@ HelloBooks is an app that manages library processes (tracking, stocking and rent
 . [PostgreSQL](https://www.postgresql.org/download/)
 ## or simply 
 . git clone this repository
+
 . Run "npm-install" to install dependencies
+
 . Run "npm run start" to start the application server
 
 ## APIs
