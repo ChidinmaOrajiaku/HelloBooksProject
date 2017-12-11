@@ -9,9 +9,13 @@ HelloBooks is an app that manages library processes (tracking, stocking and rent
 
 ## FEATURES
 . Users can sign up/login
+
 . Users can update password
+
 . Users can rent books
+
 . Users can return books
+
 . Admin can add book, modify and delete book
 
 ## INSTALLATIONS
@@ -50,6 +54,9 @@ The following apis are present in the application
        . GET: /api/users/<userId>/books?returned=false
        
 To get more information on the apis, visit the [api documention](https://chidinmaorajiaku.github.io/slate)
+
+## AUTHOR
+Ms. Chidinma Orajiaku
        
 ## CONTRIBUTING
 Your contribution will be well appreciated as long as you follow the covention in our [WIKI](https://github.com/ChidinmaOrajiaku/HelloBooksProject/wiki)!
