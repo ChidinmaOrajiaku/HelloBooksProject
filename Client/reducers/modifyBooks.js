@@ -4,6 +4,7 @@ const initialState = [{
   modifyData: {},
   response: '',
   error: '',
+  isModified: ''
 }];
 
 export default (state = initialState, action = {}) => {
@@ -20,6 +21,7 @@ export default (state = initialState, action = {}) => {
         modifyData: {},
         response: action.response,
         error: '',
+        isModified: true
       }, ...state];
 
     case MODIFY_BOOKS_FAILED:
@@ -27,6 +29,7 @@ export default (state = initialState, action = {}) => {
         modifyData: {},
         response: '',
         error: action.error,
+        isModified: false
       }, ...state];
 
     default: return state;

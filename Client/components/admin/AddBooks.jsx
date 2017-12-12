@@ -24,6 +24,7 @@ class AddBooks extends React.Component {
       categoryData: [],
       tempImage: '',
       image: '',
+      imagePreview: '',
       review: '',
       pointer: false,
       loader: true
@@ -42,6 +43,14 @@ class AddBooks extends React.Component {
     this.props.getAllCategoryRequest().then(() => {
       $('select').material_select();
       $('select').change(event => this.handleChange(event));
+    });
+    $('.modal').modal({
+      dismissible: true,
+      opacity: 0.5,
+      inDuration: 300,
+      outDuration: 200,
+      startingTop: '2%',
+      endingTop: '20%',
     });
   }
 
@@ -109,7 +118,10 @@ class AddBooks extends React.Component {
         const newUpload = new Image();
         newUpload.src = imageInputReader.result;
         newUpload.onload = () => {
-          this.setState({ tempImage: imageInput });
+          this.setState({
+            tempImage: imageInput,
+            imagePreview: newUpload.src
+          });
         };
       };
     }
@@ -123,16 +135,30 @@ class AddBooks extends React.Component {
      * @memberof AddBooks
      */
   render() {
+    const preview = this.state.imagePreview === '' ?
+      <button
+        href="#modal1"
+        className="modal-trigger previewBtn"
+        disabled>Preview
+      </button> :
+      <button
+        href="#modal1"
+        className="modal-trigger previewBtn">Preview
+      </button>;
     const category = this.state.loading ? <div> Loading... </div> :
       <div className="row">
         <div className="input-field col s12 status">
-          <select className="teal-text" id= "category" value="1"
+          <select
+            className="teal-text"
+            id= "category"
+            value="1"
             onChange={this.handleChange}>
             {<option className="default" value="..." disabled value>
               Select One
             </option>}
             { Object.keys(this.state.categoryData).map(key =>
-              (<option key = {key}
+              (<option
+                key = {key}
                 value={this.state.categoryData[key].category }
               >
                 {this.state.categoryData[key].category }
@@ -151,8 +177,11 @@ class AddBooks extends React.Component {
             <form onSubmit={this.onAddSubmit} id="form">
               <div className="row">
                 <div className="input-field col s12">
-                  <input value={this.state.title} onChange={this.handleChange}
-                    id="title" type="text" className="validate"
+                  <input
+                    value={this.state.title}
+                    onChange={this.handleChange}
+                    id="title" type="text"
+                    className="validate"
                     required="required"
                   />
                   <label htmlFor="title">Title</label>
@@ -160,8 +189,12 @@ class AddBooks extends React.Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input value={this.state.author} onChange={this.handleChange}
-                    id="author" type="text" className="validate"
+                  <input
+                    value={this.state.author}
+                    onChange={this.handleChange}
+                    id="author"
+                    type="text"
+                    className="validate"
                     required="required"
                   />
                   <label htmlFor="author">Author</label>
@@ -172,30 +205,52 @@ class AddBooks extends React.Component {
                 <div className="file-field input-field col s12">
                   <div className="btn file">
                     <span><i className="material-icons">file_upload</i></span>
-                    <input type="file" onChange={this.handleImageChange}
+                    <input
+                      type="file"
+                      onChange={this.handleImageChange}
                       id="image"/>
                   </div>
                   <div className="file-path-wrapper">
-                    <input className="file-path validate" type="text"
-                      placeholder="Upload Image" required="required"
+                    <input
+                      className="file-path validate"
+                      type="text"
+                      placeholder="Upload Image"
+                      required="required"
                     />
                   </div>
                 </div>
+                {preview}
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <textarea value={this.state.review}
+                  <textarea
+                    value={this.state.review}
                     onChange={this.handleChange}
-                    id="review" className="materialize-textarea"
+                    id="review"
+                    className="materialize-textarea"
                     required="required">
                   </textarea>
                   <label htmlFor="review">Review</label>
                 </div>
               </div>
-              <button className="btn waves-effect waves-light" type="submit"
-                name="action">Add<i className="material-icons right">send</i>
+              <button
+                className="btn waves-effect waves-light"
+                type="submit"
+                name="action">Add
+                <i className="material-icons right">send</i>
               </button>
             </form>
+            <div id="modal1" className="modal">
+              <div className="modal-content">
+                <img src= {this.state.imagePreview}/>
+              </div>
+              <div className="modal-footer">
+                <a className="modal-action modal-close">
+                  <button
+                    className="close">Close
+                  </button></a>
+              </div>
+            </div>
           </div>
         </div>
         <div> <Footer /></div>

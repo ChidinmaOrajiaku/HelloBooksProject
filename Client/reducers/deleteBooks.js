@@ -4,6 +4,7 @@ const initialState = [{
   deleteData: {},
   response: '',
   error: '',
+  isDeleted: false
 }];
 
 export default (state = initialState, action = {}) => {
@@ -13,6 +14,7 @@ export default (state = initialState, action = {}) => {
         deleteData: action.data,
         response: '',
         error: '',
+        isDeleted: false
       }, ...state];
 
     case DELETE_BOOKS_SUCCESSFUL:
@@ -20,6 +22,7 @@ export default (state = initialState, action = {}) => {
         deleteData: {},
         response: action.response,
         error: '',
+        isDeleted: true
       }, ...state];
 
     case DELETE_BOOKS_FAILED:
@@ -27,6 +30,7 @@ export default (state = initialState, action = {}) => {
         deleteData: {},
         response: '',
         error: action.error,
+        isDeleted: false
       }, ...state];
 
     default: return state;

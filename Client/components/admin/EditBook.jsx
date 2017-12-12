@@ -25,7 +25,10 @@ class EditBook extends React.Component {
       category: '',
       tempImage: '',
       image: '',
+      imagePreview: '',
+      preview: '',
       review: '',
+      modified: '',
       bookData: '',
       categoryData: [],
       currentBookId: localStorage.getItem('currentBookId'),
@@ -66,6 +69,7 @@ class EditBook extends React.Component {
         title: nextProps.getABookData.title,
         author: nextProps.getABookData.author,
         category: nextProps.getABookData.category,
+        imagePreview: nextProps.getABookData.image,
         image: nextProps.getABookData.image,
         review: nextProps.getABookData.review
       });
@@ -75,14 +79,16 @@ class EditBook extends React.Component {
         image: nextProps.imageInputUrl,
         pointer: false }),
       setTimeout(() => {
-        this.props.adminModifyRequest(this.state.currentBookId, this.state).then(
-          () => {
-            this.props.history.push('/books');
-            Materialize.toast('Successfully Updated', 2000, 'teal rounded');
-          }
-        );
+        this.props.adminModifyRequest(this.state.currentBookId, this.state);
       }, 1000);
+      if (nextProps.modifyBookData.isModified === true) {
+        this.props.history.push('/books');
+        Materialize.toast('Successfully Updated', 2000, 'teal rounded');
+      } else {
+        Materialize.toast('Not Updated', 2000, 'red rounded');
+      }
     }
+
     if (nextProps.getCategoryData) {
       this.setState({
         categoryLoader: false,
@@ -117,7 +123,11 @@ class EditBook extends React.Component {
         const newUpload = new Image();
         newUpload.src = imageInputReader.result;
         newUpload.onload = () => {
-          this.setState({ tempImage: imageInput });
+          this.setState({
+            tempImage: imageInput,
+            imagePreview: imageInput.name,
+            preview: newUpload.src
+          });
         };
       };
     }
@@ -144,12 +154,15 @@ class EditBook extends React.Component {
  */
   onEditRequest(event) {
     event.preventDefault();
-    this.props.adminModifyRequest(this.state.currentBookId, this.state).then(
-      () => {
+    this.props.adminModifyRequest(this.state.currentBookId, this.state);
+    setTimeout(() => {
+      if (this.props.modifyBookData.isModified === true) {
         this.props.history.push('/books');
         Materialize.toast('Successfully Updated', 2000, 'teal rounded');
+      } else {
+        Materialize.toast('Not Updated', 2000, 'red rounded');
       }
-    );
+    }, 1000);
   }
 
   /**
@@ -207,7 +220,7 @@ class EditBook extends React.Component {
                       id="image"/>
                   </div>
                   <div className="file-path-wrapper">
-                    <input value={this.state.image}
+                    <input value={this.state.imagePreview}
                       className="file-path validate" type="text"
                       placeholder="Upload Image"/>
                   </div>
@@ -240,7 +253,7 @@ EditBook.contextTypes = {
 
 const mapStateToProps = state => (
   {
-    modifyBookData: state.modifyBooks[0].response,
+    modifyBookData: state.modifyBooks[0],
     imageInputUrl: state.uploadImage[0].response,
     getBookId: state.editBookId[0].response,
     getABookData: state.getABook[0].response,

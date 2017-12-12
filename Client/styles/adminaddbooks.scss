@@ -2,7 +2,7 @@
 
 .adminAddBooks{
     .card{
-      height: 600px;
+      height: 650px;
       margin-top: 5%;
     }
     .modal-trigger{
@@ -21,8 +21,32 @@
       width: 5px;
       margin-left: 10px;
     }
+    .previewBtn{
+      float: right !important;
+      width: 100px!important;
+    }
+    .previewBtn:focus{
+      background-color: $primaryColor2;
+      color: white;
+    }
     span{
       margin-left: -10px;
+    }
+    .modal{
+      width: 300px;
+      height: 400px;
+      overflow: hidden;
+      img{
+        width: 250px;
+        height: 300px;
+      }
+      .close{
+        margin-top: 3%;
+        margin-right: 3%;
+        background-color: $primaryColor2;
+        color: white;
+        border-radius: 10px;
+      }
     }
     .page-footer{
       text-align: center;
