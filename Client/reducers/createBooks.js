@@ -4,6 +4,7 @@ const initialState = [{
   createData: {},
   response: '',
   error: '',
+  isAdded: '',
 }];
 
 export default (state = initialState, action = {}) => {
@@ -20,6 +21,7 @@ export default (state = initialState, action = {}) => {
         createData: {},
         response: action.response,
         error: '',
+        isAdded: true,
       }, ...state];
 
     case CREATE_BOOKS_FAILED:
@@ -27,6 +29,7 @@ export default (state = initialState, action = {}) => {
         createData: {},
         response: '',
         error: action.error,
+        isAdded: false,
       }, ...state];
 
     default: return state;

@@ -11,7 +11,7 @@ import { getUserDataRequest } from '../actions/getUser';
  * @class NavigationBar
  * @extends {React.Component}
  */
-class NavigationBar extends React.Component {
+export class NavigationBar extends React.Component {
   /**
      * @constructor
      * @param {object} props 
@@ -70,7 +70,6 @@ class NavigationBar extends React.Component {
   * @memberof NavigationBar
   */
   render() {
-    const { logout } = this.props;
     const { isAuthenticated } = this.props.auth;
 
     const adminLinks = (

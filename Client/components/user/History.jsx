@@ -25,7 +25,7 @@ class History extends React.Component {
       yetToReturn: [],
       bookStatus: '',
       loading: true,
-      booksId: '',
+      bookId: '',
       filterYetData: []
     };
     this.handleReturn = this.handleReturn.bind(this);
@@ -77,23 +77,25 @@ class History extends React.Component {
  */
   handleReturn(event) {
     event.preventDefault();
-    localStorage.setItem('booksId', event.target.value);
+    localStorage.setItem('bookId', event.target.value);
     this.setState({
-      booksId: localStorage.getItem('booksId'),
+      bookId: localStorage.getItem('bookId'),
       bookIndex: event.target.dataset.index
     }),
     setTimeout(() => {
-      this.props.returnBook(this.props.usersId, this.state).then(() => {
+      this.props.returnBook(this.props.usersId, this.state)
+    });
+    setTimeout(() => {
+      if (this.props.returnBookData.hasReturned === true) {
         this.state.filterYetData.splice(this.state.bookIndex, 1);
         this.setState({
           yetToReturn: this.state.filterYetData
         });
         Materialize.toast('Succesfully Returned', 2000, 'teal rounded');
+      } else {
+        Materialize.toast('Not Returned', 2000, 'red rounded');
       }
-      ).catch(() => {
-        Materialize.toast('Cannot return', 500, 'red rounded');
-      });
-    });
+    }, 1000);
   }
 
   /**
@@ -153,7 +155,7 @@ class History extends React.Component {
               <td>{ this.state.yetToReturn[key].Book.title }</td>
               <td>{ this.state.yetToReturn[key].Book.author }</td>
               <td>{ this.state.yetToReturn[key].Book.category }</td>
-              <td><button value={this.state.yetToReturn[key].booksId}
+              <td><button value={this.state.yetToReturn[key].bookId}
                 onClick={this.handleReturn} data-index= {key}
                 className="waves-effect waves-light btn">Return</button>
               </td>
@@ -195,6 +197,7 @@ const mapStateToProps = state => (
     usersId: state.auth.user.id,
     getUserBorrowedData: state.userBorrowedBooks[0].response,
     yetToReturnData: state.yetToReturn[0].response,
+    returnBookData: state.returnBook[0]
   }
 );
 

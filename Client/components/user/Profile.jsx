@@ -83,17 +83,14 @@ class Profile extends React.Component {
    */
   handlePassword(event) {
     event.preventDefault();
-    this.props.updatePassword(this.props.usersId, this.state).then(
-      () => {
-        Materialize.toast('Loading', 1000, 'red rounded');
-        setTimeout(() => {
-          Materialize.toast(this.props.passwordUpdate, 2000, 'teal rounded');
-        }, 1000);
-      },
-      (errors) => {
-        Materialize.toast('Password incorrect', 1000, 'red rounded');
+    this.props.updatePassword(this.props.usersId, this.state);
+    setTimeout(() => {
+      if (this.props.passwordUpdate.isUpdated === true) {
+        Materialize.toast('Successfully Updated', 2000, 'teal rounded');
+      } else {
+        Materialize.toast('Password Incorrect', 2000, 'red rounded');
       }
-    );
+    }, 1000);
   }
 
   /**
@@ -164,7 +161,7 @@ const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getUserData: state.getUser[0].response,
-    passwordUpdate: state.updatePassword[0].response.message
+    passwordUpdate: state.updatePassword[0]
   }
 );
 

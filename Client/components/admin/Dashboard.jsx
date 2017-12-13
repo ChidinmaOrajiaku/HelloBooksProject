@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
-import { adminCountBooksRequest,
-  adminCountRentedBooksRequest } from '../../actions/booksAction';
+import {
+  adminCountBooksRequest,
+  adminCountRentedBooksRequest
+} from '../../actions/booksAction';
 import { adminCountUserRequest } from '../../actions/adminCountUsers';
 
 /**

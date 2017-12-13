@@ -66,14 +66,16 @@ class AddBooks extends React.Component {
         image: nextProps.imageInputUrl,
         pointer: false }),
       setTimeout(() => {
-        this.props.adminAddRequest(this.state).then(
-          () => {
-            this.props.history.push('/books');
-            Materialize.toast(this.props.createBooksResponse,
-              2000, 'teal rounded');
-          }
-        );
+        this.props.adminAddRequest(this.state)
       }, 1000);
+      setTimeout(() => {
+        if (this.props.createBooksResponse.isAdded === true) {
+          this.props.history.push('/books');
+          Materialize.toast('Successfully Added', 2000, 'teal rounded');
+        } else {
+          Materialize.toast('Not Created', 2000, 'red rounded');
+        }
+      }, 2000);
     }
     this.setState({
       loader: false,
@@ -261,7 +263,7 @@ class AddBooks extends React.Component {
 
 const mapStateToProps = state => (
   {
-    createBooksResponse: state.createBooks[0].response.message,
+    createBooksResponse: state.createBooks[0],
     imageInputUrl: state.uploadImage[0].response || state.uploadImage[0].error,
     getCategoryData: state.getCategory[0].response
   }

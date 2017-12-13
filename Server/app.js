@@ -32,7 +32,7 @@ app.use(webpackHotMiddleware(compiler));
 app.use(logger('dev'));
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('secret', process.env.TOKEN_SECRET);
