@@ -104,11 +104,6 @@ export class NavigationBar extends React.Component {
     const userLinks = (
       <div>
         <li>
-          <Link to="/dashboard">
-            <i className="material-icons">account_circle</i>Dashboard
-          </Link>
-        </li>
-        <li>
           <Link to="/library">
             <i className="material-icons">book</i>Library
           </Link>

@@ -1,10 +1,10 @@
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
-// export const GET_BOOKS = 'GET_BOOKS';
+export const GET_NOT_RETURNED_BOOKS_COUNT = 'GET_NOT_RETURNED_BOOKS_COUNT';
 
-// export const BORROW_BOOKS = 'BORROW_BOOKS';
+export const CREATE_CATEGORY = 'CREATE_CATEGORY';
 
-// export const DELETE_BOOKS = 'DELETE_BOOKS';
+export const GET_CATEGORY_COUNT = 'GET_CATEGORY_COUNT';
 
 // export const MODIFY_BOOKS = 'MODIFY_BOOKS';
 
