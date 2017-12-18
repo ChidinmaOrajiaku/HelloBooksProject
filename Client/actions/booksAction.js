@@ -154,14 +154,14 @@ export const adminCreateCategoryRequest = category => dispatch => axios.post('/a
  * @returns {object} secure url of image save in cloudinary
  */
 export function saveImageCloudinary(image) {
-  const cloudinaryUrl = process.env.CLOUDINARY_URL;
-  const cloudinaryPreset = process.env.CLOUDINARY_PRESET;
+  const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/andela-chidinma/upload';
+  const cloudinaryPreset = 'fvskverm';
   const data = new FormData();
   data.append('file', image);
   data.append('upload_preset', cloudinaryPreset);
   return (dispatch) => {
     dispatch(saveImageRequest(image));
-    return fetch('https://api.cloudinary.com/v1_1/andela-chidinma/upload', {
+    return fetch(cloudinaryUrl, {
       method: 'POST',
       body: data,
     })
