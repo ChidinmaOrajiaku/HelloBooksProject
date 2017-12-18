@@ -12,7 +12,7 @@ import { userSigninRequest } from '../actions/signinAction';
  * @class SignIn
  * @extends {React.Component}
  */
-class SignIn extends React.Component {
+export class SignIn extends React.Component {
   /**
    * Creates an instance of SignIn.
    * @param {any} props 
@@ -74,10 +74,13 @@ class SignIn extends React.Component {
           <div className="col m6 offset-m3">
             <div className="card" data-aos="flip-up">
               <div className="card-content black-text">
-                <form onSubmit={this.onSigninSubmit} id="form">
+                <form
+                  onSubmit={this.onSigninSubmit}
+                  id="form">
                   <div className="row">
                     <div className="input-field col s12">
-                      <input value={this.state.email}
+                      <input
+                        value={this.state.email}
                         onChange={this.handleChange} id="email"
                         required="required" type="email" className="validate"
                       />
@@ -86,21 +89,30 @@ class SignIn extends React.Component {
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <input value={this.state.password}
+                      <input
+                        value={this.state.password}
                         onChange={this.handleChange} id="password"
-                        required="required" type="password" className="validate"
+                        required="required"
+                        type="password"
+                        className="validate"
                       />
                       <label htmlFor="password">Password</label>
                     </div>
                   </div>
-                  <button className="btn waves-effect waves-light" type="submit"
+                  <button
+                    className="btn waves-effect waves-light"
+                    type="submit"
                     name="action">Sign In
                     <i className="material-icons right">send</i>
                   </button>
                 </form>
               </div>
               <div className="account">
-                <p> Not a member? <Link to="/register"> Sign Up </Link> </p>
+                <p> Not a member?
+                  <Link to="/register">
+                  Sign Up
+                  </Link>
+                </p>
               </div>
             </div>
           </div>

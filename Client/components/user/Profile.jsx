@@ -83,17 +83,14 @@ class Profile extends React.Component {
    */
   handlePassword(event) {
     event.preventDefault();
-    this.props.updatePassword(this.props.usersId, this.state).then(
-      () => {
-        Materialize.toast('Loading', 1000, 'red rounded');
-        setTimeout(() => {
-          Materialize.toast(this.props.passwordUpdate, 2000, 'teal rounded');
-        }, 1000);
-      },
-      (errors) => {
-        Materialize.toast('Password incorrect', 1000, 'red rounded');
+    this.props.updatePassword(this.props.usersId, this.state);
+    setTimeout(() => {
+      if (this.props.passwordUpdate.isUpdated === true) {
+        Materialize.toast('Successfully Updated', 2000, 'teal rounded');
+      } else {
+        Materialize.toast('Password Incorrect', 2000, 'red rounded');
       }
-    );
+    }, 1000);
   }
 
   /**
@@ -106,16 +103,12 @@ class Profile extends React.Component {
     return (
       <div className="profile row">
         <div className=""> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m5"> PROFILE DETAILS</h4>
+        <h4 className="col m9 offset-m2"> PROFILE DETAILS</h4>
+        <hr className="col m3 offset-m5"></hr>
         <div className="row">
           <div className="col m3 offset-m5 profileB">
-            <div className="">
-              <div className="card-image">
-                <img className="profileImg"
-                  src="https://cdn-images-1.medium.com/fit/c/200/200/1*P8ve1Obc8tLIyWgwlx1E8A.jpeg"/>
-              </div>
+            <div className="card">
               <div className="card-content">
-                <hr></hr>
                 <p className="profileDetails">
                   Name: {`${this.state.firstname} ${this.state.lastname}`}</p>
                 <p className="profileDetails"> Username: {this.state.username}</p>
@@ -164,7 +157,7 @@ const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getUserData: state.getUser[0].response,
-    passwordUpdate: state.updatePassword[0].response.message
+    passwordUpdate: state.updatePassword[0]
   }
 );
 

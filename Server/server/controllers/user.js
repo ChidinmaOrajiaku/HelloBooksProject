@@ -176,17 +176,17 @@ const usersController = {
     return Users
       .findById(userReturnedId)
       .then((user) => {
+        if (!user) {
+          return res.status(404).send({
+            message: messages.notFound,
+          });
+        }
         const {
           firstname,
           lastname,
           email,
           username
         } = user;
-        if (!user) {
-          return res.status(404).send({
-            message: messages.notFound,
-          });
-        }
         return res.status(200).send({
           firstname,
           lastname,

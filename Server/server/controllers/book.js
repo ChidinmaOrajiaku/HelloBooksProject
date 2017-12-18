@@ -429,7 +429,9 @@ const booksController = {
     return db.RentedBooks
       .findAndCountAll({})
       .then((rentedbooks) => {
-        res.status(200).send(rentedbooks);
+        res.status(200).send({
+          count: rentedbooks.count
+        });
       })
       .catch((error) => {
         res.status(500).send({
@@ -446,7 +448,9 @@ const booksController = {
         }
       })
       .then((rentedbooks) => {
-        res.status(200).send(rentedbooks);
+        res.status(200).send({
+          count: rentedbooks.count
+        });
       })
       .catch((error) => {
         res.status(500).send({
@@ -474,7 +478,9 @@ const booksController = {
     return db.Category
       .findAndCountAll({})
       .then((category) => {
-        res.status(200).send(category);
+        res.status(200).send({
+          count: category.count
+        });
       })
       .catch((error) => {
         res.status(500).send({

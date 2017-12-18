@@ -4,6 +4,7 @@ const initialState = [{
   passwordData: {},
   response: '',
   error: '',
+  isUpdated: '',
 }];
 
 export default (state = initialState, action = {}) => {
@@ -20,13 +21,15 @@ export default (state = initialState, action = {}) => {
         passwordData: {},
         response: action.response,
         error: '',
+        isUpdated: true,
       }, ...state];
 
     case UPDATE_PASSWORD_FAILED:
       return [{
         passwordData: {},
         response: '',
-        error: action.error.response.data.errors[0].message,
+        error: action.error,
+        isUpdated: false
       }, ...state];
 
     default: return state;

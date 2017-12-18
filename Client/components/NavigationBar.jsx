@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import image from '../img/smiley3.jpg';
 import { logout } from '../actions/signinAction';
 import { getUserDataRequest } from '../actions/getUser';
 
@@ -11,7 +12,7 @@ import { getUserDataRequest } from '../actions/getUser';
  * @class NavigationBar
  * @extends {React.Component}
  */
-class NavigationBar extends React.Component {
+export class NavigationBar extends React.Component {
   /**
      * @constructor
      * @param {object} props 
@@ -70,7 +71,6 @@ class NavigationBar extends React.Component {
   * @memberof NavigationBar
   */
   render() {
-    const { logout } = this.props;
     const { isAuthenticated } = this.props.auth;
 
     const adminLinks = (
@@ -105,11 +105,6 @@ class NavigationBar extends React.Component {
     const userLinks = (
       <div>
         <li>
-          <Link to="/dashboard">
-            <i className="material-icons">account_circle</i>Dashboard
-          </Link>
-        </li>
-        <li>
           <Link to="/library">
             <i className="material-icons">book</i>Library
           </Link>
@@ -140,7 +135,7 @@ class NavigationBar extends React.Component {
               <div className="background"></div>
               <a href="#!user">
                 <img className="circle"
-                  src="https://cdn-images-1.medium.com/fit/c/200/200/1*P8ve1Obc8tLIyWgwlx1E8A.jpeg"
+                  src={image}
                 />
               </a>
               <a href="#!name">
