@@ -8,9 +8,9 @@ const initialState = {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case COUNT_USERS:
-      return {
+      return [{
         adminCountUsers: action.adminCountUsers
-      };
+      }, ...state];
     default: return state;
   }
 };

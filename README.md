@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject.svg?branch=test)](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject)
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5a0fc5c54d3007c06ed6/test_coverage)](https://codeclimate.com/github/ChidinmaOrajiaku/HelloBooksProject/test_coverage)
+[![Coverage Status](https://coveralls.io/repos/github/ChidinmaOrajiaku/HelloBooksProject/badge.svg)](https://coveralls.io/github/ChidinmaOrajiaku/HelloBooksProject)
 
 # HelloBooksProject
 
@@ -7,11 +8,15 @@
 HelloBooks is an app that manages library processes (tracking, stocking and renting). Users can borrow books and read them within the app.
 
 ## FEATURES
-. ES6 - Using [Babel](https://www.npmjs.com/package/babel)
+. Users can sign up/login
 
-. User registration API - Using [JWT](https://www.npmjs.com/package/jsonwebtoken) and [bcrypt](https://www.npmjs.com/package/bcrypt)
+. Users can update password
 
-. Style guide - [Eslint with airbnb style guide](https://www.npmjs.com/package/eslint-config-airbnb)
+. Users can rent books
+
+. Users can return books
+
+. Admin can add book, modify and delete book
 
 ## INSTALLATIONS
 . [Node.js-Express](https://docs.npmjs.com/getting-started/installing-node)
@@ -20,7 +25,9 @@ HelloBooks is an app that manages library processes (tracking, stocking and rent
 . [PostgreSQL](https://www.postgresql.org/download/)
 ## or simply 
 . git clone this repository
+
 . Run "npm-install" to install dependencies
+
 . Run "npm run start" to start the application server
 
 ## APIs
@@ -48,14 +55,19 @@ The following apis are present in the application
 ## An API route that allow users to get all the books that the user has borrowed but has not returned
        . GET: /api/users/<userId>/books?returned=false
        
+To get more information on the apis, visit the [api documention](https://chidinmaorajiaku.github.io/slate)
+
+## AUTHOR
+Ms. Chidinma Orajiaku
+       
 ## CONTRIBUTING
-To contribute, all files must adhere to the following standard:
- . ES6
- . Airbnb style guide
+Your contribution will be well appreciated as long as you follow the covention in our [WIKI](https://github.com/ChidinmaOrajiaku/HelloBooksProject/wiki)!
+
+## HEROKU LINK
+You can visit the app on [HelloBooks](https://hello-books-bootcamp.herokuapp.com)
 
 ## LICENSE
-
-MIT License
+This project is licensed under the MIT License
 
 Copyright (c) [2017] [Chidinma Orajiaku]
 

@@ -2,6 +2,9 @@ import axios from 'axios';
 import {
   GET_BOOKS_COUNT,
   GET_RENTED_BOOKS_COUNT,
+  GET_NOT_RETURNED_BOOKS_COUNT,
+  CREATE_CATEGORY,
+  GET_CATEGORY_COUNT,
   SAVE_IMAGE_FAILED,
   SAVE_IMAGE_SUCCESSFUL,
   SAVE_IMAGE_REQUEST,
@@ -33,6 +36,48 @@ export function adminRentedCount(rentedBooks) {
   return {
     type: GET_RENTED_BOOKS_COUNT,
     rentedBooks
+  };
+}
+
+/**
+ * 
+ * 
+ * @export
+ * @param {any} notReturnedBooks
+ * @returns {object} notReturnedBooks
+ */
+export function adminNotReturnedCount(notReturnedBooks) {
+  return {
+    type: GET_NOT_RETURNED_BOOKS_COUNT,
+    notReturnedBooks
+  };
+}
+
+/**
+ * 
+ * 
+ * @export
+ * @param {any} category
+ * @returns {object} category 
+ */
+export function adminCreateCategory(category) {
+  return {
+    type: CREATE_CATEGORY,
+    category
+  };
+}
+
+/**
+ * 
+ * 
+ * @export
+ * @param {any} categoryCount
+ * @returns {object} categoryCount
+ */
+export function adminCountCategory(categoryCount) {
+  return {
+    type: GET_CATEGORY_COUNT,
+    categoryCount
   };
 }
 
@@ -79,16 +124,27 @@ export function saveImageError(error) {
 }
 
 export const adminCountBooksRequest = () => dispatch => axios.get('/api/v1/books').then((res) => {
-  const countBooks = res.data.count;
-  localStorage.setItem('countBooks', countBooks);
   dispatch(adminCount(res.data.count));
 });
 
-export const adminCountRentedBooksRequest = () => dispatch => axios.get('/api/v1/users/history')
+export const adminCountRentedBooksRequest = () => dispatch => axios.get('/api/v1/rentedbooks/history/all')
   .then((res) => {
-    const countRentedBooks = res.data.count;
-    localStorage.setItem('countRentedBooks', countRentedBooks);
     dispatch(adminRentedCount(res.data.count));
+  });
+
+export const adminCountNotReturnedBooksRequest = () => dispatch => axios.get('/api/v1/users/books/unreturned/history')
+  .then((res) => {
+    dispatch(adminNotReturnedCount(res.data.count));
+  });
+
+export const adminCountCategoryRequest = () => dispatch => axios.get('/api/v1/books/category/history')
+  .then((res) => {
+    dispatch(adminCountCategory(res.data.count));
+  });
+
+export const adminCreateCategoryRequest = category => dispatch => axios.post('/api/v1/books/category', category)
+  .then((res) => {
+    dispatch(adminCreateCategory(res.data));
   });
 
 /**

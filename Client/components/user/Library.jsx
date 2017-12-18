@@ -21,7 +21,7 @@ class Library extends React.Component {
     this.state = {
       getAllBooks: [],
       loading: true,
-      booksId: ''
+      bookId: ''
     };
     this.handleBorrow = this.handleBorrow.bind(this);
   }
@@ -61,16 +61,22 @@ class Library extends React.Component {
     event.preventDefault();
     localStorage.setItem('bookId', event.target.value);
     this.setState({
-      booksId: localStorage.getItem('bookId')
+      bookId: localStorage.getItem('bookId')
     }),
     setTimeout(() => {
-      this.props.borrowRequest(this.props.usersId, this.state).then(() => {
-        Materialize.toast('Succesfully borrowed', 2000, 'teal rounded');
-      }).catch(() => {
-        Materialize.toast('Sorry! You cannot borrow this book',
-          2000, 'red rounded');
-      });
+      this.props.borrowRequest(this.props.usersId, this.state);
     });
+    setTimeout(() => {
+      if (this.props.borrowBooksData.response.message === 'Borrowing limit has been reached') {
+        Materialize.toast('Borrowing limit has been reached', 2000, 'red rounded');
+      } else if (this.props.borrowBooksData.response.message === 'Book has been borrowed but not returned') {
+        Materialize.toast('Book has been borrowed but not returned', 2000, 'red rounded');
+      } else if (this.props.borrowBooksData.hasBorrowed === true) {
+        Materialize.toast('Successfully Borrowed', 2000, 'teal rounded');
+      } else {
+        Materialize.toast('Not Borrowed', 2000, 'red rounded');
+      }
+    }, 1000);
   }
 
   /**
@@ -93,8 +99,11 @@ class Library extends React.Component {
               <div className="card-content">
                 <span className="card-title activator teal-text text-darken-3">
                   { this.state.getAllBooks[key].title }
-                  <i className="material-icons right tooltipped"
-                    data-position="bottom" data-delay="50" data-tooltip="More.."
+                  <i
+                    className="material-icons right tooltipped"
+                    data-position="bottom"
+                    data-delay="50"
+                    data-tooltip="More.."
                   >
                 more_vert</i>
                 </span>
@@ -111,7 +120,8 @@ class Library extends React.Component {
                   { this.state.getAllBooks[key].category }</p>
                 <p> <b className="teal-text text-darken-3">Review</b>:
                   { this.state.getAllBooks[key].review }</p>
-                <button className="waves-effect waves-light btn borrowButton"
+                <button
+                  className="waves-effect waves-light btn borrowButton"
                   value={ this.state.getAllBooks[key].id }
                   onClick={this.handleBorrow}>Borrow </button>
               </div>
@@ -121,11 +131,13 @@ class Library extends React.Component {
       </div>;
 
     return (
-      <div className="library row container">
-        <div> <NavigationBar /> </div>
-        <h4 className="col m10 offset-m2"> USER LIBRARY </h4>
-        {books}
-        <div> <Footer /></div>
+      <div className="library row">
+        <div className="container">
+          <div> <NavigationBar /> </div>
+          <h4 className="col m10 offset-m2 white-text"> USER LIBRARY </h4>
+          {books}
+          <div> <Footer /></div>
+        </div>
       </div>
     );
   }
@@ -135,6 +147,7 @@ const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getAllBooksData: state.getAllBooks[0].response,
+    borrowBooksData: state.borrowBooks[0]
   }
 );
 

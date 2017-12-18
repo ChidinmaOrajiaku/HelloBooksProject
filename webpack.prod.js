@@ -3,10 +3,6 @@ import webpack from 'webpack';
 import Dotenv from 'dotenv-webpack';
 
 
-const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production')
-};
-
 export default {
   entry: [
     path.join(__dirname, '/Client/index.js'),
@@ -16,12 +12,23 @@ export default {
     filename: 'bundle.js',
     publicPath: '/'
   },
-  devtool: 'cheap-eval-source-map',
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin(GLOBALS),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false
+      },
+      mangle: {
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+        screw_ie8: true
+      },
+      minimize: true,
+      sourceMap: true
+    }),
+    new webpack.EnvironmentPlugin({ NODE_ENV: 'production' }),
     new Dotenv({
       path: './.env',
       safe: false

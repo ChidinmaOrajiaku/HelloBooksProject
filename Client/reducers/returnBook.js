@@ -4,6 +4,7 @@ const initialState = [{
   returnData: {},
   response: '',
   error: '',
+  hasReturned: '',
 }];
 
 export default (state = initialState, action = {}) => {
@@ -20,13 +21,15 @@ export default (state = initialState, action = {}) => {
         returnData: {},
         response: action.response,
         error: '',
+        hasReturned: true,
       }, ...state];
 
     case RETURN_BOOK_FAILED:
       return [{
         returnData: {},
         response: '',
-        error: action.error.response.data.errors[0].message,
+        error: action.error,
+        hasReturned: false,
       }, ...state];
 
     default: return state;

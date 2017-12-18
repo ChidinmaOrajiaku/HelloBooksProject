@@ -2,13 +2,13 @@ import bcrypt from 'bcrypt';
 
 import jwt from 'jsonwebtoken';
 
-import validator from 'validator';
-
 import models from '../models';
 
 import app from '../../app';
 
 import messages from '../utils/messages';
+
+import * as validateId from '../utils/validateId';
 
 const Users = models.Users;
 
@@ -56,7 +56,10 @@ const usersController = {
  * @returns {object} req, res
  */
   login(req, res) {
-    const { email, password } = req.body;
+    const {
+      email,
+      password
+    } = req.body;
     return Users
       .findOne({
         where: {
@@ -101,7 +104,9 @@ const usersController = {
             token: userToken
           });
         }
-        res.status(401).send({ message: messages.incorrectPassword });
+        res.status(401).send({
+          message: messages.incorrectPassword
+        });
       })
       .catch((error) => {
         res.status(500).send({
@@ -118,23 +123,34 @@ const usersController = {
    * @returns {object} req, res
    */
   updatePassword(req, res) {
+    const userReturnedId = validateId.validate(req.params.userId);
+    if (isNaN(userReturnedId)) {
+      return res.status(400).send({
+        message: messages.invalidId
+      });
+    }
     // update password
-    const { verifyPassword, password } = req.body;
+    const {
+      verifyPassword,
+      password } = req.body;
     return Users
-      .findById(req.params.usersId)
+      .findById(userReturnedId)
       .then((user) => {
         if (!user) {
           return res.status(404).send({
             message: messages.notFound,
           });
-        } else if (bcrypt.compareSync(verifyPassword, user.password) &&
-        validator.isNumeric(user.id)) {
+        } else if (bcrypt.compareSync(verifyPassword, user.password)) {
           user.update({
             password,
           });
-          return res.status(200).send({ message: 'Succesfully Updated' });
+          return res.status(200).send({
+            message: 'Succesfully Updated'
+          });
         }
-        res.status(401).send({ message: messages.incorrectPassword });
+        res.status(401).send({
+          message: messages.incorrectPassword
+        });
       })
       .catch((error) => {
         res.status(500).send({
@@ -151,22 +167,32 @@ const usersController = {
        * @returns {object} req, res
        */
   getUser(req, res) {
+    const userReturnedId = validateId.validate(req.params.userId);
+    if (isNaN(userReturnedId)) {
+      return res.status(400).send({
+        message: messages.invalidId
+      });
+    }
     return Users
-      .findById(req.params.usersId)
+      .findById(userReturnedId)
       .then((user) => {
-        const { firstname, lastname, email, username } = user;
         if (!user) {
           return res.status(404).send({
             message: messages.notFound,
           });
-        } else if (validator.isNumeric(user.id)) {
-          return res.status(200).send({
-            firstname,
-            lastname,
-            email,
-            username,
-          });
         }
+        const {
+          firstname,
+          lastname,
+          email,
+          username
+        } = user;
+        return res.status(200).send({
+          firstname,
+          lastname,
+          email,
+          username,
+        });
       })
       .catch((error) => {
         res.status(500).send({

@@ -10,7 +10,13 @@ const booksController = {
    * @returns {object} req, res
    */
   create(req, res) {
-    const { title, author, category, image, review } = req.body;
+    const {
+      title,
+      author,
+      category,
+      image,
+      review
+    } = req.body;
     return db.Books
       .create({
         title,
@@ -19,7 +25,9 @@ const booksController = {
         image,
         review,
       })
-      .then(() => res.status(201).send({ message: 'Succesfully added' }))
+      .then(() => res.status(201).send({
+        message: 'Succesfully added'
+      }))
       .catch((error) => {
         const errorMessage = error.errors.map(value => value.message);
         return res.status(400).send(errorMessage);
@@ -37,7 +45,9 @@ const booksController = {
       .findAll({})
       .then((books) => {
         if (books.length === 0) {
-          res.status(200).send({ message: messages.noBooks });
+          res.status(200).send({
+            message: messages.noBooks
+          });
         }
         res.status(200).send(books);
       })
@@ -66,7 +76,9 @@ const booksController = {
       .findById(returnedId)
       .then((books) => {
         if (!books) {
-          res.status(404).send({ message: messages.notFoundBook });
+          res.status(404).send({
+            message: messages.notFoundBook
+          });
         }
         res.status(200).send(books);
       })
@@ -84,8 +96,14 @@ const booksController = {
    * @returns {object} req, res
    */
   update(req, res) {
-    const { title, author, category, image, review } = req.body;
-    const returnedId = validateId.validate(req.params.booksId);
+    const {
+      title,
+      author,
+      category,
+      image,
+      review
+    } = req.body;
+    const returnedId = validateId.validate(req.params.bookId);
     if (isNaN(returnedId)) {
       return res.status(400).send({
         message: messages.invalidId
@@ -127,7 +145,7 @@ const booksController = {
    * @returns {object} req, res
    */
   deleteBook(req, res) {
-    const returnedId = validateId.validate(req.params.booksId);
+    const returnedId = validateId.validate(req.params.bookId);
     if (isNaN(returnedId)) {
       return res.status(400).send({
         message: messages.invalidId
@@ -143,7 +161,7 @@ const booksController = {
         }
         books.destroy()
           .then(() => res.status(204).send({
-            message: 'Book Deleted'
+            message: 'Book has been Deleted'
           }))
           .catch(error => res.status(400).send({
             message: 'Book could not be deleted',
@@ -181,7 +199,9 @@ const booksController = {
       .findById(returnedId)
       .then((books) => {
         if (!books) {
-          return res.status(404).send({ message: messages.notFoundBook });
+          return res.status(404).send({
+            message: messages.notFoundBook
+          });
         }
         db.RentedBooks.findAndCountAll({
           where: {
@@ -231,11 +251,17 @@ const booksController = {
  * @returns {object} req, res
  */
   listAllBooksBorrowed(req, res) {
-  // find all books
+    const userReturnedId = validateId.validate(req.params.userId);
+    if (isNaN(userReturnedId)) {
+      return res.status(400).send({
+        message: messages.invalidId
+      });
+    }
+    // find all books
     return db.RentedBooks
       .findAll({
         where: {
-          usersId: req.params.usersId
+          userId: userReturnedId
         },
         include: [{
           model: db.Books,
@@ -247,12 +273,17 @@ const booksController = {
       })
       .then((RentedBooks) => {
         if (RentedBooks.length === 0) {
-          res.status(404).send({ message: 'No books in the library' });
+          res.status(200).send({
+            message: messages.noBooks
+          });
         }
         res.status(200).send(RentedBooks);
       })
       .catch((error) => {
-        res.status(400).send(error);
+        res.status(400).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
   /**
@@ -262,12 +293,18 @@ const booksController = {
      * @returns {object} req, res
      */
   listNotReturnedBooks(req, res) {
+    const userReturnedId = validateId.validate(req.params.userId);
+    if (isNaN(userReturnedId)) {
+      return res.status(400).send({
+        message: messages.invalidId
+      });
+    }
     // list books borrowed but not returned
     return db.RentedBooks
       .findAll({
         where: {
           returned: false,
-          usersId: req.params.usersId
+          userId: userReturnedId
         },
         include: [{
           model: db.Books,
@@ -279,12 +316,17 @@ const booksController = {
       })
       .then((books) => {
         if (books.length === 0) {
-          res.status(404).send('No books in the library');
+          res.status(200).send({
+            message: messages.noBooks
+          });
         }
         res.status(200).send(books);
       })
       .catch((error) => {
-        res.status(404).send(error);
+        res.status(500).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
   /**
@@ -310,12 +352,17 @@ const booksController = {
       })
       .then((books) => {
         if (books.length === 0) {
-          res.status(404).send('No books in the library');
+          res.status(200).send({
+            message: messages.noBooks
+          });
         }
         res.status(200).send(books);
       })
       .catch((error) => {
-        res.status(404).send(error);
+        res.status(500).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
   /**
@@ -325,28 +372,44 @@ const booksController = {
        * @returns {object} req, res
        */
   returnBooks(req, res) {
+    const returnedId = validateId.validate(req.body.bookId);
+    if (isNaN(returnedId)) {
+      return res.status(400).send({
+        message: messages.invalidId
+      });
+    }
     // return borrowed books
     return db.RentedBooks
       .findOne({
         where: {
           returned: false,
-          booksId: req.body.booksId
+          bookId: returnedId
         }
       })
       .then((rentedBooks) => {
         if (!rentedBooks) {
-          return res.status(404).send({ message: ' Cannot return' });
+          return res.status(404).send({
+            message: messages.notFoundBook
+          });
         }
         rentedBooks.update({
           returned: true,
           returnDate: Date.now(),
           usersId: req.params.usersId
         })
-          .then(() => res.status(200).send({ message: 'Successfully Returned' }))
-          .catch(error => res.status(404).send(error));
+          .then(() => res.status(200).send({
+            message: 'Successfully Returned'
+          }))
+          .catch(error => res.status(500).send({
+            message: 'An error occured and book cannot be returned',
+            error
+          }));
       })
       .catch((error) => {
-        res.status(404).send(error);
+        res.status(500).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
   adminCountAllBooks(req, res) {
@@ -356,17 +419,25 @@ const booksController = {
         res.status(200).send(books);
       })
       .catch((error) => {
-        res.status(400).send(error);
+        res.status(500).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
   adminCountAllRentedBooks(req, res) {
     return db.RentedBooks
       .findAndCountAll({})
       .then((rentedbooks) => {
-        res.status(200).send(rentedbooks);
+        res.status(200).send({
+          count: rentedbooks.count
+        });
       })
       .catch((error) => {
-        res.status(400).send(error);
+        res.status(500).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
   adminCountAllNotReturnedBooks(req, res) {
@@ -377,10 +448,15 @@ const booksController = {
         }
       })
       .then((rentedbooks) => {
-        res.status(200).send(rentedbooks);
+        res.status(200).send({
+          count: rentedbooks.count
+        });
       })
       .catch((error) => {
-        res.status(400).send(error);
+        res.status(500).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
   adminCreateCategory(req, res) {
@@ -392,17 +468,25 @@ const booksController = {
         res.status(201).send(category);
       })
       .catch((error) => {
-        res.status(400).send(error);
+        res.status(500).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
   adminCountCategory(req, res) {
     return db.Category
       .findAndCountAll({})
       .then((category) => {
-        res.status(200).send(category);
+        res.status(200).send({
+          count: category.count
+        });
       })
       .catch((error) => {
-        res.status(400).send(error);
+        res.status(500).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
   adminGetCategory(req, res) {
@@ -412,7 +496,10 @@ const booksController = {
         res.status(200).send(category);
       })
       .catch((error) => {
-        res.status(400).send(error);
+        res.status(500).send({
+          message: messages.generalError,
+          error
+        });
       });
   },
 };

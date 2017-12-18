@@ -4,10 +4,6 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        is: {
-          args: /^[a-zA-Z\s]+$/,
-          msg: 'Title must be in letters'
-        },
         notEmpty: {
           args: true,
           msg: 'Title with empty strings are not allowed'
@@ -18,10 +14,6 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        is: {
-          args: /^[a-zA-Z\s]+$/,
-          msg: 'Authors must be in letters'
-        },
         notEmpty: {
           args: true,
           msg: 'Author with empty strings are not allowed'
@@ -32,10 +24,6 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        is: {
-          args: /^[a-zA-Z\s]+$/,
-          msg: 'Category must be in letters'
-        },
         notEmpty: {
           args: true,
           msg: 'Category with empty strings are not allowed'

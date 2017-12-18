@@ -94,7 +94,8 @@ class AdminBooks extends React.Component {
  * @memberof AdminBooks
  */
   handleDeleteChange(event) {
-    this.setState({ bookId: event.target.value,
+    this.setState({
+      bookId: event.target.value,
       bookIndex: event.target.dataset.index });
   }
 
@@ -127,15 +128,19 @@ class AdminBooks extends React.Component {
  */
   onDeleteRequest(event) {
     event.preventDefault();
-    this.props.adminDeleteRequest(this.state.bookId).then(() => {
-      this.state.filterData.splice(this.state.bookIndex, 1);
-      this.setState({
-        getAllBooks: this.state.filterData
-      });
-      this.props.history.push('/books');
-      Materialize.toast('Successfully deleted', 2000, 'teal rounded');
-    }
-    );
+    this.props.adminDeleteRequest(this.state.bookId);
+    setTimeout(() => {
+      if (this.props.deleteBookData.isDeleted === true) {
+        this.state.filterData.splice(this.state.bookIndex, 1);
+        this.setState({
+          getAllBooks: this.state.filterData
+        });
+        this.props.history.push('/books');
+        Materialize.toast('Successfully deleted', 2000, 'teal rounded');
+      } else {
+        Materialize.toast('Not Deleted', 2000, 'red rounded');
+      }
+    }, 1000);
   }
   /**
      * 
@@ -163,21 +168,20 @@ class AdminBooks extends React.Component {
               <td>{ this.state.getAllBooks[key].author }</td>
               <td>{ this.state.getAllBooks[key].category }</td>
               <td>
-                <button value={this.state.getAllBooks[key].id}
-                  onClick={this.onViewRequest}
-                  className="material-icons">zoom_in
-                </button>
                 <Link to="/editbook">
                   <button
                     value={this.state.getAllBooks[key].id}
                     onClick={this.handleEditChange}
-                    data-index= {key} className="material-icons">create
+                    data-index= {key}
+                    className="material-icons">create
                   </button>
                 </Link>
                 <a href="#modal1" className="modal-trigger">
-                  <button value={this.state.getAllBooks[key].id}
+                  <button
+                    value={this.state.getAllBooks[key].id}
                     onClick={this.handleDeleteChange}
-                    data-index= {key} className="material-icons">delete
+                    data-index= {key}
+                    className="material-icons">delete
                   </button>
                 </a>
               </td>
@@ -212,19 +216,22 @@ class AdminBooks extends React.Component {
     return (
       <div className="books row container-fluid">
         <div> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m3"> ADMIN BOOK LIST </h4>
+        <h4 className="col m8 offset-m3 white-text"> ADMIN BOOK LIST </h4>
         <div className="row col m8 offset-m3">
           <div className="input-field col s4 status">
-            <select className="teal-text" id= "bookStatus"value="1"
+            <select
+              className="white-text"
+              id= "bookStatus"
+              value="1"
               onChange={this.handleChange}>
               <option value="" defaultValue>Choose your option</option>
               <option value="2">All Books</option>
               <option value="3">Pending Returns</option>
             </select>
-            <label className="black-text sort">Sort table</label>
+            <label className="white-text sort">Sort table</label>
           </div>
           <div className="col s12 ">
-            <div className="">
+            <div className="card">
               <div className="card-content teal-text">
                 {this.state.bookStatus === '3' ? borrowedBooks : books }
               </div>
@@ -238,12 +245,14 @@ class AdminBooks extends React.Component {
             </p>
           </div>
           <div className="modal-footer">
-            <button onClick={this.onDeleteRequest}
+            <button
+              onClick={this.onDeleteRequest}
               className="deleteButton"> Delete
             </button>
             <a className="modal-action modal-close">
               <button className="cancelButton">Cancel
-              </button></a>
+              </button>
+            </a>
           </div>
         </div>
         <div> <Footer /></div>
@@ -257,7 +266,7 @@ const mapStateToProps = state => (
     getAllBooksData: state.getAllBooks[0].response,
     getAllBorrowedBooksData: state.getAllBorrowedBooks[0].response,
     getABookData: state.getABook[0].response,
-    deleteBookData: state.deleteBooks[0].response
+    deleteBookData: state.deleteBooks[0]
   }
 );
 
