@@ -168,11 +168,6 @@ class AdminBooks extends React.Component {
               <td>{ this.state.getAllBooks[key].author }</td>
               <td>{ this.state.getAllBooks[key].category }</td>
               <td>
-                <button
-                  value={this.state.getAllBooks[key].id}
-                  onClick={this.onViewRequest}
-                  className="material-icons">zoom_in
-                </button>
                 <Link to="/editbook">
                   <button
                     value={this.state.getAllBooks[key].id}
@@ -221,11 +216,11 @@ class AdminBooks extends React.Component {
     return (
       <div className="books row container-fluid">
         <div> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m3"> ADMIN BOOK LIST </h4>
+        <h4 className="col m8 offset-m3 white-text"> ADMIN BOOK LIST </h4>
         <div className="row col m8 offset-m3">
           <div className="input-field col s4 status">
             <select
-              className="teal-text"
+              className="white-text"
               id= "bookStatus"
               value="1"
               onChange={this.handleChange}>
@@ -233,10 +228,10 @@ class AdminBooks extends React.Component {
               <option value="2">All Books</option>
               <option value="3">Pending Returns</option>
             </select>
-            <label className="black-text sort">Sort table</label>
+            <label className="white-text sort">Sort table</label>
           </div>
           <div className="col s12 ">
-            <div className="">
+            <div className="card">
               <div className="card-content teal-text">
                 {this.state.bookStatus === '3' ? borrowedBooks : books }
               </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import image from '../img/smiley3.jpg';
 import { logout } from '../actions/signinAction';
 import { getUserDataRequest } from '../actions/getUser';
 
@@ -134,7 +135,7 @@ export class NavigationBar extends React.Component {
               <div className="background"></div>
               <a href="#!user">
                 <img className="circle"
-                  src="https://cdn-images-1.medium.com/fit/c/200/200/1*P8ve1Obc8tLIyWgwlx1E8A.jpeg"
+                  src={image}
                 />
               </a>
               <a href="#!name">

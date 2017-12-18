@@ -63,7 +63,7 @@ export default () => (
             Suggest a book
             </h1>
             <span>
-          Do you have any book you would love to read but is not available on our app?
+          Do you have any book you would love to read but it's not available on our app?
           Or  have you read all available books and in need something new?
           Just suggest it to us and you'll get it in no time. Rememeber, your wish is our command.
             </span>

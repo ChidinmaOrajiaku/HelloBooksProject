@@ -120,80 +120,82 @@ class Dashboard extends React.Component {
    */
   render() {
     return (
-      <div className="adminDashboard container">
-        <div className=""> <NavigationBar /> </div>
-        <div className="row initial">
-          <div className="col s6 m6">
-            <div className="card">
-              <div className="card-content text-center teal-text">
-                <span className="card-title text-center">Total Books</span>
-                <p>{this.state.booksData}</p>
-              </div>
-              <div className="card-action">
-              </div>
-            </div>
-          </div>
-          <div className="col s6 m6 black-text">
-            <div className="card">
-              <div className="card-content text-center teal-text">
-                <span className="card-title text-center">Total Borrowed Books
-                </span>
-                <p>{this.state.rentedBooksData}</p>
-              </div>
-              <div className="card-action">
-              </div>
-            </div>
-          </div>
-          <div className="col s6 m6">
-            <div className="card">
-              <div className="card-content teal-text text-center">
-                <span className="card-title text-center">Total Users</span>
-                <p>{ this.state.usersCountData }</p>
-              </div>
-              <div className="card-action">
-                
-              </div>
-            </div>
-          </div>
-          <div className="col s6 m6">
-            <div className="card">
-              <div className="card-content teal-text text-center">
-                <span className="card-title text-center">Total Category</span>
-                <p>{ this.state.categoryCountData }</p>
-              </div>
-              <div className="card-action">
-                <a href="#modal1" className="modal-trigger">Create</a>
-              </div>
-            </div>
-          </div>
-          <div id="modal1" className="modal">
-            <div className="modal-content">
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    value={this.state.category}
-                    onChange={this.handleChange}
-                    id="category" type="text"
-                    className="validate"
-                    required="required"
-                  />
-                  <label htmlFor="category">Category</label>
+      <div className="adminDashboard">
+        <div className="container">
+          <div className=""> <NavigationBar /> </div>
+          <div className="row initial">
+            <div className="col s6 m6">
+              <div className="card">
+                <div className="card-content text-center teal-text">
+                  <span className="card-title text-center">Total Books</span>
+                  <p>{this.state.booksData}</p>
+                </div>
+                <div className="card-action">
                 </div>
               </div>
-              <div className="modal-footer">
-                <button
-                  onClick={this.handleCategory}
-                  type="submit"
-                  className="createButton">Create</button>
-                <a className="modal-action modal-close">
-                  <button className="cancelButton">Cancel
-                  </button>
-                </a>
+            </div>
+            <div className="col s6 m6 black-text">
+              <div className="card">
+                <div className="card-content text-center teal-text">
+                  <span className="card-title text-center">Total Borrowed Books
+                  </span>
+                  <p>{this.state.rentedBooksData}</p>
+                </div>
+                <div className="card-action">
+                </div>
+              </div>
+            </div>
+            <div className="col s6 m6">
+              <div className="card">
+                <div className="card-content teal-text text-center">
+                  <span className="card-title text-center">Total Users</span>
+                  <p>{ this.state.usersCountData }</p>
+                </div>
+                <div className="card-action">
+
+                </div>
+              </div>
+            </div>
+            <div className="col s6 m6">
+              <div className="card">
+                <div className="card-content teal-text text-center">
+                  <span className="card-title text-center">Total Category</span>
+                  <p>{ this.state.categoryCountData }</p>
+                </div>
+                <div className="card-action">
+                  <a href="#modal1" className="modal-trigger white-text">Create</a>
+                </div>
+              </div>
+            </div>
+            <div id="modal1" className="modal">
+              <div className="modal-content">
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input
+                      value={this.state.category}
+                      onChange={this.handleChange}
+                      id="category" type="text"
+                      className="validate"
+                      required="required"
+                    />
+                    <label htmlFor="category">Category</label>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    onClick={this.handleCategory}
+                    type="submit"
+                    className="createButton">Create</button>
+                  <a className="modal-action modal-close">
+                    <button className="cancelButton">Cancel
+                    </button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
+          <div> <Footer /></div>
         </div>
-        <div> <Footer /></div>
       </div>
     );
   }

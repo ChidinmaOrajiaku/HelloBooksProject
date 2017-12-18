@@ -103,16 +103,12 @@ class Profile extends React.Component {
     return (
       <div className="profile row">
         <div className=""> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m5"> PROFILE DETAILS</h4>
+        <h4 className="col m9 offset-m2"> PROFILE DETAILS</h4>
+        <hr className="col m3 offset-m5"></hr>
         <div className="row">
           <div className="col m3 offset-m5 profileB">
-            <div className="">
-              <div className="card-image">
-                <img className="profileImg"
-                  src="https://cdn-images-1.medium.com/fit/c/200/200/1*P8ve1Obc8tLIyWgwlx1E8A.jpeg"/>
-              </div>
+            <div className="card">
               <div className="card-content">
-                <hr></hr>
                 <p className="profileDetails">
                   Name: {`${this.state.firstname} ${this.state.lastname}`}</p>
                 <p className="profileDetails"> Username: {this.state.username}</p>

@@ -131,11 +131,13 @@ class Library extends React.Component {
       </div>;
 
     return (
-      <div className="library row container">
-        <div> <NavigationBar /> </div>
-        <h4 className="col m10 offset-m2"> USER LIBRARY </h4>
-        {books}
-        <div> <Footer /></div>
+      <div className="library row">
+        <div className="container">
+          <div> <NavigationBar /> </div>
+          <h4 className="col m10 offset-m2 white-text"> USER LIBRARY </h4>
+          {books}
+          <div> <Footer /></div>
+        </div>
       </div>
     );
   }

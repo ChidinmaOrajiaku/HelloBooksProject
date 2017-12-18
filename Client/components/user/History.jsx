@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Footer from '../Footer';
 import NavigationBar from '../NavigationBar';
 import { getUserBorrowed } from '../../actions/getUserBorrowedBooks';
 import { yetToReturn } from '../../actions/yetToReturn';
@@ -83,7 +84,7 @@ class History extends React.Component {
       bookIndex: event.target.dataset.index
     }),
     setTimeout(() => {
-      this.props.returnBook(this.props.usersId, this.state)
+      this.props.returnBook(this.props.usersId, this.state);
     });
     setTimeout(() => {
       if (this.props.returnBookData.hasReturned === true) {
@@ -137,7 +138,7 @@ class History extends React.Component {
           )}
         </tbody>
       </table>;
-    const yetToReturnBooks = this.state.loading ? <div><p>Loading...</p></div> :
+    const yetToReturnBooks = this.state.yetToReturn.message === 'No books in the library' ? <div><p>No pending returns</p></div> :
       <table className="bordered centered responsive-table">
         <thead>
           <tr className="white-text">
@@ -167,25 +168,26 @@ class History extends React.Component {
     return (
       <div className="history row container-fluid">
         <div className=""> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m3"> USER BOOK HISTORY </h4>
+        <h4 className="col m8 offset-m3 white-text"> USER BOOK HISTORY </h4>
         <div className="row col m8 offset-m3">
           <div className="input-field col s4 status">
-            <select className="teal-text" id= "bookStatus"value="1"
+            <select className="white-text" id= "bookStatus"value="1"
               onChange={this.handleChange}>
               <option value="" defaultValue>Choose your option</option>
               <option value="2">Borrowed Books</option>
               <option value="3">Pending Returns</option>
             </select>
-            <label className="black-text sort">Sort table</label>
+            <label className="white-text sort">Sort table</label>
           </div>
           <div className="col s12 ">
-            <div className="">
+            <div className="card">
               <div className="card-content teal-text">
                 {this.state.bookStatus === '3' ?
                   yetToReturnBooks : borrowedBooks }
               </div>
             </div>
           </div>
+          <div> <Footer /></div>
         </div>
       </div>
     );
