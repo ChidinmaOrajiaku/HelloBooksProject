@@ -161,7 +161,7 @@ export function saveImageCloudinary(image) {
   data.append('upload_preset', cloudinaryPreset);
   return (dispatch) => {
     dispatch(saveImageRequest(image));
-    return fetch(cloudinaryUrl, {
+    return fetch('https://api.cloudinary.com/v1_1/andela-chidinma/upload', {
       method: 'POST',
       body: data,
     })
