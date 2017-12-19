@@ -14,7 +14,15 @@ export default {
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
-    new webpack.EnvironmentPlugin({ NODE_ENV: 'production' }),
+    new webpack.EnvironmentPlugin([ 
+      'NODE_ENV',
+      'CLOUDINARY_PRESET',
+      'CLOUDINARY_URL',
+      'ADMIN_PASSWORD',
+      'ADMIN_NAME',
+      'ADMIN_EMAIL',
+      'TOKEN_SECRET'
+    ]),
     new Dotenv({
       path: './.env',
       safe: false
