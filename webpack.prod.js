@@ -28,7 +28,15 @@ export default {
       minimize: true,
       sourceMap: true
     }),
-    new webpack.EnvironmentPlugin({ NODE_ENV: 'production' }),
+    new webpack.EnvironmentPlugin({ 
+      NODE_ENV: 'production',
+      CLOUDINARY_PRESET,
+      CLOUDINARY_URL,
+      ADMIN_PASSWORD,
+      ADMIN_NAME,
+      ADMIN_EMAIL,
+      TOKEN_SECRET
+    }),
     new Dotenv({
       path: './.env',
       safe: false
