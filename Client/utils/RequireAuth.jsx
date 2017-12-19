@@ -29,7 +29,6 @@ export default function (ComposedComponent) {
           2000, 'red accent-3 rounded');
         return this.props.history.push('/login');
       }
-      this.context.router.history.push('/profile');
     }
 
     /**
