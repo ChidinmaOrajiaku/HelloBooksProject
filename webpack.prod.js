@@ -13,21 +13,7 @@ export default {
     publicPath: '/'
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false
-      },
-      mangle: {
-        screw_ie8: true
-      },
-      output: {
-        comments: false,
-        screw_ie8: true
-      },
-      minimize: true,
-      sourceMap: true
-    }),
+    new webpack.optimize.UglifyJsPlugin(),
     new webpack.EnvironmentPlugin({ NODE_ENV: 'production' }),
     new Dotenv({
       path: './.env',
