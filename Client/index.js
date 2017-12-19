@@ -18,6 +18,7 @@ import './styles/dashboard';
 import './styles/history';
 import './styles/signin';
 import './styles/signup';
+import './styles/notfound';
 
 export const store = createStore(
   rootReducer,
