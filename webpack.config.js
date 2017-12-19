@@ -16,15 +16,15 @@ export default {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.EnvironmentPlugin({ 
-      NODE_ENV: 'production',
-      CLOUDINARY_PRESET,
-      CLOUDINARY_URL,
-      ADMIN_PASSWORD,
-      ADMIN_NAME,
-      ADMIN_EMAIL,
-      TOKEN_SECRET
-    }),
+    new webpack.EnvironmentPlugin([
+      'NODE_ENV',
+      'CLOUDINARY_PRESET',
+      'CLOUDINARY_URL',
+      'ADMIN_PASSWORD',
+      'ADMIN_NAME',
+      'ADMIN_EMAIL',
+      'TOKEN_SECRET'
+    ]),
     new Dotenv({
       path: './.env',
       safe: false
