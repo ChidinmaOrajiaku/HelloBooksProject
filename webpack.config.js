@@ -35,7 +35,7 @@ export default {
       {
         test: /\.jsx?$/,
         include: path.join(__dirname, 'Client'),
-        loaders: ['react-hot-loader', 'babel-loader'],
+        loaders: ['babel-loader'],
       },
       {
         test: /\.scss$/,

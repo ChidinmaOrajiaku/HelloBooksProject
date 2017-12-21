@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignUp /> should match snapshot test 1`] = `
+<div
+  className="signUp"
+>
+  <div
+    className="bodyNavigation"
+  >
+     
+    <Component />
+     
+  </div>
+  <div
+    className="row container"
+  >
+    <div
+      className="col m6 offset-m3"
+    >
+      <div
+        className="card"
+        data-aos="flip-left"
+      >
+        <div
+          className="card-content black-text"
+        >
+          <form
+            id="form"
+            onSubmit={[Function]}
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s6"
+              >
+                <input
+                  className="validate"
+                  id="firstname"
+                  onChange={[Function]}
+                  required="required"
+                  type="text"
+                  value=""
+                />
+                <label
+                  htmlFor="firstname"
+                >
+                  First Name
+                </label>
+              </div>
+              <div
+                className="input-field col s6"
+              >
+                <input
+                  className="validate"
+                  id="lastname"
+                  onChange={[Function]}
+                  required="required"
+                  value=""
+                  ype="text"
+                />
+                <label
+                  htmlFor="lastname"
+                >
+                  Last Name
+                </label>
+              </div>
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <input
+                  className="validate"
+                  id="username"
+                  onChange={[Function]}
+                  required="required"
+                  type="text"
+                  value=""
+                />
+                <label
+                  htmlFor="username"
+                >
+                  User Name
+                </label>
+              </div>
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <input
+                  className="validate"
+                  id="password"
+                  onChange={[Function]}
+                  required="required"
+                  type="password"
+                  value=""
+                />
+                <label
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+              </div>
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <input
+                  className="validate"
+                  id="email"
+                  onChange={[Function]}
+                  required="required"
+                  type="email"
+                  value=""
+                />
+                <label
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+              </div>
+            </div>
+            <button
+              className="btn waves-effect waves-light"
+              name="action"
+              type="submit"
+            >
+              Sign Up
+              <i
+                className="material-icons right"
+              >
+                send
+              </i>
+            </button>
+          </form>
+        </div>
+        <div
+          className="account"
+        >
+          <p>
+             I already have an account?
+            <Link
+              replace={false}
+              to="/login"
+            >
+               Login
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
