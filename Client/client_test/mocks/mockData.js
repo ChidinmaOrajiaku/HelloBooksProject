@@ -36,9 +36,69 @@ const mockData = {
     "image": "https://res.cloudinary.com/andela-chidinma/image/upload/v1511133007/g2exfx6sgbymszspybts.jpg",
     "review": "Nice"
   },
+  createBookErrorData: {
+    "author": "a",
+    "category": "a",
+    "image": "https://res.cloudinary.com/andela-chidinma/image/upload/v1511133007/g2exfx6sgbymszspybts.jpg",
+    "review": "Nice"
+  },
+  createBookErrorResponse:  "An error occured",
   createBookResponse: {
     message: 'Succesfully added'
-  }
+  },
+  getABookData: {
+    "id": 7,
+    "title": "Rage of Angels",
+    "author": "Sidney Sheldon",
+    "category": "Fiction",
+    "image": "https://res.cloudinary.com/andela-chidinma/image/upload/v1513096198/prbdr6eghnnrcewwpodf.jpg",
+    "review": "Nice Book",
+    "createdAt": "2017-12-12T11:11:10.823Z",
+    "updatedAt": "2017-12-12T16:30:00.352Z",
+    "userId": null,
+    "categoryId": null
+},
+getAllBooksData: {
+  "id": 7,
+  "title": "Rage of Angels",
+  "author": "Sidney Sheldon",
+  "category": "Fiction",
+  "image": "https://res.cloudinary.com/andela-chidinma/image/upload/v1513096198/prbdr6eghnnrcewwpodf.jpg",
+  "review": "Nice Book",
+  "createdAt": "2017-12-12T11:11:10.823Z",
+  "updatedAt": "2017-12-12T16:30:00.352Z",
+  "userId": null,
+  "categoryId": null
+},
+getAllBorrowedBooksData: {
+  "id": 7,
+  "title": "Rage of Angels",
+  "author": "Sidney Sheldon",
+  "category": "Fiction",
+  "image": "https://res.cloudinary.com/andela-chidinma/image/upload/v1513096198/prbdr6eghnnrcewwpodf.jpg",
+  "review": "Nice Book",
+  "createdAt": "2017-12-12T11:11:10.823Z",
+  "updatedAt": "2017-12-12T16:30:00.352Z",
+  "userId": null,
+  "categoryId": null
+},
+getCategoryData: {
+  "category": "Fiction"
+},
+getUserData: {
+    "firstname": "daddy",
+    "lastname": "daddy",
+    "username": "daddy",
+    "password": "daddy",
+    "email": "daddy@gmail.com"
+},
+bookData: {
+  "title": "a",
+  "author": "b",
+  "category": "a",
+  "image": "https://res.cloudinary.com/andela-chidinma/image/upload/v1511133007/g2exfx6sgbymszspybts.jpg",
+  "review": "Nice"
+}
 };
 
 export default mockData;

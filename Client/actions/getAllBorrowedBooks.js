@@ -48,5 +48,5 @@ export const admingetBorrowedRequest = () => dispatch => axios.get('/api/v1/user
   .then((res) => {
     dispatch(getBorrowedBooksResponse(res.data));
   }).catch((error) => {
-    dispatch(getBorrowedBooksError(error));
+    dispatch(getBorrowedBooksError("An error occurred"));
   });

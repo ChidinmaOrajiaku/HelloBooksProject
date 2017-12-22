@@ -48,5 +48,5 @@ export const getUserDataRequest = usersId => dispatch => axios.get(`/api/v1/user
   .then((res) => {
     dispatch(getUserResponse(res.data));
   }).catch((error) => {
-    dispatch(getUserError(error));
+    dispatch(getUserError('An error occured'));
   });

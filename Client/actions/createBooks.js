@@ -47,5 +47,5 @@ export const adminAddRequest = bookData => dispatch => axios.post('/api/v1/users
   .then((res) => {
     dispatch(createBooksResponse(res.data));
   }).catch((error) => {
-    dispatch(createBooksError(error));
+    dispatch(createBooksError("An error occurred"));
   });

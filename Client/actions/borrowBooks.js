@@ -48,5 +48,5 @@ export const borrowRequest = (userId, booksId) => dispatch => axios.post(`/api/v
   .then((res) => {
     dispatch(borrowBooksResponse(res.data));
   }).catch((error) => {
-    dispatch(borrowBooksError(error));
+    dispatch(borrowBooksError("An error occurred"));
   });

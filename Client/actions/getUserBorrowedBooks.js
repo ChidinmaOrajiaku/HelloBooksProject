@@ -48,5 +48,5 @@ export const getUserBorrowed = usersId => dispatch => axios.get(`/api/v1/users/$
   .then((res) => {
     dispatch(getUserBorrowedResponse(res.data));
   }).catch((error) => {
-    dispatch(getUserBorrowedError(error));
+    dispatch(getUserBorrowedError("An error occured"));
   });

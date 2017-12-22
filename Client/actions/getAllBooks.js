@@ -48,5 +48,5 @@ export const getRequest = () => dispatch => axios.get('/api/v1/users/books')
   .then((res) => {
     dispatch(getBooksResponse(res.data));
   }).catch((error) => {
-    dispatch(getBooksError(error));
+    dispatch(getBooksError("An error occurred"));
   });

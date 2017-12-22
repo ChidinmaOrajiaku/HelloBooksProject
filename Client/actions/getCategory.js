@@ -48,5 +48,5 @@ export const getAllCategoryRequest = () => dispatch => axios.get('/api/v1/books/
   .then((res) => {
     dispatch(getCategoryResponse(res.data));
   }).catch((error) => {
-    dispatch(getCategoryError(error));
+    dispatch(getCategoryError("An error occurred"));
   });

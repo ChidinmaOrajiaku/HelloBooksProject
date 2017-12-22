@@ -48,5 +48,5 @@ export const getBookRequest = id => dispatch => axios.get(`/api/v1/books/${id}`)
   .then((res) => {
     dispatch(getABookResponse(res.data));
   }).catch((error) => {
-    dispatch(getABookError(error));
+    dispatch(getABookError("An error occurred"));
   });

@@ -48,5 +48,5 @@ export const adminDeleteRequest = bookId => dispatch => axios.delete(`/api/v1/bo
   .then((res) => {
     dispatch(deleteBooksResponse(res.data));
   }).catch((error) => {
-    dispatch(deleteBooksError(error));
+    dispatch(deleteBooksError("An error occurred"));
   });
