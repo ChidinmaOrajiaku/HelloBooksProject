@@ -3,10 +3,10 @@ import { BORROW_BOOKS_SUCCESSFUL, BORROW_BOOKS_FAILED, BORROW_BOOKS_REQUEST } fr
 
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} data 
+   * @param {any} data
    * @returns {object} borrowed books request data
    */
 export function borrowBooksRequest(data) {
@@ -17,8 +17,8 @@ export function borrowBooksRequest(data) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} response
  * @returns {object} borrowed books response
@@ -31,10 +31,10 @@ export function borrowBooksResponse(response) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} error 
+   * @param {any} error
    * @returns {object} borrowed books error
    */
 export function borrowBooksError(error) {
@@ -48,5 +48,5 @@ export const borrowRequest = (userId, booksId) => dispatch => axios.post(`/api/v
   .then((res) => {
     dispatch(borrowBooksResponse(res.data));
   }).catch((error) => {
-    dispatch(borrowBooksError("An error occurred"));
+    dispatch(borrowBooksError('An error occurred'));
   });

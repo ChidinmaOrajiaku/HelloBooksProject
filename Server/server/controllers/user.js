@@ -14,10 +14,10 @@ const Users = models.Users;
 
 const usersController = {
   /**
-   * 
+   *
    * Creates a user in the database
-   * @param {string} req 
-   * @param {string} res 
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   create(req, res) {
@@ -49,10 +49,10 @@ const usersController = {
       });
   },
   /**
- * 
+ *
  * Returns  User  and provides user/admin token on login
- * @param {string} req 
- * @param {string} res 
+ * @param {string} req
+ * @param {string} res
  * @returns {object} req, res
  */
   login(req, res) {
@@ -74,14 +74,17 @@ const usersController = {
         } else if (email === process.env.ADMIN_EMAIL
             && bcrypt.compareSync(password, user.password)) {
           // create Token
-          const adminToken = jwt.sign({
-            username: process.env.ADMIN_NAME,
-            role: 'admin',
-            id: user.id },
-          app.get('secret'),
-          {
-            expiresIn: 60 * 60 * 72 // token expires after 72 hours
-          });
+          const adminToken = jwt.sign(
+            {
+              username: process.env.ADMIN_NAME,
+              role: 'admin',
+              id: user.id
+            },
+            app.get('secret'),
+            {
+              expiresIn: 60 * 60 * 72 // token expires after 72 hours
+            }
+          );
           return res.status(200).send({
             message: 'Welcome admin',
             username: user.username,
@@ -89,15 +92,17 @@ const usersController = {
           });
         } else if (bcrypt.compareSync(password, user.password)) {
           // create Token
-          const userToken = jwt.sign({
-            username: user.username,
-            role: 'user',
-            id: user.id
-          },
-          app.get('secret'),
-          {
-            expiresIn: 60 * 60 * 24 // token expires after 24 hours
-          });
+          const userToken = jwt.sign(
+            {
+              username: user.username,
+              role: 'user',
+              id: user.id
+            },
+            app.get('secret'),
+            {
+              expiresIn: 60 * 60 * 24 // token expires after 24 hours
+            }
+          );
           return res.status(200).send({
             message: 'Successfully logged in',
             username: user.username,
@@ -116,10 +121,10 @@ const usersController = {
       });
   },
   /**
-   * 
+   *
    * Updates user password
-   * @param {string} req 
-   * @param {string} res 
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   updatePassword(req, res) {
@@ -132,7 +137,8 @@ const usersController = {
     // update password
     const {
       verifyPassword,
-      password } = req.body;
+      password
+    } = req.body;
     return Users
       .findById(userReturnedId)
       .then((user) => {
@@ -160,10 +166,10 @@ const usersController = {
       });
   },
   /**
-       * 
+       *
        * Gets user details
-       * @param {string} req 
-       * @param {string} res 
+       * @param {string} req
+       * @param {string} res
        * @returns {object} req, res
        */
   getUser(req, res) {
@@ -202,10 +208,10 @@ const usersController = {
       });
   },
   /**
-     * 
+     *
      * Returns  User count
-     * @param {string} req 
-     * @param {string} res 
+     * @param {string} req
+     * @param {string} res
      * @returns {object} req, res
      */
   adminCountAllUser(req, res) {

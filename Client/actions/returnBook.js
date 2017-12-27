@@ -3,10 +3,10 @@ import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED, RETURN_BOOK_REQUEST } from 
 
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} data 
+   * @param {any} data
    * @returns {object} get return books requets data
    */
 export function returnRequest(data) {
@@ -17,8 +17,8 @@ export function returnRequest(data) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} response
  * @returns {object} gets return-book response if successful
@@ -31,10 +31,10 @@ export function returnResponse(response) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} error 
+   * @param {any} error
    * @returns {object} gets return-book error if request fails
    */
 export function returnError(error) {
@@ -48,5 +48,5 @@ export const returnBook = (usersId, booksId) => dispatch => axios.put(`/api/v1/u
   .then((res) => {
     dispatch(returnResponse(res.data));
   }).catch((error) => {
-    dispatch(returnError(error));
+    dispatch(returnError('An error occured'));
   });

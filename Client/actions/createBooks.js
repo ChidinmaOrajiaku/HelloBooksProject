@@ -2,10 +2,10 @@ import axios from 'axios';
 import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED, CREATE_BOOKS_REQUEST } from './types';
 
 /**
- * 
- * 
+ *
+ *
  * @export
- * @param {any} response 
+ * @param {any} response
  * @returns {object} create books response
  */
 export function createBooksResponse(response) {
@@ -16,8 +16,8 @@ export function createBooksResponse(response) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
    * @param {any} data
    * @returns {object} create books request data
@@ -30,10 +30,10 @@ export function createBooksRequest(data) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} error 
+   * @param {any} error
    * @returns {object} create book error
    */
 export function createBooksError(error) {
@@ -47,5 +47,5 @@ export const adminAddRequest = bookData => dispatch => axios.post('/api/v1/users
   .then((res) => {
     dispatch(createBooksResponse(res.data));
   }).catch((error) => {
-    dispatch(createBooksError("An error occurred"));
+    dispatch(createBooksError('An error occurred'));
   });

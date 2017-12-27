@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import mockData from './mocks/mockData';
+import * as ReturnBookActions from '../actions/returnBook';
+import * as YetToReturnActions from '../actions/yetToReturn';
 import * as SigninActions from '../actions/signinAction';
 import * as GetUserActions from '../actions/getUser';
 import * as ModifyBookActions from '../actions/modifyBooks';
@@ -529,3 +531,96 @@ describe('Borrow books actions', () => {
             done();
         });
   });
+
+  describe('Return books actions', () => {
+    beforeEach(() => {
+        moxios.install();
+    });
+    afterEach(() => {
+        moxios.uninstall();
+    });
+
+    it('return RETURN_BOOK_SUCCESSFUL books', async (done) => {
+        jest.setTimeout(10000) 
+        const { returnBookData } = mockData;
+        moxios.stubRequest('/api/v1/users/1/books', {
+        status: 200,
+        response: returnBookData
+        });
+        const expectedActions = [{ 
+            type: ActionTypes.RETURN_BOOK_SUCCESSFUL, 
+            response: returnBookData
+        }];
+        const store = mockStore({});
+        await store.dispatch(ReturnBookActions.returnBook(1))
+        .then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+        done();
+    });
+    it("return RETURN_BOOK_FAILED books actions", async (done) => {
+        jest.setTimeout(10000) 
+        moxios.stubRequest('/api/v1/users/1/books', {
+            status: 400,
+            error: "An error occurred"
+        });
+        const expectedActions = [{ 
+            type: ActionTypes.RETURN_BOOK_FAILED, 
+            error: "An error occured"
+        }];
+        const store = mockStore({});
+        await store.dispatch(ReturnBookActions.returnBook(1))
+            .then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+            });
+            done();
+        });
+  });
+
+  describe('Get yet to be returned books actions', () => {
+    beforeEach(() => {
+        moxios.install();
+    });
+    afterEach(() => {
+        moxios.uninstall();
+    });
+
+    it('return YET_TO_RETURN_SUCCESSFUL books', async (done) => {
+        jest.setTimeout(10000) 
+        const { borrowBookDataResponse } = mockData;
+        moxios.stubRequest('/api/v1/users/1/books', {
+        status: 200,
+        response: borrowBookDataResponse
+        });
+        const expectedActions = [{ 
+            type: ActionTypes.YET_TO_RETURN_SUCCESSFUL, 
+            response: borrowBookDataResponse
+        }];
+        const store = mockStore({});
+        await store.dispatch(YetToReturnActions.yetToReturn(1))
+        .then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+        done();
+    });
+    it("return YET_TO_RETURN_SUCCESSFUL borrowed books", async (done) => {
+        jest.setTimeout(10000)
+        const { borrowBookDataResponse } = mockData;
+        moxios.stubRequest('/api/v1/users/1/books', {
+            status: 400,
+            error: "An error occurred"
+        });
+        const expectedActions = [{ 
+            type: ActionTypes.YET_TO_RETURN_FAILED, 
+            error: "An error occured"
+        }];
+        const store = mockStore({});
+        await store.dispatch(YetToReturnActions.yetToReturn(1))
+            .then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+            });
+            done();
+        });
+  });
+
+  
