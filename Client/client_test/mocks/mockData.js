@@ -108,9 +108,7 @@ const mockData = {
     verifyPassword: '1234',
     password: '4321'
   },
-  updatePasswordData: {
-    message: 'Succesfully Updated'
-  }
+  errorMessage: 'An error occurred'
 };
 
 export default mockData;
