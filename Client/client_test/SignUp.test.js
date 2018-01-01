@@ -28,53 +28,58 @@ describe('<SignUp />', () => {
   });
 
   it('should update state on first name field change', () => {
-    signupFormItem().find('#firstname').simulate('change', { target: {
-      id: 'firstname',
-      value: 'chidebere'
-    },
+    signupFormItem().find('#firstname').simulate('change', {
+      target: {
+        id: 'firstname',
+        value: 'chidebere'
+      },
     });
     expect(signupFormItem().state().firstname).toBe('chidebere');
   });
 
   it('should update state on last name field change', () => {
-    signupFormItem().find('#lastname').simulate('change', { target: {
-      id: 'lastname',
-      value: 'chidebere'
-    },
+    signupFormItem().find('#lastname').simulate('change', {
+      target: {
+        id: 'lastname',
+        value: 'chidebere'
+      },
     });
     expect(signupFormItem().state().lastname).toBe('chidebere');
   });
 
   it('should update state on username field change', () => {
-    signupFormItem().find('#username').simulate('change', { target: {
-      id: 'username',
-      value: 'chidebere'
-    },
+    signupFormItem().find('#username').simulate('change', {
+      target: {
+        id: 'username',
+        value: 'chidebere'
+      },
     });
     expect(signupFormItem().state().username).toBe('chidebere');
   });
 
   it('should update state on email field change', () => {
-    signupFormItem().find('#email').simulate('change', { target: {
-      id: 'email',
-      value: 'chidebere@w.com'
-    },
+    signupFormItem().find('#email').simulate('change', {
+      target: {
+        id: 'email',
+        value: 'chidebere@w.com'
+      },
     });
     expect(signupFormItem().state().email).toBe('chidebere@w.com');
   });
 
   it('should update state on password field change', () => {
-    signupFormItem().find('#password').simulate('change', { target: {
-      id: 'password',
-      value: 'password'
-    },
+    signupFormItem().find('#password').simulate('change', {
+      target: {
+        id: 'password',
+        value: 'password'
+      },
     });
     expect(signupFormItem().state().password).toBe('password');
   });
 
   it('should match snapshot test', () => {
     const component = signupFormItem();
-    let tree = toJson(component);
+    const tree = toJson(component);
     expect(tree).toMatchSnapshot();
   });
 

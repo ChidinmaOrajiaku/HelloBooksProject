@@ -8,15 +8,15 @@ import { returnBook } from '../../actions/returnBook';
 
 
 /**
- * 
- * 
+ *
+ *
  * @class History
  * @extends {React.Component}
  */
-class History extends React.Component {
+export class History extends React.Component {
   /**
   * Creates an instance of History.
-  * @param {any} props 
+  * @param {any} props
   * @memberof History
   */
   constructor(props) {
@@ -33,7 +33,7 @@ class History extends React.Component {
   }
 
   /**
- * Mounts action on component 
+ * Mounts action on component
  * @returns {object} response object
  * @memberof History
  */
@@ -62,7 +62,7 @@ class History extends React.Component {
   /**
  * Handles change and sets the state to the targeted event value
  * @returns {object} response object
- * @param {any} event 
+ * @param {any} event
  * @memberof History
  */
   handleChange(event) {
@@ -70,10 +70,10 @@ class History extends React.Component {
   }
 
   /**
- * Handles books return, sets the state of the book Id and book index, 
- splices book returned from list and sets the state of yet-to-return-books  
+ * Handles books return, sets the state of the book Id and book index,
+ splices book returned from list and sets the state of yet-to-return-books
  * @returns {object} resonse object
- * @param {event} event 
+ * @param {event} event
  * @memberof History
  */
   handleReturn(event) {
@@ -100,9 +100,9 @@ class History extends React.Component {
   }
 
   /**
-     * 
+     *
      * Renders component
-     * @returns {object} ReactElementMarkup 
+     * @returns {object} ReactElementMarkup
      * @memberof History
      */
   render() {
@@ -134,8 +134,7 @@ class History extends React.Component {
               <td>{ this.state.userBorrowed[key].returnDate === null ?
                 'N/A' : this.state.userBorrowed[key].returnDate }
               </td>
-            </tr>
-          )}
+            </tr>)}
         </tbody>
       </table>;
     const yetToReturnBooks = this.state.yetToReturn.message === 'No books in the library' ? <div><p>No pending returns</p></div> :
@@ -160,8 +159,7 @@ class History extends React.Component {
                 onClick={this.handleReturn} data-index= {key}
                 className="waves-effect waves-light btn">Return</button>
               </td>
-            </tr>
-          )}
+            </tr>)}
         </tbody>
       </table>;
 
@@ -204,4 +202,7 @@ const mapStateToProps = state => (
 );
 
 export default connect(mapStateToProps, {
-  yetToReturn, getUserBorrowed, returnBook })(History);
+  yetToReturn,
+  getUserBorrowed,
+  returnBook
+})(History);
