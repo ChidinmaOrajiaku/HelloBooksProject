@@ -104,12 +104,12 @@ export class NavigationBar extends React.Component {
 
     const userLinks = (
       <div>
-        <li>
+        <li name="library">
           <Link to="/library">
             <i className="material-icons">book</i>Library
           </Link>
         </li>
-        <li>
+        <li name="history">
           <Link to="/history"><i className="material-icons">photo_library</i>
           History
           </Link>
@@ -119,7 +119,7 @@ export class NavigationBar extends React.Component {
             <i className="material-icons">person</i>Profile
           </Link>
         </li>
-        <li>
+        <li name="logout">
           <a onClick={this.logout.bind(this)} id="logOut">
             <i className="material-icons">fast_rewind</i>Log Out
           </a>

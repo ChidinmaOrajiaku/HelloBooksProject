@@ -9,7 +9,7 @@ import { updatePassword } from '../../actions/updatePassword';
 /**
  * @class Profile
  */
-class Profile extends React.Component {
+export class Profile extends React.Component {
   /**
      * @constructor
      * @param {object} props 
@@ -115,7 +115,7 @@ class Profile extends React.Component {
                 <p className="profileDetails"> Email: {this.state.email}</p>
                 <p className="profileDetails"> Password: ***
                   <a className="modal-trigger" href="#modal1">
-                    <button className="material-icons">create</button>
+                    <button className="material-icons" name="action">create</button>
                   </a>
                 </p>
               </div>
@@ -141,9 +141,12 @@ class Profile extends React.Component {
           </div>
           <div className="modal-footer">
             <button onClick={this.handlePassword}
-              className="passwordButton"> Change </button>
+              className="passwordButton" 
+              id="passwordButton"> Change </button>
             <a className="modal-action modal-close">
-              <button className="passwordCButton">Cancel</button>
+              <button
+              className="passwordCButton"
+              id="passwordCButton">Cancel</button>
             </a>
           </div>
         </div>

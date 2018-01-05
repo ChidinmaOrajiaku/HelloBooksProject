@@ -10,7 +10,7 @@ import { getAllCategoryRequest } from '../../actions/getCategory';
 /**
  * @class AddBooks
  */
-class AddBooks extends React.Component {
+export class AddBooks extends React.Component {
   /**
      * @constructor
      * @param {object} props 
