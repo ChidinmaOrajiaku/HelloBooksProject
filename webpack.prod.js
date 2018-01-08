@@ -1,20 +1,16 @@
-import path from 'path';
-import webpack from 'webpack';
-import Dotenv from 'dotenv-webpack';
+const merge = require('webpack-merge');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require('webpack');
+const common = require('./webpack.common');
 
 
-export default {
-  entry: [
-    path.join(__dirname, '/Client/index.js'),
-  ],
-  output: {
-    path: '/',
-    filename: 'bundle.js',
-    publicPath: '/'
-  },
+module.exports = merge(common, {
+  devtool: 'source-map',
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.EnvironmentPlugin([ 
+    new UglifyJSPlugin({
+      sourceMap: true
+    }),
+    new webpack.EnvironmentPlugin([
       'NODE_ENV',
       'CLOUDINARY_PRESET',
       'CLOUDINARY_URL',
@@ -23,50 +19,8 @@ export default {
       'ADMIN_EMAIL',
       'TOKEN_SECRET'
     ]),
-    new Dotenv({
-      path: './.env',
-      safe: false
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.js?$/,
-        include: path.join(__dirname, 'Client'),
-        loaders: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react']
-        }
-      },
-      {
-        test: /\.jsx?$/,
-        include: path.join(__dirname, 'Client'),
-        loaders: ['react-hot-loader', 'babel-loader'],
-      },
-      {
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
-      }, {
-        test: /\.css$/,
-        loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]'
-        }
-      },
-      {
-        test: /\.(png|jpg|gif|jpeg)$/,
-        loader: 'file-loader?name=Client/img/[name].[ext]',
-      }
-    ],
-  },
-  node: {
-    net: 'empty',
-    tls: 'empty',
-    dns: 'empty'
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx', '.scss', '.jpg', '.png', '.gif', '.jpeg']
-  }
-};
+  ]
+});
