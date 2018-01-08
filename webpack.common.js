@@ -1,24 +1,22 @@
-import path from 'path';
-import webpack from 'webpack';
-import Dotenv from 'dotenv-webpack';
+const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-export default {
+module.exports = {
   entry: [
     path.join(__dirname, '/Client/index.js'),
   ],
   output: {
-    path: '/',
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/'
   },
   devtool: 'cheap-eval-source-map',
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new Dotenv({
-      path: './.env',
-      safe: false
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      title: 'Hello-Books',
+      template: './index.html'
     })
   ],
   module: {
