@@ -278,6 +278,7 @@ class EditBook extends React.Component {
               </div>
               <button
                 className="btn waves-effect waves-light"
+                id="submitEdit"
                 type="submit"
                 name="action">Update<i className="material-icons right">
                 send</i>

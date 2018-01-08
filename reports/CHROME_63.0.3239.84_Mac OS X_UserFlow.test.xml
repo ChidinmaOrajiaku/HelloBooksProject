@@ -5,9 +5,9 @@
 
   <testsuite name="UserFlow.test"
     errors="0" failures="0" hostname="" id="" package="UserFlow.test" skipped="0"
-    tests="1" time="24.44" timestamp="Fri, 05 Jan 2018 12:53:41 GMT">
+    tests="1" time="27.28" timestamp="Mon, 08 Jan 2018 08:49:28 GMT">
   
-    <testcase name="User Actions" classname="UserFlow.test" time="24.44" assertions="17">
+    <testcase name="User Actions" classname="UserFlow.test" time="27.28" assertions="17">
 
     
 

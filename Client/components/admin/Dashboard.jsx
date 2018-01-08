@@ -18,7 +18,7 @@ import { adminCountUserRequest } from '../../actions/adminCountUsers';
 class Dashboard extends React.Component {
   /**
      * @constructor
-     * @param {object} props 
+     * @param {object} props
      */
   constructor(props) {
     super(props);
@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * 
+   *
    * @returns {object} mounted components
    * @memberof Dashboard
    */
@@ -56,9 +56,9 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * 
+   *
    * @returns {nextProps} next props
-   * @param {any} nextProps 
+   * @param {any} nextProps
    * @memberof Dashboard
    */
   componentWillReceiveProps(nextProps) {
@@ -85,8 +85,8 @@ class Dashboard extends React.Component {
   }
 
   /**
- * 
- * @param {any} event 
+ *
+ * @param {any} event
  * @memberof AddBooks
  * @returns {object} SyntheticEvent
  */
@@ -95,9 +95,9 @@ class Dashboard extends React.Component {
   }
 
   /**
- * 
+ *
  * @returns {event} handles category change
- * @param {any} event 
+ * @param {any} event
  * @memberof Dashboard
  */
   handleCategory(event) {
@@ -113,8 +113,8 @@ class Dashboard extends React.Component {
   }
 
   /**
-   * 
-   * 
+   *
+   *
    * @memberof Dashboard
    * @returns {object} ReactMarkupElement
    */
@@ -187,7 +187,9 @@ class Dashboard extends React.Component {
                     type="submit"
                     className="createButton">Create</button>
                   <a className="modal-action modal-close">
-                    <button className="cancelButton">Cancel
+                    <button
+                    className="cancelButton"
+                    id="cancelButton">Cancel
                     </button>
                   </a>
                 </div>
@@ -209,7 +211,8 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps,
+export default connect(
+mapStateToProps,
   {
     adminCountBooksRequest,
     adminCountRentedBooksRequest,
@@ -217,4 +220,5 @@ export default connect(mapStateToProps,
     adminCountNotReturnedBooksRequest,
     adminCreateCategoryRequest,
     adminCountCategoryRequest
-  })(Dashboard);
+  }
+)(Dashboard);

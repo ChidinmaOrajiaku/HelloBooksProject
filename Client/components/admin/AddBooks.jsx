@@ -137,6 +137,7 @@ export class AddBooks extends React.Component {
      * @memberof AddBooks
      */
   render() {
+    console.log(this.state.tempImage);
     const preview = this.state.imagePreview === '' ?
       <button
         href="#modal1"
@@ -210,14 +211,13 @@ export class AddBooks extends React.Component {
                     <input
                       type="file"
                       onChange={this.handleImageChange}
-                      id="image"/>
+                    />
                   </div>
                   <div className="file-path-wrapper">
                     <input
                       className="file-path validate"
                       type="text"
                       placeholder="Upload Image"
-                      required="required"
                     />
                   </div>
                 </div>

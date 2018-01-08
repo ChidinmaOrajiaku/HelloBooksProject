@@ -75,17 +75,17 @@ export class NavigationBar extends React.Component {
 
     const adminLinks = (
       <div>
-        <li>
+        <li name="dashboard">
           <Link to="/dashboard">
             <i className="material-icons">account_circle</i>Dashboard
           </Link>
         </li>
-        <li>
+        <li name="addbooks">
           <Link to="/addbooks">
             <i className="material-icons">file_upload</i>Upload Book
           </Link>
         </li>
-        <li>
+        <li name="books">
           <Link to="/books"><i className="material-icons">book</i>Books
           </Link>
         </li>
@@ -94,7 +94,7 @@ export class NavigationBar extends React.Component {
             <i className="material-icons">person</i>Profile
           </Link>
         </li>
-        <li>
+        <li name="logout">
           <a onClick={this.logout.bind(this)} id="logOut">
             <i className="material-icons">fast_rewind</i>Log Out
           </a>

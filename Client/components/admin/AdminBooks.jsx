@@ -172,6 +172,7 @@ class AdminBooks extends React.Component {
                   <button
                     value={this.state.getAllBooks[key].id}
                     onClick={this.handleEditChange}
+                    id="editBook"
                     data-index= {key}
                     className="material-icons">create
                   </button>
@@ -181,6 +182,7 @@ class AdminBooks extends React.Component {
                     value={this.state.getAllBooks[key].id}
                     onClick={this.handleDeleteChange}
                     data-index= {key}
+                    id="deleteBook"
                     className="material-icons">delete
                   </button>
                 </a>
@@ -240,13 +242,14 @@ class AdminBooks extends React.Component {
         </div>
         <div id="modal1" className="modal">
           <div className="modal-content">
-            <p className="white-text modalDelete">
+            <p className="white-text modalDelete" id="modalDelete">
               Are you you want to delete this book?
             </p>
           </div>
           <div className="modal-footer">
             <button
               onClick={this.onDeleteRequest}
+              id="deleteButton"
               className="deleteButton"> Delete
             </button>
             <a className="modal-action modal-close">
