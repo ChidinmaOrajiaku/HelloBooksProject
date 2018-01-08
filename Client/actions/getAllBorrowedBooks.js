@@ -3,10 +3,10 @@ import { GET_BORROWED_BOOKS_SUCCESSFUL, GET_BORROWED_BOOKS_FAILED, GET_BORROWED_
 
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} data 
+   * @param {any} data
    * @returns {object} get borrowed books request data
    */
 export function getBorrowedBooksRequest(data) {
@@ -17,10 +17,10 @@ export function getBorrowedBooksRequest(data) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
- * @param {any} response 
+ * @param {any} response
  * @returns {object} get borrowed books response when request is successful
  */
 export function getBorrowedBooksResponse(response) {
@@ -31,10 +31,10 @@ export function getBorrowedBooksResponse(response) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} error 
+   * @param {any} error
    * @returns {object} get borrowed books response when request fails
    */
 export function getBorrowedBooksError(error) {
@@ -48,5 +48,5 @@ export const admingetBorrowedRequest = () => dispatch => axios.get('/api/v1/user
   .then((res) => {
     dispatch(getBorrowedBooksResponse(res.data));
   }).catch((error) => {
-    dispatch(getBorrowedBooksError(error));
+    dispatch(getBorrowedBooksError('An error occurred'));
   });

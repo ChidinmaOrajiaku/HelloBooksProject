@@ -48,5 +48,5 @@ export const adminModifyRequest = (bookId, bookData) => dispatch => axios.put(`/
   .then((res) => {
     dispatch(modifyBooksResponse(res.data));
   }).catch((error) => {
-    dispatch(modifyBooksError(error));
+    dispatch(modifyBooksError('An error occured'));
   });

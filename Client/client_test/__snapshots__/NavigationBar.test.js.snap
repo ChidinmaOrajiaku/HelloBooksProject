@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavigationBar /> should logout 1`] = `
+<div
+  className="container-fluid"
+>
+  <ul
+    className="side-nav fixed"
+    id="slide-out"
+  >
+    <li>
+      <div
+        className="user-view"
+      >
+        <a
+          className="brand-logo"
+          to="#"
+        >
+          HelloBooks
+        </a>
+        <div
+          className="background"
+        />
+        <a
+          href="#!user"
+        >
+          <img
+            className="circle"
+            src={Object {}}
+          />
+        </a>
+        <a
+          href="#!name"
+        >
+          <span
+            className="white-text name"
+          >
+             
+          </span>
+        </a>
+        <a
+          href="#!email"
+        >
+          <span
+            className="white-text email"
+          />
+        </a>
+      </div>
+    </li>
+    <div>
+      <li
+        name="library"
+      >
+        <Link
+          replace={false}
+          to="/library"
+        >
+          <i
+            className="material-icons"
+          >
+            book
+          </i>
+          Library
+        </Link>
+      </li>
+      <li
+        name="history"
+      >
+        <Link
+          replace={false}
+          to="/history"
+        >
+          <i
+            className="material-icons"
+          >
+            photo_library
+          </i>
+          History
+        </Link>
+      </li>
+      <li>
+        <Link
+          replace={false}
+          to="/profile"
+        >
+          <i
+            className="material-icons"
+          >
+            person
+          </i>
+          Profile
+        </Link>
+      </li>
+      <li
+        name="logout"
+      >
+        <a
+          id="logOut"
+          onClick={[Function]}
+        >
+          <i
+            className="material-icons"
+          >
+            fast_rewind
+          </i>
+          Log Out
+        </a>
+      </li>
+    </div>
+  </ul>
+  <a
+    className="button-collapse"
+    data-activates="slide-out"
+    to="#"
+  >
+    <i
+      className="material-icons"
+    >
+      menu
+    </i>
+  </a>
+</div>
+`;
+
+exports[`<NavigationBar /> should match snapshot test 1`] = `
+<div
+  className="container-fluid"
+>
+  <ul
+    className="side-nav fixed"
+    id="slide-out"
+  >
+    <li>
+      <div
+        className="user-view"
+      >
+        <a
+          className="brand-logo"
+          to="#"
+        >
+          HelloBooks
+        </a>
+        <div
+          className="background"
+        />
+        <a
+          href="#!user"
+        >
+          <img
+            className="circle"
+            src={Object {}}
+          />
+        </a>
+        <a
+          href="#!name"
+        >
+          <span
+            className="white-text name"
+          >
+             
+          </span>
+        </a>
+        <a
+          href="#!email"
+        >
+          <span
+            className="white-text email"
+          />
+        </a>
+      </div>
+    </li>
+    <div>
+      <li
+        name="library"
+      >
+        <Link
+          replace={false}
+          to="/library"
+        >
+          <i
+            className="material-icons"
+          >
+            book
+          </i>
+          Library
+        </Link>
+      </li>
+      <li
+        name="history"
+      >
+        <Link
+          replace={false}
+          to="/history"
+        >
+          <i
+            className="material-icons"
+          >
+            photo_library
+          </i>
+          History
+        </Link>
+      </li>
+      <li>
+        <Link
+          replace={false}
+          to="/profile"
+        >
+          <i
+            className="material-icons"
+          >
+            person
+          </i>
+          Profile
+        </Link>
+      </li>
+      <li
+        name="logout"
+      >
+        <a
+          id="logOut"
+          onClick={[Function]}
+        >
+          <i
+            className="material-icons"
+          >
+            fast_rewind
+          </i>
+          Log Out
+        </a>
+      </li>
+    </div>
+  </ul>
+  <a
+    className="button-collapse"
+    data-activates="slide-out"
+    to="#"
+  >
+    <i
+      className="material-icons"
+    >
+      menu
+    </i>
+  </a>
+</div>
+`;

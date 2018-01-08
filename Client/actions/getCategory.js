@@ -3,10 +3,10 @@ import { GET_CATEGORY_SUCCESSFUL, GET_CATEGORY_FAILED, GET_CATEGORY_REQUEST } fr
 
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} data 
+   * @param {any} data
    * @returns {object} gets category request data
    */
 export function getCategoryRequest(data) {
@@ -17,8 +17,8 @@ export function getCategoryRequest(data) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
    * @param {any} response
    * @returns {object} get borrowed books response when request is successful
@@ -31,10 +31,10 @@ export function getCategoryResponse(response) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} error 
+   * @param {any} error
    * @returns {object} get borrowed books response when request is fails
    */
 export function getCategoryError(error) {
@@ -48,5 +48,5 @@ export const getAllCategoryRequest = () => dispatch => axios.get('/api/v1/books/
   .then((res) => {
     dispatch(getCategoryResponse(res.data));
   }).catch((error) => {
-    dispatch(getCategoryError(error));
+    dispatch(getCategoryError('An error occurred'));
   });

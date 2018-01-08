@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignIn /> should match snapshot test 1`] = `
+<div
+  className="signIn"
+>
+  <div
+    className="bodyNavigation"
+  >
+     
+    <Component />
+     
+  </div>
+  <div
+    className="row container"
+  >
+    <div
+      className="col m6 offset-m3"
+    >
+      <div
+        className="card"
+        data-aos="flip-up"
+      >
+        <div
+          className="card-content black-text"
+        >
+          <form
+            id="form"
+            onSubmit={[Function]}
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <input
+                  className="validate"
+                  id="email"
+                  onChange={[Function]}
+                  required="required"
+                  type="email"
+                  value=""
+                />
+                <label
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+              </div>
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="input-field col s12"
+              >
+                <input
+                  className="validate"
+                  id="password"
+                  onChange={[Function]}
+                  required="required"
+                  type="password"
+                  value=""
+                />
+                <label
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+              </div>
+            </div>
+            <button
+              className="btn waves-effect waves-light"
+              name="action"
+              type="submit"
+            >
+              Sign In
+              <i
+                className="material-icons right"
+              >
+                send
+              </i>
+            </button>
+          </form>
+        </div>
+        <div
+          className="account"
+        >
+          <p>
+             Not a member?
+            <Link
+              replace={false}
+              to="/register"
+            >
+              Sign Up
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

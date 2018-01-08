@@ -26,7 +26,7 @@ export default (state = initialState, action = {}) => {
       return [{
         yetToReturnData: {},
         response: '',
-        error: action.error.response.data.errors[0].message,
+        error: action.error,
       }, ...state];
 
     default: return state;

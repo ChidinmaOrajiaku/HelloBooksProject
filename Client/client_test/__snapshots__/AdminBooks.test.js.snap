@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AdminBooks /> should match snapshot test 1`] = `
+<div
+  className="books row container-fluid"
+>
+  <div>
+     
+    <Connect(withRouter(NavigationBar)) />
+     
+  </div>
+  <h4
+    className="col m8 offset-m3 white-text"
+  >
+     ADMIN BOOK LIST 
+  </h4>
+  <div
+    className="row col m8 offset-m3"
+  >
+    <div
+      className="input-field col s4 status"
+    >
+      <select
+        className="white-text"
+        id="bookStatus"
+        onChange={[Function]}
+        value="1"
+      >
+        <option
+          defaultValue={true}
+          value=""
+        >
+          Choose your option
+        </option>
+        <option
+          value="2"
+        >
+          All Books
+        </option>
+        <option
+          value="3"
+        >
+          Pending Returns
+        </option>
+      </select>
+      <label
+        className="white-text sort"
+      >
+        Sort table
+      </label>
+    </div>
+    <div
+      className="col s12 "
+    >
+      <div
+        className="card"
+      >
+        <div
+          className="card-content teal-text"
+        >
+          <div>
+            <p>
+              Loading...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="modal"
+    id="modal1"
+  >
+    <div
+      className="modal-content"
+    >
+      <p
+        className="white-text modalDelete"
+        id="modalDelete"
+      >
+        Are you you want to delete this book?
+      </p>
+    </div>
+    <div
+      className="modal-footer"
+    >
+      <button
+        className="deleteButton"
+        id="deleteButton"
+        onClick={[Function]}
+      >
+         Delete
+      </button>
+      <a
+        className="modal-action modal-close"
+      >
+        <button
+          className="cancelButton"
+        >
+          Cancel
+        </button>
+      </a>
+    </div>
+  </div>
+  <div>
+     
+    <Component />
+  </div>
+</div>
+`;

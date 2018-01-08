@@ -7,15 +7,15 @@ import { logout } from '../actions/signinAction';
 import { getUserDataRequest } from '../actions/getUser';
 
 /**
- * 
- * 
+ *
+ *
  * @class NavigationBar
  * @extends {React.Component}
  */
 export class NavigationBar extends React.Component {
   /**
      * @constructor
-     * @param {object} props 
+     * @param {object} props
      */
   constructor(props) {
     super(props);
@@ -28,7 +28,7 @@ export class NavigationBar extends React.Component {
   }
 
   /**
-   * 
+   *
    * @returns {any} sideNav
    * @memberof NavigationBar
    */
@@ -38,9 +38,9 @@ export class NavigationBar extends React.Component {
   }
 
   /**
-   * 
+   *
    * @returns {nextProps} next props
-   * @param {any} nextProps 
+   * @param {any} nextProps
    * @memberof NavigationBar
    */
   componentWillReceiveProps(nextProps) {
@@ -54,9 +54,9 @@ export class NavigationBar extends React.Component {
   }
 
   /**
- *  
+ *
  * @returns {any} event
- * @param {any} event 
+ * @param {any} event
  * @memberof NavigationBar
  */
   logout(event) {
@@ -75,17 +75,17 @@ export class NavigationBar extends React.Component {
 
     const adminLinks = (
       <div>
-        <li>
+        <li name="dashboard">
           <Link to="/dashboard">
             <i className="material-icons">account_circle</i>Dashboard
           </Link>
         </li>
-        <li>
+        <li name="addbooks">
           <Link to="/addbooks">
             <i className="material-icons">file_upload</i>Upload Book
           </Link>
         </li>
-        <li>
+        <li name="books">
           <Link to="/books"><i className="material-icons">book</i>Books
           </Link>
         </li>
@@ -94,8 +94,8 @@ export class NavigationBar extends React.Component {
             <i className="material-icons">person</i>Profile
           </Link>
         </li>
-        <li>
-          <a onClick={this.logout.bind(this)}>
+        <li name="logout">
+          <a onClick={this.logout.bind(this)} id="logOut">
             <i className="material-icons">fast_rewind</i>Log Out
           </a>
         </li>
@@ -104,12 +104,12 @@ export class NavigationBar extends React.Component {
 
     const userLinks = (
       <div>
-        <li>
+        <li name="library">
           <Link to="/library">
             <i className="material-icons">book</i>Library
           </Link>
         </li>
-        <li>
+        <li name="history">
           <Link to="/history"><i className="material-icons">photo_library</i>
           History
           </Link>
@@ -119,8 +119,8 @@ export class NavigationBar extends React.Component {
             <i className="material-icons">person</i>Profile
           </Link>
         </li>
-        <li>
-          <a onClick={this.logout.bind(this)}>
+        <li name="logout">
+          <a onClick={this.logout.bind(this)} id="logOut">
             <i className="material-icons">fast_rewind</i>Log Out
           </a>
         </li>
@@ -148,7 +148,10 @@ export class NavigationBar extends React.Component {
               </a>
             </div>
           </li>
-          { localStorage.username === 'admin96' && isAuthenticated ? adminLinks : userLinks }
+          {
+            localStorage.username === 'admin96'
+            && isAuthenticated ?
+            adminLinks : userLinks }
         </ul>
         <a to="#" data-activates="slide-out" className="button-collapse">
           <i className="material-icons">menu</i>
@@ -165,9 +168,9 @@ NavigationBar.propTypes = {
 };
 
 /**
- * 
- * 
- * @param {any} state 
+ *
+ *
+ * @param {any} state
  * @returns {state} map state to props
  */
 function mapStateToProps(state) {
@@ -179,4 +182,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  logout, getUserDataRequest })(withRouter(NavigationBar));
+  logout,
+  getUserDataRequest
+})(withRouter(NavigationBar));

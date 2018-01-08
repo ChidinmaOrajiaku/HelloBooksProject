@@ -3,10 +3,10 @@ import { YET_TO_RETURN_SUCCESSFUL, YET_TO_RETURN_FAILED, YET_TO_RETURN_REQUEST }
 
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} data 
+   * @param {any} data
    * @returns {object} gets request data of books that are yet to be returned
    */
 export function yetToReturnRequest(data) {
@@ -17,8 +17,8 @@ export function yetToReturnRequest(data) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} response
  * @returns {object} gets response if action is successful
@@ -31,10 +31,10 @@ export function yetToReturnResponse(response) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} error 
+   * @param {any} error
    * @returns {error} gets error if action fails
    */
 export function yetToReturnError(error) {
@@ -48,5 +48,5 @@ export const yetToReturn = usersId => dispatch => axios.get(`/api/v1/users/${use
   .then((res) => {
     dispatch(yetToReturnResponse(res.data));
   }).catch((error) => {
-    dispatch(yetToReturnError(error));
+    dispatch(yetToReturnError('An error occured'));
   });
