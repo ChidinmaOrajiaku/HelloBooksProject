@@ -155,7 +155,7 @@ export const adminCreateCategoryRequest = category => dispatch => axios.post('/a
  */
 export function saveImageCloudinary(image) {
   const cloudinaryUrl = process.env.CLOUDINARY_URL;
-  const cloudinaryPreset = process.env.CLOUDINARY_PRESET;
+  const cloudinaryPreset =  process.env.CLOUDINARY_PRESET;
   const data = new FormData();
   data.append('file', image);
   data.append('upload_preset', cloudinaryPreset);
