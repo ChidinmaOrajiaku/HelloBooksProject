@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dashboard /> should match snapshot test 1`] = `
+<div
+  className="adminDashboard"
+>
+  <div
+    className="container"
+  >
+    <div
+      className=""
+    >
+       
+      <Connect(withRouter(NavigationBar)) />
+       
+    </div>
+    <div
+      className="row initial"
+    >
+      <div
+        className="col s6 m6"
+      >
+        <div
+          className="card"
+        >
+          <div
+            className="card-content text-center teal-text"
+          >
+            <span
+              className="card-title text-center"
+            >
+              Total Books
+            </span>
+            <p />
+          </div>
+          <div
+            className="card-action"
+          />
+        </div>
+      </div>
+      <div
+        className="col s6 m6 black-text"
+      >
+        <div
+          className="card"
+        >
+          <div
+            className="card-content text-center teal-text"
+          >
+            <span
+              className="card-title text-center"
+            >
+              Total Borrowed Books
+            </span>
+            <p />
+          </div>
+          <div
+            className="card-action"
+          />
+        </div>
+      </div>
+      <div
+        className="col s6 m6"
+      >
+        <div
+          className="card"
+        >
+          <div
+            className="card-content teal-text text-center"
+          >
+            <span
+              className="card-title text-center"
+            >
+              Total Users
+            </span>
+            <p />
+          </div>
+          <div
+            className="card-action"
+          />
+        </div>
+      </div>
+      <div
+        className="col s6 m6"
+      >
+        <div
+          className="card"
+        >
+          <div
+            className="card-content teal-text text-center"
+          >
+            <span
+              className="card-title text-center"
+            >
+              Total Category
+            </span>
+            <p />
+          </div>
+          <div
+            className="card-action"
+          >
+            <a
+              className="modal-trigger white-text"
+              href="#modal1"
+            >
+              Create
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        className="modal"
+        id="modal1"
+      >
+        <div
+          className="modal-content"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="input-field col s12"
+            >
+              <input
+                className="validate"
+                id="category"
+                onChange={[Function]}
+                required="required"
+                type="text"
+                value=""
+              />
+              <label
+                htmlFor="category"
+              >
+                Category
+              </label>
+            </div>
+          </div>
+          <div
+            className="modal-footer"
+          >
+            <button
+              className="createButton"
+              onClick={[Function]}
+              type="submit"
+            >
+              Create
+            </button>
+            <a
+              className="modal-action modal-close"
+            >
+              <button
+                className="cancelButton"
+                id="cancelButton"
+              >
+                Cancel
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+       
+      <Component />
+    </div>
+  </div>
+</div>
+`;

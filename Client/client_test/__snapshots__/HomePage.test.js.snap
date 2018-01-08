@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> should match snapshot test 1`] = `
+<div
+  className="main"
+>
+  <div
+    className="bodyNavigation"
+  >
+     
+    <Component />
+     
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="container first-section"
+    >
+      <h1
+        className="welcome"
+      >
+        Welcome to Hello Books
+      </h1>
+      <div>
+        <Link
+          className="waves-effect waves-light btn col s2 offset-m3 "
+          replace={false}
+          to="/login"
+        >
+           Login
+        </Link>
+        <Link
+          className="waves-effect waves-light btn col s2 offset-m1"
+          replace={false}
+          to="/register"
+        >
+           Sign Up 
+        </Link>
+      </div>
+    </div>
+    <div
+      className="second-section"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col s4"
+          data-aos="zoom-in"
+        >
+          <div>
+            <h1>
+              <img
+                data-aos="flip-left"
+                src={Object {}}
+              />
+              <br />
+              Read a book
+            </h1>
+            <span>
+              Hi Reader! Looking for a book to read? You are in the right place. Just sign up with your awesome details and begin a wonderful book sail.
+            </span>
+          </div>
+        </div>
+        <div
+          className="col s4"
+          data-aos="zoom-in"
+        >
+          <h1>
+            <img
+              data-aos="flip-right"
+              src={Object {}}
+            />
+            <br />
+            Borrow a book
+          </h1>
+          <span>
+            You can decide to borrow a book a save it for later. Yeah! It's your library, use it however you like. Just remember to return the borrowed books within the stipulated time.
+          </span>
+        </div>
+        <div
+          className="col s4"
+          data-aos="zoom-in"
+        >
+          <h1>
+            <img
+              data-aos="flip-left"
+              src={Object {}}
+            />
+            <br />
+            Suggest a book
+          </h1>
+          <span>
+            Do you have any book you would love to read but it's not available on our app? Or  have you read all available books and in need something new? Just suggest it to us and you'll get it in no time. Rememeber, your wish is our command.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="third-section"
+    >
+      <div
+        className="row container"
+      >
+        <span
+          className="col s12"
+          data-aos="fade-up"
+        >
+          Popular books
+        </span>
+        <div
+          className="col s4"
+          data-aos="fade-up"
+        >
+          <img
+            src={Object {}}
+          />
+        </div>
+        <div
+          className="col s4"
+          data-aos="fade-up"
+        >
+          <img
+            src={Object {}}
+          />
+        </div>
+        <div
+          className="col s4"
+          data-aos="fade-up"
+        >
+          <img
+            src={Object {}}
+          />
+        </div>
+        <div
+          className="col s4"
+          data-aos="fade-up"
+        >
+          <img
+            src={Object {}}
+          />
+        </div>
+        <div
+          className="col s4"
+          data-aos="fade-up"
+        >
+          <img
+            src={Object {}}
+          />
+        </div>
+        <div
+          className="col s4"
+          data-aos="fade-up"
+        >
+          <img
+            src={Object {}}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+     
+    <Component />
+  </div>
+</div>
+`;

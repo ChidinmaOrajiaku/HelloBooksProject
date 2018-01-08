@@ -19,6 +19,21 @@ describe('<Library />', () => {
     return mountedComponent;
   };
 
+  it('should call handleReturn method', () => {
+    const spy = jest.spyOn(libraryItem().instance(), 'handleBorrow');
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        value: 'abd',
+        dataset: {
+          index: 1
+        }
+      }
+    };
+    libraryItem().instance().handleBorrow(event);
+    expect(spy).toHaveBeenCalled();
+  });
+
   it('should match snapshot test', () => {
     const component = libraryItem();
     const tree = toJson(component);

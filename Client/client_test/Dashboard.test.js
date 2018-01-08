@@ -4,40 +4,41 @@ import toJson from 'enzyme-to-json';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import mockData from './mocks/mockData';
-import { History } from '../components/user/History.jsx';
+import { Dashboard } from '../components/admin/Dashboard.jsx';
 
 configure({ adapter: new Adapter() });
 
-describe('<History />', () => {
+describe('<Dashboard />', () => {
   const props = {
-    getUserBorrowed: jest.fn(),
-    yetToReturn: jest.fn(),
+    adminCreateCategoryRequest: jest.fn(),
+    adminCountBooksRequest: jest.fn(),
+    adminCountRentedBooksRequest: jest.fn(),
+    adminCountNotReturnedBooksRequest: jest.fn(),
+    adminCountCategoryRequest: jest.fn(),
+    adminCountUserRequest: jest.fn()
   };
   let mountedComponent;
-  const navigationBarItem = () => {
+  const DashboardItem = () => {
     if (!mountedComponent) {
-      mountedComponent = shallow(<History {...props}/>);
+      mountedComponent = shallow(<Dashboard {...props}/>);
     }
     return mountedComponent;
   };
 
-  it('should call handleReturn method', () => {
-    const spy = jest.spyOn(navigationBarItem().instance(), 'handleReturn');
+  it('should call handleCategory method', () => {
+    const spy = jest.spyOn(DashboardItem().instance(), 'handleCategory');
     const event = {
       preventDefault: jest.fn(),
       target: {
         value: 'abd',
-        dataset: {
-          index: 1
-        }
       }
     };
-    navigationBarItem().instance().handleReturn(event);
+    DashboardItem().instance().handleCategory(event);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should call handleChange method', () => {
-    const spy = jest.spyOn(navigationBarItem().instance(), 'handleChange');
+    const spy = jest.spyOn(DashboardItem().instance(), 'handleChange');
     const event = {
       preventDefault: jest.fn(),
       target: {
@@ -45,12 +46,12 @@ describe('<History />', () => {
         value: 'chideberecom'
       }
     };
-    navigationBarItem().instance().handleChange(event);
+    DashboardItem().instance().handleChange(event);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should match snapshot test', () => {
-    const component = navigationBarItem();
+    const component = DashboardItem();
     const tree = toJson(component);
     expect(tree).toMatchSnapshot();
   });

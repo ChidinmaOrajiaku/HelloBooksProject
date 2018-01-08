@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<AddBooks /> should match snapshot test 1`] = `
+exports[`<EditBook /> should match snapshot test 1`] = `
 <div
-  className="adminAddBooks row ontainer"
+  className="adminAddBooks row"
 >
   <div
     className=""
@@ -11,11 +11,6 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
     <Connect(withRouter(NavigationBar)) />
      
   </div>
-  <h4
-    className="col m8 offset-m3"
-  >
-     ADMIN UPLOAD BOOKS 
-  </h4>
   <div
     className="col m4 offset-m5"
   >
@@ -36,11 +31,11 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
               className="validate"
               id="title"
               onChange={[Function]}
-              required="required"
               type="text"
               value=""
             />
             <label
+              className="active"
               htmlFor="title"
             >
               Title
@@ -57,43 +52,19 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
               className="validate"
               id="author"
               onChange={[Function]}
-              required="required"
               type="text"
               value=""
             />
             <label
+              className="active"
               htmlFor="author"
             >
               Author
             </label>
           </div>
         </div>
-        <div
-          className="row"
-        >
-          <div
-            className="input-field col s12 status"
-          >
-            <select
-              className="teal-text"
-              id="category"
-              onChange={[Function]}
-              value="1"
-            >
-              <option
-                className="default"
-                disabled={true}
-                value={true}
-              >
-                Select One
-              </option>
-            </select>
-            <label
-              className="black-text sort"
-            >
-              Category
-            </label>
-          </div>
+        <div>
+           Loading... 
         </div>
         <div
           className="row"
@@ -124,6 +95,7 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
                 className="file-path validate"
                 placeholder="Upload Image"
                 type="text"
+                value=""
               />
             </div>
           </div>
@@ -145,10 +117,10 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
               className="materialize-textarea"
               id="review"
               onChange={[Function]}
-              required="required"
               value=""
             />
             <label
+              className="active"
               htmlFor="review"
             >
               Review
@@ -157,10 +129,11 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
         </div>
         <button
           className="btn waves-effect waves-light"
+          id="submitEdit"
           name="action"
           type="submit"
         >
-          Add
+          Update
           <i
             className="material-icons right"
           >

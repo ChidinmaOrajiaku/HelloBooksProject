@@ -108,7 +108,8 @@ const mockData = {
     verifyPassword: '1234',
     password: '4321'
   },
-  errorMessage: 'An error occurred'
+  errorMessage: 'An error occurred',
+  image: 'https://res.cloudinary.com/andela-chidinma/image/upload/v1515403427/ena7dhy6xriztom6vuvo.jpg'
 };
 
 export default mockData;

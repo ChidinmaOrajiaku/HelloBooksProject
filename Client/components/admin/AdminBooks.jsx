@@ -14,10 +14,10 @@ import { editBookIdRequest } from '../../actions/editBooks';
 /**
  * @class Books
  */
-class AdminBooks extends React.Component {
+export class AdminBooks extends React.Component {
   /**
      * @constructor
-     * @param {object} props 
+     * @param {object} props
      */
   constructor(props) {
     super(props);
@@ -41,7 +41,7 @@ class AdminBooks extends React.Component {
   }
 
   /**
-   * 
+   *
    * @returns {object} response object
    * @memberof AdminBooks
    */
@@ -60,9 +60,9 @@ class AdminBooks extends React.Component {
     });
   }
   /**
-   * 
+   *
    * @returns {nextProps} next props
-   * @param {any} nextProps 
+   * @param {any} nextProps
    * @memberof AdminBooks
    */
   componentWillReceiveProps(nextProps) {
@@ -78,9 +78,9 @@ class AdminBooks extends React.Component {
   }
 
   /**
- * 
+ *
  * @returns {event} handles change
- * @param {any} event 
+ * @param {any} event
  * @memberof AdminBooks
  */
   handleChange(event) {
@@ -88,21 +88,22 @@ class AdminBooks extends React.Component {
   }
 
   /**
- * 
+ *
  * @returns {event} handles delete change
- * @param {any} event 
+ * @param {any} event
  * @memberof AdminBooks
  */
   handleDeleteChange(event) {
     this.setState({
       bookId: event.target.value,
-      bookIndex: event.target.dataset.index });
+      bookIndex: event.target.dataset.index 
+});
   }
 
   /**
- * 
+ *
  * @returns {event} handles edit change
- * @param {any} event 
+ * @param {any} event
  * @memberof AdminBooks
  */
   handleEditChange(event) {
@@ -111,9 +112,9 @@ class AdminBooks extends React.Component {
     localStorage.setItem('currentBookId', event.target.value);
   }
   /**
- * 
+ *
  * @returns {event} view a book request
- * @param {any} event 
+ * @param {any} event
  * @memberof AdminBooks
  */
   onViewRequest(event) {
@@ -121,9 +122,9 @@ class AdminBooks extends React.Component {
     this.props.getBookRequest(event.target.value);
   }
   /**
- * 
+ *
  * @returns {event} delete a book request
- * @param {any} event 
+ * @param {any} event
  * @memberof AdminBooks
  */
   onDeleteRequest(event) {
@@ -143,9 +144,9 @@ class AdminBooks extends React.Component {
     }, 1000);
   }
   /**
-     * 
-     * 
-     * @returns {object} ReactMarkupElement 
+     *
+     *
+     * @returns {object} ReactMarkupElement
      * @memberof AdminBooks
      */
   render() {
@@ -187,8 +188,7 @@ class AdminBooks extends React.Component {
                   </button>
                 </a>
               </td>
-            </tr>
-          )}
+            </tr>)}
         </tbody>
       </table>;
     const borrowedBooks = this.state.loading ? <div><p>Loading...</p></div> :
@@ -210,8 +210,7 @@ class AdminBooks extends React.Component {
               <td>{ this.state.getAllBorrowedBooks[key].Book.title }</td>
               <td>{ this.state.getAllBorrowedBooks[key].Book.author }</td>
               <td>{ this.state.getAllBorrowedBooks[key].Book.category }</td>
-            </tr>
-          )}
+            </tr>)}
         </tbody>
       </table>;
 
@@ -273,6 +272,9 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps,
-  { adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest, editBookIdRequest
-  })(AdminBooks);
+export default connect(
+mapStateToProps,
+  {
+ adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest, editBookIdRequest
+  }
+)(AdminBooks);

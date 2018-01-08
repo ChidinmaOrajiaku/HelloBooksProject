@@ -15,7 +15,7 @@ import { adminCountUserRequest } from '../../actions/adminCountUsers';
 /**
  * @class Dashboard
  */
-class Dashboard extends React.Component {
+export class Dashboard extends React.Component {
   /**
      * @constructor
      * @param {object} props
@@ -212,7 +212,7 @@ const mapStateToProps = state => (
 );
 
 export default connect(
-mapStateToProps,
+  mapStateToProps,
   {
     adminCountBooksRequest,
     adminCountRentedBooksRequest,

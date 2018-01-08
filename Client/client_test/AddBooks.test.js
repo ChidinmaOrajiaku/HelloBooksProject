@@ -3,6 +3,7 @@ import $ from 'jquery';
 import toJson from 'enzyme-to-json';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import mockData from './mocks/mockData';
 import { AddBooks } from '../components/admin/AddBooks.jsx';
 
 configure({ adapter: new Adapter() });
@@ -11,11 +12,10 @@ describe('<AddBooks />', () => {
   const props = {
     adminAddRequest: jest.fn(() => Promise.resolve()),
     getAllCategoryRequest: jest.fn(() => Promise.resolve()),
+    saveImageCloudinary: jest.fn(() => Promise.resolve()),
+    categoryData: [{ a: 'a', b: 'b' }]
   };
 
-  const event = {
-    preventDefault: jest.fn(),
-  };
   let mountedComponent;
   const AddBooksItem = () => {
     if (!mountedComponent) {
@@ -72,16 +72,27 @@ describe('<AddBooks />', () => {
     expect(AddBooksItem().state().review).toBe('chideberecom');
   });
 
-  // it('should update state on image field change', () => {
-  //   AddBooksItem().find('#image').simulate('change', {
-  //     target: {
-  //       id: 'image',
-  //       value: 'image'
-  //     },
-  //     event
-  //   });
-  //   expect(AddBooksItem().state().image).toBe('image');
-  // });
+  it('should call onAddSubmit method', () => {
+    const spy = jest.spyOn(AddBooksItem().instance(), 'onAddSubmit');
+    const event = {
+      preventDefault: jest.fn(),
+    };
+    AddBooksItem().instance().onAddSubmit(event);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call handleChange method', () => {
+    const spy = jest.spyOn(AddBooksItem().instance(), 'handleChange');
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        id: 'review',
+        value: 'chideberecom'
+      }
+    };
+    AddBooksItem().instance().handleChange(event);
+    expect(spy).toHaveBeenCalled();
+  });
 
   it('should match snapshot test', () => {
     const component = AddBooksItem();

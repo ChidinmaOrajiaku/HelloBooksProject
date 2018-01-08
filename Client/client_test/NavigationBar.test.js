@@ -14,6 +14,9 @@ describe('<NavigationBar />', () => {
     auth: userDetailsResponse,
     logout: jest.fn(),
     getUserDataRequest: jest.fn(),
+    history: {
+      push: jest.fn()
+    }
   };
 
   let mountedComponent;
@@ -32,37 +35,6 @@ describe('<NavigationBar />', () => {
 
   it('renders <NavigationBar /> component', () => {
     expect(navigationBarItem()).toHaveLength(1);
-  });
-
-  it('should update state on first name field change', () => {
-    navigationBarItem().find('#firstname').simulate('change', {
-      target: {
-        id: 'firstname',
-        value: 'chidebere'
-      },
-    });
-    expect(navigationBarItem().state().firstname).toBe('chidebere');
-  });
-
-  it('should update state on last name field change', () => {
-    navigationBarItem().find('#lastname').simulate('change', {
-      target: {
-        id: 'lastname',
-        value: 'chidebere'
-      },
-    });
-    expect(navigationBarItem().state().lastname).toBe('chidebere');
-  });
-
-
-  it('should update state on email field change', () => {
-    navigationBarItem().find('#email').simulate('change', {
-      target: {
-        id: 'email',
-        value: 'chidebere@w.com'
-      },
-    });
-    expect(navigationBarItem().state().email).toBe('chidebere@w.com');
   });
 
   it('should logout', () => {

@@ -13,7 +13,7 @@ import { getAllCategoryRequest } from '../../actions/getCategory';
 export class AddBooks extends React.Component {
   /**
      * @constructor
-     * @param {object} props 
+     * @param {object} props
      */
   constructor(props) {
     super(props);
@@ -55,8 +55,8 @@ export class AddBooks extends React.Component {
   }
 
   /**
-   * 
-   * @param {any} nextProps 
+   *
+   * @param {any} nextProps
    * @memberof AddBooks
    * @returns {nextProps} assigns nextprops to state
    */
@@ -64,9 +64,10 @@ export class AddBooks extends React.Component {
     if (nextProps.imageInputUrl && this.state.pointer) {
       this.setState({
         image: nextProps.imageInputUrl,
-        pointer: false }),
+        pointer: false
+      }),
       setTimeout(() => {
-        this.props.adminAddRequest(this.state)
+        this.props.adminAddRequest(this.state);
       }, 1000);
       setTimeout(() => {
         if (this.props.createBooksResponse.isAdded === true) {
@@ -84,8 +85,8 @@ export class AddBooks extends React.Component {
   }
 
   /**
- * 
- * @param {any} event 
+ *
+ * @param {any} event
  * @memberof AddBooks
  * @returns {object} SyntheticEvent
  */
@@ -95,7 +96,7 @@ export class AddBooks extends React.Component {
 
   /**
  * Submits image to cloudinary and sets state of pointer to true
- * @param {event} event 
+ * @param {event} event
  * @memberof AddBooks
  * @returns {object} response object
  */
@@ -107,7 +108,7 @@ export class AddBooks extends React.Component {
 
   /**
  * Handles Image change and saves image file in state
- * @param {any} event 
+ * @param {any} event
  * @memberof AddBooks
  * @returns {object} response object
  */
@@ -131,13 +132,12 @@ export class AddBooks extends React.Component {
   }
 
   /**
-     * 
+     *
      * React element markup
      * @returns {object} markUp
      * @memberof AddBooks
      */
   render() {
-    console.log(this.state.tempImage);
     const preview = this.state.imagePreview === '' ?
       <button
         href="#modal1"
@@ -165,8 +165,7 @@ export class AddBooks extends React.Component {
                 value={this.state.categoryData[key].category }
               >
                 {this.state.categoryData[key].category }
-              </option>)
-            )}
+              </option>))}
           </select>
           <label className="black-text sort">Category</label>
         </div>
@@ -209,6 +208,7 @@ export class AddBooks extends React.Component {
                   <div className="btn file">
                     <span><i className="material-icons">file_upload</i></span>
                     <input
+                      id="image"
                       type="file"
                       onChange={this.handleImageChange}
                     />
@@ -269,5 +269,7 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps,
-  { adminAddRequest, saveImageCloudinary, getAllCategoryRequest })(AddBooks);
+export default connect(
+  mapStateToProps,
+  { adminAddRequest, saveImageCloudinary, getAllCategoryRequest }
+)(AddBooks);
