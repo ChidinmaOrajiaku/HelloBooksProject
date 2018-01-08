@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<History /> should match snapshot test 1`] = `
+<div
+  className="history row container-fluid"
+>
+  <div
+    className=""
+  >
+     
+    <Connect(withRouter(NavigationBar)) />
+     
+  </div>
+  <h4
+    className="col m8 offset-m3 white-text"
+  >
+     USER BOOK HISTORY 
+  </h4>
+  <div
+    className="row col m8 offset-m3"
+  >
+    <div
+      className="input-field col s4 status"
+    >
+      <select
+        className="white-text"
+        id="bookStatus"
+        onChange={[Function]}
+        value="1"
+      >
+        <option
+          defaultValue={true}
+          value=""
+        >
+          Choose your option
+        </option>
+        <option
+          value="2"
+        >
+          Borrowed Books
+        </option>
+        <option
+          value="3"
+        >
+          Pending Returns
+        </option>
+      </select>
+      <label
+        className="white-text sort"
+      >
+        Sort table
+      </label>
+    </div>
+    <div
+      className="col s12 "
+    >
+      <div
+        className="card"
+      >
+        <div
+          className="card-content teal-text"
+        >
+          <div>
+            <p>
+              Loading...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+       
+      <Component />
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> should match snapshot test 1`] = `
+<footer
+  className="page-footer teal"
+>
+  <div
+    className=""
+  >
+    <div
+      className="container"
+    >
+      © 2017 Copyright Text
+    </div>
+  </div>
+</footer>
+`;

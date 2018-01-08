@@ -7,7 +7,8 @@ import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-import webpackConfig from '../webpack.config';
+import webpackConfig from '../webpack.dev';
+import webpackConfigProduction from '../webpack.prod';
 import routes from './server/routes';
 
 /**
@@ -15,11 +16,18 @@ import routes from './server/routes';
  */
 const app = express();
 
+let compiler
+
 dotenv.config();
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 // webpack configuration
-const compiler = webpack(webpackConfig);
+if (process.env.NODE_ENV !== 'production') {
+  compiler = webpack(webpackConfig);
+ } else {
+  compiler = webpack(webpackConfigProduction);
+ }
+
 
 app.use(webpackMiddleware(compiler, {
   hot: true,

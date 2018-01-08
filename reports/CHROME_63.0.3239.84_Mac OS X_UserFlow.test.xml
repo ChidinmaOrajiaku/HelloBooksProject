@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="UserFlow.test"
+    errors="0" failures="0" hostname="" id="" package="UserFlow.test" skipped="0"
+    tests="1" time="27.28" timestamp="Mon, 08 Jan 2018 08:49:28 GMT">
+  
+    <testcase name="User Actions" classname="UserFlow.test" time="27.28" assertions="17">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

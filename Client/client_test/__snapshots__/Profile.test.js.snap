@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Profile /> should match snapshot test 1`] = `
+<div
+  className="profile row"
+>
+  <div
+    className=""
+  >
+     
+    <Connect(withRouter(NavigationBar)) />
+     
+  </div>
+  <h4
+    className="col m9 offset-m2"
+  >
+     PROFILE DETAILS
+  </h4>
+  <hr
+    className="col m3 offset-m5"
+  />
+  <div
+    className="row"
+  >
+    <div
+      className="col m3 offset-m5 profileB"
+    >
+      <div
+        className="card"
+      >
+        <div
+          className="card-content"
+        >
+          <p
+            className="profileDetails"
+          >
+            Name: 
+             
+          </p>
+          <p
+            className="profileDetails"
+          >
+             Username: 
+          </p>
+          <p
+            className="profileDetails"
+          >
+             Email: 
+          </p>
+          <p
+            className="profileDetails"
+          >
+             Password: ***
+            <a
+              className="modal-trigger"
+              href="#modal1"
+            >
+              <button
+                className="material-icons"
+                name="action"
+              >
+                create
+              </button>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="modal"
+    id="modal1"
+  >
+    <div
+      className="modal-content"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="input-field col s12"
+        >
+          <input
+            className="validate"
+            id="verifyPassword"
+            onChange={[Function]}
+            required="required"
+            type="password"
+            value=""
+          />
+          <label
+            htmlFor="verifyPassword"
+          >
+            Old Password
+          </label>
+        </div>
+        <div
+          className="input-field col s12"
+        >
+          <input
+            className="validate"
+            id="password"
+            onChange={[Function]}
+            required="required"
+            type="password"
+            value=""
+          />
+          <label
+            htmlFor="password"
+          >
+            New Password
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="modal-footer"
+    >
+      <button
+        className="passwordButton"
+        id="passwordButton"
+        onClick={[Function]}
+      >
+         Change 
+      </button>
+      <a
+        className="modal-action modal-close"
+      >
+        <button
+          className="passwordCButton"
+          id="passwordCButton"
+        >
+          Cancel
+        </button>
+      </a>
+    </div>
+  </div>
+  <div>
+     
+    <Component />
+  </div>
+</div>
+`;

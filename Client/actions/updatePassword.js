@@ -31,10 +31,10 @@ export function updatePasswordResponse(response) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} error 
+   * @param {any} error
    * @returns {object} gets response if update password action fails
    */
 export function updatePasswordError(error) {

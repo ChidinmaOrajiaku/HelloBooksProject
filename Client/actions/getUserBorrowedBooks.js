@@ -3,10 +3,10 @@ import { GET_USER_BORROWED_SUCCESSFUL, GET_USER_BORROWED_FAILED, GET_USER_BORROW
 
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} data 
+   * @param {any} data
    * @returns {object} gets user borrowed books request data
    */
 export function getUserBorrowedRequest(data) {
@@ -17,8 +17,8 @@ export function getUserBorrowedRequest(data) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} response
  * @returns {object} gets response if action is successful
@@ -31,10 +31,10 @@ export function getUserBorrowedResponse(response) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} error 
+   * @param {any} error
    * @returns {object} gets error if action fails
    */
 export function getUserBorrowedError(error) {
@@ -48,5 +48,5 @@ export const getUserBorrowed = usersId => dispatch => axios.get(`/api/v1/users/$
   .then((res) => {
     dispatch(getUserBorrowedResponse(res.data));
   }).catch((error) => {
-    dispatch(getUserBorrowedError(error));
+    dispatch(getUserBorrowedError('An error occured'));
   });

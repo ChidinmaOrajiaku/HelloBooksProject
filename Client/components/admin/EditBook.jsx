@@ -12,7 +12,7 @@ import { getAllCategoryRequest } from '../../actions/getCategory';
 /**
  * @class EditBook
  */
-class EditBook extends React.Component {
+export class EditBook extends React.Component {
   /**
      * @constructor
      * @param {object} props 
@@ -278,6 +278,7 @@ class EditBook extends React.Component {
               </div>
               <button
                 className="btn waves-effect waves-light"
+                id="submitEdit"
                 type="submit"
                 name="action">Update<i className="material-icons right">
                 send</i>

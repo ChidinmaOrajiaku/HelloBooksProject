@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddBooks /> should match snapshot test 1`] = `
+<div
+  className="adminAddBooks row ontainer"
+>
+  <div
+    className=""
+  >
+     
+    <Connect(withRouter(NavigationBar)) />
+     
+  </div>
+  <h4
+    className="col m8 offset-m3"
+  >
+     ADMIN UPLOAD BOOKS 
+  </h4>
+  <div
+    className="col m4 offset-m5"
+  >
+    <div
+      className="card"
+    >
+      <form
+        id="form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="input-field col s12"
+          >
+            <input
+              className="validate"
+              id="title"
+              onChange={[Function]}
+              required="required"
+              type="text"
+              value=""
+            />
+            <label
+              htmlFor="title"
+            >
+              Title
+            </label>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="input-field col s12"
+          >
+            <input
+              className="validate"
+              id="author"
+              onChange={[Function]}
+              required="required"
+              type="text"
+              value=""
+            />
+            <label
+              htmlFor="author"
+            >
+              Author
+            </label>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="input-field col s12 status"
+          >
+            <select
+              className="teal-text"
+              id="category"
+              onChange={[Function]}
+              value="1"
+            >
+              <option
+                className="default"
+                disabled={true}
+                value={true}
+              >
+                Select One
+              </option>
+            </select>
+            <label
+              className="black-text sort"
+            >
+              Category
+            </label>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="file-field input-field col s12"
+          >
+            <div
+              className="btn file"
+            >
+              <span>
+                <i
+                  className="material-icons"
+                >
+                  file_upload
+                </i>
+              </span>
+              <input
+                id="image"
+                onChange={[Function]}
+                type="file"
+              />
+            </div>
+            <div
+              className="file-path-wrapper"
+            >
+              <input
+                className="file-path validate"
+                placeholder="Upload Image"
+                type="text"
+              />
+            </div>
+          </div>
+          <button
+            className="modal-trigger previewBtn"
+            disabled={true}
+            href="#modal1"
+          >
+            Preview
+          </button>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="input-field col s12"
+          >
+            <textarea
+              className="materialize-textarea"
+              id="review"
+              onChange={[Function]}
+              required="required"
+              value=""
+            />
+            <label
+              htmlFor="review"
+            >
+              Review
+            </label>
+          </div>
+        </div>
+        <button
+          className="btn waves-effect waves-light"
+          name="action"
+          type="submit"
+        >
+          Add
+          <i
+            className="material-icons right"
+          >
+            send
+          </i>
+        </button>
+      </form>
+      <div
+        className="modal"
+        id="modal1"
+      >
+        <div
+          className="modal-content"
+        >
+          <img
+            src=""
+          />
+        </div>
+        <div
+          className="modal-footer"
+        >
+          <a
+            className="modal-action modal-close"
+          >
+            <button
+              className="close"
+            >
+              Close
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+     
+    <Component />
+  </div>
+</div>
+`;

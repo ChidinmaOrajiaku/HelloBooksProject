@@ -11,10 +11,10 @@ import { borrowRequest } from '../../actions/borrowBooks';
 /**
  * @class Books
  */
-class Library extends React.Component {
+export class Library extends React.Component {
   /**
      * @constructor
-     * @param {object} props 
+     * @param {object} props
      */
   constructor(props) {
     super(props);
@@ -27,7 +27,7 @@ class Library extends React.Component {
   }
 
   /**
-   * 
+   *
    * @returns {object} response object
    * @memberof Library
    */
@@ -41,7 +41,7 @@ class Library extends React.Component {
   /**
    * Receives next props an sets the state
    * @returns {object} response object
-   * @param {nextProps} nextProps 
+   * @param {nextProps} nextProps
    * @memberof Library
    */
   componentWillReceiveProps(nextProps) {
@@ -54,7 +54,7 @@ class Library extends React.Component {
   /**
    * Handles borrow books action
    * @returns {object} response object
-   * @param {event} event 
+   * @param {event} event
    * @memberof Books
    */
   handleBorrow(event) {
@@ -80,7 +80,7 @@ class Library extends React.Component {
   }
 
   /**
-     * 
+     *
      * React element mark up
      * @returns {object} response object
      * @memberof Library
@@ -122,12 +122,12 @@ class Library extends React.Component {
                   { this.state.getAllBooks[key].review }</p>
                 <button
                   className="waves-effect waves-light btn borrowButton"
+                  id="libraryAction"
                   value={ this.state.getAllBooks[key].id }
                   onClick={this.handleBorrow}>Borrow </button>
               </div>
             </div>
-          </div>
-        )}
+          </div>)}
       </div>;
 
     return (
@@ -151,5 +151,7 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps,
-  { getRequest, borrowRequest })(Library);
+export default connect(
+  mapStateToProps,
+  { getRequest, borrowRequest }
+)(Library);
