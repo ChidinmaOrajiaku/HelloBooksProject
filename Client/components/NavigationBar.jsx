@@ -34,7 +34,12 @@ export class NavigationBar extends React.Component {
    */
   componentDidMount() {
     this.props.getUserDataRequest(this.props.usersId);
-    $('.button-collapse').sideNav('show');
+    $('.button-collapse').sideNav({
+      menuWidth: 300,
+      edge: 'left',
+      closeOnClick: true,
+      draggable: true,
+    });
   }
 
   /**

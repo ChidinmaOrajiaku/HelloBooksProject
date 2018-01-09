@@ -173,8 +173,8 @@ export class AddBooks extends React.Component {
     return (
       <div className="adminAddBooks row ontainer">
         <div className=""> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m3"> ADMIN UPLOAD BOOKS </h4>
-        <div className="col m4 offset-m5">
+        <h4 className="col s12 m8 offset-m3"> ADMIN UPLOAD BOOKS </h4>
+        <div className="col s12 m4 offset-m5">
           <div className="card">
             <form onSubmit={this.onAddSubmit} id="form">
               <div className="row">

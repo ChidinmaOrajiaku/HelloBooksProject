@@ -73,7 +73,7 @@ export class SignUp extends React.Component {
       <div className="signUp">
         <div className="bodyNavigation"> <BodyNavigationBar /> </div>
         <div className="row container">
-          <div className="col m6 offset-m3">
+          <div className="col s12 m6 offset-m3">
             <div className="card" data-aos="flip-left">
               <div className="card-content black-text">
                 <form

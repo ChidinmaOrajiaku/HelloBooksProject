@@ -120,11 +120,12 @@ export class Dashboard extends React.Component {
    */
   render() {
     return (
-      <div className="adminDashboard">
-        <div className="container">
+      <div className="adminDashboard ">
+        <div className="container row">
           <div className=""> <NavigationBar /> </div>
+          <h4 className="col s12 m9 offset-m6 offset-s2 white-text"> DASHBOARD </h4>
           <div className="row initial">
-            <div className="col s6 m6">
+            <div className="col s12 m6 pull-s3">
               <div className="card">
                 <div className="card-content text-center teal-text">
                   <span className="card-title text-center">Total Books</span>
@@ -134,7 +135,7 @@ export class Dashboard extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col s6 m6 black-text">
+            <div className="col s12 m6 pull-s3 black-text">
               <div className="card">
                 <div className="card-content text-center teal-text">
                   <span className="card-title text-center">Total Borrowed Books
@@ -145,7 +146,7 @@ export class Dashboard extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col s6 m6">
+            <div className="col s12 m6 pull-s3">
               <div className="card">
                 <div className="card-content teal-text text-center">
                   <span className="card-title text-center">Total Users</span>
@@ -156,7 +157,7 @@ export class Dashboard extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col s6 m6">
+            <div className="col s12 m6 pull-s3">
               <div className="card">
                 <div className="card-content teal-text text-center">
                   <span className="card-title text-center">Total Category</span>

@@ -167,7 +167,7 @@ export class History extends React.Component {
     return (
       <div className="history row container-fluid">
         <div className=""> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m3 white-text"> USER BOOK HISTORY </h4>
+        <h4 className="col s12 m8 offset-m3 white-text"> USER BOOK HISTORY </h4>
         <div className="row col m8 offset-m3">
           <div className="input-field col s4 status">
             <select className="white-text" id= "bookStatus"value="1"

@@ -87,9 +87,9 @@ export class Library extends React.Component {
      */
   render() {
     const books = this.state.loading ? <div><p>Loading...</p></div> :
-      <div className=" lib row">
+      <div className="lib row">
         { Object.keys(this.state.getAllBooks).map(key =>
-          <div className="col s12 m4 push-m2" key={key}>
+          <div className="col s12 m4 push-m2 push-s2" key={key}>
             <div className="card">
               <div className="card-image waves-effect waves-block waves-light">
                 <img className="activator"
@@ -134,7 +134,7 @@ export class Library extends React.Component {
       <div className="library row">
         <div className="container">
           <div> <NavigationBar /> </div>
-          <h4 className="col m10 offset-m2 white-text"> USER LIBRARY </h4>
+          <h4 className="col s12 m10 offset-m2 white-text"> USER LIBRARY </h4>
           {books}
           <div> <Footer /></div>
         </div>
