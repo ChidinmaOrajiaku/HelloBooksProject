@@ -103,10 +103,10 @@ export class Profile extends React.Component {
     return (
       <div className="profile row">
         <div className=""> <NavigationBar /> </div>
-        <h4 className="col m9 offset-m2"> PROFILE DETAILS</h4>
-        <hr className="col m3 offset-m5"></hr>
+        <h4 className="col s12 m9 offset-m2"> PROFILE DETAILS</h4>
+        <hr className="col s12 m3 offset-m5"></hr>
         <div className="row">
-          <div className="col m3 offset-m5 profileB">
+          <div className="col s12 m3 offset-m5 profileB">
             <div className="card">
               <div className="card-content">
                 <p className="profileDetails">

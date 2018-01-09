@@ -23,9 +23,9 @@ export default () => (
         </h1>
         <div>
           <Link to="/login"
-            className="waves-effect waves-light btn col s2 offset-m3 "> Login
+            className="waves-effect waves-light btn col s4 m2 offset-m3 offset-s1 "> Login
           </Link>
-          <Link className="waves-effect waves-light btn col s2 offset-m1"
+          <Link className="waves-effect waves-light btn col s4 m2 offset-m1 offset-s1"
             to="/register"> Sign Up </Link>
         </div>
       </div>

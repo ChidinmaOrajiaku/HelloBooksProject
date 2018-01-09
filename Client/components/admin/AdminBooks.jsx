@@ -96,8 +96,8 @@ export class AdminBooks extends React.Component {
   handleDeleteChange(event) {
     this.setState({
       bookId: event.target.value,
-      bookIndex: event.target.dataset.index 
-});
+      bookIndex: event.target.dataset.index
+    });
   }
 
   /**
@@ -217,8 +217,8 @@ export class AdminBooks extends React.Component {
     return (
       <div className="books row container-fluid">
         <div> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m3 white-text"> ADMIN BOOK LIST </h4>
-        <div className="row col m8 offset-m3">
+        <h4 className="col s12 m8 offset-m3 white-text"> ADMIN BOOK LIST </h4>
+        <div className="row col s12 m8 offset-m3">
           <div className="input-field col s4 status">
             <select
               className="white-text"
@@ -273,8 +273,8 @@ const mapStateToProps = state => (
 );
 
 export default connect(
-mapStateToProps,
+  mapStateToProps,
   {
- adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest, editBookIdRequest
+    adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest, editBookIdRequest
   }
 )(AdminBooks);

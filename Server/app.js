@@ -16,7 +16,7 @@ import routes from './server/routes';
  */
 const app = express();
 
-let compiler
+let compiler;
 
 dotenv.config();
 
@@ -24,9 +24,9 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 // webpack configuration
 if (process.env.NODE_ENV !== 'production') {
   compiler = webpack(webpackConfig);
- } else {
+} else {
   compiler = webpack(webpackConfigProduction);
- }
+}
 
 
 app.use(webpackMiddleware(compiler, {
