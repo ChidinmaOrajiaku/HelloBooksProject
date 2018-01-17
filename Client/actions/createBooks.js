@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED, CREATE_BOOKS_REQUEST } from './types';
+import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED } from './types';
 
 /**
  *
@@ -12,20 +12,6 @@ export function createBooksResponse(response) {
   return {
     type: CREATE_BOOKS_SUCCESSFUL,
     response
-  };
-}
-
-/**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} create books request data
-   */
-export function createBooksRequest(data) {
-  return {
-    type: CREATE_BOOKS_REQUEST,
-    data
   };
 }
 

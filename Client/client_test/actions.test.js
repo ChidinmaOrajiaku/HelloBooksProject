@@ -3,9 +3,13 @@ import jwt from 'jsonwebtoken';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import mockData from './mocks/mockData';
+import * as UpdatePassword from '../actions/updatePassword';
+import * as BookActions from '../actions/booksAction';
+import * as EditBookActions from '../actions/editBooks';
 import * as ReturnBookActions from '../actions/returnBook';
 import * as YetToReturnActions from '../actions/yetToReturn';
 import * as SigninActions from '../actions/signinAction';
+import * as SignupActions from '../actions/signupAction';
 import * as GetUserActions from '../actions/getUser';
 import * as ModifyBookActions from '../actions/modifyBooks';
 import * as GetUserBorrowedActions from '../actions/getUserBorrowedBooks';
@@ -54,6 +58,202 @@ describe('SignIn actions', () => {
   });
 });
 
+describe('Logout actions', () => {
+    beforeEach(() => {
+      moxios.install();
+    });
+    afterEach(() => {
+      moxios.uninstall();
+    });
+  
+    it('logs a user out', async(done) => {
+      jest.setTimeout(10000) 
+      const expectedActions = [{ 
+          type: ActionTypes.SET_CURRENT_USER, 
+          user: {}
+      }];
+      const store = mockStore({});
+      await store.dispatch(SigninActions.logout())
+        expect(store.getActions()).toEqual(expectedActions);
+      done();
+    });
+  });
+
+describe('Get books count actions', () => {
+    beforeEach(() => {
+      moxios.install();
+    });
+    afterEach(() => {
+      moxios.uninstall();
+    });
+  
+    it('gets GET_BOOKS_COUNT books count', async (done) => {
+    const { bookCountResponse } = mockData;
+      jest.setTimeout(10000) 
+      moxios.stubRequest('/api/v1/books', {
+        status: 200,
+        response: bookCountResponse
+      });
+      const expectedActions = [{ 
+          type: ActionTypes.GET_BOOKS_COUNT, 
+          books: 7
+      }];
+      const store = mockStore({});
+      await store.dispatch(BookActions.adminCountBooksRequest())
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+        done();
+    });
+  });
+
+  describe('Get rented books count actions', () => {
+    beforeEach(() => {
+      moxios.install();
+    });
+    afterEach(() => {
+      moxios.uninstall();
+    });
+  
+    it('gets GET_RENTED_BOOKS_COUNT books count', async (done) => {
+    const { bookCountResponse } = mockData;
+      jest.setTimeout(10000) 
+      moxios.stubRequest('/api/v1/rentedbooks/history/all', {
+        status: 200,
+        response: bookCountResponse
+      });
+      const expectedActions = [{ 
+          type: ActionTypes.GET_RENTED_BOOKS_COUNT, 
+          rentedBooks: 7
+      }];
+      const store = mockStore({});
+      await store.dispatch(BookActions.adminCountRentedBooksRequest())
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+        done();
+    });
+  });
+
+  describe('Get not returned books count actions', () => {
+    beforeEach(() => {
+      moxios.install();
+    });
+    afterEach(() => {
+      moxios.uninstall();
+    });
+  
+    it('gets GET_NOT_RETURNED_BOOKS_COUNT not returned books count', async (done) => {
+    const { bookCountResponse } = mockData;
+      jest.setTimeout(10000) 
+      moxios.stubRequest('/api/v1/users/books/unreturned/history', {
+        status: 200,
+        response: bookCountResponse
+      });
+      const expectedActions = [{ 
+          type: ActionTypes.GET_NOT_RETURNED_BOOKS_COUNT, 
+          notReturnedBooks: 7
+      }];
+      const store = mockStore({});
+      await store.dispatch(BookActions.adminCountNotReturnedBooksRequest())
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+        done();
+    });
+  });
+
+  describe('Get category count actions', () => {
+    beforeEach(() => {
+      moxios.install();
+    });
+    afterEach(() => {
+      moxios.uninstall();
+    });
+  
+    it('gets GET_CATEGORY_COUNT category count', async (done) => {
+    const { bookCountResponse } = mockData;
+      jest.setTimeout(10000) 
+      moxios.stubRequest('/api/v1/books/category/history', {
+        status: 200,
+        response: bookCountResponse
+      });
+      const expectedActions = [{ 
+          type: ActionTypes.GET_CATEGORY_COUNT, 
+          categoryCount: 7
+      }];
+      const store = mockStore({});
+      await store.dispatch(BookActions.adminCountCategoryRequest())
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+        done();
+    });
+  });
+
+  describe('Creates Category actions', () => {
+    beforeEach(() => {
+      moxios.install();
+    });
+    afterEach(() => {
+      moxios.uninstall();
+    });
+  
+    it('creates CREATE_CATEGORY category', async (done) => {
+    const { createCategory } = mockData;
+      jest.setTimeout(10000) 
+      moxios.stubRequest('/api/v1/books/category', {
+        status: 201,
+        response: createCategory
+      });
+      const expectedActions = [{ 
+          type: ActionTypes.CREATE_CATEGORY, 
+          category: createCategory
+      }];
+      const store = mockStore({});
+      await store.dispatch(BookActions.adminCreateCategoryRequest(createCategory))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+        done();
+    });
+  });
+
+  describe('Save image failed', () => {
+    beforeEach(() => {
+      moxios.install();
+    });
+    afterEach(() => {
+      moxios.uninstall();
+    });
+  
+    it('does not save SAVE_IMAGE_FAILED image in cloudinary', async (done) => {
+    const { imageResponse, uploadImage } = mockData;
+      jest.setTimeout(10000) 
+      moxios.stubRequest('https://api.cloudinary.com/v1_1/andela-chidinma/upload', {
+        status: 200,
+        response: imageResponse
+      });
+      const expectedActions = [
+        { 
+          type: ActionTypes.SAVE_IMAGE_REQUEST, 
+          data: uploadImage
+        },
+        { 
+            type: ActionTypes.SAVE_IMAGE_FAILED, 
+            error: "An error occurred"
+          },
+          
+    ];
+      const store = mockStore({});
+      await store.dispatch(BookActions.saveImageCloudinary(uploadImage))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+        done();
+    });
+  });
+
 describe('Count User actions', () => {
   beforeEach(() => {
     moxios.install();
@@ -82,7 +282,7 @@ describe('Count User actions', () => {
   });
 });
 
-describe('Borrow books actions', () => {
+describe('Edit Book actions', () => {
     beforeEach(() => {
       moxios.install();
     });
@@ -90,6 +290,26 @@ describe('Borrow books actions', () => {
       moxios.uninstall();
     });
   
+    it('gets EDIT_BOOK_ID book Id to edit', (done) => {
+      jest.setTimeout(10000) 
+      const { bookCountResponse } = mockData;
+      const expectedActions = { 
+          type: ActionTypes.EDIT_BOOK_ID, 
+          bookId: 7
+      };
+      const actions = EditBookActions.editBookIdRequest(bookCountResponse.count)
+          expect(actions).toEqual(expectedActions);
+        done();
+    });
+  });
+
+describe('Borrow books actions', () => {
+    beforeEach(() => {
+      moxios.install();
+    });
+    afterEach(() => {
+      moxios.uninstall();
+    });
     it('creates BORROW_BOOKS_SUCCESSFUL user borrows book', async (done) => {
       jest.setTimeout(10000) 
       const { borrowBookData, borrowBookDataResponse } = mockData;

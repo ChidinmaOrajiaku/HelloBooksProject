@@ -1,24 +1,10 @@
 import axios from 'axios';
-import { GET_USER_SUCCESSFUL, GET_USER_FAILED, GET_USER_REQUEST } from './types';
+import { GET_USER_SUCCESSFUL, GET_USER_FAILED } from './types';
 
 
 /**
-   * 
-   * 
-   * @export
-   * @param {any} data 
-   * @returns {object} get user request data
-   */
-export function getUserRequest(data) {
-  return {
-    type: GET_USER_REQUEST,
-    data
-  };
-}
-
-/**
-   * 
-   * 
+   *
+   *
    * @export
    * @param {any} response
    * @returns {object}  get response if request is successful
@@ -31,10 +17,10 @@ export function getUserResponse(response) {
 }
 
 /**
-   * 
-   * 
+   *
+   *
    * @export
-   * @param {any} error 
+   * @param {any} error
    * @returns {object} get error if request fails
    */
 export function getUserError(error) {

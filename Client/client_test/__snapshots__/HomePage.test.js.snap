@@ -24,14 +24,14 @@ exports[`<HomePage /> should match snapshot test 1`] = `
       </h1>
       <div>
         <Link
-          className="waves-effect waves-light btn col s2 offset-m3 "
+          className="waves-effect waves-light btn col s4 m2 offset-m3 offset-s1 "
           replace={false}
           to="/login"
         >
            Login
         </Link>
         <Link
-          className="waves-effect waves-light btn col s2 offset-m1"
+          className="waves-effect waves-light btn col s4 m2 offset-m1 offset-s1"
           replace={false}
           to="/register"
         >

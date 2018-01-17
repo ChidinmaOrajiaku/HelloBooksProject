@@ -12,18 +12,18 @@ exports[`<Profile /> should match snapshot test 1`] = `
      
   </div>
   <h4
-    className="col m9 offset-m2"
+    className="col s12 m9 offset-m2"
   >
      PROFILE DETAILS
   </h4>
   <hr
-    className="col m3 offset-m5"
+    className="col s12 m3 offset-m5"
   />
   <div
     className="row"
   >
     <div
-      className="col m3 offset-m5 profileB"
+      className="col s12 m3 offset-m5 profileB"
     >
       <div
         className="card"

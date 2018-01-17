@@ -143,7 +143,7 @@ export class Library extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getAllBooksData: state.getAllBooks[0].response,

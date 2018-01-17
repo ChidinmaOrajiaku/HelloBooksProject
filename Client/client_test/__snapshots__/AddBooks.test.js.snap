@@ -12,12 +12,12 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
      
   </div>
   <h4
-    className="col m8 offset-m3"
+    className="col s12 m8 offset-m3"
   >
      ADMIN UPLOAD BOOKS 
   </h4>
   <div
-    className="col m4 offset-m5"
+    className="col s12 m4 offset-m5"
   >
     <div
       className="card"

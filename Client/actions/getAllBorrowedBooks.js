@@ -3,20 +3,6 @@ import { GET_BORROWED_BOOKS_SUCCESSFUL, GET_BORROWED_BOOKS_FAILED, GET_BORROWED_
 
 
 /**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} get borrowed books request data
-   */
-export function getBorrowedBooksRequest(data) {
-  return {
-    type: GET_BORROWED_BOOKS_REQUEST,
-    data
-  };
-}
-
-/**
  *
  *
  * @export

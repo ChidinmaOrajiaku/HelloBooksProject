@@ -2,10 +2,10 @@
 
 exports[`<Dashboard /> should match snapshot test 1`] = `
 <div
-  className="adminDashboard"
+  className="adminDashboard "
 >
   <div
-    className="container"
+    className="container row"
   >
     <div
       className=""
@@ -14,11 +14,16 @@ exports[`<Dashboard /> should match snapshot test 1`] = `
       <Connect(withRouter(NavigationBar)) />
        
     </div>
+    <h4
+      className="col s12 m9 offset-m6 offset-s2 white-text"
+    >
+       DASHBOARD 
+    </h4>
     <div
       className="row initial"
     >
       <div
-        className="col s6 m6"
+        className="col s12 m6 pull-s3"
       >
         <div
           className="card"
@@ -39,7 +44,7 @@ exports[`<Dashboard /> should match snapshot test 1`] = `
         </div>
       </div>
       <div
-        className="col s6 m6 black-text"
+        className="col s12 m6 pull-s3 black-text"
       >
         <div
           className="card"
@@ -60,7 +65,7 @@ exports[`<Dashboard /> should match snapshot test 1`] = `
         </div>
       </div>
       <div
-        className="col s6 m6"
+        className="col s12 m6 pull-s3"
       >
         <div
           className="card"
@@ -81,7 +86,7 @@ exports[`<Dashboard /> should match snapshot test 1`] = `
         </div>
       </div>
       <div
-        className="col s6 m6"
+        className="col s12 m6 pull-s3"
       >
         <div
           className="card"

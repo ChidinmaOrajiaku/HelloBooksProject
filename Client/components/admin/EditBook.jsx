@@ -307,7 +307,7 @@ EditBook.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     modifyBookData: state.modifyBooks[0],
     imageInputUrl: state.uploadImage[0].response,

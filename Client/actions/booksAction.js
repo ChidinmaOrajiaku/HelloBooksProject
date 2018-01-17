@@ -12,10 +12,10 @@ import {
 
 
 /**
- * 
- * 
+ *
+ *
  * @export
- * @param {any} books 
+ * @param {any} books
  * @returns {object} books count
  */
 export function adminCount(books) {
@@ -26,11 +26,11 @@ export function adminCount(books) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} rentedBooks
- * @returns {object} rented books 
+ * @returns {object} rented books
  */
 export function adminRentedCount(rentedBooks) {
   return {
@@ -40,8 +40,8 @@ export function adminRentedCount(rentedBooks) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} notReturnedBooks
  * @returns {object} notReturnedBooks
@@ -54,11 +54,11 @@ export function adminNotReturnedCount(notReturnedBooks) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} category
- * @returns {object} category 
+ * @returns {object} category
  */
 export function adminCreateCategory(category) {
   return {
@@ -68,8 +68,8 @@ export function adminCreateCategory(category) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} categoryCount
  * @returns {object} categoryCount
@@ -82,8 +82,8 @@ export function adminCountCategory(categoryCount) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} response
  * @returns {object} image saved
@@ -96,8 +96,8 @@ export function saveImageResponse(response) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {any} data
  * @returns {object} image data request
@@ -110,10 +110,10 @@ export function saveImageRequest(data) {
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
- * @param {any} error 
+ * @param {any} error
  * @returns {object} image failed
  */
 export function saveImageError(error) {
@@ -148,14 +148,14 @@ export const adminCreateCategoryRequest = category => dispatch => axios.post('/a
   });
 
 /**
- * 
+ *
  * @export
  * @param {any} image
  * @returns {object} secure url of image save in cloudinary
  */
 export function saveImageCloudinary(image) {
   const cloudinaryUrl = process.env.CLOUDINARY_URL;
-  const cloudinaryPreset =  process.env.CLOUDINARY_PRESET;
+  const cloudinaryPreset = process.env.CLOUDINARY_PRESET;
   const data = new FormData();
   data.append('file', image);
   data.append('upload_preset', cloudinaryPreset);
@@ -173,9 +173,10 @@ export function saveImageCloudinary(image) {
         }
       })
       .then((response) => {
+        console.log(response)
         dispatch(saveImageResponse(response.secure_url));
       }).catch((error) => {
-        dispatch(saveImageError(error));
+        dispatch(saveImageError('An error occurred'));
       });
   };
 }

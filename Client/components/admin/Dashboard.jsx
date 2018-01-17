@@ -204,7 +204,7 @@ export class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     booksData: state.books,
     usersCountData: state.userState,

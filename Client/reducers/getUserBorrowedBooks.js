@@ -1,4 +1,4 @@
-import { GET_USER_BORROWED_SUCCESSFUL, GET_USER_BORROWED_FAILED, GET_USER_BORROWED_REQUEST } from '../actions/types';
+import { GET_USER_BORROWED_SUCCESSFUL, GET_USER_BORROWED_FAILED } from '../actions/types';
 
 const initialState = [{
   userBorrowedData: {},
@@ -8,13 +8,6 @@ const initialState = [{
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case GET_USER_BORROWED_REQUEST:
-      return [{
-        userBorrowedData: action.data,
-        response: '',
-        error: '',
-      }, ...state];
-
     case GET_USER_BORROWED_SUCCESSFUL:
       return [{
         userBorrowedData: {},

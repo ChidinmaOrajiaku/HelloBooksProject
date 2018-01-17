@@ -1,20 +1,6 @@
 import axios from 'axios';
-import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED, GET_BOOKS_REQUEST } from './types';
+import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED } from './types';
 
-
-/**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} get books reequest data
-   */
-export function getBooksRequest(data) {
-  return {
-    type: GET_BOOKS_REQUEST,
-    data
-  };
-}
 
 /**
  *

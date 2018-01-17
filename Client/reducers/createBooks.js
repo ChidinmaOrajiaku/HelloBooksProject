@@ -1,4 +1,4 @@
-import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED, CREATE_BOOKS_REQUEST } from '../actions/types';
+import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED } from '../actions/types';
 
 const initialState = [{
   createData: {},
@@ -9,13 +9,6 @@ const initialState = [{
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case CREATE_BOOKS_REQUEST:
-      return [{
-        createData: action.data,
-        response: '',
-        error: '',
-      }, ...state];
-
     case CREATE_BOOKS_SUCCESSFUL:
       return [{
         createData: {},

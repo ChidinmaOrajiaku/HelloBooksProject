@@ -1,20 +1,5 @@
 import axios from 'axios';
-import { GET_USER_BORROWED_SUCCESSFUL, GET_USER_BORROWED_FAILED, GET_USER_BORROWED_REQUEST } from './types';
-
-
-/**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} gets user borrowed books request data
-   */
-export function getUserBorrowedRequest(data) {
-  return {
-    type: GET_USER_BORROWED_REQUEST,
-    data
-  };
-}
+import { GET_USER_BORROWED_SUCCESSFUL, GET_USER_BORROWED_FAILED } from './types';
 
 /**
  *

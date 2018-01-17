@@ -263,7 +263,7 @@ export class AdminBooks extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     getAllBooksData: state.getAllBooks[0].response,
     getAllBorrowedBooksData: state.getAllBorrowedBooks[0].response,

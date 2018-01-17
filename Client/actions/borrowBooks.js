@@ -1,20 +1,6 @@
 import axios from 'axios';
-import { BORROW_BOOKS_SUCCESSFUL, BORROW_BOOKS_FAILED, BORROW_BOOKS_REQUEST } from './types';
+import { BORROW_BOOKS_SUCCESSFUL, BORROW_BOOKS_FAILED } from './types';
 
-
-/**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} borrowed books request data
-   */
-export function borrowBooksRequest(data) {
-  return {
-    type: BORROW_BOOKS_REQUEST,
-    data
-  };
-}
 
 /**
  *

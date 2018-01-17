@@ -261,7 +261,7 @@ export class AddBooks extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     createBooksResponse: state.createBooks[0],
     imageInputUrl: state.uploadImage[0].response || state.uploadImage[0].error,

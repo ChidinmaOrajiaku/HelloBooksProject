@@ -1,20 +1,5 @@
 import axios from 'axios';
-import { GET_CATEGORY_SUCCESSFUL, GET_CATEGORY_FAILED, GET_CATEGORY_REQUEST } from './types';
-
-
-/**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} gets category request data
-   */
-export function getCategoryRequest(data) {
-  return {
-    type: GET_CATEGORY_REQUEST,
-    data
-  };
-}
+import { GET_CATEGORY_SUCCESSFUL, GET_CATEGORY_FAILED } from './types';
 
 /**
    *

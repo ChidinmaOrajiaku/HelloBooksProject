@@ -1,20 +1,5 @@
 import axios from 'axios';
-import { DELETE_BOOKS_SUCCESSFUL, DELETE_BOOKS_FAILED, DELETE_BOOKS_REQUEST } from './types';
-
-
-/**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} delete books request data
-   */
-export function deleteBooksRequest(data) {
-  return {
-    type: DELETE_BOOKS_REQUEST,
-    data
-  };
-}
+import { DELETE_BOOKS_SUCCESSFUL, DELETE_BOOKS_FAILED } from './types';
 
 /**
  *

@@ -1,20 +1,5 @@
 import axios from 'axios';
-import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED, RETURN_BOOK_REQUEST } from './types';
-
-
-/**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} get return books requets data
-   */
-export function returnRequest(data) {
-  return {
-    type: RETURN_BOOK_REQUEST,
-    data
-  };
-}
+import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED } from './types';
 
 /**
  *
