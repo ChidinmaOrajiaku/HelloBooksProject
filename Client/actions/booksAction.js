@@ -12,11 +12,10 @@ import {
 
 
 /**
- *
- *
+ * Counts books
  * @export
- * @param {any} books
- * @returns {object} books count
+ * @param {object} books
+ * @returns {object} of books
  */
 export function adminCount(books) {
   return {
@@ -26,11 +25,10 @@ export function adminCount(books) {
 }
 
 /**
- *
- *
+ * Counts rented books
  * @export
- * @param {any} rentedBooks
- * @returns {object} rented books
+ * @param {object} rentedBooks
+ * @returns {object} of rented books
  */
 export function adminRentedCount(rentedBooks) {
   return {
@@ -40,11 +38,10 @@ export function adminRentedCount(rentedBooks) {
 }
 
 /**
- *
- *
+ * Counts not rented books
  * @export
- * @param {any} notReturnedBooks
- * @returns {object} notReturnedBooks
+ * @param {object} notReturnedBooks
+ * @returns {object} of not returned books
  */
 export function adminNotReturnedCount(notReturnedBooks) {
   return {
@@ -54,11 +51,10 @@ export function adminNotReturnedCount(notReturnedBooks) {
 }
 
 /**
- *
- *
+ * Creates category
  * @export
- * @param {any} category
- * @returns {object} category
+ * @param {object} category
+ * @returns {object} of category
  */
 export function adminCreateCategory(category) {
   return {
@@ -68,11 +64,10 @@ export function adminCreateCategory(category) {
 }
 
 /**
- *
- *
+ * Counts category
  * @export
- * @param {any} categoryCount
- * @returns {object} categoryCount
+ * @param {object} categoryCount
+ * @returns {object} of categoryCount
  */
 export function adminCountCategory(categoryCount) {
   return {
@@ -82,11 +77,10 @@ export function adminCountCategory(categoryCount) {
 }
 
 /**
- *
- *
+ * Save image response
  * @export
- * @param {any} response
- * @returns {object} image saved
+ * @param {object} response
+ * @returns {object} of image saved
  */
 export function saveImageResponse(response) {
   return {
@@ -96,11 +90,10 @@ export function saveImageResponse(response) {
 }
 
 /**
- *
- *
+ * Dispatches image data for saving
  * @export
- * @param {any} data
- * @returns {object} image data request
+ * @param {object} data
+ * @returns {object} of image data request
  */
 export function saveImageRequest(data) {
   return {
@@ -110,11 +103,10 @@ export function saveImageRequest(data) {
 }
 
 /**
- *
- *
+ * Dispatches error if image fails to save
  * @export
- * @param {any} error
- * @returns {object} image failed
+ * @param {object} error
+ * @returns {object} of image failed
  */
 export function saveImageError(error) {
   return {
@@ -148,10 +140,10 @@ export const adminCreateCategoryRequest = category => dispatch => axios.post('/a
   });
 
 /**
- *
+ * Saves image to cloudinary
  * @export
- * @param {any} image
- * @returns {object} secure url of image save in cloudinary
+ * @param {object} image
+ * @returns {object} of secure url of image save in cloudinary
  */
 export function saveImageCloudinary(image) {
   const cloudinaryUrl = process.env.CLOUDINARY_URL;

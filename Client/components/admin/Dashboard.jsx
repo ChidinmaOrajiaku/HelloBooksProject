@@ -35,7 +35,6 @@ export class Dashboard extends React.Component {
   }
 
   /**
-   *
    * @returns {object} mounted components
    * @memberof Dashboard
    */
@@ -56,9 +55,8 @@ export class Dashboard extends React.Component {
   }
 
   /**
-   *
-   * @returns {nextProps} next props
-   * @param {any} nextProps
+   * @returns {object} next props
+   * @param {object} nextProps
    * @memberof Dashboard
    */
   componentWillReceiveProps(nextProps) {
@@ -86,7 +84,7 @@ export class Dashboard extends React.Component {
 
   /**
  *
- * @param {any} event
+ * @param {object} event
  * @memberof AddBooks
  * @returns {object} SyntheticEvent
  */
@@ -97,7 +95,7 @@ export class Dashboard extends React.Component {
   /**
  *
  * @returns {event} handles category change
- * @param {any} event
+ * @param {object} event
  * @memberof Dashboard
  */
   handleCategory(event) {

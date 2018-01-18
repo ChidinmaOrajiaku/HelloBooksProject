@@ -3,9 +3,9 @@ import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED } from './types';
 
 /**
  *
- *
+ * Create books response if successful
  * @export
- * @param {any} response
+ * @param {object} response
  * @returns {object} create books response
  */
 export function createBooksResponse(response) {
@@ -16,11 +16,10 @@ export function createBooksResponse(response) {
 }
 
 /**
-   *
-   *
+   * Create books error if not successful
    * @export
-   * @param {any} error
-   * @returns {object} create book error
+   * @param {object} error
+   * @returns {object} of create book error
    */
 export function createBooksError(error) {
   return {

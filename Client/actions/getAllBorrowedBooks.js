@@ -1,13 +1,12 @@
 import axios from 'axios';
-import { GET_BORROWED_BOOKS_SUCCESSFUL, GET_BORROWED_BOOKS_FAILED, GET_BORROWED_BOOKS_REQUEST } from './types';
+import { GET_BORROWED_BOOKS_SUCCESSFUL, GET_BORROWED_BOOKS_FAILED } from './types';
 
 
 /**
- *
- *
+ * Get borrowed books response if successful
  * @export
- * @param {any} response
- * @returns {object} get borrowed books response when request is successful
+ * @param {object} response
+ * @returns {object} of borrowed books response when request is successful
  */
 export function getBorrowedBooksResponse(response) {
   return {
@@ -17,11 +16,10 @@ export function getBorrowedBooksResponse(response) {
 }
 
 /**
-   *
-   *
+   * Get books error if not successful
    * @export
-   * @param {any} error
-   * @returns {object} get borrowed books response when request fails
+   * @param {object} error
+   * @returns {object} of borrowed books response when request fails
    */
 export function getBorrowedBooksError(error) {
   return {

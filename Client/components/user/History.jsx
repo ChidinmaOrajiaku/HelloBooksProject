@@ -16,7 +16,8 @@ import { returnBook } from '../../actions/returnBook';
 export class History extends React.Component {
   /**
   * Creates an instance of History.
-  * @param {any} props
+  * @constructor
+  * @param {object} props
   * @memberof History
   */
   constructor(props) {
@@ -46,8 +47,8 @@ export class History extends React.Component {
 
   /**
    * Receive nextprops and sets state
-   * @param {any} nextProps
-   * @returns {nextProps} response object
+   * @param {object} nextProps
+   * @returns {object} response object
    * @memberof History
    */
   componentWillReceiveProps(nextProps) {
@@ -62,7 +63,7 @@ export class History extends React.Component {
   /**
  * Handles change and sets the state to the targeted event value
  * @returns {object} response object
- * @param {any} event
+ * @param {object} event
  * @memberof History
  */
   handleChange(event) {
@@ -73,7 +74,7 @@ export class History extends React.Component {
  * Handles books return, sets the state of the book Id and book index,
  splices book returned from list and sets the state of yet-to-return-books
  * @returns {object} resonse object
- * @param {event} event
+ * @param {object} event
  * @memberof History
  */
   handleReturn(event) {
@@ -100,7 +101,6 @@ export class History extends React.Component {
   }
 
   /**
-     *
      * Renders component
      * @returns {object} ReactElementMarkup
      * @memberof History

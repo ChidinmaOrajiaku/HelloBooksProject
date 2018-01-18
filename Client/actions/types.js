@@ -6,27 +6,15 @@ export const CREATE_CATEGORY = 'CREATE_CATEGORY';
 
 export const GET_CATEGORY_COUNT = 'GET_CATEGORY_COUNT';
 
-// export const MODIFY_BOOKS = 'MODIFY_BOOKS';
-
 export const PUT_BOOKS = 'PUT_BOOKS';
-
-// export const GET_USER = 'GET_USER';
-
-// export const SET_PROFILE = 'SET_PROFILE';
-
-// export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
-
-// export const GET_PROFILE = 'GET_PROFILE';
-
-// export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 
 // Done actions
 
-export const GET_BOOKS_COUNT = 'GET_BOOKS_COUNT'; // count books
+export const GET_BOOKS_COUNT = 'GET_BOOKS_COUNT';
 
-export const GET_RENTED_BOOKS_COUNT = 'GET_RENTED_BOOKS_COUNT'; // count rented books 
+export const GET_RENTED_BOOKS_COUNT = 'GET_RENTED_BOOKS_COUNT';
 
-export const COUNT_USERS = 'COUNT_USERS'; // count users
+export const COUNT_USERS = 'COUNT_USERS';
 
 // Save image from cloudinary
 

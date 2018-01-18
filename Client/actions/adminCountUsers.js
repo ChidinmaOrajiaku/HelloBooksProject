@@ -2,8 +2,9 @@ import axios from 'axios';
 import { COUNT_USERS } from './types';
 
 /**
+ * Counts users
  * @export
- * @param {any} adminCountUsers
+ * @param {object} adminCountUsers
  * @returns {object} object
  */
 export function adminCountUsers(adminCountUsers) {

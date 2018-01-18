@@ -2,11 +2,10 @@ import axios from 'axios';
 import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED } from './types';
 
 /**
- *
- *
+ * Return books response if successful
  * @export
- * @param {any} response
- * @returns {object} gets return-book response if successful
+ * @param {object} response
+ * @returns {object} of return-book response if successful
  */
 export function returnResponse(response) {
   return {
@@ -16,11 +15,10 @@ export function returnResponse(response) {
 }
 
 /**
-   *
-   *
+   * Return books error if not successful
    * @export
-   * @param {any} error
-   * @returns {object} gets return-book error if request fails
+   * @param {object} error
+   * @returns {object} of return-book error if request fails
    */
 export function returnError(error) {
   return {

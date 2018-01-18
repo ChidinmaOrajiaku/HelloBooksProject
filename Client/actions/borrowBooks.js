@@ -3,11 +3,10 @@ import { BORROW_BOOKS_SUCCESSFUL, BORROW_BOOKS_FAILED } from './types';
 
 
 /**
- *
- *
+ * Borrowed books response if successful
  * @export
- * @param {any} response
- * @returns {object} borrowed books response
+ * @param {object} response
+ * @returns {object} of borrowed books response
  */
 export function borrowBooksResponse(response) {
   return {
@@ -17,11 +16,10 @@ export function borrowBooksResponse(response) {
 }
 
 /**
-   *
-   *
+   * Borrowed books response if failed
    * @export
-   * @param {any} error
-   * @returns {object} borrowed books error
+   * @param {object} error
+   * @returns {object} of borrowed books error
    */
 export function borrowBooksError(error) {
   return {

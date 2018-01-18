@@ -12,7 +12,7 @@ import { updatePassword } from '../../actions/updatePassword';
 export class Profile extends React.Component {
   /**
      * @constructor
-     * @param {object} props 
+     * @param {object} props
      */
   constructor(props) {
     super(props);
@@ -32,7 +32,6 @@ export class Profile extends React.Component {
   }
 
   /**
-   * 
    * @returns {object} response object
    * @memberof Profile
    */
@@ -51,7 +50,7 @@ export class Profile extends React.Component {
   /**
    * Receives next props and sets it in state
    * @returns {object} response object
-   * @param {any} nextProps 
+   * @param {object} nextProps
    * @memberof Profile
    */
   componentWillReceiveProps(nextProps) {
@@ -68,7 +67,7 @@ export class Profile extends React.Component {
   /**
  * Handles input field change and sets the state
  * @returns {object} response object
- * @param {event} event 
+ * @param {object} event
  * @memberof Profile
  */
   handleChange(event) {
@@ -94,7 +93,6 @@ export class Profile extends React.Component {
   }
 
   /**
-     * 
      * React Element Markup
      * @returns {object} response object
      * @memberof Profile
@@ -141,7 +139,7 @@ export class Profile extends React.Component {
           </div>
           <div className="modal-footer">
             <button onClick={this.handlePassword}
-              className="passwordButton" 
+              className="passwordButton"
               id="passwordButton"> Change </button>
             <a className="modal-action modal-close">
               <button

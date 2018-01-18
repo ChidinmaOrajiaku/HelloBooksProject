@@ -2,11 +2,10 @@ import axios from 'axios';
 import { GET_CATEGORY_SUCCESSFUL, GET_CATEGORY_FAILED } from './types';
 
 /**
-   *
-   *
+   * Get category response if successful
    * @export
-   * @param {any} response
-   * @returns {object} get borrowed books response when request is successful
+   * @param {object} response
+   * @returns {object} of category response when request is successful
    */
 export function getCategoryResponse(response) {
   return {
@@ -16,11 +15,10 @@ export function getCategoryResponse(response) {
 }
 
 /**
-   *
-   *
+   * Get category error if not successful
    * @export
-   * @param {any} error
-   * @returns {object} get borrowed books response when request is fails
+   * @param {object} error
+   * @returns {object} of category error when request is fails
    */
 export function getCategoryError(error) {
   return {

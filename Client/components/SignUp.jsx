@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import BodyNavigationBar from './BodyNavigationBar';
-import Footer from './Footer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import BodyNavigationBar from './BodyNavigationBar';
+import Footer from './Footer';
 import { userSignupRequest } from '../actions/signupAction';
 
 /**
@@ -16,7 +16,8 @@ import { userSignupRequest } from '../actions/signupAction';
 export class SignUp extends React.Component {
   /**
    * Creates an instance of SignUp.
-   * @param {any} props 
+   * @constructor
+   * @param {any} props
    * @memberof SignUp
    */
   constructor(props) {
@@ -34,9 +35,8 @@ export class SignUp extends React.Component {
     this.onSignupSubmit = this.onSignupSubmit.bind(this);
   }
   /**
- * 
  * @returns {object} response object
- * @param {any} event 
+ * @param {any} event
  * @memberof SignUp
  */
   handleChange(event) {
@@ -44,9 +44,9 @@ export class SignUp extends React.Component {
   }
 
   /**
-   * 
+   * Handles sign up action
    * @returns {object} response object
-   * @param {any} event 
+   * @param {any} event
    * @memberof SignUp
    */
   onSignupSubmit(event) {

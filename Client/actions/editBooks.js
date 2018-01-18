@@ -2,11 +2,10 @@ import { EDIT_BOOK_ID } from './types';
 
 
 /**
-   * 
-   * 
+   * Id of book to be edited
    * @export
-   * @param {any} bookId
-   * @returns {object} get book Id
+   * @param {object} bookId
+   * @returns {object} of book Id
    */
 export function editBookIdRequest(bookId) {
   return {

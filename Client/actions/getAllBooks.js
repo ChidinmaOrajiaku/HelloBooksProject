@@ -3,11 +3,10 @@ import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED } from './types';
 
 
 /**
- *
- *
+ * Get books response if successful
  * @export
- * @param {any} response
- * @returns {object} gets a response when request is successful
+ * @param {object} response
+ * @returns {object} of response when request is successful
  */
 export function getBooksResponse(response) {
   return {
@@ -17,11 +16,10 @@ export function getBooksResponse(response) {
 }
 
 /**
-   *
-   *
+   * Get books error if not successful
    * @export
-   * @param {any} error
-   * @returns {object} gets an error when request fails
+   * @param {object} error
+   * @returns {object} of an error when request fails
    */
 export function getBooksError(error) {
   return {

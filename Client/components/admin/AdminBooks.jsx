@@ -41,7 +41,6 @@ export class AdminBooks extends React.Component {
   }
 
   /**
-   *
    * @returns {object} response object
    * @memberof AdminBooks
    */
@@ -78,7 +77,7 @@ export class AdminBooks extends React.Component {
   }
 
   /**
- *
+ * Handles change of values and sets to state
  * @returns {event} handles change
  * @param {any} event
  * @memberof AdminBooks
@@ -88,7 +87,7 @@ export class AdminBooks extends React.Component {
   }
 
   /**
- *
+ * Handles change in book id and book index of to be deleted book
  * @returns {event} handles delete change
  * @param {any} event
  * @memberof AdminBooks
@@ -101,7 +100,7 @@ export class AdminBooks extends React.Component {
   }
 
   /**
- *
+ * Saves book id of book to be edited
  * @returns {event} handles edit change
  * @param {any} event
  * @memberof AdminBooks
@@ -112,7 +111,7 @@ export class AdminBooks extends React.Component {
     localStorage.setItem('currentBookId', event.target.value);
   }
   /**
- *
+ * View a book
  * @returns {event} view a book request
  * @param {any} event
  * @memberof AdminBooks
@@ -122,7 +121,7 @@ export class AdminBooks extends React.Component {
     this.props.getBookRequest(event.target.value);
   }
   /**
- *
+ * Deletes Book
  * @returns {event} delete a book request
  * @param {any} event
  * @memberof AdminBooks
@@ -144,7 +143,6 @@ export class AdminBooks extends React.Component {
     }, 1000);
   }
   /**
-     *
      *
      * @returns {object} ReactMarkupElement
      * @memberof AdminBooks

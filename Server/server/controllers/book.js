@@ -5,8 +5,8 @@ import messages from '../utils/messages';
 const bookController = {
   /**
    * Create Books
-   * @param {any} req
-   * @param {any} res
+   * @param {object} req
+   * @param {object} res
    * @returns {object} req, res
    */
   create(req, res) {
@@ -35,9 +35,9 @@ const bookController = {
   },
   /**
    * List all Books
-   * @param {any} req
-   * @param {any} res
-      * @returns {object} req, res
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} req, res
    */
   list(req, res) {
     // find all books
@@ -60,8 +60,8 @@ const bookController = {
   },
   /**
    * List a book
-   * @param {any} req
-   * @param {any} res
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   listABook(req, res) {
@@ -91,8 +91,8 @@ const bookController = {
   },
   /**
    * Update Book
-   * @param {any} req
-   * @param {any} res
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   update(req, res) {
@@ -140,8 +140,8 @@ const bookController = {
   },
   /**
    * Delete Book
-   * @param {any} req
-   * @param {any} res
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   deleteBook(req, res) {
@@ -175,8 +175,8 @@ const bookController = {
   },
   /**
    * Borrow Book
-   * @param {any} req
-   * @param {any} res
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   borrow(req, res) {
@@ -246,8 +246,8 @@ const bookController = {
   },
   /**
  * List all books borrowed by user
- * @param {any} req
- * @param {any} res
+ * @param {string} req
+ * @param {string} res
  * @returns {object} req, res
  */
   listAllBooksBorrowed(req, res) {
@@ -288,8 +288,8 @@ const bookController = {
   },
   /**
      * List all books not returned by user
-     * @param {any} req
-     * @param {any} res
+     * @param {string} req
+     * @param {string} res
      * @returns {object} req, res
      */
   listNotReturnedBooks(req, res) {
@@ -331,8 +331,8 @@ const bookController = {
   },
   /**
        * List all books borrowed
-       * @param {any} req
-       * @param {any} res
+       * @param {string} req
+       * @param {string} res
        * @returns {object} req, res
        */
   adminListNotReturnedBooks(req, res) {
@@ -367,8 +367,8 @@ const bookController = {
   },
   /**
        * Return all books borrowed by user
-       * @param {any} req
-       * @param {any} res
+       * @param {string} req
+       * @param {string} res
        * @returns {object} req, res
        */
   returnBooks(req, res) {
