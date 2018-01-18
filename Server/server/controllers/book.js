@@ -2,7 +2,7 @@ import * as validateId from '../utils/validateId';
 import db from '../models';
 import messages from '../utils/messages';
 
-const booksController = {
+const bookController = {
   /**
    * Create Books
    * @param {any} req
@@ -17,7 +17,7 @@ const booksController = {
       image,
       review
     } = req.body;
-    return db.Books
+    return db.Book
       .create({
         title,
         author,
@@ -41,7 +41,7 @@ const booksController = {
    */
   list(req, res) {
     // find all books
-    return db.Books
+    return db.Book
       .findAll({})
       .then((books) => {
         if (books.length === 0) {
@@ -72,7 +72,7 @@ const booksController = {
       });
     }
     // find one books
-    return db.Books
+    return db.Book
       .findById(returnedId)
       .then((books) => {
         if (!books) {
@@ -110,7 +110,7 @@ const booksController = {
       });
     }
     // update books
-    return db.Books
+    return db.Book
       .findById(returnedId)
       .then((books) => {
         if (!books) {
@@ -151,7 +151,7 @@ const booksController = {
         message: messages.invalidId
       });
     }
-    return db.Books
+    return db.Book
       .findById(returnedId)
       .then((books) => {
         if (!books) {
@@ -195,7 +195,7 @@ const booksController = {
     const cur = new Date();
     // get 24 days after borrowed date 
     const after24Days = cur.setDate(cur.getDate() + 24);
-    return db.Books
+    return db.Book
       .findById(returnedId)
       .then((books) => {
         if (!books) {
@@ -203,7 +203,7 @@ const booksController = {
             message: messages.notFoundBook
           });
         }
-        db.RentedBooks.findAndCountAll({
+        db.RentedBook.findAndCountAll({
           where: {
             returned: false,
             userId: userReturnedId,
@@ -223,7 +223,7 @@ const booksController = {
               });
             }
             // create rented books history
-            db.RentedBooks.create({
+            db.RentedBook.create({
               userId: req.params.userId,
               bookId: req.body.bookId,
               toReturnDate: after24Days,
@@ -258,13 +258,13 @@ const booksController = {
       });
     }
     // find all books
-    return db.RentedBooks
+    return db.RentedBook
       .findAll({
         where: {
           userId: userReturnedId
         },
         include: [{
-          model: db.Books,
+          model: db.Book,
         },
         {
           model: db.Category
@@ -300,14 +300,14 @@ const booksController = {
       });
     }
     // list books borrowed but not returned
-    return db.RentedBooks
+    return db.RentedBook
       .findAll({
         where: {
           returned: false,
           userId: userReturnedId
         },
         include: [{
-          model: db.Books,
+          model: db.Book,
         },
         {
           model: db.Category
@@ -337,13 +337,13 @@ const booksController = {
        */
   adminListNotReturnedBooks(req, res) {
     // admin list books borrowed but not returned
-    return db.RentedBooks
+    return db.RentedBook
       .findAll({
         where: {
           returned: false,
         },
         include: [{
-          model: db.Books,
+          model: db.Book,
         },
         {
           model: db.Category
@@ -379,7 +379,7 @@ const booksController = {
       });
     }
     // return borrowed books
-    return db.RentedBooks
+    return db.RentedBook
       .findOne({
         where: {
           returned: false,
@@ -413,7 +413,7 @@ const booksController = {
       });
   },
   adminCountAllBooks(req, res) {
-    return db.Books
+    return db.Book
       .findAndCountAll({})
       .then((books) => {
         res.status(200).send(books);
@@ -426,7 +426,7 @@ const booksController = {
       });
   },
   adminCountAllRentedBooks(req, res) {
-    return db.RentedBooks
+    return db.RentedBook
       .findAndCountAll({})
       .then((rentedbooks) => {
         res.status(200).send({
@@ -441,7 +441,7 @@ const booksController = {
       });
   },
   adminCountAllNotReturnedBooks(req, res) {
-    return db.RentedBooks
+    return db.RentedBook
       .findAndCountAll({
         where: {
           returned: false
@@ -503,5 +503,5 @@ const booksController = {
       });
   },
 };
-export default booksController;
+export default bookController;
 

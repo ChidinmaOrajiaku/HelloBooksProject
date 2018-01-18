@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 
 export default (sequelize, DataTypes) => {
-  const Users = sequelize.define('Users', {
+  const User = sequelize.define('User', {
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -63,30 +63,30 @@ export default (sequelize, DataTypes) => {
     },
   }, {
     hooks: {
-      beforeCreate: (Users) => {
+      beforeCreate: (User) => {
         const salt = bcrypt.genSaltSync(9);
-        Users.password = bcrypt.hashSync(Users.password, salt);
+        User.password = bcrypt.hashSync(User.password, salt);
       },
-      beforeUpdate: (Users) => {
+      beforeUpdate: (User) => {
         const salt = bcrypt.genSaltSync(9);
-        Users.password = bcrypt.hashSync(Users.password, salt);
+        User.password = bcrypt.hashSync(User.password, salt);
       },
     }
   });
-  Users.associate = (models) => {
+  User.associate = (models) => {
     // associations can be defined here
-    Users.hasMany(models.Books, {
+    User.hasMany(models.Book, {
       foreignKey: 'userId',
       as: 'book',
     });
-    Users.hasMany(models.RentedBooks, {
+    User.hasMany(models.RentedBook, {
       foreignKey: 'userId',
       as: 'rentedbook',
     });
-    Users.hasMany(models.Category, {
+    User.hasMany(models.Category, {
       foreignKey: 'userId',
       as: 'category',
     });
   };
-  return Users;
+  return User;
 };

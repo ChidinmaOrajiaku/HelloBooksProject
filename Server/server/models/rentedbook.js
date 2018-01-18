@@ -1,6 +1,6 @@
 
 export default (sequelize, DataTypes) => {
-  const RentedBooks = sequelize.define('RentedBooks', {
+  const RentedBook = sequelize.define('RentedBook', {
     bookId: DataTypes.INTEGER,
 
     returned: {
@@ -13,21 +13,21 @@ export default (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
 
   });
-  RentedBooks.associate = (models) => {
+  RentedBook.associate = (models) => {
     // associations can be defined here
-    RentedBooks.belongsTo(models.Books, {
+    RentedBook.belongsTo(models.Book, {
       foreignKey: 'bookId',
       onDelete: 'CASCADE',
     });
-    RentedBooks.belongsTo(models.Users, {
+    RentedBook.belongsTo(models.User, {
       foreignKey: 'userId',
       onDelete: 'CASCADE',
     });
-    RentedBooks.belongsTo(models.Category, {
+    RentedBook.belongsTo(models.Category, {
       foreignKey: 'categoryId',
       onDelete: 'CASCADE',
     });
   };
-  return RentedBooks;
+  return RentedBook;
 };
 
