@@ -45,7 +45,7 @@ const booksController = {
       .findAll({})
       .then((books) => {
         if (books.length === 0) {
-          res.status(200).send({
+          return res.status(200).send({
             message: messages.noBooks
           });
         }
@@ -76,7 +76,7 @@ const booksController = {
       .findById(returnedId)
       .then((books) => {
         if (!books) {
-          res.status(404).send({
+          return res.status(404).send({
             message: messages.notFoundBook
           });
         }
@@ -273,7 +273,7 @@ const booksController = {
       })
       .then((RentedBooks) => {
         if (RentedBooks.length === 0) {
-          res.status(200).send({
+          return res.status(200).send({
             message: messages.noBooks
           });
         }
@@ -316,7 +316,7 @@ const booksController = {
       })
       .then((books) => {
         if (books.length === 0) {
-          res.status(200).send({
+          return res.status(200).send({
             message: messages.noBooks
           });
         }
@@ -352,7 +352,7 @@ const booksController = {
       })
       .then((books) => {
         if (books.length === 0) {
-          res.status(200).send({
+          return res.status(200).send({
             message: messages.noBooks
           });
         }
