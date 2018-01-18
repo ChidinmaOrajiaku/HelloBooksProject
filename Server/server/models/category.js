@@ -1,7 +1,13 @@
 
 export default (sequelize, DataTypes) => {
   const Category = sequelize.define('Category', {
-    category: DataTypes.STRING
+    category: {
+      type: DataTypes.STRING,
+      unique: {
+        args: true,
+        msg: 'Category already exists'
+      },
+    }
   });
   Category.associate = (models) => {
     // associations can be defined here

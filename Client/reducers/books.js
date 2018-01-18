@@ -1,4 +1,4 @@
-import { GET_BOOKS_COUNT, GET_RENTED_BOOKS_COUNT, GET_NOT_RETURNED_BOOKS_COUNT, GET_CATEGORY_COUNT, CREATE_CATEGORY, SAVE_IMAGE } from '../actions/types';
+import { GET_BOOKS_COUNT, GET_RENTED_BOOKS_COUNT, GET_NOT_RETURNED_BOOKS_COUNT, GET_CATEGORY_COUNT, CREATE_CATEGORY_SUCCESSFUL, CREATE_CATEGORY_FAILED, SAVE_IMAGE } from '../actions/types';
 
 const initialState = {
   books: {},
@@ -6,7 +6,8 @@ const initialState = {
   image: {},
   notReturnedBooks: {},
   categoryCount: {},
-  category: {},
+  categoryCreate: {},
+  categoryError: '',
   updateCount: [],
   isCreated: ''
 };
@@ -29,10 +30,15 @@ export default (state = initialState, action = {}) => {
       return [{
         categoryCount: action.categoryCount,
       }, ...state];
-    case CREATE_CATEGORY:
+    case CREATE_CATEGORY_SUCCESSFUL:
       return [{
         createCategory: action.category,
         isCreated: true
+      }, ...state];
+    case CREATE_CATEGORY_FAILED:
+      return [{
+        categoryError: action.error,
+        isCreated: false
       }, ...state];
     case SAVE_IMAGE:
       return [{

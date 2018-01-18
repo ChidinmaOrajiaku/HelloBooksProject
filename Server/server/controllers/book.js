@@ -459,21 +459,6 @@ const bookController = {
         });
       });
   },
-  adminCreateCategory(req, res) {
-    return db.Category
-      .create({
-        category: req.body.category
-      })
-      .then((category) => {
-        res.status(201).send(category);
-      })
-      .catch((error) => {
-        res.status(500).send({
-          message: messages.generalError,
-          error
-        });
-      });
-  },
   adminCountCategory(req, res) {
     return db.Category
       .findAndCountAll({})
@@ -487,6 +472,19 @@ const bookController = {
           message: messages.generalError,
           error
         });
+      });
+  },
+  adminCreateCategory(req, res) {
+    return db.Category
+      .create({
+        category: req.body.category
+      })
+      .then((category) => {
+        res.status(201).send(category);
+      })
+      .catch((error) => {
+        const errorMessage = error.errors.map(value => value.message);
+        return res.status(400).send(errorMessage);
       });
   },
   adminGetCategory(req, res) {

@@ -123,6 +123,7 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
               <input
                 className="file-path validate"
                 placeholder="Upload Image"
+                required="required"
                 type="text"
               />
             </div>

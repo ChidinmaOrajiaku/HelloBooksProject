@@ -217,6 +217,7 @@ export class AddBooks extends React.Component {
                       className="file-path validate"
                       type="text"
                       placeholder="Upload Image"
+                      required="required"
                     />
                   </div>
                 </div>

@@ -157,6 +157,7 @@ exports[`<Dashboard /> should match snapshot test 1`] = `
               <button
                 className="cancelButton"
                 id="cancelButton"
+                onClick={[Function]}
               >
                 Cancel
               </button>

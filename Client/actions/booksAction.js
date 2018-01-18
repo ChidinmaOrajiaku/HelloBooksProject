@@ -3,7 +3,8 @@ import {
   GET_BOOKS_COUNT,
   GET_RENTED_BOOKS_COUNT,
   GET_NOT_RETURNED_BOOKS_COUNT,
-  CREATE_CATEGORY,
+  CREATE_CATEGORY_SUCCESSFUL,
+  CREATE_CATEGORY_FAILED,
   GET_CATEGORY_COUNT,
   SAVE_IMAGE_FAILED,
   SAVE_IMAGE_SUCCESSFUL,
@@ -58,8 +59,21 @@ export function adminNotReturnedCount(notReturnedBooks) {
  */
 export function adminCreateCategory(category) {
   return {
-    type: CREATE_CATEGORY,
+    type: CREATE_CATEGORY_SUCCESSFUL,
     category
+  };
+}
+
+/**
+ *  Returns error if action to category fails
+ * @export
+ * @param {object} error
+ * @returns {object} of category
+ */
+export function adminCreateCategoryFailed(error) {
+  return {
+    type: CREATE_CATEGORY_FAILED,
+    error
   };
 }
 
@@ -133,10 +147,14 @@ export const adminCountCategoryRequest = () => dispatch => axios.get('/api/v1/bo
   .then((res) => {
     dispatch(adminCountCategory(res.data.count));
   });
-
 export const adminCreateCategoryRequest = category => dispatch => axios.post('/api/v1/books/category', category)
   .then((res) => {
     dispatch(adminCreateCategory(res.data));
+    setTimeout(() => {
+      dispatch(adminCountCategoryRequest());
+    }, 1500);
+  }).catch((error) => {
+    dispatch(adminCreateCategoryFailed('An error occurred'));
   });
 
 /**
@@ -165,7 +183,7 @@ export function saveImageCloudinary(image) {
         }
       })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         dispatch(saveImageResponse(response.secure_url));
       }).catch((error) => {
         dispatch(saveImageError('An error occurred'));

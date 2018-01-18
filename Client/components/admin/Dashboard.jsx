@@ -32,6 +32,7 @@ export class Dashboard extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleCategory = this.handleCategory.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   /**
@@ -85,11 +86,22 @@ export class Dashboard extends React.Component {
   /**
  *
  * @param {object} event
- * @memberof AddBooks
+ * @memberof Dashboard
  * @returns {object} SyntheticEvent
  */
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
+  }
+
+  /**
+ * Resets category input field on close or submission
+ * @param {object} event
+ * @memberof Dashboard
+ * @returns {object} response object
+ */
+  handleReset(event) {
+    event.preventDefault();
+    this.setState({ category: '' });
   }
 
   /**
@@ -102,10 +114,12 @@ export class Dashboard extends React.Component {
     event.preventDefault();
     this.props.adminCreateCategoryRequest(this.state);
     setTimeout(() => {
-      if (this.props.booksData[0].isCreated === true) {
+      if (this.props.booksData[1].isCreated === true) {
         Materialize.toast('Successfully Added', 2000, 'teal rounded');
-      } else {
-        Materialize.toast('Not Created', 2000, 'red rounded');
+        $('.modal').modal('close');
+        this.setState({ category: '' });
+      } else if (this.props.booksData[0].isCreated === false) {
+        Materialize.toast('Category already exists', 2000, 'red rounded');
       }
     }, 2000);
   }
@@ -188,6 +202,7 @@ export class Dashboard extends React.Component {
                   <a className="modal-action modal-close">
                     <button
                     className="cancelButton"
+                    onClick={this.handleReset}
                     id="cancelButton">Cancel
                     </button>
                   </a>

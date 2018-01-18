@@ -65,15 +65,35 @@ export class AdminBooks extends React.Component {
    * @memberof AdminBooks
    */
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      loading: false,
-      getAllBooks: nextProps.getAllBooksData,
-      filterData: nextProps.getAllBooksData,
-      getAllBorrowedBooks: nextProps.getAllBorrowedBooksData,
-      getABook: nextProps.getABookData,
-      deleteBook: nextProps.deleteBookData,
-      modifyBook: nextProps.modifyBookData
-    });
+    if (nextProps.getAllBorrowedBooksData.message !== 'No books in the library') {
+      this.setState({
+        loading: false,
+        getAllBorrowedBooks: nextProps.getAllBorrowedBooksData,
+      });
+    }
+    if (nextProps.getAllBooksData.message !== 'No books in the library') {
+      this.setState({
+        loading: false,
+        getAllBooks: nextProps.getAllBooksData,
+        filterData: nextProps.getAllBooksData,
+      });
+    }
+    if (nextProps.getABookData) {
+      this.setState({
+        loading: false,
+        getABook: nextProps.getABookData,
+      });
+    }
+    if (nextProps.deleteBookData) {
+      this.setState({
+        deleteBook: nextProps.deleteBookData,
+      });
+    }
+    if (nextProps.modifyBookData) {
+      this.setState({
+        modifyBook: nextProps.modifyBookData
+      });
+    }
   }
 
   /**
@@ -137,6 +157,7 @@ export class AdminBooks extends React.Component {
         });
         this.props.history.push('/books');
         Materialize.toast('Successfully deleted', 2000, 'teal rounded');
+        $('.modal').modal('close');
       } else {
         Materialize.toast('Not Deleted', 2000, 'red rounded');
       }

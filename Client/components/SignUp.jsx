@@ -55,6 +55,7 @@ export class SignUp extends React.Component {
       (success) => {
         Materialize.toast(success.data.message, 2000, 'teal rounded');
         this.setState({ success: success.data.message });
+        this.props.history.push('/login');
       },
       (errors) => {
         Materialize.toast(errors.response.data, 2000, 'red accent-3 rounded');

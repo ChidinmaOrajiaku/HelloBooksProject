@@ -52,12 +52,19 @@ export class History extends React.Component {
    * @memberof History
    */
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      loading: false,
-      userBorrowed: nextProps.getUserBorrowedData,
-      yetToReturn: nextProps.yetToReturnData,
-      filterYetData: nextProps.yetToReturnData,
-    });
+    if (nextProps.getUserBorrowedData.message !== 'No books in the library') {
+      this.setState({
+        loading: false,
+        userBorrowed: nextProps.getUserBorrowedData,
+      });
+    }
+    if (nextProps.yetToReturnData !== 'No books in the library') {
+      this.setState({
+        loading: false,
+        yetToReturn: nextProps.yetToReturnData,
+        filterYetData: nextProps.yetToReturnData,
+      });
+    }
   }
 
   /**
@@ -85,19 +92,18 @@ export class History extends React.Component {
       bookIndex: event.target.dataset.index
     }),
     setTimeout(() => {
-      this.props.returnBook(this.props.usersId, this.state);
+      this.props.returnBook(this.props.usersId, this.state).then(() => {
+        if (this.props.returnBookData.hasReturned === true) {
+          this.state.filterYetData.splice(this.state.bookIndex, 1);
+          this.setState({
+            yetToReturn: this.state.filterYetData
+          });
+          Materialize.toast('Succesfully Returned', 2000, 'teal rounded');
+        } else {
+          Materialize.toast('Not Returned', 2000, 'red rounded');
+        }
+      });
     });
-    setTimeout(() => {
-      if (this.props.returnBookData.hasReturned === true) {
-        this.state.filterYetData.splice(this.state.bookIndex, 1);
-        this.setState({
-          yetToReturn: this.state.filterYetData
-        });
-        Materialize.toast('Succesfully Returned', 2000, 'teal rounded');
-      } else {
-        Materialize.toast('Not Returned', 2000, 'red rounded');
-      }
-    }, 1000);
   }
 
   /**

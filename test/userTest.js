@@ -846,6 +846,16 @@ describe('Books request', () => {
           done();
         });
     });
+    it('should not create category', (done) => {
+      chai.request(app)
+        .post('/api/v1/books/category')
+        .set('x-token', adminToken)
+        .send({ category: 'Motivational' })
+        .end((err) => {
+          err.should.have.status(400);
+          done();
+        });
+    });
     it('should not create category without token', (done) => {
       chai.request(app)
         .post('/api/v1/books/category')

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getUserBorrowed } from './getUserBorrowedBooks';
 import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED } from './types';
 
 /**
@@ -30,6 +31,7 @@ export function returnError(error) {
 export const returnBook = (usersId, booksId) => dispatch => axios.put(`/api/v1/users/${usersId}/books`, booksId)
   .then((res) => {
     dispatch(returnResponse(res.data));
+    dispatch(getUserBorrowed(usersId));
   }).catch((error) => {
     dispatch(returnError('An error occured'));
   });

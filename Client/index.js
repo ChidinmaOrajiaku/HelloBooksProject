@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import jwt from 'jsonwebtoken';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { push } from 'react-router-redux';
 
 import { setCurrentUser } from './actions/signinAction';
 import setAuthToken from './utils/setAuthToken';
@@ -28,9 +29,11 @@ export const store = createStore(
   )
 );
 
+
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
   store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
+  store.dispatch(push('/profile'));
 }
 
 ReactDOM.render(
