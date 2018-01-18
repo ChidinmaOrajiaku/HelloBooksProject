@@ -109,12 +109,5 @@ describe('<SignUp />', () => {
     const tree = toJson(component);
     expect(tree).toMatchSnapshot();
   });
-
-  // it('should call function on submit on signup form', () => {
-  //   const component = shallow(<SignUp {...props} />);
-  //   const preventDefault = jest.fn();
-  //   component.find('form').simulate('submit', { preventDefault });
-  //   expect(preventDefault).toBeCalled();
-  // });
 });
 
