@@ -66,18 +66,20 @@ export class AddBooks extends React.Component {
         pointer: false
       }),
       setTimeout(() => {
-        this.props.adminAddRequest(this.state);
-      }, 1000);
-      setTimeout(() => {
-        if (this.props.createBooksResponse.isAdded === true) {
-          this.props.history.push('/books');
-          Materialize.toast('Successfully Added', 2000, 'teal rounded');
-        } else if (
-          this.props.createBooksResponse.isAdded === false &&
-          this.props.createBooksResponse.error) {
-          Materialize.toast(this.props.createBooksResponse.error.response.data, 2000, 'red rounded');
-        }
-      }, 2000);
+        this.props.adminAddRequest(this.state)
+          .then(() => {
+            setTimeout(() => {
+              if (this.props.createBooksResponse.isAdded === true) {
+                this.props.history.push('/books');
+                Materialize.toast('Successfully Added', 2000, 'teal rounded');
+              } else if (
+                this.props.createBooksResponse.isAdded === false &&
+            this.props.createBooksResponse.error) {
+                Materialize.toast(this.props.createBooksResponse.error.response.data, 2000, 'red rounded');
+              }
+            }, 2000);
+          }, 1000);
+      });
     }
     if (nextProps.getCategoryData) {
       this.setState({
