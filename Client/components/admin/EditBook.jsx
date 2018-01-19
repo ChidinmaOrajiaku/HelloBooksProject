@@ -163,15 +163,16 @@ export class EditBook extends React.Component {
  */
   onEditRequest(event) {
     event.preventDefault();
-    this.props.adminModifyRequest(this.state.currentBookId, this.state);
-    setTimeout(() => {
-      if (this.props.modifyBookData.isModified === true) {
-        this.props.history.push('/books');
-        Materialize.toast('Successfully Updated', 2000, 'teal rounded');
-      } else {
-        Materialize.toast('Not Updated', 2000, 'red rounded');
-      }
-    }, 1000);
+    this.props.adminModifyRequest(this.state.currentBookId, this.state).then(()=>{
+      setTimeout(() => {
+        if (this.props.modifyBookData.isModified === true) {
+          this.props.history.push('/books');
+          Materialize.toast('Successfully Updated', 2000, 'teal rounded');
+        } else {
+          Materialize.toast('Not Updated', 2000, 'red rounded');
+        }
+      }, 1000);
+    });
   }
 
   /**
