@@ -19,11 +19,11 @@ export default (sequelize, DataTypes) => {
       validate: {
         isAlphanumeric: {
           args: true,
-          msg: 'Username with non-alphanumeric characters are not allowed'
+          msg: 'Please input a valid username'
         },
         notEmpty: {
           args: true,
-          msg: 'Username with empty strings are not allowed'
+          msg: 'Please input a valid username'
         },
       },
       allowNull: false,
@@ -37,7 +37,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Email with empty strings are not allowed'
+          msg: 'Please input a valid email'
         },
         isEmail: {
           args: true,
@@ -52,7 +52,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Password with empty strings are not allowed'
+          msg: 'Invalid details'
         },
         isMoreThan4Characters(value) {
           if (value.length < 4) {
