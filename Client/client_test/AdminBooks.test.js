@@ -13,7 +13,7 @@ describe('<AdminBooks />', () => {
     getUserBorrowed: jest.fn(),
     yetToReturn: jest.fn(),
     getBookRequest: jest.fn(),
-    adminDeleteRequest: jest.fn(),
+    adminDeleteRequest: jest.fn(() => Promise.resolve()),
     getRequest: jest.fn(),
     admingetBorrowedRequest: jest.fn(),
     editBookIdRequest: jest.fn()

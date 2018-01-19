@@ -163,7 +163,7 @@ export class EditBook extends React.Component {
  */
   onEditRequest(event) {
     event.preventDefault();
-    this.props.adminModifyRequest(this.state.currentBookId, this.state).then(()=>{
+    this.props.adminModifyRequest(this.state.currentBookId, this.state).then(() => {
       setTimeout(() => {
         if (this.props.modifyBookData.isModified === true) {
           this.props.history.push('/books');
