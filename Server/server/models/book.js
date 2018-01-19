@@ -6,7 +6,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Title with empty strings are not allowed'
+          msg: 'Please input a title'
         },
       }
     },
@@ -16,7 +16,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Author with empty strings are not allowed'
+          msg: 'Please input an author'
         },
       }
     },
@@ -26,7 +26,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Category with empty strings are not allowed'
+          msg: 'Please input a category'
         },
       }
     },
