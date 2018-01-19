@@ -98,7 +98,7 @@ export class SignUp extends React.Component {
                         onChange={this.handleChange}
                         id="lastname"
                         required="required"
-                        ype="text"
+                        type="text"
                         className="validate"
                       />
                       <label htmlFor="lastname">Last Name</label>
