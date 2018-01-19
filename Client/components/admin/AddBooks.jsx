@@ -72,15 +72,19 @@ export class AddBooks extends React.Component {
         if (this.props.createBooksResponse.isAdded === true) {
           this.props.history.push('/books');
           Materialize.toast('Successfully Added', 2000, 'teal rounded');
-        } else if (this.props.createBooksResponse.isAdded === false) {
-          Materialize.toast('Not Created', 2000, 'red rounded');
+        } else if (
+          this.props.createBooksResponse.isAdded === false &&
+          this.props.createBooksResponse.error) {
+          Materialize.toast(this.props.createBooksResponse.error.response.data, 2000, 'red rounded');
         }
       }, 2000);
     }
-    this.setState({
-      loader: false,
-      categoryData: nextProps.getCategoryData
-    });
+    if (nextProps.getCategoryData) {
+      this.setState({
+        loader: false,
+        categoryData: nextProps.getCategoryData
+      });
+    }
   }
 
   /**
@@ -155,9 +159,9 @@ export class AddBooks extends React.Component {
             id= "category"
             value="1"
             onChange={this.handleChange}>
-            {<option className="default" value="..." disabled value>
+            <option className="default" value="...">
               Select One
-            </option>}
+            </option>
             { Object.keys(this.state.categoryData).map(key =>
               (<option
                 key = {key}

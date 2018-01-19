@@ -82,8 +82,7 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
             >
               <option
                 className="default"
-                disabled={true}
-                value={true}
+                value="..."
               >
                 Select One
               </option>

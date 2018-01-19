@@ -374,24 +374,6 @@ describe('Create books actions', () => {
       });
       done();
   });
-  it('should not create book', async (done) => {
-      jest.setTimeout(10000) 
-      const { createBookData} = mockData;
-      moxios.stubRequest('/api/v1/users/books', {
-        status: 400,
-        error: "An error occurred"
-      });
-      const expectedActions = [{ 
-          type: ActionTypes.CREATE_BOOKS_FAILED, 
-          error: "An error occurred"
-      }];
-      const store = mockStore({});
-      await store.dispatch(CreateBookActions.adminAddRequest(createBookData))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        });
-        done();
-    });
 });
 
 describe('Get a book action', () => {
