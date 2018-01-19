@@ -13,7 +13,7 @@ describe('<EditBook />', () => {
     getBookRequest: jest.fn(() => Promise.resolve()),
     getAllCategoryRequest: jest.fn(() => Promise.resolve()),
     saveImageCloudinary: jest.fn(),
-    adminModifyRequest: jest.fn(),
+    adminModifyRequest: jest.fn(() => Promise.resolve()),
     adminCountCategoryRequest: jest.fn(),
     adminCountUserRequest: jest.fn()
   };

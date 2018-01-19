@@ -103,7 +103,7 @@ export class History extends React.Component {
           Materialize.toast('Not Returned', 2000, 'red rounded');
         }
       });
-    });
+    }, 1000);
   }
 
   /**

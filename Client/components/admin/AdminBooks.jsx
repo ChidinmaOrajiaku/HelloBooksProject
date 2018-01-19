@@ -148,20 +148,21 @@ export class AdminBooks extends React.Component {
  */
   onDeleteRequest(event) {
     event.preventDefault();
-    this.props.adminDeleteRequest(this.state.bookId);
-    setTimeout(() => {
-      if (this.props.deleteBookData.isDeleted === true) {
-        this.state.filterData.splice(this.state.bookIndex, 1);
-        this.setState({
-          getAllBooks: this.state.filterData
-        });
-        this.props.history.push('/books');
-        Materialize.toast('Successfully deleted', 2000, 'teal rounded');
-        $('.modal').modal('close');
-      } else {
-        Materialize.toast('Not Deleted', 2000, 'red rounded');
-      }
-    }, 1000);
+    this.props.adminDeleteRequest(this.state.bookId).then(() => {
+      setTimeout(() => {
+        if (this.props.deleteBookData.isDeleted === true) {
+          this.state.filterData.splice(this.state.bookIndex, 1);
+          this.setState({
+            getAllBooks: this.state.filterData
+          });
+          this.props.history.push('/books');
+          Materialize.toast('Successfully deleted', 2000, 'teal rounded');
+          $('.modal').modal('close');
+        } else {
+          Materialize.toast('Not Deleted', 2000, 'red rounded');
+        }
+      }, 1000);
+    });
   }
   /**
      *
