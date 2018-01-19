@@ -48,6 +48,9 @@ describe('<Profile />', () => {
   it('should call componentWillReceiveProps method', () => {
     const nextProps = {
       getUserData: [],
+      passwordUpdate: {
+        isUpdated: {}
+      }
     };
     const spy = jest.spyOn(Profile.prototype, 'componentWillReceiveProps');
     shallow(<Profile {...props} componentWillReceiveProps={spy}/>)

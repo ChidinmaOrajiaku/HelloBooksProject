@@ -217,25 +217,6 @@ describe('Logout actions', () => {
         });
         done();
     });
-
-    it('should not create category', async (done) => {
-      const { createCategory } = mockData;
-        jest.setTimeout(10000) 
-        moxios.stubRequest('/api/v1/books/category', {
-          status: 400,
-          error: "An error occurred"
-        });
-        const expectedActions = [{ 
-          type: ActionTypes.CREATE_CATEGORY_FAILED, 
-          error: "An error occurred"
-        }];
-        const store = mockStore({});
-        await store.dispatch(BookActions.adminCreateCategoryRequest(createCategory))
-          .then(() => {
-            expect(store.getActions()).toEqual(expectedActions);
-          });
-          done();
-      });
   });
 
   describe('Save image failed', () => {

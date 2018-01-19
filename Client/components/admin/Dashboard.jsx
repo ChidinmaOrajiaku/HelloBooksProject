@@ -81,6 +81,13 @@ export class Dashboard extends React.Component {
         usersCountData: nextProps.usersCountData[0].adminCountUsers,
       });
     }
+    if (nextProps.createCategory[0].categoryError && nextProps.booksData[0].isCreated === false) {
+      Materialize.toast(nextProps.createCategory[0].categoryError.response.data[0], 2000, 'red rounded');
+    } else if (nextProps.booksData[0].isCreated === true) {
+      Materialize.toast('Successfully Added', 2000, 'teal rounded');
+      $('.modal').modal('close');
+      this.setState({ category: '' });
+    }
   }
 
   /**
@@ -106,27 +113,16 @@ export class Dashboard extends React.Component {
 
   /**
  *
- * @returns {event} handles category change
+ * @returns {object} handles category change
  * @param {object} event
  * @memberof Dashboard
  */
   handleCategory(event) {
     event.preventDefault();
     this.props.adminCreateCategoryRequest(this.state);
-    setTimeout(() => {
-      if (this.props.booksData[1].isCreated === true) {
-        Materialize.toast('Successfully Added', 2000, 'teal rounded');
-        $('.modal').modal('close');
-        this.setState({ category: '' });
-      } else if (this.props.booksData[0].isCreated === false) {
-        Materialize.toast('Category already exists', 2000, 'red rounded');
-      }
-    }, 2000);
   }
 
   /**
-   *
-   *
    * @memberof Dashboard
    * @returns {object} ReactMarkupElement
    */

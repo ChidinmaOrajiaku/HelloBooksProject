@@ -25,15 +25,21 @@ export const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    window.devToolsExtension && process.env.NODE_ENV === 'development' ? window.devToolsExtension() : f => f
   )
 );
 
 
 if (localStorage.jwtToken) {
-  setAuthToken(localStorage.jwtToken);
-  store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
-  store.dispatch(push('/profile'));
+  jwt.verify(localStorage.jwtToken, process.env.TOKEN_SECRET, (err) => {
+    if (!err) {
+      setAuthToken(localStorage.jwtToken);
+      store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
+      store.dispatch(push('/profile'));
+    } else {
+      store.dispatch(setCurrentUser({}));
+    }
+  });
 }
 
 ReactDOM.render(

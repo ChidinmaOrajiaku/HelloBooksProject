@@ -9,7 +9,7 @@ import { borrowRequest } from '../../actions/borrowBooks';
 
 
 /**
- * @class Books
+ * @class Library
  */
 export class Library extends React.Component {
   /**
@@ -54,7 +54,7 @@ export class Library extends React.Component {
    * Handles borrow books action
    * @returns {object} response object
    * @param {object} event
-   * @memberof Books
+   * @memberof Library
    */
   handleBorrow(event) {
     event.preventDefault();

@@ -154,7 +154,7 @@ export const adminCreateCategoryRequest = category => dispatch => axios.post('/a
       dispatch(adminCountCategoryRequest());
     }, 1500);
   }).catch((error) => {
-    dispatch(adminCreateCategoryFailed('An error occurred'));
+    dispatch(adminCreateCategoryFailed(error));
   });
 
 /**
@@ -183,7 +183,6 @@ export function saveImageCloudinary(image) {
         }
       })
       .then((response) => {
-        console.log(response);
         dispatch(saveImageResponse(response.secure_url));
       }).catch((error) => {
         dispatch(saveImageError('An error occurred'));

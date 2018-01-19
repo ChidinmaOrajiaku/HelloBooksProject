@@ -60,6 +60,9 @@ describe('<Dashboard />', () => {
       usersCountData: [{
         adminCountUsers: {}
       }],
+      createCategory: [{
+        categoryError: []
+      }]
     };
     const spy = jest.spyOn(Dashboard.prototype, 'componentWillReceiveProps');
     shallow(<Dashboard {...props} componentWillReceiveProps={spy}/>)

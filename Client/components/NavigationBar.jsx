@@ -7,8 +7,6 @@ import { logout } from '../actions/signinAction';
 import { getUserDataRequest } from '../actions/getUser';
 
 /**
- *
- *
  * @class NavigationBar
  * @extends {React.Component}
  */

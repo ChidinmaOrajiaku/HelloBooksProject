@@ -72,7 +72,7 @@ export class AddBooks extends React.Component {
         if (this.props.createBooksResponse.isAdded === true) {
           this.props.history.push('/books');
           Materialize.toast('Successfully Added', 2000, 'teal rounded');
-        } else {
+        } else if (this.props.createBooksResponse.isAdded === false) {
           Materialize.toast('Not Created', 2000, 'red rounded');
         }
       }, 2000);
@@ -210,6 +210,7 @@ export class AddBooks extends React.Component {
                       id="image"
                       type="file"
                       onChange={this.handleImageChange}
+                      required="required"
                     />
                   </div>
                   <div className="file-path-wrapper">

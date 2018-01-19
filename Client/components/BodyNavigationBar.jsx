@@ -10,15 +10,7 @@ export default () => {
       <nav>
         <div className="nav-wrapper teal">
           <Link to="/" className="brand-logo">HelloBooks</Link>
-          <a to="#" data-activates="mobile-demo"
-            className="button-collapse">
-            <i className="material-icons">menu</i>
-          </a>
           <ul className="right hide-on-med-and-down">
-            <li><Link to="/register">Sign Up</Link></li>
-            <li><Link to="/login">Sign In</Link></li>
-          </ul>
-          <ul className="side-nav" id="mobile-demo">
             <li><Link to="/register">Sign Up</Link></li>
             <li><Link to="/login">Sign In</Link></li>
           </ul>

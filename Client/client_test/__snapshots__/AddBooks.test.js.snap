@@ -114,6 +114,7 @@ exports[`<AddBooks /> should match snapshot test 1`] = `
               <input
                 id="image"
                 onChange={[Function]}
+                required="required"
                 type="file"
               />
             </div>

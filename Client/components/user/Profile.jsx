@@ -29,6 +29,7 @@ export class Profile extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   /**
@@ -75,9 +76,23 @@ export class Profile extends React.Component {
   }
 
   /**
+ * Resets password input field on close or submission
+ * @param {object} event
+ * @memberof Profile
+ * @returns {object} response object
+ */
+  handleReset(event) {
+    event.preventDefault();
+    this.setState({
+      password: '',
+      verifyPassword: ''
+    });
+  }
+
+  /**
    * Updates user password
    * @returns {object} response object
-   * @param {event} event
+   * @param {object} event
    * @memberof Profile
    */
   handlePassword(event) {
@@ -86,6 +101,11 @@ export class Profile extends React.Component {
     setTimeout(() => {
       if (this.props.passwordUpdate.isUpdated === true) {
         Materialize.toast('Successfully Updated', 2000, 'teal rounded');
+        $('.modal').modal('close');
+        this.setState({
+          password: '',
+          verifyPassword: ''
+        });
       } else {
         Materialize.toast('Password Incorrect', 2000, 'red rounded');
       }
@@ -144,6 +164,7 @@ export class Profile extends React.Component {
             <a className="modal-action modal-close">
               <button
               className="passwordCButton"
+              onClick= {this.handleReset}
               id="passwordCButton">Cancel</button>
             </a>
           </div>

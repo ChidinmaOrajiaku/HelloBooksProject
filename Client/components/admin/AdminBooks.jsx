@@ -60,8 +60,8 @@ export class AdminBooks extends React.Component {
   }
   /**
    *
-   * @returns {nextProps} next props
-   * @param {any} nextProps
+   * @returns {object} next props
+   * @param {object} nextProps
    * @memberof AdminBooks
    */
   componentWillReceiveProps(nextProps) {
@@ -98,8 +98,8 @@ export class AdminBooks extends React.Component {
 
   /**
  * Handles change of values and sets to state
- * @returns {event} handles change
- * @param {any} event
+ * @returns {object} handles change
+ * @param {object} event
  * @memberof AdminBooks
  */
   handleChange(event) {
@@ -108,8 +108,8 @@ export class AdminBooks extends React.Component {
 
   /**
  * Handles change in book id and book index of to be deleted book
- * @returns {event} handles delete change
- * @param {any} event
+ * @returns {object} handles delete change
+ * @param {object} event
  * @memberof AdminBooks
  */
   handleDeleteChange(event) {
@@ -121,8 +121,8 @@ export class AdminBooks extends React.Component {
 
   /**
  * Saves book id of book to be edited
- * @returns {event} handles edit change
- * @param {any} event
+ * @returns {object} handles edit change
+ * @param {object} event
  * @memberof AdminBooks
  */
   handleEditChange(event) {
@@ -132,8 +132,8 @@ export class AdminBooks extends React.Component {
   }
   /**
  * View a book
- * @returns {event} view a book request
- * @param {any} event
+ * @returns {object} view a book request
+ * @param {object} event
  * @memberof AdminBooks
  */
   onViewRequest(event) {
@@ -142,8 +142,8 @@ export class AdminBooks extends React.Component {
   }
   /**
  * Deletes Book
- * @returns {event} delete a book request
- * @param {any} event
+ * @returns {object} delete a book request
+ * @param {object} event
  * @memberof AdminBooks
  */
   onDeleteRequest(event) {
