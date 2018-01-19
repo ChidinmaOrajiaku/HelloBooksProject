@@ -3,7 +3,7 @@ import $ from 'jquery';
 import toJson from 'enzyme-to-json';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { Profile } from '../components/user/Profile.jsx';
+import { Profile, mapStateToProps } from '../components/user/Profile.jsx';
 
 configure({ adapter: new Adapter() });
 
@@ -43,6 +43,34 @@ describe('<Profile />', () => {
     };
     ProfileItem().instance().handleChange(event);
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call componentWillReceiveProps method', () => {
+    const nextProps = {
+      getUserData: [],
+      passwordUpdate: {
+        isUpdated: {}
+      }
+    };
+    const spy = jest.spyOn(Profile.prototype, 'componentWillReceiveProps');
+    shallow(<Profile {...props} componentWillReceiveProps={spy}/>)
+      .instance().componentWillReceiveProps(nextProps);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('ensures that mapStateToProps dispatches the specified actions', () => {
+    const state = {
+      auth: {
+        user: {
+          id: 1
+        }
+      },
+      getUser: ['1', '2'],
+      updatePassword: ['1', '2'],
+    };
+    expect(mapStateToProps(state).usersId).toExist;
+    expect(mapStateToProps(state).getUserData).toExist;
+    expect(mapStateToProps(state).passwordUpdate).toExist;
   });
 
   it('should match snapshot test', () => {

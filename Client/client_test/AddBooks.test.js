@@ -3,8 +3,8 @@ import $ from 'jquery';
 import toJson from 'enzyme-to-json';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import mockData from './mocks/mockData';
-import { AddBooks } from '../components/admin/AddBooks.jsx';
+import { categories } from './mocks/mockData';
+import { AddBooks, mapStateToProps } from '../components/admin/AddBooks.jsx';
 
 configure({ adapter: new Adapter() });
 
@@ -13,7 +13,7 @@ describe('<AddBooks />', () => {
     adminAddRequest: jest.fn(() => Promise.resolve()),
     getAllCategoryRequest: jest.fn(() => Promise.resolve()),
     saveImageCloudinary: jest.fn(() => Promise.resolve()),
-    categoryData: [{ a: 'a', b: 'b' }]
+    categoryData: categories,
   };
 
   let mountedComponent;
@@ -26,6 +26,10 @@ describe('<AddBooks />', () => {
 
   beforeEach(() => {
     mountedComponent = undefined;
+  });
+
+  global.FileReader = () => ({
+    readAsDataURL: () => {}
   });
 
   it('renders <AddBooks /> component', () => {
@@ -81,6 +85,19 @@ describe('<AddBooks />', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  it('should call handleImageChange method', () => {
+    const spy = jest.spyOn(AddBooks.prototype, 'handleImageChange');
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        files: ['sampleFile', 'sampleFile2']
+      }
+    };
+    shallow(<AddBooks {...props} handleImageChange={spy}/>)
+      .instance().handleImageChange(event);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
   it('should call handleChange method', () => {
     const spy = jest.spyOn(AddBooksItem().instance(), 'handleChange');
     const event = {
@@ -92,6 +109,29 @@ describe('<AddBooks />', () => {
     };
     AddBooksItem().instance().handleChange(event);
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('ensures that mapStateToProps dispatches the specified actions', () => {
+    const state = {
+      createBooks: ['1', '2'],
+      imageInputUrl: ['1', '2'],
+      getCategory: ['1', '2'],
+      uploadImage: ['1', '2']
+    };
+    expect(mapStateToProps(state).createBooksResponse).toExist;
+    expect(mapStateToProps(state).imageInputUrl).toExist;
+    expect(mapStateToProps(state).getCategoryData).toExist;
+  });
+
+  it('should call componentWillReceiveProps method', () => {
+    const nextProps = {
+      imageInputUrl: [],
+      getCategoryData: [],
+    };
+    const spy = jest.spyOn(AddBooks.prototype, 'componentWillReceiveProps');
+    shallow(<AddBooks {...props} componentWillReceiveProps={spy}/>)
+      .instance().componentWillReceiveProps(nextProps);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should match snapshot test', () => {

@@ -1,12 +1,12 @@
 export default (sequelize, DataTypes) => {
-  const Books = sequelize.define('Books', {
+  const Book = sequelize.define('Book', {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Title with empty strings are not allowed'
+          msg: 'Please input a title'
         },
       }
     },
@@ -16,7 +16,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Author with empty strings are not allowed'
+          msg: 'Please input an author'
         },
       }
     },
@@ -26,7 +26,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Category with empty strings are not allowed'
+          msg: 'Please input a category'
         },
       }
     },
@@ -49,20 +49,20 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  Books.associate = (models) => {
+  Book.associate = (models) => {
     // associations can be defined here
-    Books.belongsTo(models.Users, {
+    Book.belongsTo(models.User, {
       foreignKey: 'userId',
       onDelete: 'CASCADE',
     });
-    Books.hasMany(models.RentedBooks, {
+    Book.hasMany(models.RentedBook, {
       foreignKey: 'bookId',
       as: 'rentedbook',
     });
-    Books.belongsTo(models.Category, {
+    Book.belongsTo(models.Category, {
       foreignKey: 'categoryId',
       onDelete: 'CASCADE',
     });
   };
-  return Books;
+  return Book;
 };

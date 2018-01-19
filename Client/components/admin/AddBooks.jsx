@@ -55,10 +55,9 @@ export class AddBooks extends React.Component {
   }
 
   /**
-   *
-   * @param {any} nextProps
+   * @param {object} nextProps
    * @memberof AddBooks
-   * @returns {nextProps} assigns nextprops to state
+   * @returns {object} assigns nextprops to state
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.imageInputUrl && this.state.pointer) {
@@ -67,26 +66,32 @@ export class AddBooks extends React.Component {
         pointer: false
       }),
       setTimeout(() => {
-        this.props.adminAddRequest(this.state);
-      }, 1000);
-      setTimeout(() => {
-        if (this.props.createBooksResponse.isAdded === true) {
-          this.props.history.push('/books');
-          Materialize.toast('Successfully Added', 2000, 'teal rounded');
-        } else {
-          Materialize.toast('Not Created', 2000, 'red rounded');
-        }
-      }, 2000);
+        this.props.adminAddRequest(this.state)
+          .then(() => {
+            setTimeout(() => {
+              if (this.props.createBooksResponse.isAdded === true) {
+                this.props.history.push('/books');
+                Materialize.toast('Successfully Added', 2000, 'teal rounded');
+              } else if (
+                this.props.createBooksResponse.isAdded === false &&
+            this.props.createBooksResponse.error) {
+                Materialize.toast(this.props.createBooksResponse.error.response.data, 2000, 'red rounded');
+              }
+            }, 2000);
+          }, 1000);
+      });
     }
-    this.setState({
-      loader: false,
-      categoryData: nextProps.getCategoryData
-    });
+    if (nextProps.getCategoryData) {
+      this.setState({
+        loader: false,
+        categoryData: nextProps.getCategoryData
+      });
+    }
   }
 
   /**
- *
- * @param {any} event
+ * Handles change of values in state
+ * @param {object} event
  * @memberof AddBooks
  * @returns {object} SyntheticEvent
  */
@@ -96,7 +101,7 @@ export class AddBooks extends React.Component {
 
   /**
  * Submits image to cloudinary and sets state of pointer to true
- * @param {event} event
+ * @param {object} event
  * @memberof AddBooks
  * @returns {object} response object
  */
@@ -108,7 +113,7 @@ export class AddBooks extends React.Component {
 
   /**
  * Handles Image change and saves image file in state
- * @param {any} event
+ * @param {object} event
  * @memberof AddBooks
  * @returns {object} response object
  */
@@ -156,9 +161,9 @@ export class AddBooks extends React.Component {
             id= "category"
             value="1"
             onChange={this.handleChange}>
-            {<option className="default" value="..." disabled value>
+            <option className="default" value="...">
               Select One
-            </option>}
+            </option>
             { Object.keys(this.state.categoryData).map(key =>
               (<option
                 key = {key}
@@ -173,8 +178,8 @@ export class AddBooks extends React.Component {
     return (
       <div className="adminAddBooks row ontainer">
         <div className=""> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m3"> ADMIN UPLOAD BOOKS </h4>
-        <div className="col m4 offset-m5">
+        <h4 className="col s12 m8 offset-m3"> ADMIN UPLOAD BOOKS </h4>
+        <div className="col s12 m4 offset-m5">
           <div className="card">
             <form onSubmit={this.onAddSubmit} id="form">
               <div className="row">
@@ -211,6 +216,7 @@ export class AddBooks extends React.Component {
                       id="image"
                       type="file"
                       onChange={this.handleImageChange}
+                      required="required"
                     />
                   </div>
                   <div className="file-path-wrapper">
@@ -218,6 +224,7 @@ export class AddBooks extends React.Component {
                       className="file-path validate"
                       type="text"
                       placeholder="Upload Image"
+                      required="required"
                     />
                   </div>
                 </div>
@@ -261,7 +268,7 @@ export class AddBooks extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     createBooksResponse: state.createBooks[0],
     imageInputUrl: state.uploadImage[0].response || state.uploadImage[0].error,

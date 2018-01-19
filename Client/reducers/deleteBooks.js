@@ -1,4 +1,4 @@
-import { DELETE_BOOKS_SUCCESSFUL, DELETE_BOOKS_FAILED, DELETE_BOOKS_REQUEST } from '../actions/types';
+import { DELETE_BOOKS_SUCCESSFUL, DELETE_BOOKS_FAILED } from '../actions/types';
 
 const initialState = [{
   deleteData: {},
@@ -9,13 +9,6 @@ const initialState = [{
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case DELETE_BOOKS_REQUEST:
-      return [{
-        deleteData: action.data,
-        response: '',
-        error: '',
-      }, ...state];
-
     case DELETE_BOOKS_SUCCESSFUL:
       return [{
         deleteData: {},

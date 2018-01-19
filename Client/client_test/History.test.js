@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import mockData from './mocks/mockData';
-import { History } from '../components/user/History.jsx';
+import { History, mapStateToProps } from '../components/user/History.jsx';
 
 configure({ adapter: new Adapter() });
 
@@ -47,6 +47,34 @@ describe('<History />', () => {
     };
     navigationBarItem().instance().handleChange(event);
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call componentWillReceiveProps method', () => {
+    const nextProps = {
+      getUserBorrowedData: [],
+      yetToReturnData: []
+    };
+    const spy = jest.spyOn(History.prototype, 'componentWillReceiveProps');
+    shallow(<History {...props} componentWillReceiveProps={spy}/>)
+      .instance().componentWillReceiveProps(nextProps);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('ensures that mapStateToProps dispatches the specified actions', () => {
+    const state = {
+      auth: {
+        user: {
+          id: 1
+        }
+      },
+      userBorrowedBooks: ['1', '2'],
+      yetToReturn: ['1', '2'],
+      returnBook: ['1', '2']
+    };
+    expect(mapStateToProps(state).usersId).toExist;
+    expect(mapStateToProps(state).getUserBorrowedData).toExist;
+    expect(mapStateToProps(state).yetToReturnData).toExist;
+    expect(mapStateToProps(state).returnBookData).toExist;
   });
 
   it('should match snapshot test', () => {

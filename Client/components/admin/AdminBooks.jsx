@@ -41,7 +41,6 @@ export class AdminBooks extends React.Component {
   }
 
   /**
-   *
    * @returns {object} response object
    * @memberof AdminBooks
    */
@@ -61,26 +60,46 @@ export class AdminBooks extends React.Component {
   }
   /**
    *
-   * @returns {nextProps} next props
-   * @param {any} nextProps
+   * @returns {object} next props
+   * @param {object} nextProps
    * @memberof AdminBooks
    */
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      loading: false,
-      getAllBooks: nextProps.getAllBooksData,
-      filterData: nextProps.getAllBooksData,
-      getAllBorrowedBooks: nextProps.getAllBorrowedBooksData,
-      getABook: nextProps.getABookData,
-      deleteBook: nextProps.deleteBookData,
-      modifyBook: nextProps.modifyBookData
-    });
+    if (nextProps.getAllBorrowedBooksData.message !== 'No books in the library') {
+      this.setState({
+        loading: false,
+        getAllBorrowedBooks: nextProps.getAllBorrowedBooksData,
+      });
+    }
+    if (nextProps.getAllBooksData.message !== 'No books in the library') {
+      this.setState({
+        loading: false,
+        getAllBooks: nextProps.getAllBooksData,
+        filterData: nextProps.getAllBooksData,
+      });
+    }
+    if (nextProps.getABookData) {
+      this.setState({
+        loading: false,
+        getABook: nextProps.getABookData,
+      });
+    }
+    if (nextProps.deleteBookData) {
+      this.setState({
+        deleteBook: nextProps.deleteBookData,
+      });
+    }
+    if (nextProps.modifyBookData) {
+      this.setState({
+        modifyBook: nextProps.modifyBookData
+      });
+    }
   }
 
   /**
- *
- * @returns {event} handles change
- * @param {any} event
+ * Handles change of values and sets to state
+ * @returns {object} handles change
+ * @param {object} event
  * @memberof AdminBooks
  */
   handleChange(event) {
@@ -88,22 +107,22 @@ export class AdminBooks extends React.Component {
   }
 
   /**
- *
- * @returns {event} handles delete change
- * @param {any} event
+ * Handles change in book id and book index of to be deleted book
+ * @returns {object} handles delete change
+ * @param {object} event
  * @memberof AdminBooks
  */
   handleDeleteChange(event) {
     this.setState({
       bookId: event.target.value,
-      bookIndex: event.target.dataset.index 
-});
+      bookIndex: event.target.dataset.index
+    });
   }
 
   /**
- *
- * @returns {event} handles edit change
- * @param {any} event
+ * Saves book id of book to be edited
+ * @returns {object} handles edit change
+ * @param {object} event
  * @memberof AdminBooks
  */
   handleEditChange(event) {
@@ -112,9 +131,9 @@ export class AdminBooks extends React.Component {
     localStorage.setItem('currentBookId', event.target.value);
   }
   /**
- *
- * @returns {event} view a book request
- * @param {any} event
+ * View a book
+ * @returns {object} view a book request
+ * @param {object} event
  * @memberof AdminBooks
  */
   onViewRequest(event) {
@@ -122,29 +141,30 @@ export class AdminBooks extends React.Component {
     this.props.getBookRequest(event.target.value);
   }
   /**
- *
- * @returns {event} delete a book request
- * @param {any} event
+ * Deletes Book
+ * @returns {object} delete a book request
+ * @param {object} event
  * @memberof AdminBooks
  */
   onDeleteRequest(event) {
     event.preventDefault();
-    this.props.adminDeleteRequest(this.state.bookId);
-    setTimeout(() => {
-      if (this.props.deleteBookData.isDeleted === true) {
-        this.state.filterData.splice(this.state.bookIndex, 1);
-        this.setState({
-          getAllBooks: this.state.filterData
-        });
-        this.props.history.push('/books');
-        Materialize.toast('Successfully deleted', 2000, 'teal rounded');
-      } else {
-        Materialize.toast('Not Deleted', 2000, 'red rounded');
-      }
-    }, 1000);
+    this.props.adminDeleteRequest(this.state.bookId).then(() => {
+      setTimeout(() => {
+        if (this.props.deleteBookData.isDeleted === true) {
+          this.state.filterData.splice(this.state.bookIndex, 1);
+          this.setState({
+            getAllBooks: this.state.filterData
+          });
+          this.props.history.push('/books');
+          Materialize.toast('Successfully deleted', 2000, 'teal rounded');
+          $('.modal').modal('close');
+        } else {
+          Materialize.toast('Not Deleted', 2000, 'red rounded');
+        }
+      }, 1000);
+    });
   }
   /**
-     *
      *
      * @returns {object} ReactMarkupElement
      * @memberof AdminBooks
@@ -217,8 +237,8 @@ export class AdminBooks extends React.Component {
     return (
       <div className="books row container-fluid">
         <div> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m3 white-text"> ADMIN BOOK LIST </h4>
-        <div className="row col m8 offset-m3">
+        <h4 className="col s12 m8 offset-m3 white-text"> ADMIN BOOK LIST </h4>
+        <div className="row col s12 m8 offset-m3">
           <div className="input-field col s4 status">
             <select
               className="white-text"
@@ -263,7 +283,7 @@ export class AdminBooks extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     getAllBooksData: state.getAllBooks[0].response,
     getAllBorrowedBooksData: state.getAllBorrowedBooks[0].response,
@@ -273,8 +293,8 @@ const mapStateToProps = state => (
 );
 
 export default connect(
-mapStateToProps,
+  mapStateToProps,
   {
- adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest, editBookIdRequest
+    adminDeleteRequest, admingetBorrowedRequest, getRequest, getBookRequest, editBookIdRequest
   }
 )(AdminBooks);

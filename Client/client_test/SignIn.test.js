@@ -2,13 +2,14 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import mockData from './mocks/mockData';
 import { SignIn } from '../components/SignIn.jsx';
 
 configure({ adapter: new Adapter() });
 
 describe('<SignIn />', () => {
   const props = {
-    userSigninRequest: jest.fn()
+    userSigninRequest: jest.fn(() => Promise.resolve())
   };
 
   let mountedComponent;
@@ -25,6 +26,32 @@ describe('<SignIn />', () => {
 
   it('renders <SignIn /> component', () => {
     expect(signinFormItem()).toHaveLength(1);
+  });
+
+  it('should call handleChange method', () => {
+    const spy = jest.spyOn(signinFormItem().instance(), 'handleChange');
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        id: 'review',
+        value: 'chideberecom'
+      }
+    };
+    signinFormItem().instance().handleChange(event);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call onSigninSubmit method', () => {
+    const { getUserData } = mockData;
+    const spy = jest.spyOn(signinFormItem().instance(), 'onSigninSubmit');
+    const event = {
+      preventDefault: jest.fn(),
+    };
+    signinFormItem().instance().onSigninSubmit(event);
+    expect(spy).toHaveBeenCalled();
+    const form = signinFormItem().find('form');
+    signinFormItem().setState(getUserData);
+    form.simulate('submit', event);
   });
 
   it('should update state on email field change', () => {

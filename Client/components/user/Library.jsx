@@ -9,7 +9,7 @@ import { borrowRequest } from '../../actions/borrowBooks';
 
 
 /**
- * @class Books
+ * @class Library
  */
 export class Library extends React.Component {
   /**
@@ -27,7 +27,6 @@ export class Library extends React.Component {
   }
 
   /**
-   *
    * @returns {object} response object
    * @memberof Library
    */
@@ -41,7 +40,7 @@ export class Library extends React.Component {
   /**
    * Receives next props an sets the state
    * @returns {object} response object
-   * @param {nextProps} nextProps
+   * @param {object} nextProps
    * @memberof Library
    */
   componentWillReceiveProps(nextProps) {
@@ -54,8 +53,8 @@ export class Library extends React.Component {
   /**
    * Handles borrow books action
    * @returns {object} response object
-   * @param {event} event
-   * @memberof Books
+   * @param {object} event
+   * @memberof Library
    */
   handleBorrow(event) {
     event.preventDefault();
@@ -80,16 +79,15 @@ export class Library extends React.Component {
   }
 
   /**
-     *
      * React element mark up
      * @returns {object} response object
      * @memberof Library
      */
   render() {
     const books = this.state.loading ? <div><p>Loading...</p></div> :
-      <div className=" lib row">
+      <div className="lib row">
         { Object.keys(this.state.getAllBooks).map(key =>
-          <div className="col s12 m4 push-m2" key={key}>
+          <div className="col s12 m4 push-m2 push-s2" key={key}>
             <div className="card">
               <div className="card-image waves-effect waves-block waves-light">
                 <img className="activator"
@@ -134,7 +132,7 @@ export class Library extends React.Component {
       <div className="library row">
         <div className="container">
           <div> <NavigationBar /> </div>
-          <h4 className="col m10 offset-m2 white-text"> USER LIBRARY </h4>
+          <h4 className="col s12 m10 offset-m2 white-text"> USER LIBRARY </h4>
           {books}
           <div> <Footer /></div>
         </div>
@@ -143,7 +141,7 @@ export class Library extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getAllBooksData: state.getAllBooks[0].response,

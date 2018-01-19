@@ -4,6 +4,7 @@ const initialState = [{
   imageData: {},
   response: '',
   error: '',
+  hasSaved: ''
 }];
 
 export default (state = initialState, action = {}) => {
@@ -13,6 +14,7 @@ export default (state = initialState, action = {}) => {
         imageData: action.data,
         response: '',
         error: '',
+        hasSaved: ''
       }, ...state];
 
     case SAVE_IMAGE_SUCCESSFUL:
@@ -20,12 +22,14 @@ export default (state = initialState, action = {}) => {
         imageData: {},
         response: action.response,
         error: '',
+        hasSaved: true
       }, ...state];
 
     case SAVE_IMAGE_FAILED:
       return [{
         imageData: {},
         response: '',
+        hasSaved: false,
         error: action.error.message,
       }, ...state];
 

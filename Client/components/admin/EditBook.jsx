@@ -15,7 +15,7 @@ import { getAllCategoryRequest } from '../../actions/getCategory';
 export class EditBook extends React.Component {
   /**
      * @constructor
-     * @param {object} props 
+     * @param {object} props
      */
   constructor(props) {
     super(props);
@@ -44,7 +44,6 @@ export class EditBook extends React.Component {
   }
 
   /**
- * 
  * @returns {object} mounted components
  * @memberof EditBook
  */
@@ -65,9 +64,8 @@ export class EditBook extends React.Component {
   }
 
   /**
- * 
- * @returns {nextProps} nextProps
- * @param {any} nextProps 
+ * @returns {object} nextProps
+ * @param {object} nextProps
  * @memberof EditBook
  */
   componentWillReceiveProps(nextProps) {
@@ -86,7 +84,8 @@ export class EditBook extends React.Component {
     if (nextProps.imageInputUrl && this.state.pointer) {
       this.setState({
         image: nextProps.imageInputUrl,
-        pointer: false }),
+        pointer: false
+      }),
       setTimeout(() => {
         this.props.adminModifyRequest(this.state.currentBookId, this.state);
       }, 1000);
@@ -110,9 +109,8 @@ export class EditBook extends React.Component {
   }
 
   /**
- * 
- * @returns {event} event
- * @param {any} event 
+ * @returns {object} event
+ * @param {object} event
  * @memberof EditBook
  */
   handleChange(event) {
@@ -120,9 +118,9 @@ export class EditBook extends React.Component {
   }
 
   /**
- * 
- * @returns {event} handle Image change
- * @param {any} event 
+ * Handles image change and sets to state
+ * @returns {object} handle Image change
+ * @param {object} event
  * @memberof EditBook
  */
   handleImageChange(event) {
@@ -146,9 +144,9 @@ export class EditBook extends React.Component {
   }
 
   /**
- * 
- * @returns {SyntheticEvent} event
- * @param {any} event 
+ * Save image on cloudinary
+ * @returns {object} event
+ * @param {object} event
  * @memberof EditBook
  */
   onEditCloudinaryRequest(event) {
@@ -158,28 +156,27 @@ export class EditBook extends React.Component {
   }
 
   /**
- * 
- * @returns {SyntheticEvent} event
- * @param {any} event 
+ * Save to database if there's no image change
+ * @returns {object} event
+ * @param {object} event
  * @memberof EditBook
  */
   onEditRequest(event) {
     event.preventDefault();
-    this.props.adminModifyRequest(this.state.currentBookId, this.state);
-    setTimeout(() => {
-      if (this.props.modifyBookData.isModified === true) {
-        this.props.history.push('/books');
-        Materialize.toast('Successfully Updated', 2000, 'teal rounded');
-      } else {
-        Materialize.toast('Not Updated', 2000, 'red rounded');
-      }
-    }, 1000);
+    this.props.adminModifyRequest(this.state.currentBookId, this.state).then(() => {
+      setTimeout(() => {
+        if (this.props.modifyBookData.isModified === true) {
+          this.props.history.push('/books');
+          Materialize.toast('Successfully Updated', 2000, 'teal rounded');
+        } else {
+          Materialize.toast('Not Updated', 2000, 'red rounded');
+        }
+      }, 1000);
+    });
   }
 
   /**
-     * 
-     * 
-     * @returns {ReactElement} Markup 
+     * @returns {ReactElement} Markup
      * @memberof EditBook
      */
   render() {
@@ -209,8 +206,7 @@ export class EditBook extends React.Component {
               (<option key = {key} value={this.state.categoryData[key].category}
               >
                 {this.state.categoryData[key].category }
-              </option>)
-            )}
+              </option>))}
           </select>
           <label className="black-text sort">Category</label>
         </div>
@@ -218,7 +214,7 @@ export class EditBook extends React.Component {
     return (
       <div className="adminAddBooks row">
         <div className=""> <NavigationBar /> </div>
-        <div className="col m4 offset-m5">
+        <div className="col s12 m4 offset-m5">
           <div className="card">
             <form
               onSubmit={this.state.tempImage === '' ? this.onEditRequest :
@@ -307,7 +303,7 @@ EditBook.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     modifyBookData: state.modifyBooks[0],
     imageInputUrl: state.uploadImage[0].response,
@@ -317,6 +313,9 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps,
-  { adminModifyRequest, getBookRequest, saveImageCloudinary, getAllCategoryRequest
-  })(EditBook);
+export default connect(
+  mapStateToProps,
+  {
+    adminModifyRequest, getBookRequest, saveImageCloudinary, getAllCategoryRequest
+  }
+)(EditBook);

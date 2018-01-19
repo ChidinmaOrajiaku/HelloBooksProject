@@ -16,7 +16,8 @@ import { returnBook } from '../../actions/returnBook';
 export class History extends React.Component {
   /**
   * Creates an instance of History.
-  * @param {any} props
+  * @constructor
+  * @param {object} props
   * @memberof History
   */
   constructor(props) {
@@ -46,23 +47,30 @@ export class History extends React.Component {
 
   /**
    * Receive nextprops and sets state
-   * @param {any} nextProps
-   * @returns {nextProps} response object
+   * @param {object} nextProps
+   * @returns {object} response object
    * @memberof History
    */
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      loading: false,
-      userBorrowed: nextProps.getUserBorrowedData,
-      yetToReturn: nextProps.yetToReturnData,
-      filterYetData: nextProps.yetToReturnData,
-    });
+    if (nextProps.getUserBorrowedData.message !== 'No books in the library') {
+      this.setState({
+        loading: false,
+        userBorrowed: nextProps.getUserBorrowedData,
+      });
+    }
+    if (nextProps.yetToReturnData !== 'No books in the library') {
+      this.setState({
+        loading: false,
+        yetToReturn: nextProps.yetToReturnData,
+        filterYetData: nextProps.yetToReturnData,
+      });
+    }
   }
 
   /**
  * Handles change and sets the state to the targeted event value
  * @returns {object} response object
- * @param {any} event
+ * @param {object} event
  * @memberof History
  */
   handleChange(event) {
@@ -73,7 +81,7 @@ export class History extends React.Component {
  * Handles books return, sets the state of the book Id and book index,
  splices book returned from list and sets the state of yet-to-return-books
  * @returns {object} resonse object
- * @param {event} event
+ * @param {object} event
  * @memberof History
  */
   handleReturn(event) {
@@ -84,23 +92,21 @@ export class History extends React.Component {
       bookIndex: event.target.dataset.index
     }),
     setTimeout(() => {
-      this.props.returnBook(this.props.usersId, this.state);
-    });
-    setTimeout(() => {
-      if (this.props.returnBookData.hasReturned === true) {
-        this.state.filterYetData.splice(this.state.bookIndex, 1);
-        this.setState({
-          yetToReturn: this.state.filterYetData
-        });
-        Materialize.toast('Succesfully Returned', 2000, 'teal rounded');
-      } else {
-        Materialize.toast('Not Returned', 2000, 'red rounded');
-      }
+      this.props.returnBook(this.props.usersId, this.state).then(() => {
+        if (this.props.returnBookData.hasReturned === true) {
+          this.state.filterYetData.splice(this.state.bookIndex, 1);
+          this.setState({
+            yetToReturn: this.state.filterYetData
+          });
+          Materialize.toast('Succesfully Returned', 2000, 'teal rounded');
+        } else {
+          Materialize.toast('Not Returned', 2000, 'red rounded');
+        }
+      });
     }, 1000);
   }
 
   /**
-     *
      * Renders component
      * @returns {object} ReactElementMarkup
      * @memberof History
@@ -167,7 +173,7 @@ export class History extends React.Component {
     return (
       <div className="history row container-fluid">
         <div className=""> <NavigationBar /> </div>
-        <h4 className="col m8 offset-m3 white-text"> USER BOOK HISTORY </h4>
+        <h4 className="col s12 m8 offset-m3 white-text"> USER BOOK HISTORY </h4>
         <div className="row col m8 offset-m3">
           <div className="input-field col s4 status">
             <select className="white-text" id= "bookStatus"value="1"
@@ -193,7 +199,7 @@ export class History extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getUserBorrowedData: state.userBorrowedBooks[0].response,

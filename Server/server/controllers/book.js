@@ -2,11 +2,11 @@ import * as validateId from '../utils/validateId';
 import db from '../models';
 import messages from '../utils/messages';
 
-const booksController = {
+const bookController = {
   /**
    * Create Books
-   * @param {any} req
-   * @param {any} res
+   * @param {object} req
+   * @param {object} res
    * @returns {object} req, res
    */
   create(req, res) {
@@ -17,7 +17,7 @@ const booksController = {
       image,
       review
     } = req.body;
-    return db.Books
+    return db.Book
       .create({
         title,
         author,
@@ -35,17 +35,17 @@ const booksController = {
   },
   /**
    * List all Books
-   * @param {any} req
-   * @param {any} res
-      * @returns {object} req, res
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} req, res
    */
   list(req, res) {
     // find all books
-    return db.Books
+    return db.Book
       .findAll({})
       .then((books) => {
         if (books.length === 0) {
-          res.status(200).send({
+          return res.status(200).send({
             message: messages.noBooks
           });
         }
@@ -60,8 +60,8 @@ const booksController = {
   },
   /**
    * List a book
-   * @param {any} req
-   * @param {any} res
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   listABook(req, res) {
@@ -72,11 +72,11 @@ const booksController = {
       });
     }
     // find one books
-    return db.Books
+    return db.Book
       .findById(returnedId)
       .then((books) => {
         if (!books) {
-          res.status(404).send({
+          return res.status(404).send({
             message: messages.notFoundBook
           });
         }
@@ -91,8 +91,8 @@ const booksController = {
   },
   /**
    * Update Book
-   * @param {any} req
-   * @param {any} res
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   update(req, res) {
@@ -110,7 +110,7 @@ const booksController = {
       });
     }
     // update books
-    return db.Books
+    return db.Book
       .findById(returnedId)
       .then((books) => {
         if (!books) {
@@ -140,8 +140,8 @@ const booksController = {
   },
   /**
    * Delete Book
-   * @param {any} req
-   * @param {any} res
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   deleteBook(req, res) {
@@ -151,7 +151,7 @@ const booksController = {
         message: messages.invalidId
       });
     }
-    return db.Books
+    return db.Book
       .findById(returnedId)
       .then((books) => {
         if (!books) {
@@ -175,8 +175,8 @@ const booksController = {
   },
   /**
    * Borrow Book
-   * @param {any} req
-   * @param {any} res
+   * @param {string} req
+   * @param {string} res
    * @returns {object} req, res
    */
   borrow(req, res) {
@@ -195,7 +195,7 @@ const booksController = {
     const cur = new Date();
     // get 24 days after borrowed date 
     const after24Days = cur.setDate(cur.getDate() + 24);
-    return db.Books
+    return db.Book
       .findById(returnedId)
       .then((books) => {
         if (!books) {
@@ -203,7 +203,7 @@ const booksController = {
             message: messages.notFoundBook
           });
         }
-        db.RentedBooks.findAndCountAll({
+        db.RentedBook.findAndCountAll({
           where: {
             returned: false,
             userId: userReturnedId,
@@ -223,7 +223,7 @@ const booksController = {
               });
             }
             // create rented books history
-            db.RentedBooks.create({
+            db.RentedBook.create({
               userId: req.params.userId,
               bookId: req.body.bookId,
               toReturnDate: after24Days,
@@ -246,8 +246,8 @@ const booksController = {
   },
   /**
  * List all books borrowed by user
- * @param {any} req
- * @param {any} res
+ * @param {string} req
+ * @param {string} res
  * @returns {object} req, res
  */
   listAllBooksBorrowed(req, res) {
@@ -258,13 +258,13 @@ const booksController = {
       });
     }
     // find all books
-    return db.RentedBooks
+    return db.RentedBook
       .findAll({
         where: {
           userId: userReturnedId
         },
         include: [{
-          model: db.Books,
+          model: db.Book,
         },
         {
           model: db.Category
@@ -273,7 +273,7 @@ const booksController = {
       })
       .then((RentedBooks) => {
         if (RentedBooks.length === 0) {
-          res.status(200).send({
+          return res.status(200).send({
             message: messages.noBooks
           });
         }
@@ -288,8 +288,8 @@ const booksController = {
   },
   /**
      * List all books not returned by user
-     * @param {any} req
-     * @param {any} res
+     * @param {string} req
+     * @param {string} res
      * @returns {object} req, res
      */
   listNotReturnedBooks(req, res) {
@@ -300,14 +300,14 @@ const booksController = {
       });
     }
     // list books borrowed but not returned
-    return db.RentedBooks
+    return db.RentedBook
       .findAll({
         where: {
           returned: false,
           userId: userReturnedId
         },
         include: [{
-          model: db.Books,
+          model: db.Book,
         },
         {
           model: db.Category
@@ -316,7 +316,7 @@ const booksController = {
       })
       .then((books) => {
         if (books.length === 0) {
-          res.status(200).send({
+          return res.status(200).send({
             message: messages.noBooks
           });
         }
@@ -331,19 +331,19 @@ const booksController = {
   },
   /**
        * List all books borrowed
-       * @param {any} req
-       * @param {any} res
+       * @param {string} req
+       * @param {string} res
        * @returns {object} req, res
        */
   adminListNotReturnedBooks(req, res) {
     // admin list books borrowed but not returned
-    return db.RentedBooks
+    return db.RentedBook
       .findAll({
         where: {
           returned: false,
         },
         include: [{
-          model: db.Books,
+          model: db.Book,
         },
         {
           model: db.Category
@@ -352,7 +352,7 @@ const booksController = {
       })
       .then((books) => {
         if (books.length === 0) {
-          res.status(200).send({
+          return res.status(200).send({
             message: messages.noBooks
           });
         }
@@ -367,8 +367,8 @@ const booksController = {
   },
   /**
        * Return all books borrowed by user
-       * @param {any} req
-       * @param {any} res
+       * @param {string} req
+       * @param {string} res
        * @returns {object} req, res
        */
   returnBooks(req, res) {
@@ -379,7 +379,7 @@ const booksController = {
       });
     }
     // return borrowed books
-    return db.RentedBooks
+    return db.RentedBook
       .findOne({
         where: {
           returned: false,
@@ -413,7 +413,7 @@ const booksController = {
       });
   },
   adminCountAllBooks(req, res) {
-    return db.Books
+    return db.Book
       .findAndCountAll({})
       .then((books) => {
         res.status(200).send(books);
@@ -426,7 +426,7 @@ const booksController = {
       });
   },
   adminCountAllRentedBooks(req, res) {
-    return db.RentedBooks
+    return db.RentedBook
       .findAndCountAll({})
       .then((rentedbooks) => {
         res.status(200).send({
@@ -441,7 +441,7 @@ const booksController = {
       });
   },
   adminCountAllNotReturnedBooks(req, res) {
-    return db.RentedBooks
+    return db.RentedBook
       .findAndCountAll({
         where: {
           returned: false
@@ -451,21 +451,6 @@ const booksController = {
         res.status(200).send({
           count: rentedbooks.count
         });
-      })
-      .catch((error) => {
-        res.status(500).send({
-          message: messages.generalError,
-          error
-        });
-      });
-  },
-  adminCreateCategory(req, res) {
-    return db.Category
-      .create({
-        category: req.body.category
-      })
-      .then((category) => {
-        res.status(201).send(category);
       })
       .catch((error) => {
         res.status(500).send({
@@ -489,6 +474,19 @@ const booksController = {
         });
       });
   },
+  adminCreateCategory(req, res) {
+    return db.Category
+      .create({
+        category: req.body.category
+      })
+      .then((category) => {
+        res.status(201).send(category);
+      })
+      .catch((error) => {
+        const errorMessage = error.errors.map(value => value.message);
+        return res.status(400).send(errorMessage);
+      });
+  },
   adminGetCategory(req, res) {
     return db.Category
       .findAll({})
@@ -503,5 +501,5 @@ const booksController = {
       });
   },
 };
-export default booksController;
+export default bookController;
 

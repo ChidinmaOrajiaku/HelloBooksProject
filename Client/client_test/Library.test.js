@@ -3,7 +3,7 @@ import $ from 'jquery';
 import toJson from 'enzyme-to-json';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { Library } from '../components/user/Library.jsx';
+import { Library, mapStateToProps } from '../components/user/Library.jsx';
 
 configure({ adapter: new Adapter() });
 
@@ -32,6 +32,31 @@ describe('<Library />', () => {
     };
     libraryItem().instance().handleBorrow(event);
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call componentWillReceiveProps method', () => {
+    const nextProps = {
+      getAllBooksData: [],
+    };
+    const spy = jest.spyOn(Library.prototype, 'componentWillReceiveProps');
+    shallow(<Library {...props} componentWillReceiveProps={spy}/>)
+      .instance().componentWillReceiveProps(nextProps);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('ensures that mapStateToProps dispatches the specified actions', () => {
+    const state = {
+      auth: {
+        user: {
+          id: 1
+        }
+      },
+      getAllBooks: ['1', '2'],
+      borrowBooks: ['1', '2'],
+    };
+    expect(mapStateToProps(state).usersId).toExist;
+    expect(mapStateToProps(state).getAllBooksData).toExist;
+    expect(mapStateToProps(state).borrowBooksData).toExist;
   });
 
   it('should match snapshot test', () => {

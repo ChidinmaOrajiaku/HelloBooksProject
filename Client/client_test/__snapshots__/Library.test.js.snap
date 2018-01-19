@@ -13,7 +13,7 @@ exports[`<Library /> should match snapshot test 1`] = `
        
     </div>
     <h4
-      className="col m10 offset-m2 white-text"
+      className="col s12 m10 offset-m2 white-text"
     >
        USER LIBRARY 
     </h4>

@@ -1,4 +1,4 @@
-import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED, GET_BOOKS_REQUEST } from '../actions/types';
+import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED } from '../actions/types';
 
 const initialState = [{
   getData: {},
@@ -8,13 +8,6 @@ const initialState = [{
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case GET_BOOKS_REQUEST:
-      return [{
-        getData: action.data,
-        response: '',
-        error: '',
-      }, ...state];
-
     case GET_BOOKS_SUCCESSFUL:
       return [{
         getData: {},

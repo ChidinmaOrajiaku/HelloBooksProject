@@ -1,27 +1,12 @@
 import axios from 'axios';
-import { GET_A_BOOK_SUCCESSFUL, GET_A_BOOK_FAILED, GET_A_BOOK_REQUEST } from './types';
+import { GET_A_BOOK_SUCCESSFUL, GET_A_BOOK_FAILED } from './types';
 
 
 /**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} get a book request data
-   */
-export function getABookRequest(data) {
-  return {
-    type: GET_A_BOOK_REQUEST,
-    data
-  };
-}
-
-/**
- *
- *
+ * Get a book response if successful
  * @export
- * @param {any} response
- * @returns {object} get a book response
+ * @param {object} response
+ * @returns {object} of book response
  */
 export function getABookResponse(response) {
   return {
@@ -31,11 +16,10 @@ export function getABookResponse(response) {
 }
 
 /**
-   *
-   *
+   * Get a book error if not successful
    * @export
-   * @param {any} error
-   * @returns {object} get a book error
+   * @param {object} error
+   * @returns {object} of book error
    */
 export function getABookError(error) {
   return {

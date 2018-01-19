@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import App from './components/App';
+import Navigation from './utils/Navigation';
 import HomePage from './components/HomePage';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
@@ -18,7 +18,7 @@ import NotFound from './components/NotFound';
 export default(
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={HomePage}/>
+      <Route exact path="/" component={Navigation(HomePage)}/>
       <Route exact path="/login" component={SignIn}/>
       <Route exact path="/register" component={SignUp}/>
       <Route exact path="/library" component={RequireAuth(Library)}/>

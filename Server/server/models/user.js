@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 
 export default (sequelize, DataTypes) => {
-  const Users = sequelize.define('Users', {
+  const User = sequelize.define('User', {
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -19,11 +19,11 @@ export default (sequelize, DataTypes) => {
       validate: {
         isAlphanumeric: {
           args: true,
-          msg: 'Username with non-alphanumeric characters are not allowed'
+          msg: 'Please input a valid username'
         },
         notEmpty: {
           args: true,
-          msg: 'Username with empty strings are not allowed'
+          msg: 'Please input a valid username'
         },
       },
       allowNull: false,
@@ -37,7 +37,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Email with empty strings are not allowed'
+          msg: 'Please input a valid email'
         },
         isEmail: {
           args: true,
@@ -52,7 +52,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Password with empty strings are not allowed'
+          msg: 'Invalid details'
         },
         isMoreThan4Characters(value) {
           if (value.length < 4) {
@@ -63,30 +63,30 @@ export default (sequelize, DataTypes) => {
     },
   }, {
     hooks: {
-      beforeCreate: (Users) => {
+      beforeCreate: (User) => {
         const salt = bcrypt.genSaltSync(9);
-        Users.password = bcrypt.hashSync(Users.password, salt);
+        User.password = bcrypt.hashSync(User.password, salt);
       },
-      beforeUpdate: (Users) => {
+      beforeUpdate: (User) => {
         const salt = bcrypt.genSaltSync(9);
-        Users.password = bcrypt.hashSync(Users.password, salt);
+        User.password = bcrypt.hashSync(User.password, salt);
       },
     }
   });
-  Users.associate = (models) => {
+  User.associate = (models) => {
     // associations can be defined here
-    Users.hasMany(models.Books, {
+    User.hasMany(models.Book, {
       foreignKey: 'userId',
       as: 'book',
     });
-    Users.hasMany(models.RentedBooks, {
+    User.hasMany(models.RentedBook, {
       foreignKey: 'userId',
       as: 'rentedbook',
     });
-    Users.hasMany(models.Category, {
+    User.hasMany(models.Category, {
       foreignKey: 'userId',
       as: 'category',
     });
   };
-  return Users;
+  return User;
 };

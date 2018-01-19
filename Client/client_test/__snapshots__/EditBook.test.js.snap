@@ -12,7 +12,7 @@ exports[`<EditBook /> should match snapshot test 1`] = `
      
   </div>
   <div
-    className="col m4 offset-m5"
+    className="col s12 m4 offset-m5"
   >
     <div
       className="card"

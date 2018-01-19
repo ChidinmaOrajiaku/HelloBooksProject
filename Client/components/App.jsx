@@ -1,14 +1,11 @@
 import React from 'react';
 
 /**
- * 
- * 
  * @class App
  * @extends {React.Component}
  */
 class App extends React.Component {
   /**
-     * 
      * React Element Markup
      * @returns {object} response object
      * @memberof App

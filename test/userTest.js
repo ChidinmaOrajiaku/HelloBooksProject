@@ -48,7 +48,7 @@ let adminToken = '';
 
 describe('Users', () => {
   describe('Create User', () => {
-    it('should let users sign up /signup POST', (done) => {
+    it('should let users sign up', (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send(user)
@@ -61,7 +61,7 @@ describe('Users', () => {
           done();
         });
     });
-    it('should let users sign up /signup POST', (done) => {
+    it('should let admin sign up', (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send(admin)
@@ -74,7 +74,7 @@ describe('Users', () => {
           done();
         });
     });
-    it('should let users sign up /signup POST', (done) => {
+    it('should not let users sign up with an already existing username and email', (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
         .send(admin)
@@ -83,19 +83,30 @@ describe('Users', () => {
           done();
         });
     });
-    it('should not let users sign up /signup POST', (done) => {
+    it('should not let users sign up with an already existing email', (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
-        .send({ firstname: admin.firstname, lastname: admin.lastname, username: 'corajiaku', email: 'admin96@gmail.com', password: bcrypt.hashSync('1996', bcrypt.genSaltSync(10)) })
+        .send({
+          firstname: admin.firstname,
+          lastname: admin.lastname,
+          username: 'corajiaku',
+          email: 'admin96@gmail.com',
+          password: bcrypt.hashSync('1996', bcrypt.genSaltSync(10))
+        })
         .end((err) => {
           err.should.have.status(400);
           done();
         });
     });
-    it('should not let users sign up /signup POST', (done) => {
+    it('should not let users sign up without a lastname', (done) => {
       chai.request(app)
         .post('/api/v1/users/signup')
-        .send({ firstname: admin.firstname, username: 'corajiaku', email: 'admin96mailcom', password: bcrypt.hashSync('1996', bcrypt.genSaltSync(10)) })
+        .send({
+          firstname: admin.firstname,
+          username: 'corajiaku',
+          email: 'admin96mailcom',
+          password: bcrypt.hashSync('1996', bcrypt.genSaltSync(10))
+        })
         .end((err) => {
           err.should.have.status(400);
           done();
@@ -103,7 +114,7 @@ describe('Users', () => {
     });
   });
   describe('User sign in', () => {
-    it('should let users sign in /signin POST', (done) => {
+    it('should let users sign in', (done) => {
       chai.request(app)
         .post('/api/v1/users/signin')
         .send(user)
@@ -117,7 +128,7 @@ describe('Users', () => {
           done();
         });
     });
-    it('should let users sign in /signin POST', (done) => {
+    it('should let users sign in', (done) => {
       chai.request(app)
         .post('/api/v1/users/signin')
         .send(admin)
@@ -131,7 +142,7 @@ describe('Users', () => {
           done();
         });
     });
-    it('should let users sign in /signin POST', (done) => {
+    it('should let users sign in', (done) => {
       chai.request(app)
         .post('/api/v1/users/signin')
         .send({ username: 'corajiaku', email: 'admin96mailcom', password: admin.password })
@@ -142,7 +153,7 @@ describe('Users', () => {
     });
   });
   describe('User update password', () => {
-    it('should let users update password /users/:usersId PUT', (done) => {
+    it('should let users update password', (done) => {
       chai.request(app)
         .put('/api/v1/users/1')
         .send({ password, verifyPassword })
@@ -168,7 +179,7 @@ describe('Users', () => {
     });
   });
   describe('User get request', () => {
-    it('should let users get details /users/:usersId get', (done) => {
+    it('should let users get details', (done) => {
       chai.request(app)
         .get('/api/v1/users/2')
         .set('x-token', token)
@@ -233,6 +244,19 @@ describe('Users', () => {
 
 describe('Books request', () => {
   describe('Books create request', () => {
+    it('should list no books because ther ara no books in the library yet', (done) => {
+      chai.request(app)
+        .get('/api/v1/users/books')
+        .set('Content-Type', 'application/json')
+        .set('x-token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.message.should.be.equal('No books in the library');
+          res.finished = true;
+          done();
+        });
+    });
     it('should let admin create books', (done) => {
       chai.request(app)
         .post('/api/v1/users/books')
@@ -326,6 +350,28 @@ describe('Books request', () => {
           done();
         });
     });
+    it('should not list a book with an invalid id', (done) => {
+      chai.request(app)
+        .get('/api/v1/books/a')
+        .set('x-token', token)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.should.be.json;
+          res.body.message.should.be.equal('Invalid Id');
+          done();
+        });
+    });
+    it('should not list a non existent book', (done) => {
+      chai.request(app)
+        .get('/api/v1/books/2')
+        .set('x-token', token)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.should.be.json;
+          res.body.message.should.be.equal('Book Not Found');
+          done();
+        });
+    });
     it('should not list a book without token', (done) => {
       chai.request(app)
         .get('/api/v1/books/1')
@@ -337,7 +383,55 @@ describe('Books request', () => {
         });
     });
   });
+
   describe('Borrow books action', () => {
+    it('should not return rented books because no book has been borrowed ', (done) => {
+      chai.request(app)
+        .put('/api/v1/users/1/books')
+        .set('x-token', adminToken)
+        .send({ bookId: 1 })
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.should.be.json;
+          res.body.message.should.be.equal('Book Not Found');
+          done();
+        });
+    });
+    it('should not get unreturned rented books because no book has been borrowed ', (done) => {
+      chai.request(app)
+        .get('/api/v1/users/books/unreturned')
+        .set('x-token', adminToken)
+        .send({ bookId: 1 })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.message.should.be.equal('No books in the library');
+          done();
+        });
+    });
+    it('should not get history of borrowed books because no book has been borrowed ', (done) => {
+      chai.request(app)
+        .get('/api/v1/users/1/history')
+        .set('x-token', token)
+        .send({ bookId: 1 })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.message.should.be.equal('No books in the library');
+          done();
+        });
+    });
+    it('should not list not returned rented books because no book has been borrowed ', (done) => {
+      chai.request(app)
+        .get('/api/v1/users/1/books')
+        .set('x-token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.message.should.be.equal('No books in the library');
+          done();
+        });
+    });
     it('should borrow books', (done) => {
       chai.request(app)
         .post('/api/v1/users/1/books')
@@ -347,6 +441,54 @@ describe('Books request', () => {
           res.should.have.status(201);
           res.should.be.json;
           if (err) return expect(err);
+          done();
+        });
+    });
+    it('should not borrow books twice', (done) => {
+      chai.request(app)
+        .post('/api/v1/users/1/books')
+        .set('x-token', token)
+        .send({ bookId: 1 })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.message.should.be.equal('Book has been borrowed but not returned');
+          done();
+        });
+    });
+    it('should not borrow a book with an invalid id', (done) => {
+      chai.request(app)
+        .post('/api/v1/users/1/books')
+        .set('x-token', token)
+        .send({ bookId: 'a' })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.should.be.json;
+          res.body.message.should.be.equal('Invalid Id');
+          done();
+        });
+    });
+    it('should not borrow a book with an invalid user id', (done) => {
+      chai.request(app)
+        .post('/api/v1/users/a/books')
+        .set('x-token', token)
+        .send({ bookId: 1 })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.should.be.json;
+          res.body.message.should.be.equal('Invalid Id');
+          done();
+        });
+    });
+    it('should not borrow a book with an unknown id', (done) => {
+      chai.request(app)
+        .post('/api/v1/users/1/books')
+        .set('x-token', token)
+        .send({ bookId: 2 })
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.should.be.json;
+          res.body.message.should.be.equal('Book Not Found');
           done();
         });
     });
@@ -378,6 +520,17 @@ describe('Books request', () => {
           done();
         });
     });
+    it('should not get history of borrowed books with an invalid id', (done) => {
+      chai.request(app)
+        .get('/api/v1/users/a/history')
+        .set('x-token', adminToken)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.should.be.json;
+          res.body.message.should.be.equal('Invalid Id');
+          done();
+        });
+    });
     it('should not get history of borrowed books without token', (done) => {
       chai.request(app)
         .get('/api/v1/users/2/history')
@@ -406,6 +559,17 @@ describe('Books request', () => {
           done();
         });
     });
+    it('should not borrow a book with an invalid user id', (done) => {
+      chai.request(app)
+        .get('/api/v1/users/a/books')
+        .set('x-token', token)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.should.be.json;
+          res.body.message.should.be.equal('Invalid Id');
+          done();
+        });
+    });
     it('should not get history of borrowed books but not returned without token', (done) => {
       chai.request(app)
         .get('/api/v1/users/1/books')
@@ -422,7 +586,9 @@ describe('Books request', () => {
       chai.request(app)
         .put('/api/v1/books/1')
         .set('x-token', adminToken)
-        .send({ title: book.title, author: book.author, category: 'Fiction', image: 'https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg', review: 'Nice' })
+        .send({
+          title: book.title, author: book.author, category: 'Fiction', image: 'https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg', review: 'Nice'
+        })
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.json;
@@ -435,11 +601,35 @@ describe('Books request', () => {
           done();
         });
     });
+    it('should not list a book with an invalid id', (done) => {
+      chai.request(app)
+        .put('/api/v1/books/a')
+        .set('x-token', adminToken)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.should.be.json;
+          res.body.message.should.be.equal('Invalid Id');
+          done();
+        });
+    });
+    it('should not list a non-existent book', (done) => {
+      chai.request(app)
+        .put('/api/v1/books/3')
+        .set('x-token', adminToken)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.should.be.json;
+          res.body.message.should.be.equal('Book Not Found');
+          done();
+        });
+    });
     it('should not update books without admin token', (done) => {
       chai.request(app)
         .put('/api/v1/books/1')
         .set('x-token', token)
-        .send({ title: book.title, author: book.author, category: 'Fiction', image: 'https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg', review: 'Nice' })
+        .send({
+          title: book.title, author: book.author, category: 'Fiction', image: 'https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg', review: 'Nice'
+        })
         .end((err, res) => {
           res.should.have.status(403);
           res.should.be.json;
@@ -450,7 +640,9 @@ describe('Books request', () => {
     it('should not update books without token', (done) => {
       chai.request(app)
         .put('/api/v1/books/1')
-        .send({ title: book.title, author: book.author, category: 'Fiction', image: 'https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg', review: 'Nice' })
+        .send({
+          title: book.title, author: book.author, category: 'Fiction', image: 'https://static.pexels.com/photos/158607/cairn-fog-mystical-background-145677.jpeg', review: 'Nice'
+        })
         .end((err, res) => {
           res.should.have.status(401);
           res.should.be.json;
@@ -495,7 +687,7 @@ describe('Books request', () => {
     });
   });
   describe('Get unreturned rented books count', () => {
-    it('should get rented books count', (done) => {
+    it('should get unreturned rented books count', (done) => {
       chai.request(app)
         .get('/api/v1/users/books/unreturned/history')
         .set('x-token', adminToken)
@@ -529,8 +721,43 @@ describe('Books request', () => {
         });
     });
   });
+  describe('Get rented books count', () => {
+    it('should get rented books count', (done) => {
+      chai.request(app)
+        .get('/api/v1/rentedbooks/history/all')
+        .set('x-token', adminToken)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.count.should.be.equal(1);
+          if (err) return expect(err);
+          done();
+        });
+    });
+    it('should not get rented books count without token', (done) => {
+      chai.request(app)
+        .get('/api/v1/rentedbooks/history/all')
+        .end((err, res) => {
+          res.should.have.status(401);
+          res.should.be.json;
+          res.body.error.should.be.equal('Unauthorised user');
+          done();
+        });
+    });
+    it('should not get rented books count without admin token', (done) => {
+      chai.request(app)
+        .get('/api/v1/rentedbooks/history/all')
+        .set('x-token', token)
+        .end((err, res) => {
+          res.should.have.status(403);
+          res.should.be.json;
+          res.body.message.should.be.equal('Solely for the admin');
+          done();
+        });
+    });
+  });
   describe('Get unreturned rented books ', () => {
-    it('should get unreturnedrented books ', (done) => {
+    it('should get unreturned rented books ', (done) => {
       chai.request(app)
         .get('/api/v1/users/books/unreturned')
         .set('x-token', adminToken)
@@ -569,7 +796,7 @@ describe('Books request', () => {
     });
   });
   describe('Return rented books ', () => {
-    it('should get return rented books ', (done) => {
+    it('should return rented books ', (done) => {
       chai.request(app)
         .put('/api/v1/users/1/books')
         .set('x-token', token)
@@ -582,9 +809,21 @@ describe('Books request', () => {
           done();
         });
     });
+    it('should not return a book with an invalid user id', (done) => {
+      chai.request(app)
+        .put('/api/v1/users/1/books')
+        .set('x-token', token)
+        .send({ bookId: 'a' })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.should.be.json;
+          res.body.message.should.be.equal('Invalid Id');
+          done();
+        });
+    });
     it('should not return rented books without token', (done) => {
       chai.request(app)
-        .get('/api/v1/users/1/books')
+        .put('/api/v1/users/1/books')
         .end((err, res) => {
           res.should.have.status(401);
           res.should.be.json;
@@ -604,6 +843,16 @@ describe('Books request', () => {
           res.should.be.json;
           res.body.category.should.be.equal('Motivational');
           if (err) return expect(err);
+          done();
+        });
+    });
+    it('should not create category', (done) => {
+      chai.request(app)
+        .post('/api/v1/books/category')
+        .set('x-token', adminToken)
+        .send({ category: 'Motivational' })
+        .end((err) => {
+          err.should.have.status(400);
           done();
         });
     });
@@ -707,6 +956,16 @@ describe('Books request', () => {
         .end((err, res) => {
           res.should.have.status(204);
           if (err) return expect(err);
+          done();
+        });
+    });
+    it('should delete book with an invalid id', (done) => {
+      chai.request(app)
+        .delete('/api/v1/books/a')
+        .set('x-token', adminToken)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.equal('Invalid Id');
           done();
         });
     });

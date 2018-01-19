@@ -10,9 +10,9 @@ import messages from '../utils/messages';
 
 import * as validateId from '../utils/validateId';
 
-const Users = models.Users;
+const Users = models.User;
 
-const usersController = {
+const userController = {
   /**
    *
    * Creates a user in the database
@@ -231,5 +231,5 @@ const usersController = {
   }
 };
 
-export default usersController;
+export default userController;
 
