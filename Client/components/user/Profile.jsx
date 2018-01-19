@@ -12,7 +12,7 @@ import { updatePassword } from '../../actions/updatePassword';
 export class Profile extends React.Component {
   /**
      * @constructor
-     * @param {object} props 
+     * @param {object} props
      */
   constructor(props) {
     super(props);
@@ -29,10 +29,10 @@ export class Profile extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   /**
-   * 
    * @returns {object} response object
    * @memberof Profile
    */
@@ -51,7 +51,7 @@ export class Profile extends React.Component {
   /**
    * Receives next props and sets it in state
    * @returns {object} response object
-   * @param {any} nextProps 
+   * @param {object} nextProps
    * @memberof Profile
    */
   componentWillReceiveProps(nextProps) {
@@ -68,7 +68,7 @@ export class Profile extends React.Component {
   /**
  * Handles input field change and sets the state
  * @returns {object} response object
- * @param {event} event 
+ * @param {object} event
  * @memberof Profile
  */
   handleChange(event) {
@@ -76,9 +76,23 @@ export class Profile extends React.Component {
   }
 
   /**
+ * Resets password input field on close or submission
+ * @param {object} event
+ * @memberof Profile
+ * @returns {object} response object
+ */
+  handleReset(event) {
+    event.preventDefault();
+    this.setState({
+      password: '',
+      verifyPassword: ''
+    });
+  }
+
+  /**
    * Updates user password
    * @returns {object} response object
-   * @param {event} event
+   * @param {object} event
    * @memberof Profile
    */
   handlePassword(event) {
@@ -87,6 +101,11 @@ export class Profile extends React.Component {
     setTimeout(() => {
       if (this.props.passwordUpdate.isUpdated === true) {
         Materialize.toast('Successfully Updated', 2000, 'teal rounded');
+        $('.modal').modal('close');
+        this.setState({
+          password: '',
+          verifyPassword: ''
+        });
       } else {
         Materialize.toast('Password Incorrect', 2000, 'red rounded');
       }
@@ -94,7 +113,6 @@ export class Profile extends React.Component {
   }
 
   /**
-     * 
      * React Element Markup
      * @returns {object} response object
      * @memberof Profile
@@ -141,11 +159,12 @@ export class Profile extends React.Component {
           </div>
           <div className="modal-footer">
             <button onClick={this.handlePassword}
-              className="passwordButton" 
+              className="passwordButton"
               id="passwordButton"> Change </button>
             <a className="modal-action modal-close">
               <button
               className="passwordCButton"
+              onClick= {this.handleReset}
               id="passwordCButton">Cancel</button>
             </a>
           </div>
@@ -156,7 +175,7 @@ export class Profile extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     usersId: state.auth.user.id,
     getUserData: state.getUser[0].response,

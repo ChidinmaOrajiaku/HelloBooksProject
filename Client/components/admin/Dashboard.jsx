@@ -32,10 +32,10 @@ export class Dashboard extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleCategory = this.handleCategory.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   /**
-   *
    * @returns {object} mounted components
    * @memberof Dashboard
    */
@@ -56,9 +56,8 @@ export class Dashboard extends React.Component {
   }
 
   /**
-   *
-   * @returns {nextProps} next props
-   * @param {any} nextProps
+   * @returns {object} next props
+   * @param {object} nextProps
    * @memberof Dashboard
    */
   componentWillReceiveProps(nextProps) {
@@ -82,12 +81,19 @@ export class Dashboard extends React.Component {
         usersCountData: nextProps.usersCountData[0].adminCountUsers,
       });
     }
+    if (nextProps.createCategory[0].categoryError && nextProps.booksData[0].isCreated === false) {
+      Materialize.toast(nextProps.createCategory[0].categoryError.response.data[0], 2000, 'red rounded');
+    } else if (nextProps.booksData[0].isCreated === true) {
+      Materialize.toast('Successfully Added', 2000, 'teal rounded');
+      $('.modal').modal('close');
+      this.setState({ category: '' });
+    }
   }
 
   /**
  *
- * @param {any} event
- * @memberof AddBooks
+ * @param {object} event
+ * @memberof Dashboard
  * @returns {object} SyntheticEvent
  */
   handleChange(event) {
@@ -95,26 +101,28 @@ export class Dashboard extends React.Component {
   }
 
   /**
+ * Resets category input field on close or submission
+ * @param {object} event
+ * @memberof Dashboard
+ * @returns {object} response object
+ */
+  handleReset(event) {
+    event.preventDefault();
+    this.setState({ category: '' });
+  }
+
+  /**
  *
- * @returns {event} handles category change
- * @param {any} event
+ * @returns {object} handles category change
+ * @param {object} event
  * @memberof Dashboard
  */
   handleCategory(event) {
     event.preventDefault();
     this.props.adminCreateCategoryRequest(this.state);
-    setTimeout(() => {
-      if (this.props.booksData[0].isCreated === true) {
-        Materialize.toast('Successfully Added', 2000, 'teal rounded');
-      } else {
-        Materialize.toast('Not Created', 2000, 'red rounded');
-      }
-    }, 2000);
   }
 
   /**
-   *
-   *
    * @memberof Dashboard
    * @returns {object} ReactMarkupElement
    */
@@ -190,6 +198,7 @@ export class Dashboard extends React.Component {
                   <a className="modal-action modal-close">
                     <button
                     className="cancelButton"
+                    onClick={this.handleReset}
                     id="cancelButton">Cancel
                     </button>
                   </a>
@@ -204,7 +213,7 @@ export class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     booksData: state.books,
     usersCountData: state.userState,

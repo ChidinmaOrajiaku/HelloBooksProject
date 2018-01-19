@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="UserFlow.test"
+    errors="0" failures="1" hostname="" id="" package="UserFlow.test" skipped="0"
+    tests="1" time="3.921" timestamp="Fri, 12 Jan 2018 15:23:05 GMT">
+  
+    <testcase name="User Actions" classname="UserFlow.test" time="3.921" assertions="1">  <failure message="Timed out while waiting for element &lt;form&gt; to be present for 1000 milliseconds.">    at Object.UserActions [as User Actions] (/Users/andeladeveloper/Desktop/HelloBooksProject/e2e-tests/UserFlow.test.js:5:8)
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

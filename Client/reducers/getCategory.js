@@ -1,4 +1,4 @@
-import { GET_CATEGORY_SUCCESSFUL, GET_CATEGORY_FAILED, GET_CATEGORY_REQUEST } from '../actions/types';
+import { GET_CATEGORY_SUCCESSFUL, GET_CATEGORY_FAILED } from '../actions/types';
 
 const initialState = [{
   getCategoryData: {},
@@ -8,13 +8,6 @@ const initialState = [{
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case GET_CATEGORY_REQUEST:
-      return [{
-        getCategoryData: action.data,
-        response: '',
-        error: '',
-      }, ...state];
-
     case GET_CATEGORY_SUCCESSFUL:
       return [{
         getCategoryData: {},

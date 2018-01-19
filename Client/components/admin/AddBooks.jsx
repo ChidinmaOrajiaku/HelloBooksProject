@@ -55,10 +55,9 @@ export class AddBooks extends React.Component {
   }
 
   /**
-   *
-   * @param {any} nextProps
+   * @param {object} nextProps
    * @memberof AddBooks
-   * @returns {nextProps} assigns nextprops to state
+   * @returns {object} assigns nextprops to state
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.imageInputUrl && this.state.pointer) {
@@ -73,7 +72,7 @@ export class AddBooks extends React.Component {
         if (this.props.createBooksResponse.isAdded === true) {
           this.props.history.push('/books');
           Materialize.toast('Successfully Added', 2000, 'teal rounded');
-        } else {
+        } else if (this.props.createBooksResponse.isAdded === false) {
           Materialize.toast('Not Created', 2000, 'red rounded');
         }
       }, 2000);
@@ -85,8 +84,8 @@ export class AddBooks extends React.Component {
   }
 
   /**
- *
- * @param {any} event
+ * Handles change of values in state
+ * @param {object} event
  * @memberof AddBooks
  * @returns {object} SyntheticEvent
  */
@@ -96,7 +95,7 @@ export class AddBooks extends React.Component {
 
   /**
  * Submits image to cloudinary and sets state of pointer to true
- * @param {event} event
+ * @param {object} event
  * @memberof AddBooks
  * @returns {object} response object
  */
@@ -108,7 +107,7 @@ export class AddBooks extends React.Component {
 
   /**
  * Handles Image change and saves image file in state
- * @param {any} event
+ * @param {object} event
  * @memberof AddBooks
  * @returns {object} response object
  */
@@ -211,6 +210,7 @@ export class AddBooks extends React.Component {
                       id="image"
                       type="file"
                       onChange={this.handleImageChange}
+                      required="required"
                     />
                   </div>
                   <div className="file-path-wrapper">
@@ -218,6 +218,7 @@ export class AddBooks extends React.Component {
                       className="file-path validate"
                       type="text"
                       placeholder="Upload Image"
+                      required="required"
                     />
                   </div>
                 </div>
@@ -261,7 +262,7 @@ export class AddBooks extends React.Component {
   }
 }
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     createBooksResponse: state.createBooks[0],
     imageInputUrl: state.uploadImage[0].response || state.uploadImage[0].error,

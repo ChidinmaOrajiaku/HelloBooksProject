@@ -15,7 +15,7 @@ exports[`<SignUp /> should match snapshot test 1`] = `
     className="row container"
   >
     <div
-      className="col m6 offset-m3"
+      className="col s12 m6 offset-m3"
     >
       <div
         className="card"

@@ -1,27 +1,12 @@
 import axios from 'axios';
-import { MODIFY_BOOKS_SUCCESSFUL, MODIFY_BOOKS_FAILED, MODIFY_BOOKS_REQUEST } from './types';
+import { MODIFY_BOOKS_SUCCESSFUL, MODIFY_BOOKS_FAILED } from './types';
 
 
 /**
-   * 
-   * 
-   * @export
-   * @param {any} data
-   * @returns {data} modify books request data
-   */
-export function modifyBooksRequest(data) {
-  return {
-    type: MODIFY_BOOKS_REQUEST,
-    data
-  };
-}
-
-/**
- * 
- * 
+ * Modify books response if successful
  * @export
- * @param {any} response
- * @returns {response} get response if request is successful
+ * @param {object} response
+ * @returns {response} of response if request is successful
  */
 export function modifyBooksResponse(response) {
   return {
@@ -31,11 +16,10 @@ export function modifyBooksResponse(response) {
 }
 
 /**
-   * 
-   * 
+   * Modify books error if not successful
    * @export
-   * @param {any} error
-   * @returns {object} get error if request fails
+   * @param {object} error
+   * @returns {object} of error if request fails
    */
 export function modifyBooksError(error) {
   return {

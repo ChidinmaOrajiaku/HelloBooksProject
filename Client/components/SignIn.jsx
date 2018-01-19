@@ -15,6 +15,7 @@ import { userSigninRequest } from '../actions/signinAction';
 export class SignIn extends React.Component {
   /**
    * Creates an instance of SignIn.
+   * @constructor
    * @param {any} props
    * @memberof SignIn
    */
@@ -34,9 +35,9 @@ export class SignIn extends React.Component {
   }
 
   /**
- *
+ * Handles input field change and sets to state
  * @returns {object} response object
- * @param {any} event
+ * @param {object} event
  * @memberof SignIn
  */
   handleChange(event) {
@@ -44,7 +45,7 @@ export class SignIn extends React.Component {
   }
 
   /**
- *
+ * Handles sign in action and redirects user
  * @returns {object} response object
  * @param {event} event
  * @memberof SignIn

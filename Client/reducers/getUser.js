@@ -1,4 +1,4 @@
-import { GET_USER_SUCCESSFUL, GET_USER_FAILED, GET_USER_REQUEST } from '../actions/types';
+import { GET_USER_SUCCESSFUL, GET_USER_FAILED } from '../actions/types';
 
 const initialState = [{
   getUserData: {},
@@ -8,13 +8,6 @@ const initialState = [{
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case GET_USER_REQUEST:
-      return [{
-        getUserData: action.data,
-        response: '',
-        error: '',
-      }, ...state];
-
     case GET_USER_SUCCESSFUL:
       return [{
         getUserData: {},

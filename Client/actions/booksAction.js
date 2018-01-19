@@ -3,7 +3,8 @@ import {
   GET_BOOKS_COUNT,
   GET_RENTED_BOOKS_COUNT,
   GET_NOT_RETURNED_BOOKS_COUNT,
-  CREATE_CATEGORY,
+  CREATE_CATEGORY_SUCCESSFUL,
+  CREATE_CATEGORY_FAILED,
   GET_CATEGORY_COUNT,
   SAVE_IMAGE_FAILED,
   SAVE_IMAGE_SUCCESSFUL,
@@ -12,11 +13,10 @@ import {
 
 
 /**
- * 
- * 
+ * Counts books
  * @export
- * @param {any} books 
- * @returns {object} books count
+ * @param {object} books
+ * @returns {object} of books
  */
 export function adminCount(books) {
   return {
@@ -26,11 +26,10 @@ export function adminCount(books) {
 }
 
 /**
- * 
- * 
+ * Counts rented books
  * @export
- * @param {any} rentedBooks
- * @returns {object} rented books 
+ * @param {object} rentedBooks
+ * @returns {object} of rented books
  */
 export function adminRentedCount(rentedBooks) {
   return {
@@ -40,11 +39,10 @@ export function adminRentedCount(rentedBooks) {
 }
 
 /**
- * 
- * 
+ * Counts not rented books
  * @export
- * @param {any} notReturnedBooks
- * @returns {object} notReturnedBooks
+ * @param {object} notReturnedBooks
+ * @returns {object} of not returned books
  */
 export function adminNotReturnedCount(notReturnedBooks) {
   return {
@@ -54,25 +52,36 @@ export function adminNotReturnedCount(notReturnedBooks) {
 }
 
 /**
- * 
- * 
+ * Creates category
  * @export
- * @param {any} category
- * @returns {object} category 
+ * @param {object} category
+ * @returns {object} of category
  */
 export function adminCreateCategory(category) {
   return {
-    type: CREATE_CATEGORY,
+    type: CREATE_CATEGORY_SUCCESSFUL,
     category
   };
 }
 
 /**
- * 
- * 
+ *  Returns error if action to category fails
  * @export
- * @param {any} categoryCount
- * @returns {object} categoryCount
+ * @param {object} error
+ * @returns {object} of category
+ */
+export function adminCreateCategoryFailed(error) {
+  return {
+    type: CREATE_CATEGORY_FAILED,
+    error
+  };
+}
+
+/**
+ * Counts category
+ * @export
+ * @param {object} categoryCount
+ * @returns {object} of categoryCount
  */
 export function adminCountCategory(categoryCount) {
   return {
@@ -82,11 +91,10 @@ export function adminCountCategory(categoryCount) {
 }
 
 /**
- * 
- * 
+ * Save image response
  * @export
- * @param {any} response
- * @returns {object} image saved
+ * @param {object} response
+ * @returns {object} of image saved
  */
 export function saveImageResponse(response) {
   return {
@@ -96,11 +104,10 @@ export function saveImageResponse(response) {
 }
 
 /**
- * 
- * 
+ * Dispatches image data for saving
  * @export
- * @param {any} data
- * @returns {object} image data request
+ * @param {object} data
+ * @returns {object} of image data request
  */
 export function saveImageRequest(data) {
   return {
@@ -110,11 +117,10 @@ export function saveImageRequest(data) {
 }
 
 /**
- * 
- * 
+ * Dispatches error if image fails to save
  * @export
- * @param {any} error 
- * @returns {object} image failed
+ * @param {object} error
+ * @returns {object} of image failed
  */
 export function saveImageError(error) {
   return {
@@ -141,21 +147,25 @@ export const adminCountCategoryRequest = () => dispatch => axios.get('/api/v1/bo
   .then((res) => {
     dispatch(adminCountCategory(res.data.count));
   });
-
 export const adminCreateCategoryRequest = category => dispatch => axios.post('/api/v1/books/category', category)
   .then((res) => {
     dispatch(adminCreateCategory(res.data));
+    setTimeout(() => {
+      dispatch(adminCountCategoryRequest());
+    }, 1500);
+  }).catch((error) => {
+    dispatch(adminCreateCategoryFailed(error));
   });
 
 /**
- * 
+ * Saves image to cloudinary
  * @export
- * @param {any} image
- * @returns {object} secure url of image save in cloudinary
+ * @param {object} image
+ * @returns {object} of secure url of image save in cloudinary
  */
 export function saveImageCloudinary(image) {
   const cloudinaryUrl = process.env.CLOUDINARY_URL;
-  const cloudinaryPreset =  process.env.CLOUDINARY_PRESET;
+  const cloudinaryPreset = process.env.CLOUDINARY_PRESET;
   const data = new FormData();
   data.append('file', image);
   data.append('upload_preset', cloudinaryPreset);
@@ -175,7 +185,7 @@ export function saveImageCloudinary(image) {
       .then((response) => {
         dispatch(saveImageResponse(response.secure_url));
       }).catch((error) => {
-        dispatch(saveImageError(error));
+        dispatch(saveImageError('An error occurred'));
       });
   };
 }

@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import mockData from './mocks/mockData';
-import { EditBook } from '../components/admin/EditBook.jsx';
+import { EditBook, mapStateToProps } from '../components/admin/EditBook.jsx';
 
 configure({ adapter: new Adapter() });
 
@@ -18,6 +18,11 @@ describe('<EditBook />', () => {
     adminCountUserRequest: jest.fn()
   };
   let mountedComponent;
+
+  global.FileReader = () => ({
+    readAsDataURL: () => {}
+  });
+
   const EditBookItem = () => {
     if (!mountedComponent) {
       mountedComponent = shallow(<EditBook {...props}/>);
@@ -34,6 +39,18 @@ describe('<EditBook />', () => {
       }
     };
     EditBookItem().instance().onEditCloudinaryRequest(event);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call componentDidMount method', () => {
+    const spy = jest.spyOn(EditBookItem().instance(), 'componentDidMount');
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        value: 'abd',
+      }
+    };
+    EditBookItem().instance().componentDidMount(event);
     expect(spy).toHaveBeenCalled();
   });
 
@@ -60,6 +77,46 @@ describe('<EditBook />', () => {
     };
     EditBookItem().instance().handleChange(event);
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call handleImageChange method', () => {
+    const spy = jest.spyOn(EditBook.prototype, 'handleImageChange');
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        files: ['sampleFile', 'sampleFile2']
+      }
+    };
+    shallow(<EditBook {...props} handleImageChange={spy}/>)
+      .instance().handleImageChange(event);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call componentWillReceiveProps method', () => {
+    const nextProps = {
+      getABookData: [],
+      imageInputUrl: [],
+      getCategoryData: []
+    };
+    const spy = jest.spyOn(EditBook.prototype, 'componentWillReceiveProps');
+    shallow(<EditBook {...props} componentWillReceiveProps={spy}/>)
+      .instance().componentWillReceiveProps(nextProps);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('ensures that mapStateToProps dispatches the specified actions', () => {
+    const state = {
+      modifyBooks: [],
+      uploadImage: ['1', '2'],
+      editBookId: ['1', '2'],
+      getABook: ['1', '2'],
+      getCategory: ['1', '2']
+    };
+    expect(mapStateToProps(state).modifyBookData).toExist;
+    expect(mapStateToProps(state).imageInputUrl).toExist;
+    expect(mapStateToProps(state).getBookId).toExist;
+    expect(mapStateToProps(state).getABookData).toExist;
+    expect(mapStateToProps(state).getCategoryData).toExist;
   });
 
   it('should match snapshot test', () => {

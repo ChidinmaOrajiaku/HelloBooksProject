@@ -8,10 +8,7 @@ services:
   - postgresql
 
 script:
-  - npm run test:travis
-
-env:
-  - NODE_ENV=test
+  - npm run test
 
 before_script: 
   - psql -c 'drop database if exists travis;' -U postgres
@@ -20,3 +17,7 @@ before_script:
 after_success:
   - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < coverage/lcov.info
   - npm run coverage
+
+env:
+   global:
+    - NODE_ENV=test

@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED, CREATE_BOOKS_REQUEST } from './types';
+import { CREATE_BOOKS_SUCCESSFUL, CREATE_BOOKS_FAILED } from './types';
 
 /**
  *
- *
+ * Create books response if successful
  * @export
- * @param {any} response
+ * @param {object} response
  * @returns {object} create books response
  */
 export function createBooksResponse(response) {
@@ -16,25 +16,10 @@ export function createBooksResponse(response) {
 }
 
 /**
-   *
-   *
+   * Create books error if not successful
    * @export
-   * @param {any} data
-   * @returns {object} create books request data
-   */
-export function createBooksRequest(data) {
-  return {
-    type: CREATE_BOOKS_REQUEST,
-    data
-  };
-}
-
-/**
-   *
-   *
-   * @export
-   * @param {any} error
-   * @returns {object} create book error
+   * @param {object} error
+   * @returns {object} of create book error
    */
 export function createBooksError(error) {
   return {

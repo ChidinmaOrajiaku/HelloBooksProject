@@ -1,27 +1,11 @@
 import axios from 'axios';
-import { YET_TO_RETURN_SUCCESSFUL, YET_TO_RETURN_FAILED, YET_TO_RETURN_REQUEST } from './types';
-
-
-/**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} gets request data of books that are yet to be returned
-   */
-export function yetToReturnRequest(data) {
-  return {
-    type: YET_TO_RETURN_REQUEST,
-    data
-  };
-}
+import { YET_TO_RETURN_SUCCESSFUL, YET_TO_RETURN_FAILED } from './types';
 
 /**
- *
- *
+ * Unreturned books response if successful
  * @export
- * @param {any} response
- * @returns {object} gets response if action is successful
+ * @param {object} response
+ * @returns {object} ofresponse if action is successful
  */
 export function yetToReturnResponse(response) {
   return {
@@ -31,11 +15,10 @@ export function yetToReturnResponse(response) {
 }
 
 /**
-   *
-   *
+   * Unreturned books error if not successful
    * @export
-   * @param {any} error
-   * @returns {error} gets error if action fails
+   * @param {object} error
+   * @returns {object} gets error if action fails
    */
 export function yetToReturnError(error) {
   return {

@@ -1,8 +1,7 @@
 /**
- * 
  * Converts request Id to integer
- * @export 
- * @param {string} id 
+ * @export
+ * @param {string} id
  * @returns {string} converted Id
  */
 export function validate(id) {

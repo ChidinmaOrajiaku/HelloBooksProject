@@ -1,4 +1,4 @@
-import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED, RETURN_BOOK_REQUEST } from '../actions/types';
+import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED } from '../actions/types';
 
 const initialState = [{
   returnData: {},
@@ -9,13 +9,6 @@ const initialState = [{
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case RETURN_BOOK_REQUEST:
-      return [{
-        returnData: action.data,
-        response: '',
-        error: '',
-      }, ...state];
-
     case RETURN_BOOK_SUCCESSFUL:
       return [{
         returnData: {},

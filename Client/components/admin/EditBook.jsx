@@ -44,7 +44,6 @@ export class EditBook extends React.Component {
   }
 
   /**
- *
  * @returns {object} mounted components
  * @memberof EditBook
  */
@@ -65,9 +64,8 @@ export class EditBook extends React.Component {
   }
 
   /**
- *
- * @returns {nextProps} nextProps
- * @param {any} nextProps
+ * @returns {object} nextProps
+ * @param {object} nextProps
  * @memberof EditBook
  */
   componentWillReceiveProps(nextProps) {
@@ -111,9 +109,8 @@ export class EditBook extends React.Component {
   }
 
   /**
- *
- * @returns {event} event
- * @param {any} event
+ * @returns {object} event
+ * @param {object} event
  * @memberof EditBook
  */
   handleChange(event) {
@@ -121,9 +118,9 @@ export class EditBook extends React.Component {
   }
 
   /**
- *
- * @returns {event} handle Image change
- * @param {any} event
+ * Handles image change and sets to state
+ * @returns {object} handle Image change
+ * @param {object} event
  * @memberof EditBook
  */
   handleImageChange(event) {
@@ -147,9 +144,9 @@ export class EditBook extends React.Component {
   }
 
   /**
- *
- * @returns {SyntheticEvent} event
- * @param {any} event
+ * Save image on cloudinary
+ * @returns {object} event
+ * @param {object} event
  * @memberof EditBook
  */
   onEditCloudinaryRequest(event) {
@@ -159,9 +156,9 @@ export class EditBook extends React.Component {
   }
 
   /**
- *
- * @returns {SyntheticEvent} event
- * @param {any} event
+ * Save to database if there's no image change
+ * @returns {object} event
+ * @param {object} event
  * @memberof EditBook
  */
   onEditRequest(event) {
@@ -178,8 +175,6 @@ export class EditBook extends React.Component {
   }
 
   /**
-     *
-     *
      * @returns {ReactElement} Markup
      * @memberof EditBook
      */
@@ -307,7 +302,7 @@ EditBook.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => (
+export const mapStateToProps = state => (
   {
     modifyBookData: state.modifyBooks[0],
     imageInputUrl: state.uploadImage[0].response,

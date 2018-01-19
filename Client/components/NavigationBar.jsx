@@ -7,8 +7,6 @@ import { logout } from '../actions/signinAction';
 import { getUserDataRequest } from '../actions/getUser';
 
 /**
- *
- *
  * @class NavigationBar
  * @extends {React.Component}
  */
@@ -28,8 +26,7 @@ export class NavigationBar extends React.Component {
   }
 
   /**
-   *
-   * @returns {any} sideNav
+   * @returns {object} sideNav
    * @memberof NavigationBar
    */
   componentDidMount() {
@@ -43,9 +40,8 @@ export class NavigationBar extends React.Component {
   }
 
   /**
-   *
-   * @returns {nextProps} next props
-   * @param {any} nextProps
+   * @returns {object} next props
+   * @param {object} nextProps
    * @memberof NavigationBar
    */
   componentWillReceiveProps(nextProps) {
@@ -59,9 +55,8 @@ export class NavigationBar extends React.Component {
   }
 
   /**
- *
- * @returns {any} event
- * @param {any} event
+ * @returns {object} logout event
+ * @param {object} event
  * @memberof NavigationBar
  */
   logout(event) {

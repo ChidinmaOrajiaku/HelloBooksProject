@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject.svg?branch=test)](https://travis-ci.org/ChidinmaOrajiaku/HelloBooksProject)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5a0fc5c54d3007c06ed6/test_coverage)](https://codeclimate.com/github/ChidinmaOrajiaku/HelloBooksProject/test_coverage)
-[![Coverage Status](https://coveralls.io/repos/github/ChidinmaOrajiaku/HelloBooksProject/badge.svg)](https://coveralls.io/github/ChidinmaOrajiaku/HelloBooksProject)
+[![Coverage Status](https://coveralls.io/repos/github/ChidinmaOrajiaku/HelloBooksProject/badge.svg?branch=bug%2Fimplement-second-feedback)](https://coveralls.io/github/ChidinmaOrajiaku/HelloBooksProject?branch=bug%2Fimplement-second-feedback)
 
 # HelloBooksProject
 

@@ -15,40 +15,8 @@ exports[`<BodyNavigationBar /> should match snapshot test 1`] = `
       >
         HelloBooks
       </Link>
-      <a
-        className="button-collapse"
-        data-activates="mobile-demo"
-        to="#"
-      >
-        <i
-          className="material-icons"
-        >
-          menu
-        </i>
-      </a>
       <ul
         className="right hide-on-med-and-down"
-      >
-        <li>
-          <Link
-            replace={false}
-            to="/register"
-          >
-            Sign Up
-          </Link>
-        </li>
-        <li>
-          <Link
-            replace={false}
-            to="/login"
-          >
-            Sign In
-          </Link>
-        </li>
-      </ul>
-      <ul
-        className="side-nav"
-        id="mobile-demo"
       >
         <li>
           <Link

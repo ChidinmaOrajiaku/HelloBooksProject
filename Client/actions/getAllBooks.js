@@ -1,27 +1,12 @@
 import axios from 'axios';
-import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED, GET_BOOKS_REQUEST } from './types';
+import { GET_BOOKS_SUCCESSFUL, GET_BOOKS_FAILED } from './types';
 
 
 /**
-   *
-   *
-   * @export
-   * @param {any} data
-   * @returns {object} get books reequest data
-   */
-export function getBooksRequest(data) {
-  return {
-    type: GET_BOOKS_REQUEST,
-    data
-  };
-}
-
-/**
- *
- *
+ * Get books response if successful
  * @export
- * @param {any} response
- * @returns {object} gets a response when request is successful
+ * @param {object} response
+ * @returns {object} of response when request is successful
  */
 export function getBooksResponse(response) {
   return {
@@ -31,11 +16,10 @@ export function getBooksResponse(response) {
 }
 
 /**
-   *
-   *
+   * Get books error if not successful
    * @export
-   * @param {any} error
-   * @returns {object} gets an error when request fails
+   * @param {object} error
+   * @returns {object} of an error when request fails
    */
 export function getBooksError(error) {
   return {

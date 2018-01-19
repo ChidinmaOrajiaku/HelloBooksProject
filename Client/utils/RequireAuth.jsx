@@ -3,38 +3,40 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 /**
- * 
- * 
+ *
+ *
  * @export
- * @param {ComposedComponent } ComposedComponent 
+ * @param {ComposedComponent } ComposedComponent
  * @returns {object} response object
  */
 export default function (ComposedComponent) {
   /**
-     * 
-     * 
+     *
+     *
      * @class RequireAuth
      * @extends {React.Component}
      */
   class RequireAuth extends React.Component {
     /**
-       * 
-       * 
+       *
+       *
        * @returns {object} response object
        * @memberof RequireAuth
        */
     componentWillMount() {
       if (!this.props.isAuthenticated) {
-        Materialize.toast(' Please login to access this page ',
-          2000, 'red accent-3 rounded');
+        Materialize.toast(
+          'Please login to access this page ',
+          2000, 'red accent-3 rounded'
+        );
         return this.props.history.push('/login');
       }
     }
 
     /**
-     * 
+     *
      * @returns {object} response object
-     * @param {any} nextProps 
+     * @param {any} nextProps
      * @memberof RequireAuth
      */
     componentWillUpdate(nextProps) {
@@ -44,8 +46,7 @@ export default function (ComposedComponent) {
     }
 
     /**
- * 
- * 
+ *
  * @returns {object} response object
  * @memberof RequireAuth
  */
@@ -56,7 +57,7 @@ export default function (ComposedComponent) {
     }
   }
 
-  RequireAuth.PropTypes = {
+  RequireAuth.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     data: PropTypes.object.isRequired
   };
@@ -66,9 +67,9 @@ export default function (ComposedComponent) {
   };
 
   /**
-   * 
-   * 
-   * @param {any} state 
+   *
+   * Maps state to props
+   * @param {any} state
    * @returns {object} response object
    */
   function mapStateToProps(state) {

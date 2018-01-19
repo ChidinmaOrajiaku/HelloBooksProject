@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 /**
- * 
+ *
  * Set jwt token in request headers else delete token from request headers
  * @export
- * @param {token} token 
+ * @param {object} token
  * @returns {object} response object
  */
 export default function setAuthToken(token) {

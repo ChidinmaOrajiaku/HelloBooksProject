@@ -1,4 +1,4 @@
-import { BORROW_BOOKS_SUCCESSFUL, BORROW_BOOKS_FAILED, BORROW_BOOKS_REQUEST } from '../actions/types';
+import { BORROW_BOOKS_SUCCESSFUL, BORROW_BOOKS_FAILED } from '../actions/types';
 
 const initialState = [{
   borrowData: {},
@@ -9,13 +9,6 @@ const initialState = [{
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case BORROW_BOOKS_REQUEST:
-      return [{
-        borrowData: action.data,
-        response: '',
-        error: '',
-      }, ...state];
-
     case BORROW_BOOKS_SUCCESSFUL:
       return [{
         borrowData: {},

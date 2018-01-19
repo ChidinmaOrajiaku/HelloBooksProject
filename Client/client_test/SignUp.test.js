@@ -2,13 +2,14 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import mockData from './mocks/mockData';
 import { SignUp } from '../components/SignUp.jsx';
 
 configure({ adapter: new Adapter() });
 
 describe('<SignUp />', () => {
   const props = {
-    userSignupRequest: jest.fn()
+    userSignupRequest: jest.fn(() => Promise.resolve())
   };
 
   let mountedComponent;
@@ -25,6 +26,32 @@ describe('<SignUp />', () => {
 
   it('renders <SignUp /> component', () => {
     expect(signupFormItem()).toHaveLength(1);
+  });
+
+  it('should call handleChange method', () => {
+    const spy = jest.spyOn(signupFormItem().instance(), 'handleChange');
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        id: 'review',
+        value: 'chideberecom'
+      }
+    };
+    signupFormItem().instance().handleChange(event);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call onSignupSubmit method', () => {
+    const { getSignUpData } = mockData;
+    const spy = jest.spyOn(signupFormItem().instance(), 'onSignupSubmit');
+    const event = {
+      preventDefault: jest.fn(),
+    };
+    signupFormItem().instance().onSignupSubmit(event);
+    expect(spy).toHaveBeenCalled();
+    const form = signupFormItem().find('form');
+    signupFormItem().setState(getSignUpData);
+    form.simulate('submit', event);
   });
 
   it('should update state on first name field change', () => {
@@ -82,12 +109,5 @@ describe('<SignUp />', () => {
     const tree = toJson(component);
     expect(tree).toMatchSnapshot();
   });
-
-  // it('should call function on submit on signup form', () => {
-  //   const component = shallow(<SignUp {...props} />);
-  //   const preventDefault = jest.fn();
-  //   component.find('form').simulate('submit', { preventDefault });
-  //   expect(preventDefault).toBeCalled();
-  // });
 });
 
