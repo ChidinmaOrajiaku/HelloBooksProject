@@ -106,8 +106,10 @@ export class Profile extends React.Component {
           password: '',
           verifyPassword: ''
         });
-      } else {
-        Materialize.toast('Password Incorrect', 2000, 'red rounded');
+      } else if (this.state.password === '') {
+        Materialize.toast(this.props.passwordUpdate.error.response.data.message, 2000, 'red rounded');
+      } else if (this.props.passwordUpdate.isUpdated === false) {
+        Materialize.toast(this.props.passwordUpdate.error.response.data.message, 2000, 'red rounded');
       }
     }, 1000);
   }

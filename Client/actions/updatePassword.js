@@ -17,7 +17,7 @@ export function updatePasswordRequest(data) {
 
 /**
  * Update password response if successful
- * @export
+ * @export updatePasswordResponse
  * @param {object} response
  * @returns {object} of update password action is successful
  */
@@ -30,7 +30,7 @@ export function updatePasswordResponse(response) {
 
 /**
    * Updated password error if not successful
-   * @export
+   * @export updatePasswordError
    * @param {object} error
    * @returns {object} of error if update password action fails
    */

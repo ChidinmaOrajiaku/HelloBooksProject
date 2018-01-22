@@ -38,10 +38,44 @@ const userController = {
         password,
       })
       .then((user) => {
-        res.status(201).send({
-          message: 'Account created! Proceed to login',
-          username: user.firstname,
-        });
+        if (email === process.env.ADMIN_EMAIL
+          && bcrypt.compareSync(password, user.password)) {
+        // create Token
+          const adminToken = jwt.sign(
+            {
+              username: process.env.ADMIN_NAME,
+              role: 'admin',
+              id: user.id
+            },
+            app.get('secret'),
+            {
+              expiresIn: 60 * 60 * 72 // token expires after 72 hours
+            }
+          );
+          return res.status(201).send({
+            message: 'Welcome admin',
+            username,
+            token: adminToken
+          });
+        } else if (bcrypt.compareSync(password, user.password)) {
+        // create Token
+          const userToken = jwt.sign(
+            {
+              username: user.username,
+              role: 'user',
+              id: user.id
+            },
+            app.get('secret'),
+            {
+              expiresIn: 60 * 60 * 24 // token expires after 24 hours
+            }
+          );
+          return res.status(201).send({
+            message: 'Account Created',
+            username,
+            token: userToken
+          });
+        }
       })
       .catch((error) => {
         const errorMessage = error.errors.map(value => value.message);
@@ -146,17 +180,29 @@ const userController = {
           return res.status(404).send({
             message: messages.notFound,
           });
+        } else if (password === '') {
+          res.status(400).send({
+            message: 'Password cannot be empty'
+          });
         } else if (bcrypt.compareSync(verifyPassword, user.password)) {
           user.update({
             password,
-          });
-          return res.status(200).send({
-            message: 'Succesfully Updated'
+          })
+            .then(() => {
+              res.status(200).send({
+                message: 'Succesfully Updated'
+              });
+            }).catch((error) => {
+              const errorMessage = error.errors.map(value => value.message);
+              return res.status(400).send({
+                message: errorMessage
+              });
+            });
+        } else {
+          res.status(401).send({
+            message: messages.incorrectPassword
           });
         }
-        res.status(401).send({
-          message: messages.incorrectPassword
-        });
       })
       .catch((error) => {
         res.status(500).send({

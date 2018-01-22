@@ -55,8 +55,8 @@ describe('Users', () => {
         .end((err, res) => {
           res.should.have.status(201);
           res.should.be.json;
-          res.body.message.should.be.equal('Account created! Proceed to login');
-          res.body.username.should.be.equal('Chidinnma');
+          res.body.message.should.be.equal('Account Created');
+          res.body.username.should.be.equal('corajiaku96');
           if (err) return expect(err.message);
           done();
         });
@@ -68,8 +68,8 @@ describe('Users', () => {
         .end((err, res) => {
           res.should.have.status(201);
           res.should.be.json;
-          res.body.message.should.be.equal('Account created! Proceed to login');
-          res.body.username.should.be.equal('Admin');
+          res.body.message.should.be.equal('Welcome admin');
+          res.body.username.should.be.equal('admin96');
           if (err) return expect(err.message);
           done();
         });
