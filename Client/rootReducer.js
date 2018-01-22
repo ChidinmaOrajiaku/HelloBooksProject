@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import auth from './reducers/auth';
+import signUp from './reducers/signUp';
 import booksState from './reducers/books';
 import userState from './reducers/profile';
 import uploadImage from './reducers/uploadImage';
@@ -24,6 +25,7 @@ export default combineReducers({
   books: booksState,
   userState,
   uploadImage,
+  signUp,
   createBooks,
   deleteBooks,
   modifyBooks,

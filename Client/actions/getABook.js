@@ -4,7 +4,7 @@ import { GET_A_BOOK_SUCCESSFUL, GET_A_BOOK_FAILED } from './types';
 
 /**
  * Get a book response if successful
- * @export
+ * @export getABookResponse
  * @param {object} response
  * @returns {object} of book response
  */
@@ -17,7 +17,7 @@ export function getABookResponse(response) {
 
 /**
    * Get a book error if not successful
-   * @export
+   * @export getABookError
    * @param {object} error
    * @returns {object} of book error
    */

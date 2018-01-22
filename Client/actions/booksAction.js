@@ -53,7 +53,7 @@ export function adminNotReturnedCount(notReturnedBooks) {
 
 /**
  * Creates category
- * @export
+ * @export adminCreateCategory
  * @param {object} category
  * @returns {object} of category
  */
@@ -66,7 +66,7 @@ export function adminCreateCategory(category) {
 
 /**
  *  Returns error if action to category fails
- * @export
+ * @export adminCreateCategoryFailed
  * @param {object} error
  * @returns {object} of category
  */
@@ -79,7 +79,7 @@ export function adminCreateCategoryFailed(error) {
 
 /**
  * Counts category
- * @export
+ * @export adminCountCategory
  * @param {object} categoryCount
  * @returns {object} of categoryCount
  */
@@ -92,7 +92,7 @@ export function adminCountCategory(categoryCount) {
 
 /**
  * Save image response
- * @export
+ * @export saveImageResponse
  * @param {object} response
  * @returns {object} of image saved
  */
@@ -105,7 +105,7 @@ export function saveImageResponse(response) {
 
 /**
  * Dispatches image data for saving
- * @export
+ * @export saveImageRequest
  * @param {object} data
  * @returns {object} of image data request
  */
@@ -118,7 +118,7 @@ export function saveImageRequest(data) {
 
 /**
  * Dispatches error if image fails to save
- * @export
+ * @export saveImageError
  * @param {object} error
  * @returns {object} of image failed
  */
@@ -159,7 +159,7 @@ export const adminCreateCategoryRequest = category => dispatch => axios.post('/a
 
 /**
  * Saves image to cloudinary
- * @export
+ * @export saveImageCloudinary
  * @param {object} image
  * @returns {object} of secure url of image save in cloudinary
  */

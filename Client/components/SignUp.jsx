@@ -8,8 +8,8 @@ import Footer from './Footer';
 import { userSignupRequest } from '../actions/signupAction';
 
 /**
- * 
- * 
+ *
+ *
  * @class SignUp
  * @extends {React.Component}
  */
@@ -34,6 +34,7 @@ export class SignUp extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSignupSubmit = this.onSignupSubmit.bind(this);
   }
+
   /**
  * @returns {object} response object
  * @param {any} event
@@ -51,17 +52,15 @@ export class SignUp extends React.Component {
    */
   onSignupSubmit(event) {
     event.preventDefault();
-    this.props.userSignupRequest(this.state).then(
-      (success) => {
-        Materialize.toast(success.data.message, 2000, 'teal rounded');
-        this.setState({ success: success.data.message });
-        this.props.history.push('/login');
-      },
-      (errors) => {
-        Materialize.toast(errors.response.data, 2000, 'red accent-3 rounded');
-        this.setState({ errors: errors.response.data });
-      }
-    );
+    this.props.userSignupRequest(this.state).then(() => {
+      setTimeout(() => {
+        if (this.props.usersId.isAuthenticated === true) {
+          this.props.history.push('/profile');
+        } else if (this.props.signUpResponse.isSignedUp === false) {
+          Materialize.toast(this.props.signUpResponse.error.response.data, 2000, 'red rounded');
+        }
+      }, 1000);
+    });
   }
 
   /**
@@ -169,4 +168,11 @@ SignUp.propTypes = {
   userSignupRequest: PropTypes.func.isRequired
 };
 
-export default connect(null, { userSignupRequest })(SignUp);
+export const mapStateToProps = state => (
+  {
+    usersId: state.auth,
+    signUpResponse: state.signUp[0],
+  }
+);
+
+export default connect(mapStateToProps, { userSignupRequest })(SignUp);

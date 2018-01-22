@@ -3,7 +3,7 @@ import { DELETE_BOOKS_SUCCESSFUL, DELETE_BOOKS_FAILED } from './types';
 
 /**
  * Delete books response if successful
- * @export
+ * @export deleteBooksResponse
  * @param {object} response
  * @returns {object} of delete books response
  */
@@ -16,7 +16,7 @@ export function deleteBooksResponse(response) {
 
 /**
    * Delete books error if not successful
-   * @export
+   * @export deleteBooksError
    * @param {object} error
    * @returns {object} of delete books error
    */

@@ -3,7 +3,7 @@ import { COUNT_USERS } from './types';
 
 /**
  * Counts users
- * @export
+ * @export adminCountUsers
  * @param {object} adminCountUsers
  * @returns {object} object
  */
