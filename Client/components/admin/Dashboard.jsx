@@ -56,8 +56,10 @@ export class Dashboard extends React.Component {
   }
 
   /**
-   * @returns {object} next props
    * @param {object} nextProps
+   *
+   * @returns {object} next props
+   *
    * @memberof Dashboard
    */
   componentWillReceiveProps(nextProps) {
@@ -93,8 +95,10 @@ export class Dashboard extends React.Component {
   /**
  *
  * @param {object} event
- * @memberof Dashboard
+ *
  * @returns {object} SyntheticEvent
+ *
+ * @memberof Dashboard
  */
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
@@ -103,8 +107,10 @@ export class Dashboard extends React.Component {
   /**
  * Resets category input field on close or submission
  * @param {object} event
- * @memberof Dashboard
+ *
  * @returns {object} response object
+ *
+ * @memberof Dashboard
  */
   handleReset(event) {
     event.preventDefault();
@@ -113,8 +119,10 @@ export class Dashboard extends React.Component {
 
   /**
  *
- * @returns {object} handles category change
  * @param {object} event
+ *
+ * @returns {object} handles category change
+ *
  * @memberof Dashboard
  */
   handleCategory(event) {

@@ -56,8 +56,10 @@ export class AddBooks extends React.Component {
 
   /**
    * @param {object} nextProps
-   * @memberof AddBooks
+   *
    * @returns {object} assigns nextprops to state
+   *
+   * @memberof AddBooks
    */
   componentWillReceiveProps(nextProps) {
     if (nextProps.imageInputUrl && this.state.pointer) {
@@ -92,8 +94,10 @@ export class AddBooks extends React.Component {
   /**
  * Handles change of values in state
  * @param {object} event
- * @memberof AddBooks
+ *
  * @returns {object} SyntheticEvent
+ *
+ * @memberof AddBooks
  */
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
@@ -102,8 +106,11 @@ export class AddBooks extends React.Component {
   /**
  * Submits image to cloudinary and sets state of pointer to true
  * @param {object} event
- * @memberof AddBooks
+ *
+ *
  * @returns {object} response object
+ *
+ * @memberof AddBooks
  */
   onAddSubmit(event) {
     event.preventDefault();
@@ -114,8 +121,10 @@ export class AddBooks extends React.Component {
   /**
  * Handles Image change and saves image file in state
  * @param {object} event
- * @memberof AddBooks
+ *
  * @returns {object} response object
+ *
+ * @memberof AddBooks
  */
   handleImageChange(event) {
     event.preventDefault();

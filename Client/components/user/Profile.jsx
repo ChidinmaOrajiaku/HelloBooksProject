@@ -50,8 +50,10 @@ export class Profile extends React.Component {
 
   /**
    * Receives next props and sets it in state
-   * @returns {object} response object
    * @param {object} nextProps
+   *
+   * @returns {object} response object
+   *
    * @memberof Profile
    */
   componentWillReceiveProps(nextProps) {
@@ -67,8 +69,10 @@ export class Profile extends React.Component {
 
   /**
  * Handles input field change and sets the state
- * @returns {object} response object
  * @param {object} event
+ *
+ * @returns {object} response object
+ *
  * @memberof Profile
  */
   handleChange(event) {
@@ -78,8 +82,10 @@ export class Profile extends React.Component {
   /**
  * Resets password input field on close or submission
  * @param {object} event
- * @memberof Profile
+ *
  * @returns {object} response object
+ *
+ * @memberof Profile
  */
   handleReset(event) {
     event.preventDefault();
@@ -91,8 +97,10 @@ export class Profile extends React.Component {
 
   /**
    * Updates user password
-   * @returns {object} response object
    * @param {object} event
+   *
+   * @returns {object} response object
+   *
    * @memberof Profile
    */
   handlePassword(event) {
@@ -106,8 +114,10 @@ export class Profile extends React.Component {
           password: '',
           verifyPassword: ''
         });
-      } else {
-        Materialize.toast('Password Incorrect', 2000, 'red rounded');
+      } else if (this.state.password === '') {
+        Materialize.toast(this.props.passwordUpdate.error.response.data.message, 2000, 'red rounded');
+      } else if (this.props.passwordUpdate.isUpdated === false) {
+        Materialize.toast(this.props.passwordUpdate.error.response.data.message, 2000, 'red rounded');
       }
     }, 1000);
   }

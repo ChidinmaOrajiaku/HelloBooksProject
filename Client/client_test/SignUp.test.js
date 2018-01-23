@@ -3,7 +3,7 @@ import toJson from 'enzyme-to-json';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import mockData from './mocks/mockData';
-import { SignUp } from '../components/SignUp.jsx';
+import { SignUp, mapStateToProps } from '../components/SignUp.jsx';
 
 configure({ adapter: new Adapter() });
 
@@ -103,6 +103,16 @@ describe('<SignUp />', () => {
     });
     expect(signupFormItem().state().password).toBe('password');
   });
+
+  it('ensures that mapStateToProps dispatches the specified actions', () => {
+    const state = {
+      auth: {},
+      signUp: ['1', '2'],
+    };
+    expect(mapStateToProps(state).usersId).toExist;
+    expect(mapStateToProps(state).signUpResponse).toExist;
+  });
+
 
   it('should match snapshot test', () => {
     const component = signupFormItem();

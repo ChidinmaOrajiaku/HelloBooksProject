@@ -52,7 +52,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Invalid details'
+          msg: 'Password cannot be empty'
         },
         isMoreThan4Characters(value) {
           if (value.length < 4) {

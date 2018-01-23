@@ -21,6 +21,13 @@ const mockData = {
     email: 'daddy@gmail.com',
     success: 'Account created! Proceed to login'
   },
+  signUpData: {
+    firstname: 'daddy',
+    lastname: 'daddy',
+    username: 'daddy',
+    password: 'daddy',
+    email: 'daddy@gmail.com',
+  },
   signUpDetails: {
     message: 'Account created! Proceed to login',
     username: 'daddy',

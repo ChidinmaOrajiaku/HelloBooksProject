@@ -40,8 +40,10 @@ export class NavigationBar extends React.Component {
   }
 
   /**
-   * @returns {object} next props
    * @param {object} nextProps
+   *
+   * @returns {object} next props
+   *
    * @memberof NavigationBar
    */
   componentWillReceiveProps(nextProps) {
@@ -55,8 +57,10 @@ export class NavigationBar extends React.Component {
   }
 
   /**
- * @returns {object} logout event
  * @param {object} event
+ *
+ * @returns {object} logout event
+ *
  * @memberof NavigationBar
  */
   logout(event) {

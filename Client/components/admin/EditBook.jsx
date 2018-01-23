@@ -64,8 +64,10 @@ export class EditBook extends React.Component {
   }
 
   /**
- * @returns {object} nextProps
  * @param {object} nextProps
+ *
+ * @returns {object} nextProps
+ *
  * @memberof EditBook
  */
   componentWillReceiveProps(nextProps) {
@@ -109,8 +111,10 @@ export class EditBook extends React.Component {
   }
 
   /**
- * @returns {object} event
  * @param {object} event
+ *
+ * @returns {object} event
+ *
  * @memberof EditBook
  */
   handleChange(event) {
@@ -119,8 +123,10 @@ export class EditBook extends React.Component {
 
   /**
  * Handles image change and sets to state
- * @returns {object} handle Image change
  * @param {object} event
+ *
+ * @returns {object} handle Image change
+ *
  * @memberof EditBook
  */
   handleImageChange(event) {
@@ -145,8 +151,10 @@ export class EditBook extends React.Component {
 
   /**
  * Save image on cloudinary
- * @returns {object} event
  * @param {object} event
+ *
+ * @returns {object} event
+ *
  * @memberof EditBook
  */
   onEditCloudinaryRequest(event) {
@@ -157,8 +165,11 @@ export class EditBook extends React.Component {
 
   /**
  * Save to database if there's no image change
- * @returns {object} event
+ *
  * @param {object} event
+ *
+ * @returns {object} event
+ *
  * @memberof EditBook
  */
   onEditRequest(event) {

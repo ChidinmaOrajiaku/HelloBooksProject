@@ -36,8 +36,10 @@ export class SignIn extends React.Component {
 
   /**
  * Handles input field change and sets to state
- * @returns {object} response object
  * @param {object} event
+ *
+ * @returns {object} response object
+ *
  * @memberof SignIn
  */
   handleChange(event) {
@@ -46,8 +48,10 @@ export class SignIn extends React.Component {
 
   /**
  * Handles sign in action and redirects user
+ * @param {object} event
+ *
  * @returns {object} response object
- * @param {event} event
+ *
  * @memberof SignIn
  */
   onSigninSubmit(event) {

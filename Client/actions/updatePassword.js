@@ -4,8 +4,10 @@ import { UPDATE_PASSWORD_SUCCESSFUL, UPDATE_PASSWORD_FAILED, UPDATE_PASSWORD_REQ
 
 /**
    * Gets data of password update
-   * @export
+   * @export updatePasswordRequest
+   *
    * @param {object} data
+   *
    * @returns {object} of updated password request
    */
 export function updatePasswordRequest(data) {
@@ -17,8 +19,10 @@ export function updatePasswordRequest(data) {
 
 /**
  * Update password response if successful
- * @export
+ * @export updatePasswordResponse
+ *
  * @param {object} response
+ *
  * @returns {object} of update password action is successful
  */
 export function updatePasswordResponse(response) {
@@ -30,8 +34,10 @@ export function updatePasswordResponse(response) {
 
 /**
    * Updated password error if not successful
-   * @export
+   * @export updatePasswordError
+   *
    * @param {object} error
+   *
    * @returns {object} of error if update password action fails
    */
 export function updatePasswordError(error) {

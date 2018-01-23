@@ -4,8 +4,10 @@ import { RETURN_BOOK_SUCCESSFUL, RETURN_BOOK_FAILED } from './types';
 
 /**
  * Return books response if successful
- * @export
+ * @export returnResponse
+ *
  * @param {object} response
+ *
  * @returns {object} of return-book response if successful
  */
 export function returnResponse(response) {
@@ -17,8 +19,10 @@ export function returnResponse(response) {
 
 /**
    * Return books error if not successful
-   * @export
+   * @export returnError
+   *
    * @param {object} error
+   *
    * @returns {object} of return-book error if request fails
    */
 export function returnError(error) {

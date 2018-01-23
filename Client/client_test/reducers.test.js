@@ -1,4 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
+import signUpErrorReducer from '../reducers/signUp';
 import borrowBooksReducer from '../reducers/borrowBooks';
 import createBooksReducer from '../reducers/createBooks';
 import deletedBookReducer from '../reducers/deleteBooks';
@@ -36,6 +37,31 @@ describe('Set current user reducer', () => {
     });
   });
 });
+
+describe('Sign up error reducer', () => {
+  it('should return the initial state', () => {
+    expect(signUpErrorReducer(undefined, {})).toEqual([
+      {
+        error: '',
+        isSignedUp: '',
+      }
+    ]);
+  });
+
+  it('should handle sign up errors', () => {
+    const { errorMessage } = mockData;
+    expect(signUpErrorReducer([], {
+      type: types.SIGN_UP_FAILED,
+      error: errorMessage,
+    })).toEqual([
+      {
+        error: errorMessage,
+        isSignedUp: false,
+      }
+    ]);
+  });
+});
+
 
 describe('Borrowed books reducer', () => {
   it('should return the initial state', () => {
