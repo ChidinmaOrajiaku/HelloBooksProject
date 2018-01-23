@@ -4,7 +4,9 @@ import { GET_CATEGORY_SUCCESSFUL, GET_CATEGORY_FAILED } from './types';
 /**
    * Get category response if successful
    * @export getCategoryResponse
+   *
    * @param {object} response
+   *
    * @returns {object} of category response when request is successful
    */
 export function getCategoryResponse(response) {
@@ -17,7 +19,9 @@ export function getCategoryResponse(response) {
 /**
    * Get category error if not successful
    * @export getCategoryError
+   *
    * @param {object} error
+   *
    * @returns {object} of category error when request is fails
    */
 export function getCategoryError(error) {

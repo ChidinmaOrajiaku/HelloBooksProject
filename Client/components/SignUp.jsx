@@ -36,8 +36,10 @@ export class SignUp extends React.Component {
   }
 
   /**
- * @returns {object} response object
  * @param {any} event
+ *
+ * @returns {object} response object
+ *
  * @memberof SignUp
  */
   handleChange(event) {
@@ -46,8 +48,10 @@ export class SignUp extends React.Component {
 
   /**
    * Handles sign up action
+   * @param {object} event
+   *
    * @returns {object} response object
-   * @param {any} event
+   *
    * @memberof SignUp
    */
   onSignupSubmit(event) {

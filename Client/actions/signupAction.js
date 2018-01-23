@@ -7,7 +7,9 @@ import { SIGN_UP_FAILED } from './types';
 /**
  * Sign up error if request fails
  * @export signUpError
+ *
  * @param {object} error
+ *
  * @returns {object} of signed up error
  */
 export function signUpError(error) {

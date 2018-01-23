@@ -39,8 +39,10 @@ export class Library extends React.Component {
 
   /**
    * Receives next props an sets the state
-   * @returns {object} response object
    * @param {object} nextProps
+   *
+   * @returns {object} response object
+   *
    * @memberof Library
    */
   componentWillReceiveProps(nextProps) {
@@ -52,8 +54,10 @@ export class Library extends React.Component {
 
   /**
    * Handles borrow books action
-   * @returns {object} response object
    * @param {object} event
+   *
+   * @returns {object} response object
+   *
    * @memberof Library
    */
   handleBorrow(event) {

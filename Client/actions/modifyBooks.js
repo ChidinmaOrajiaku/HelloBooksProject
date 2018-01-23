@@ -5,7 +5,9 @@ import { MODIFY_BOOKS_SUCCESSFUL, MODIFY_BOOKS_FAILED } from './types';
 /**
  * Modify books response if successful
  * @export modifyBooksResponse
+ *
  * @param {object} response
+ *
  * @returns {response} of response if request is successful
  */
 export function modifyBooksResponse(response) {
@@ -18,7 +20,9 @@ export function modifyBooksResponse(response) {
 /**
    * Modify books error if not successful
    * @export modifyBooksError
+   *
    * @param {object} error
+   *
    * @returns {object} of error if request fails
    */
 export function modifyBooksError(error) {

@@ -18,6 +18,7 @@ const userController = {
    * Creates a user in the database
    * @param {string} req
    * @param {string} res
+   * 
    * @returns {object} req, res
    */
   create(req, res) {
@@ -87,6 +88,7 @@ const userController = {
  * Returns  User  and provides user/admin token on login
  * @param {string} req
  * @param {string} res
+ * 
  * @returns {object} req, res
  */
   login(req, res) {
@@ -159,6 +161,7 @@ const userController = {
    * Updates user password
    * @param {string} req
    * @param {string} res
+   * 
    * @returns {object} req, res
    */
   updatePassword(req, res) {
@@ -216,6 +219,7 @@ const userController = {
        * Gets user details
        * @param {string} req
        * @param {string} res
+       * 
        * @returns {object} req, res
        */
   getUser(req, res) {
@@ -258,6 +262,7 @@ const userController = {
      * Returns  User count
      * @param {string} req
      * @param {string} res
+     * 
      * @returns {object} req, res
      */
   adminCountAllUser(req, res) {

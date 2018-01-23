@@ -4,7 +4,9 @@ import { YET_TO_RETURN_SUCCESSFUL, YET_TO_RETURN_FAILED } from './types';
 /**
  * Unreturned books response if successful
  * @export yetToReturnResponse
+ *
  * @param {object} response
+ *
  * @returns {object} ofresponse if action is successful
  */
 export function yetToReturnResponse(response) {
@@ -17,7 +19,9 @@ export function yetToReturnResponse(response) {
 /**
    * Unreturned books error if not successful
    * @export yetToReturnError
+   *
    * @param {object} error
+   *
    * @returns {object} gets error if action fails
    */
 export function yetToReturnError(error) {

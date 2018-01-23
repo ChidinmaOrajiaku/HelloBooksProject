@@ -5,7 +5,9 @@ import { GET_BORROWED_BOOKS_SUCCESSFUL, GET_BORROWED_BOOKS_FAILED } from './type
 /**
  * Get borrowed books response if successful
  * @export getBorrowedBooksResponse
+ *
  * @param {object} response
+ *
  * @returns {object} of borrowed books response when request is successful
  */
 export function getBorrowedBooksResponse(response) {
@@ -18,7 +20,9 @@ export function getBorrowedBooksResponse(response) {
 /**
    * Get books error if not successful
    * @export getBorrowedBooksError
+   *
    * @param {object} error
+   *
    * @returns {object} of borrowed books response when request fails
    */
 export function getBorrowedBooksError(error) {

@@ -5,7 +5,9 @@ import { GET_USER_SUCCESSFUL, GET_USER_FAILED } from './types';
 /**
    * Get user response if successful
    * @export getUserResponse
+   *
    * @param {object} response
+   *
    * @returns {object} of response if request is successful
    */
 export function getUserResponse(response) {
@@ -18,7 +20,9 @@ export function getUserResponse(response) {
 /**
    * Get user error if not successful
    * @export getUserError
+   *
    * @param {object} error
+   *
    * @returns {object} of error if request fails
    */
 export function getUserError(error) {
